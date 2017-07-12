@@ -18,16 +18,54 @@ class ListHighlighter {
 			let textarea = header.nextElementSibling;
 			let title = header.textContent;
 
-			if (matches && typeof matches[0] == 'string') {
-				if (textarea && textarea.tagName == 'TEXTAREA') {
+			if (textarea && textarea.tagName == 'TEXTAREA') {
+				let newValue;
+				if (matches && typeof matches[0] == 'string') {
 					title = header.textContent.replace(matches[0], ' ').trim();
 					textarea.value = title;
+				} else {
+					title = textarea.value;
 				}
 			}
 
 			textarea.style.height = ListHighlighter.getNewHeight(textarea, title);
 
 		}
+
+	}
+
+	static detagHeaderTimeout () {
+
+		var textarea;
+
+		if (arguments[0] instanceof HTMLTextAreaElement) {
+			textarea = arguments[0];
+		} else if (arguments[0] instanceof Event) {
+			textarea = arguments[0].target;
+		}
+
+		var textarea = this;
+		var header = textarea.previousElementSibling;
+		window.setTimeout(function () {
+			ListHighlighter.detagHeader(header);
+		}, 10);
+
+	}
+
+	static retagHeader () {
+
+		var textarea;
+
+		if (arguments[0] instanceof HTMLTextAreaElement) {
+			textarea = arguments[0];
+		} else if (arguments[0] instanceof Event) {
+			textarea = arguments[0].target;
+		}
+
+		var newValue = textarea.previousElementSibling.textContent;
+
+		textarea.value = newValue;
+		textarea.style.height = ListHighlighter.getNewHeight(textarea, newValue);
 
 	}
 
@@ -109,12 +147,24 @@ class ListHighlighter {
 		}
 
 		else {
-			return null;
+			return LOW;
 		}
 
 	}
 
+	static toggleHighlight (highlight) {
+		if (typeof highlight === 'boolean') {
+			if (highlight) {
+				ListHighlighter.highlight();
+			} else {
+				ListHighlighter.dehighlight();
+			}
+		}
+	}
+
 	static highlight() {
+
+		document.body.classList.add('bmko_list-highlighter-applied');
 
 		var lists  = document.querySelectorAll('.list');
 
@@ -143,18 +193,8 @@ class ListHighlighter {
 
 				if (textarea && textarea.tagName == 'TEXTAREA') {
 
-					textarea.addEventListener('focus', function () {
-						this.value = this.previousElementSibling.textContent;
-						autosize(this);
-						autosize.update(this);
-					});
-
-					textarea.addEventListener('blur', function () {
-						var header = this.previousElementSibling;
-						window.setTimeout(function () {
-							ListHighlighter.detagHeader(header);
-						}, 10);
-					});
+					textarea.addEventListener('focus', ListHighlighter.retagHeader);
+					textarea.addEventListener('blur', ListHighlighter.detagHeaderTimeout);
 
 					ListHighlighter.detagHeader(header);
 
@@ -171,6 +211,28 @@ class ListHighlighter {
 			document.body.classList.remove('bmko_do-not-dim-lists');
 		} else {
 			document.body.classList.add('bmko_do-not-dim-lists');
+		}
+
+	}
+
+	static dehighlight() {
+
+		document.body.classList.remove('bmko_list-highlighter-applied');
+
+		var lists  = document.querySelectorAll('.list');
+
+		for (var i = 0, len = lists.length; i < len; i++) {
+
+			let list = lists[i],
+				textarea = list.querySelector('.list-header h2 + textarea');
+
+			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
+
+			if (textarea) {
+				ListHighlighter.retagHeader(textarea);
+				textarea.removeEventListener('focus', ListHighlighter.retagHeader);
+				textarea.removeEventListener('blur', ListHighlighter.detagHeaderTimeout);
+			}
 
 		}
 

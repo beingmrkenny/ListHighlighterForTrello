@@ -1,0 +1,142 @@
+
+@import '../colors';
+@import 'vars';
+@import 'mixins';
+
+body.body-color-blind-mode-enabled .bmko_high-list {
+
+    background-image: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,.5) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,.5) 50%,
+        rgba(255,255,255,.5) 75%,
+        transparent 75%,
+        transparent
+    );
+
+    background-size: 2pc 2pc;
+
+    .open-card-composer {
+        opacity: 1;
+    }
+
+    .mod-list-name,
+    .open-card-composer {
+        text-shadow: 0 0 6px black;
+    }
+}
+
+.bmko_list-highlighter-applied .list {
+
+    background: var(--list-bg);
+    color: var(--list-color);
+
+    .u-fancy-scrollbar::-webkit-scrollbar-track-piece { background: var(--scrollbar-track-color); }
+    .u-fancy-scrollbar::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb-color); }
+
+    .list-header,
+    .list-cards,
+    .open-card-composer {
+        opacity: var(--opacity);
+    }
+
+    // ellipsis button, add card button
+
+    .open-card-composer,
+    .list-header-extras-menu {
+        color: var(--list-button-color);
+        .icon-sm { color: var(--list-button-color); }
+        &:hover { background: var(--list-button-bg); }
+    }
+
+    // list header
+
+    .list-header-num-cards,
+    .mod-list-name,
+    .mod-list-name:disabled {
+        color: var(--header-color);
+        -webkit-text-fill-color: var(--header-color);
+    }
+
+    .mod-list-name.is-editing {
+        color: var(--editing-color);
+        -webkit-text-fill-color: var(--editing-color);
+    }
+
+    // Cards
+
+    .list-card {
+
+        &:not(.placeholder) {
+
+            &.is-stickered .list-card-details {
+                background: transparent;
+            }
+
+            &.active-card {
+                background: var(--active-card-bg);
+                border-bottom-color: var(--active-card-border-bottom-color);
+                a, textarea {
+                    color: var(--active-card-color);
+                }
+            }
+
+            &:not(.active-card) {
+                background: var(--card-bg);
+                border-bottom-color: var(--card-border-bottom-color);
+                a, textarea {
+                    color: var(--card-color);
+                }
+            }
+        }
+
+        &.placeholder {
+            background: var(--list-button-bg);
+            border-bottom-color: transparent;
+        }
+
+    }
+
+    // Pencil button
+
+    .active-card .list-card-operation {
+        background: transparent;
+		color: var(--card-button-color);
+        &:hover {
+            background: var(--card-button-bg);
+    		color: var(--card-color);
+    	}
+    }
+
+    // card footer buttons
+
+    .icon-lg {
+        &.dark-hover,
+        &.dark-background-hover {
+            opacity: .7;
+            color: var(--card-button-color);
+            &:hover { opacity: 1; }
+        }
+        &.dark-background-hover:hover { background: var(--card-button-bg); }
+    }
+
+    // Apply the above style definitions
+
+    &.bmko_ignore-list,
+    &.bmko_trash-list {
+        @include ignore();
+    }
+
+    &.bmko_trash-list .list-cards {
+        text-decoration: line-through;
+    }
+
+    .bmko_low-list {
+        @include low();
+    }
+
+}
+
+@import 'headercards';
