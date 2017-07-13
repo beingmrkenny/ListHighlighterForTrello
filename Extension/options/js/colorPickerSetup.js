@@ -7,7 +7,7 @@ function setupColorPicker (colorTileLabel) {
 
     var existing = $('color-picker'),
         isDefaultBoard = j(input.dataset.default),
-        previousColor = input.value,
+        previousColor = input.dataset.value,
         colorPicker = getTemplate('ColorPicker'),
         colorTilebar = input.closest('.color-tile-bar');
 

@@ -81,7 +81,7 @@
                 {/foreach}
             </ul>
 
-            <details open>
+            <details>
 
                 <summary>
                     <h3>More options</h3>

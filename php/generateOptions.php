@@ -5,7 +5,9 @@ if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
 }
 
-require 'config/options.inc';
+$lhDir = __DIR__ . '/..';
+
+require $lhDir.'/config/options.inc';
 require $smartyClass;
 require 'Color.php';
 
@@ -61,7 +63,7 @@ foreach ($colors as $colorName => $color) {
 
 $smarty->assign('defaultTiles', $defaultTiles);
 $smarty->assign('dummyTiles', $dummyTiles);
-$fileContents = $smarty->fetch('options.tpl');
-$file = 'Extension/options/index.html';
+$fileContents = $smarty->fetch($lhDir.'/php/options.tpl');
+$file = $lhDir.'/Extension/options/index.html';
 
 file_put_contents($file, $fileContents);
