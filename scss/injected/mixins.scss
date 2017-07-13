@@ -1,32 +1,32 @@
 
 @mixin badges () {
 
-    .badge-icon,
-    .badge-text {
-        color: var(--card-button-color);
-    }
+	.badge-icon,
+	.badge-text {
+		color: var(--card-button-color);
+	}
 
-    .badge.is-complete,
-    .badge.is-unread-notification,
-    .badge.is-due-soon,
-    .badge.is-due-now,
-    .badge.is-due-past {
-        background: var(--badge-bg);
-        color: var(--card-button-color);
-        .badge-icon,
-        .badge-text {
-            color: var(--card-button-color);
-        }
-    }
+	.badge.is-complete,
+	.badge.is-unread-notification,
+	.badge.is-due-soon,
+	.badge.is-due-now,
+	.badge.is-due-past {
+		background: var(--badge-bg);
+		color: var(--card-button-color);
+		.badge-icon,
+		.badge-text {
+			color: var(--card-button-color);
+		}
+	}
 
-    .badge.is-voted {
-        background: var(--badge-bg);
-        color: var(--card-button-color);
-        .badge-icon,
-        .badge-text {
-            color: var(--card-button-color);
-        }
-    }
+	.badge.is-voted {
+		background: var(--badge-bg);
+		color: var(--card-button-color);
+		.badge-icon,
+		.badge-text {
+			color: var(--card-button-color);
+		}
+	}
 
 }
 
@@ -51,13 +51,13 @@
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 
-    $textShadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+	$textShadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
 
-    .list-header-num-cards,
-    .mod-list-name,
-    .mod-list-name:disabled {
-        text-shadow: $textShadow;
-    }
+	.list-header-num-cards,
+	.mod-list-name,
+	.mod-list-name:disabled {
+		text-shadow: $textShadow;
+	}
 
 	.open-card-composer {
 		text-shadow: $textShadow;
@@ -67,23 +67,23 @@
 
 		@include badges();
 
-        &:not(.placeholder) {
+		&:not(.placeholder) {
 
-            &:not(.active-card) {
-        		a, textarea {
-                    opacity: .5;
-                    text-shadow: $textShadow;
-        		}
-            }
+			&:not(.active-card) {
+				a, textarea {
+					opacity: .5;
+					text-shadow: $textShadow;
+				}
+			}
 
-        	&.active-card {
-            	a, textarea {
-                    opacity: .4;
-                    text-shadow: $textShadow;
-            	}
-            }
+			&.active-card {
+				a, textarea {
+					opacity: .4;
+					text-shadow: $textShadow;
+				}
+			}
 
-        }
+		}
 
 		.list-card-cover {
 			opacity: .1;
@@ -94,13 +94,13 @@
 		}
 
 		.member,
-        .sticker {
-    		opacity: .1;
-    	}
+		.sticker {
+			opacity: .1;
+		}
 
-        &.is-stickered .list-card-details {
-    		background: transparent;
-    	}
+		&.is-stickered .list-card-details {
+			background: transparent;
+		}
 
 	}
 

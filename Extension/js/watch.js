@@ -3,33 +3,33 @@ var watchers = {
 
 	body : {
 		observer : new MutationObserver(System.detectAndSaveColorBlindFriendlyMode),
-        options : {childList: false, subtree: false, attributes: true, attributeOldValue: true}
+		options : {childList: false, subtree: false, attributes: true, attributeOldValue: true}
 	},
 
 	title : {
-        observer : new MutationObserver(System.processPageOnTitleChange),
-        options : {characterData: true, childList: true, subtree: false}
-    },
+		observer : new MutationObserver(System.processPageOnTitleChange),
+		options : {characterData: true, childList: true, subtree: false}
+	},
 
 	board : {
-        observer: new MutationObserver(System.checkForNewLists),
-        options : {childList: true, subtree: false}
-    },
+		observer: new MutationObserver(System.checkForNewLists),
+		options : {childList: true, subtree: false}
+	},
 
 	list : {
-        observer: new MutationObserver(System.checkForNewCards),
-        options : {childList: true, subtree: false}
-    },
+		observer: new MutationObserver(System.checkForNewCards),
+		options : {childList: true, subtree: false}
+	},
 
 	listTitle : {
 		observer : new MutationObserver(ListHighlighter.highlight),
-        options : {childList: true, subtree: false}
+		options : {childList: true, subtree: false}
 	},
 
 	listCardTitle : {
-        observer : new MutationObserver(Card.processListCardTitle),
-        options : {characterData: true, childList: true, subtree: false}
-    }
+		observer : new MutationObserver(Card.processListCardTitle),
+		options : {characterData: true, childList: true, subtree: false}
+	}
 
 };
 

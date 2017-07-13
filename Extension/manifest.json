@@ -1,62 +1,62 @@
 {
 
-    "manifest_version": 2,
+	"manifest_version": 2,
 
-    "name": "List Highlighter for Trello",
-    "description": "Highlights todo, doing and done lists.",
-    "version": "3.0",
+	"name": "List Highlighter for Trello",
+	"description": "Highlights todo, doing and done lists.",
+	"version": "3.0",
 
-    "author": "Mark Kenny",
-    "homepage_url": "http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
+	"author": "Mark Kenny",
+	"homepage_url": "http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
 
-    "web_accessible_resources" : [
-        "img/buttonIcon.png"
-    ],
+	"web_accessible_resources" : [
+		"img/buttonIcon.png"
+	],
 
-    "browser_action" : {
-        "default_title" : "List Highlighter",
-        "default_popup" : "popup/popup.html"
-    },
+	"browser_action" : {
+		"default_title" : "List Highlighter",
+		"default_popup" : "popup/popup.html"
+	},
 
-    "options_page" : "options/index.html",
+	"options_page" : "options/index.html",
 
-    "permissions" : [
-        "storage"
-    ],
+	"permissions" : [
+		"storage"
+	],
 
-    "content_scripts": [
-        {
-            "all_frames" : true,
-            "js": [
-                "js/third/autosize.min.js",
-                "js/classes/System.js",
-                "js/classes/ListHighlighter.js",
-                "js/classes/TrelloPage.js",
-                "js/classes/Card.js",
-                "js/classes/Options.js",
+	"content_scripts": [
+		{
+			"all_frames" : true,
+			"js": [
+				"js/third/autosize.min.js",
+				"js/classes/System.js",
+				"js/classes/ListHighlighter.js",
+				"js/classes/TrelloPage.js",
+				"js/classes/Card.js",
+				"js/classes/Options.js",
 
-                "js/watch.js",
-                "js/functions.js",
-                "js/init.js"
-            ],
-            "matches": [ "*://trello.com/*" ],
-            "run_at": "document_start"
-        },
-        {
-            "css": [
-                "css/style.css"
-            ],
-            "matches": [ "*://trello.com/*" ],
-            "run_at": "document_end"
-        }
-    ],
+				"js/watch.js",
+				"js/functions.js",
+				"js/init.js"
+			],
+			"matches": [ "*://trello.com/*" ],
+			"run_at": "document_start"
+		},
+		{
+			"css": [
+				"css/style.css"
+			],
+			"matches": [ "*://trello.com/*" ],
+			"run_at": "document_end"
+		}
+	],
 
-    "icons": {
-        "16"  : "img/192.png",
-        "256" : "img/256.png",
-        "32"  : "img/192.png",
-        "48"  : "img/192.png",
-        "64"  : "img/192.png"
-    }
+	"icons": {
+		"16"  : "img/192.png",
+		"256" : "img/256.png",
+		"32"  : "img/192.png",
+		"48"  : "img/192.png",
+		"64"  : "img/192.png"
+	}
 
 }

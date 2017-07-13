@@ -1,41 +1,41 @@
 function $id (id) {
-    return document.getElementById(id);
+	return document.getElementById(id);
 }
 
 function $(query) {
-    return document.querySelector(query);
+	return document.querySelector(query);
 }
 
 function createElement (string) {
 
-        var element, events;
+		var element, events;
 
-        var container = document.createElement('div');
+		var container = document.createElement('div');
 
-        if (typeof (string) != 'string') {
-            throw 'First parameter must be a string';
-        }
+		if (typeof (string) != 'string') {
+			throw 'First parameter must be a string';
+		}
 
-        else if (typeof arguments[1] !== 'undefined') {
-            events = arguments[1];
-        }
+		else if (typeof arguments[1] !== 'undefined') {
+			events = arguments[1];
+		}
 
-        string = string.trim();
+		string = string.trim();
 
-        switch (true) {
-            case /^<(:?th|td)\b/.test(string) :
-            case /^<tr\b/.test(string) :
-            case /^<t(:?r|head|body)/.test(string) :
-                console.warn('Table elements do not work with this function');
-                break;
-        }
+		switch (true) {
+			case /^<(:?th|td)\b/.test(string) :
+			case /^<tr\b/.test(string) :
+			case /^<t(:?r|head|body)/.test(string) :
+				console.warn('Table elements do not work with this function');
+				break;
+		}
 
-        container.innerHTML = string;
+		container.innerHTML = string;
 
-        element = container.firstElementChild;
+		element = container.firstElementChild;
 
-        return element;
-    }
+		return element;
+	}
 
 function observe(params) {
 
@@ -77,10 +77,10 @@ function keepTrying(callback, limit, interval) {
 }
 
 function getTemplate (id) {
-    var templateContent = document.importNode($id(id).content, true);
-    return templateContent.firstElementChild;
+	var templateContent = document.importNode($id(id).content, true);
+	return templateContent.firstElementChild;
 }
 
 function j (string) {
-    return JSON.parse(string);
+	return JSON.parse(string);
 }

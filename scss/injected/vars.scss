@@ -1,93 +1,93 @@
 
 .list {
-    --scrollbar-track-color:           #{rgba(black, 0.1)};
-    --scrollbar-thumb-color:           #{rgba(black, 0.17)};
+	--scrollbar-track-color:           #{rgba(black, 0.1)};
+	--scrollbar-thumb-color:           #{rgba(black, 0.17)};
 
-    // General list text colour
-    --list-color:                      #{$normalTextColor};
-    --header-color:                    #{$normalTextColor};
+	// General list text colour
+	--list-color:                      #{$normalTextColor};
+	--header-color:                    #{$normalTextColor};
 
-    --card-bg:                         #{#fff};
-    --card-border-bottom-color:        #{#ccc};
-    --card-color:                      #{#4d4d4d};
+	--card-bg:                         #{#fff};
+	--card-border-bottom-color:        #{#ccc};
+	--card-color:                      #{#4d4d4d};
 
-    --active-card-bg:                  #{#EDEFF0};
-    --active-card-border-bottom-color: #{#D6DADC};
-    --active-card-color:               #{$normalTextColor};
+	--active-card-bg:                  #{#EDEFF0};
+	--active-card-border-bottom-color: #{#D6DADC};
+	--active-card-color:               #{$normalTextColor};
 
-    // Pencil button, badges in card footer
-    --card-button-bg:                  #{#D6DADC};
-    --card-button-color:               #{#8c8c8c};
+	// Pencil button, badges in card footer
+	--card-button-bg:                  #{#D6DADC};
+	--card-button-color:               #{#8c8c8c};
 
-    // .list-header, .list-cards, .open-card-composer
-    --opacity:                         #{1};
+	// .list-header, .list-cards, .open-card-composer
+	--opacity:                         #{1};
 }
 
 .bmko_high-list {
-    --list-bg:                         #{#ec2f2f};
+	--list-bg:                         #{#ec2f2f};
 
-    --header-color:                    #{#fff};
-    --editing-color:                   #{$normalTextColor};
-    --list-color:                      #{#fff};
+	--header-color:                    #{#fff};
+	--editing-color:                   #{$normalTextColor};
+	--list-color:                      #{#fff};
 
-    --list-button-bg:                  #{rgba(black, .1)};
-    --list-button-color:               #{white};
+	--list-button-bg:                  #{rgba(black, .1)};
+	--list-button-color:               #{white};
 
-    --card-border-bottom-color:        #{#af5d5d};
-    --active-card-border-bottom-color: #{#af5d5d};
+	--card-border-bottom-color:        #{#af5d5d};
+	--active-card-border-bottom-color: #{#af5d5d};
 }
 
 .bmko_normal-list,
 body.bmko_do-not-dim-lists .bmko_low-list {
-    --list-bg:                         #{$defaultListBg};
-    --header-color:                    #{$normalTextColor};
-    --editing-color:                   #{$normalTextColor};
+	--list-bg:                         #{$defaultListBg};
+	--header-color:                    #{$normalTextColor};
+	--editing-color:                   #{$normalTextColor};
 
-    --list-button-bg:                  #{#D6DADC};
-    --list-button-color:               #{#8c8c8c};
+	--list-button-bg:                  #{#D6DADC};
+	--list-button-color:               #{#8c8c8c};
 }
 
 body:not(.bmko_do-not-dim-lists) .bmko_low-list {
-    --list-bg:                         #{rgba($defaultListBg, 0.5)};
-    --header-color:                    #{$normalTextColor};
-    --editing-color:                   #{$normalTextColor};
+	--list-bg:                         #{rgba($defaultListBg, 0.5)};
+	--header-color:                    #{$normalTextColor};
+	--editing-color:                   #{$normalTextColor};
 
-    --list-button-bg:                  #{rgba(black, .1)};
-    --list-button-color:               #{$normalTextColor};
+	--list-button-bg:                  #{rgba(black, .1)};
+	--list-button-color:               #{$normalTextColor};
 
-    --card-bg:                         #{rgba(white, 0.2)};
-    --card-border-bottom-color:        #{rgba(white, 0.25)};
-    --card-color:                      #{black};
-    --active-card-bg:                  #{transparentize(white, 0.5)};
-    --active-card-border-bottom-color: #{rgba(white, 0.25)};
-    --active-card-color:               #{black};
+	--card-bg:                         #{rgba(white, 0.2)};
+	--card-border-bottom-color:        #{rgba(white, 0.25)};
+	--card-color:                      #{black};
+	--active-card-bg:                  #{transparentize(white, 0.5)};
+	--active-card-border-bottom-color: #{rgba(white, 0.25)};
+	--active-card-color:               #{black};
 
-    --card-button-bg:                  #{rgba(black, .1)};
-    --card-button-color:               #{transparentize($ignoreTextColor, .1)};
+	--card-button-bg:                  #{rgba(black, .1)};
+	--card-button-color:               #{transparentize($ignoreTextColor, .1)};
 
-    --opacity:                         #{.6};
+	--opacity:                         #{.6};
 }
 
 .bmko_ignore-list,
 .bmko_trash-list {
-    --list-bg:                         #{rgba($defaultListBg, 0.07)};
-    --header-color:                    #{$ignoreTextColor};
-    --editing-color:                   #{$ignoreTextColor};
-    --list-header-text-shadow:         #{1px 1px 0 rgba(white, 0.2)};
+	--list-bg:                         #{rgba($defaultListBg, 0.07)};
+	--header-color:                    #{$ignoreTextColor};
+	--editing-color:                   #{$ignoreTextColor};
+	--list-header-text-shadow:         #{1px 1px 0 rgba(white, 0.2)};
 
-    --list-button-bg:                  #{rgba(black, .1)};
-    --list-button-color:               #{$ignoreTextColor};
+	--list-button-bg:                  #{rgba(black, .1)};
+	--list-button-color:               #{$ignoreTextColor};
 
-    --card-bg:                         #{rgba(white, 0.06)};
-    --card-color:                      #{$ignoreTextColor};
-    --card-border-bottom-color:        #{rgba(228, 228, 228, 0.2)};
-    --active-card-bg:                  #{transparentize(white, 0.9)};
-    --active-card-color:               #{$ignoreTextColor};
-    --active-card-border-bottom-color: #{rgba(228, 228, 228, 0.05)};
+	--card-bg:                         #{rgba(white, 0.06)};
+	--card-color:                      #{$ignoreTextColor};
+	--card-border-bottom-color:        #{rgba(228, 228, 228, 0.2)};
+	--active-card-bg:                  #{transparentize(white, 0.9)};
+	--active-card-color:               #{$ignoreTextColor};
+	--active-card-border-bottom-color: #{rgba(228, 228, 228, 0.05)};
 
-    --card-button-bg:                  #{rgba(black, .1)};
-    --card-button-color:               #{transparentize($ignoreTextColor, .25)};
+	--card-button-bg:                  #{rgba(black, .1)};
+	--card-button-color:               #{transparentize($ignoreTextColor, .25)};
 
-    --scrollbar-track-color:           #{rgba(#333, .05)};
-    --scrollbar-thumb-color:           #{rgba(#333, .08)};
+	--scrollbar-track-color:           #{rgba(#333, .05)};
+	--scrollbar-thumb-color:           #{rgba(#333, .08)};
 }

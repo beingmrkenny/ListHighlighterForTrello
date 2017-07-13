@@ -1,85 +1,85 @@
 @import 'colors.scss';
 
 h2 {
-    clear: both;
-    margin-top: 90px;
+	clear: both;
+	margin-top: 90px;
 }
 
 h3 {
-    margin-top: 90px;
+	margin-top: 90px;
 }
 
 h4 {
-    margin: 70px 0 40px;
+	margin: 70px 0 40px;
 
-    font-size: 18px;
+	font-size: 18px;
 }
 
 table {
-    margin: 30px 0;
+	margin: 30px 0;
 }
 
 th {
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 
-    text-align: left;
+	text-align: left;
 }
 
 th,
 td {
-    padding-right: 20px;
+	padding-right: 20px;
 
-    vertical-align: top;
-    white-space: nowrap;
+	vertical-align: top;
+	white-space: nowrap;
 }
 
 a:link {
-    text-decoration: none;
-    color: $linkColor;
+	text-decoration: none;
+	color: $linkColor;
 }
 a:visited {
-    color: $visitedColor;
+	color: $visitedColor;
 }
 
 a:hover,
 a:active {
-    text-decoration: underline;
-    color: $hoverColor;
+	text-decoration: underline;
+	color: $hoverColor;
 }
 
 a[href^='mailto'] {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 details {
-    margin-top: 20px;
-    padding: 10px;
+	margin-top: 20px;
+	padding: 10px;
 
-    background: #f5f5f5;
-    border-radius: 5px;
-    &[open] summary {
-        margin-bottom: 20px;
-        &::after {
-            display: none;
-        }
-    }
+	background: #f5f5f5;
+	border-radius: 5px;
+	&[open] summary {
+		margin-bottom: 20px;
+		&::after {
+			display: none;
+		}
+	}
 }
 
 summary {
-    margin: -10px;
-    padding: 10px;
+	margin: -10px;
+	padding: 10px;
 
-    cursor: pointer;
-    user-select: none;
-    h2,
-    h3 {
-        display: inline;
-        margin: 0;
-    }
-    &:after {
-        content: 'Expand';
-        float: right;
+	cursor: pointer;
+	user-select: none;
+	h2,
+	h3 {
+		display: inline;
+		margin: 0;
+	}
+	&:after {
+		content: 'Expand';
+		float: right;
 
-        color: #999;
-    }
+		color: #999;
+	}
 }

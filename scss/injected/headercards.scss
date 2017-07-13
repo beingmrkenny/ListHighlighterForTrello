@@ -1,124 +1,124 @@
 .list-card.bmko_header-card-applied {
 
-    background-color: transparent;
-    border-bottom: none;
+	background-color: transparent;
+	border-bottom: none;
 
-    // Dragging
-    body > & {
+	// Dragging
+	body > & {
 
-        background-color: transparentize(#EDEFF0, .8);
+		background-color: transparentize(#EDEFF0, .8);
 
-        hr {
-            background: #fff;
-            color: #fff;
-        }
+		hr {
+			background: #fff;
+			color: #fff;
+		}
 
-        &.list-card.is-stickered .list-card-details {
-            background-color: transparent;
-        }
-    }
+		&.list-card.is-stickered .list-card-details {
+			background-color: transparent;
+		}
+	}
 
 }
 
 .bmko_header-card {
 
-    h3 {
-        margin: 2px 0 1px 0;
-        font-weight: 700;
-        color: inherit;
-        -webkit-text-fill-color: inherit;
-        font-size: 14px;
-    }
+	h3 {
+		margin: 2px 0 1px 0;
+		font-weight: 700;
+		color: inherit;
+		-webkit-text-fill-color: inherit;
+		font-size: 14px;
+	}
 
-    .list-card-title {
-        display: none;
-    }
+	.list-card-title {
+		display: none;
+	}
 
-    .list-card-details {
-        padding: 0 6px 0 3px;
-    }
+	.list-card-details {
+		padding: 0 6px 0 3px;
+	}
 
-    &.list-card.is-stickered .list-card-details {
-        background-color: transparent;
-    }
+	&.list-card.is-stickered .list-card-details {
+		background-color: transparent;
+	}
 
 }
 
 .bmko_horizontal-rule-card {
-    min-height: 20px;
+	min-height: 20px;
 
-    div, span, p {
-        display: none;
-    }
+	div, span, p {
+		display: none;
+	}
 
-    hr {
-        margin-top: 13px;
-        background: #999;
-        color: #999;
-    }
+	hr {
+		margin-top: 13px;
+		background: #999;
+		color: #999;
+	}
 
 }
 
 .bmko_list-highlighter-applied .bmko_header-card-applied {
-    --card-bg: transparent !important; // TODO get rid of this important
-    background: transparent !important; // TODO this is for version 2.6 of list highlight
+	--card-bg: transparent !important; // TODO get rid of this important
+	background: transparent !important; // TODO this is for version 2.6 of list highlight
 }
 
 .bmko_high-list {
 
-    .bmko_header-card {
-        .badge-icon,
-        .badge-text {
-            color: var(--list-button-color);
-        }
-    }
+	.bmko_header-card {
+		.badge-icon,
+		.badge-text {
+			color: var(--list-button-color);
+		}
+	}
 
-    .bmko_header-card-applied:hover {
-        background-color: hsla(0, 0, 100%, 0.3) !important;
-    }
+	.bmko_header-card-applied:hover {
+		background-color: hsla(0, 0, 100%, 0.3) !important;
+	}
 
-    .bmko_horizontal-rule-card {
-        hr {
-            background: var(--list-button-color);
-            color: var(--list-button-color);
-        }
-    }
+	.bmko_horizontal-rule-card {
+		hr {
+			background: var(--list-button-color);
+			color: var(--list-button-color);
+		}
+	}
 }
 
 .bmko_low-list {
 
-    .bmko_header-card {
-        .badge-icon,
-        .badge-text {
-            color: var(--list-button-color);
-        }
-    }
+	.bmko_header-card {
+		.badge-icon,
+		.badge-text {
+			color: var(--list-button-color);
+		}
+	}
 
-    .bmko_horizontal-rule-card {
-        &:hover {
-            background-color: hsla(0, 0, 100%, 0.05);
-        }
-        hr {
-            background: rgba(0, 0, 0, 0.29);
-            color: rgba(0, 0, 0, 0.29);
-        }
-    }
+	.bmko_horizontal-rule-card {
+		&:hover {
+			background-color: hsla(0, 0, 100%, 0.05);
+		}
+		hr {
+			background: rgba(0, 0, 0, 0.29);
+			color: rgba(0, 0, 0, 0.29);
+		}
+	}
 
 }
 
 .bmko_ignore-list,
 .bmko_trash-list {
-    h3 {
-        color: var(--header-color);
-        text-shadow: var(--list-header-text-shadow)
-    }
-    .bmko_horizontal-rule-card {
-        &:hover {
-            background-color: hsla(0, 0, 100%, 0.1);
-        }
-        hr {
-            background: rgba(19, 19, 19, 0.15);
-            color: rgba(19, 19, 19, 0.15);
-        }
-    }
+	h3 {
+		color: var(--header-color);
+		text-shadow: var(--list-header-text-shadow)
+	}
+	.bmko_horizontal-rule-card {
+		&:hover {
+			background-color: hsla(0, 0, 100%, 0.1);
+		}
+		hr {
+			background: rgba(19, 19, 19, 0.15);
+			color: rgba(19, 19, 19, 0.15);
+		}
+	}
 }
