@@ -1,0 +1,39 @@
+{
+
+    "manifest_version": 2,
+
+    "name": "List Highlighter for Trello",
+    "description": "Highlights todo, doing and done lists.",
+    "version": "2.6",
+
+    "author": "Mark Kenny",
+    "homepage_url": "http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
+
+    "content_scripts": [
+        {
+            "all_frames" : true,
+            "js": [
+                "js/script.js",
+                "js/system.js",
+                "js/autosize.min.js",
+                "js/listHighlight.js"
+            ],
+            "matches": [ "*://trello.com/*" ],
+            "run_at": "document_start"
+        },
+        {
+            "css": [ "css/style.css" ],
+            "matches": [ "*://trello.com/*" ],
+            "run_at": "document_end"
+        }
+    ],
+
+    "icons": {
+        "16": "Icons/192.png",
+        "256": "Icons/256.png",
+        "32": "Icons/192.png",
+        "48": "Icons/192.png",
+        "64": "Icons/192.png"
+    }
+
+}

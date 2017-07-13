@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>List Highlighter for Trello &mdash; Testy McGee</title>
+        <link rel="stylesheet" href="http://localhost/assets/plain.css" type="text/css">
+        <link rel="stylesheet" href="testyMcGee.css" type="text/css">
+<!--
+    Style this all nice and plain
+
+    Decision tree
+
+    1. color blind / not
+    2. dim / do not dim
+    3. appearance on low, normal, high, ignore
+
+    upgrade
+    menus
+    adding a list
+    copying a list
+    adding card
+    copying card
+    archive/unarchive
+    remote adding
+    emoji
+
+-->
+    </head>
+    <body>
+
+        <h1>List Highlighter for Trello &mdash; Testy McGee</h1>
+
+        <button-group id="ColorBlindMode">
+            <label>Color Blind Friendly Mode</label>
+            <button type="button" name="colorBlind" data-active="off">On</button>
+            <button type="button" name="colorBlind" data-active="off">Off</button>
+        </button-group>
+
+        <button-group id="HighlightMode">
+            <label>Board Types</label>
+            <button type="button" name="highlightMode" data-active="off" data-display="Plain" value="criteriaPlain">Plain</button>
+            <button type="button" name="highlightMode" data-active="off" data-display="DoNotDim" value="criteriaFullListHighlight">Do Not Dim</button>
+            <button type="button" name="highlightMode" data-active="off" data-display="FullListHighlight" value="criteriaFullListHighlight">Full List Highlight</button>
+        </button-group>
+
+        <div class="display-toggle display-none" id="Plain">
+
+            <p><strong>No lists changed because no triggers present</strong></p>
+
+        </div>
+
+        <div class="display-toggle display-none" id="DoNotDim">
+
+            <p><strong>Apply these triggers (no other lists should be changed)</strong></p>
+
+            <ul>
+                <li>#low</li>
+                <li>"trash"</li>
+                <li>"done"</li>
+                <li>#trash</li>
+                <li>#trash</li>
+                <li>#ignore</li>
+            </ul>
+
+        </div>
+
+        <div class="display-toggle display-none" id="FullListHighlight">
+
+            <p><strong>Triggers</strong></p>
+
+            <p><strong>Todo</strong></p>
+
+            <ul>
+                <li>"todo"</li>
+                <li>"to do"</li>
+                <li>#todo</li>
+                <li>#normal</li>
+            </ul>
+
+            <p><strong>Doing</strong></p>
+
+            <ul>
+                <li>"doing"</li>
+                <li>"today"</li>
+                <li>#doing</li>
+                <li>#high</li>
+                <li>#today</li>
+            </ul>
+
+            <p><strong>Low</strong></p>
+
+            <ul>
+                <li>#low</li>
+                <li>Any list not containing trigger</li>
+            </ul>
+
+            <p><strong>Trash</strong></p>
+
+            <ul>
+                <li>"trash"</li>
+                <li>"done"</li>
+                <li>#trash</li>
+                <li>#trash</li>
+                <li>#ignore</li>
+            </ul>
+
+        </div>
+
+
+
+        <section id="Tests"></section>
+
+        <template id="Item">
+            <div class="test">
+                <h2></h2>
+                <table>
+                </table>
+            </div>
+        </template>
+
+        <template id="TestRow">
+            <tr>
+                <th scope="row"></th>
+                <td>
+                    <ul>
+
+                    </ul>
+                </td>
+            </tr>
+        </template>
+
+        <template id="ChecklistItem">
+            <li>
+                <label for="">
+                    <input type="checkbox" name="" id="">
+                </label>
+            </li>
+        </template>
+
+
+
+        <script type="text/javascript" src="http://localhost/commun/js/thirdparty/bliss.js"></script>
+        <script type="text/javascript" src="http://localhost/commun/js/includes/javascript.js"></script>
+        <script type="text/javascript" src="http://localhost/commun/js/includes/object.js"></script>
+        <script type="text/javascript" src="http://localhost/commun/js/includes/dom.js"></script>
+        <script type="text/javascript" src="http://localhost/commun/js/includes/html.js"></script>
+
+        <script type="text/javascript" src="criteriaPlain.js"></script>
+        <script type="text/javascript" src="criteriaFullListHighlight.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+
+    </body>
+</html>

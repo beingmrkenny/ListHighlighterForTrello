@@ -1,0 +1,70 @@
+@mixin ignore () {
+
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	background: transparentize($listBG, 0.93);
+
+    $textShadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+	$buttonHover: rgba(0, 0, 0, .1);
+
+	@include generalOpacity(1);
+
+    @include listHeader ($ignoreTextColor) {
+        text-shadow: $textShadow;
+    }
+
+    @include listCard(transparentize(white, 0.94), rgba(228, 228, 228, 0.2), $ignoreTextColor) {
+        opacity: .5;
+        text-shadow: $textShadow;
+    };
+
+	@include listCardActive(transparentize(white, 0.9), rgba(228, 228, 228, 0.05), $ignoreTextColor) {
+        opacity: .4;
+        text-shadow: $textShadow;
+    };
+
+    @include listCardOperation($ignoreTextColor, $buttonHover, $normalTextColor);
+
+    @include listButtons ($buttonHover, $ignoreTextColor);
+
+	.open-card-composer {
+		text-shadow: $textShadow;
+	}
+
+	.list-card {
+
+		.list-card-cover {
+			opacity: .1;
+		}
+
+		.card-label {
+			opacity: .3;
+		}
+
+		.member,
+        .sticker {
+    		opacity: .1;
+    	}
+
+        @include badges (
+            transparentize($ignoreTextColor, .25),
+            transparentize($ignoreTextColor, .3),
+            transparentize($ignoreTextColor, .2)
+        );
+
+        &.is-stickered .list-card-details {
+    		background: transparent;
+    	}
+
+	}
+
+	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
+		background: rgba(#333, .05);
+	}
+
+	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(#333, .08);
+	}
+
+
+}

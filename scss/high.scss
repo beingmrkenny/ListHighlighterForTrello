@@ -1,0 +1,14 @@
+@mixin high () {
+
+	color: #fff;
+	background: $highListBG;
+
+    @include generalOpacity(1);
+
+    @include listHeader(#fff, $normalTextColor);
+
+    @include listCard(white, rgb(175, 93, 93), $normalTextColor);
+
+    @include listButtons (rgba(0, 0, 0, .1), white);
+
+}
