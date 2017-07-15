@@ -7,17 +7,35 @@
 	body > & {
 
 		background-color: transparentize(#EDEFF0, .8);
+		background: transparentize(#EDEFF0, .8);
+
+		.list-card-details {
+			background-color: transparent !important; // FIXME Get rid of this !important
+			background: transparent !important; // FIXME Get rid of this !important
+		}
+
+		h3 {
+			color: var(--header-color);
+		}
 
 		hr {
 			background: #fff;
 			color: #fff;
 		}
 
-		&.list-card.is-stickered .list-card-details {
-			background-color: transparent;
-		}
 	}
 
+}
+
+.bmko_high-list .list-card.bmko_header-card-applied h3 {
+	color: var(--header-color);
+}
+
+.bmko_high-list .active-card.list-card.bmko_header-card-applied .list-card-operation {
+	color: var(--header-color);
+	&:hover {
+		background: transparentize(#EDEFF0, .7);
+	}
 }
 
 .bmko_header-card {
@@ -38,8 +56,10 @@
 		padding: 0 6px 0 3px;
 	}
 
-	&.list-card.is-stickered .list-card-details {
-		background-color: transparent;
+	.list-card-operation {
+		padding: 0 4px 0;
+		height: 16px;
+		line-height: 18px;
 	}
 
 }
@@ -60,8 +80,7 @@
 }
 
 .bmko_list-highlighter-applied .bmko_header-card-applied {
-	--card-bg: transparent !important; // TODO get rid of this important
-	background: transparent !important; // TODO this is for version 2.6 of list highlight
+	--card-bg: transparent !important; // FIXME get rid of this important
 }
 
 .bmko_high-list {
@@ -73,8 +92,8 @@
 		}
 	}
 
-	.bmko_header-card-applied:hover {
-		background-color: hsla(0, 0, 100%, 0.3) !important;
+	.bmko_header-card-applied.active-card {
+		background-color: hsla(0, 0, 100%, 0.3) !important; // FIXME get rid of this important
 	}
 
 	.bmko_horizontal-rule-card {
