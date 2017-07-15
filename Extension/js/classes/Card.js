@@ -52,6 +52,7 @@ class Card {
 	}
 
 	getTitle () {
+		// FIXME this.card.querySelector('.list-card-title') is undefined sometimes
 		return (this.isListCard())
 			? this.card.querySelector('.list-card-title').lastChild.textContent.trim()
 			: '';

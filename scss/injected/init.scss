@@ -26,6 +26,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 	.open-card-composer {
 		text-shadow: 0 0 6px black;
 	}
+
 }
 
 .bmko_list-highlighter-applied .list {
@@ -124,7 +125,14 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 		}
 	}
 
-	// Apply the above style definitions
+	// List type-specific styles
+
+	&.bmko_high-list .active-card .list-card-operation {
+		color: var(--pencil-button-color);
+		&:hover {
+			background: var(--pencil-button-bg);
+		}
+	}
 
 	&.bmko_ignore-list,
 	&.bmko_trash-list {
@@ -133,6 +141,9 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
+		.confirm {
+			opacity: .5;
+		}
 	}
 
 	.bmko_low-list {
