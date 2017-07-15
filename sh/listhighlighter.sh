@@ -25,7 +25,7 @@ lhcss () {
 
 	local input="$listHighlighterDir"/scss/injected/init.scss;
 	local output="$listHighlighterDir"/Extension/css/style.css;
-	local loadPath="$listHighlighterDir"/Extension/scss/injected;
+	local loadPath="$listHighlighterDir"/scss/injected;
 	sass $watch "$input:$output" --sourcemap=none --style=compressed --load-path="$loadPath" --cache=/tmp/sass-cache
 }
 

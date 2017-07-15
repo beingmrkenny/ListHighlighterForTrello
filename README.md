@@ -70,3 +70,5 @@ All three CSS commands can take a `watch` option, which triggers sass's watch op
 If you run the command `lhwatch`, an [fswatch](https://github.com/emcrisostomo/fswatch) monitor is set up on the List Highlighter repo. Every time a file changes, `lhcompile` is run. This is useful during developement since you can work on the files and forget about all the compilation stuff.
 
 If you use Google Chrome on macOS, you can also get `lhwatch` to reloads all dev mode extensions (requires the [Extensions Reloader](https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension) and refresh any tabs containing a Trello web page. This is controlled via the `refreshOnWatch` variable in `bash.sh`.
+
+Please note you may need to run `chmod +x watchhandler.sh` to get this to work.
