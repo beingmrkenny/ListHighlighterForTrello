@@ -174,42 +174,15 @@
 						<g>
 							<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
 							<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
-							<g id="BlueButton">
-								<rect class="trello-bg-color-button" data-trello-bg="blue" x="660" y="65" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="695" y="109"></text>
-							</g>
-							<g id="OrangeButton">
-								<rect class="trello-bg-color-button" data-trello-bg="orange" x="760" y="65" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="795" y="109"></text>
-							</g>
-							<g id="GreenButton">
-								<rect class="trello-bg-color-button" data-trello-bg="green" x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="695" y="184"></text>
-							</g>
-							<g id="RedButton">
-								<rect class="trello-bg-color-button" data-trello-bg="red" x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="795" y="184"></text>
-							</g>
-							<g id="PurpleButton">
-								<rect class="trello-bg-color-button" data-trello-bg="purple" x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="695" y="259"></text>
-							</g>
-							<g id="PinkButton">
-								<rect class="trello-bg-color-button" data-trello-bg="pink" x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="795" y="259"></text>
-							</g>
-							<g id="LimeButton">
-								<rect class="trello-bg-color-button" data-trello-bg="lime" x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="695" y="334"></text>
-							</g>
-							<g id="SkyButton">
-								<rect class="trello-bg-color-button" data-trello-bg="sky" x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="795" y="334"></text>
-							</g>
-							<g id="GreyButton">
-								<rect class="trello-bg-color-button" data-trello-bg="grey" x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
-								<text class="color-check" x="695" y="409"></text>
-							</g>
+							<rect id="BlueButton" class="trello-bg-color-button" data-trello-bg="blue" x="660" y="65" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="OrangeButton" class="trello-bg-color-button" data-trello-bg="orange" x="760" y="65" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="GreenButton" class="trello-bg-color-button" data-trello-bg="green" x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="RedButton" class="trello-bg-color-button" data-trello-bg="red" x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="PurpleButton" class="trello-bg-color-button" data-trello-bg="purple" x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="PinkButton" class="trello-bg-color-button" data-trello-bg="pink" x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="LimeButton" class="trello-bg-color-button" data-trello-bg="lime" x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="SkyButton" class="trello-bg-color-button" data-trello-bg="sky" x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect id="GreyButton" class="trello-bg-color-button" data-trello-bg="grey" x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
 						</g>
 						<rect width="865" height="10" style="fill: url(#DropShadow);"/>
 					</svg>
