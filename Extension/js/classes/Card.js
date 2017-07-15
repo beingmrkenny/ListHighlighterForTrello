@@ -48,11 +48,14 @@ class Card {
 	}
 
 	isListCard () {
-		return (this.card.classList.contains('list-card') && !this.card.classList.contains('placeholder'));
+		return (
+			this.card.classList.contains('list-card') &&
+			!this.card.classList.contains('placeholder') &&
+			!this.card.classList.contains('js-composer')
+		);
 	}
 
 	getTitle () {
-		// FIXME this.card.querySelector('.list-card-title') is undefined sometimes
 		return (this.isListCard())
 			? this.card.querySelector('.list-card-title').lastChild.textContent.trim()
 			: '';
