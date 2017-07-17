@@ -54,6 +54,7 @@
 			Here you can tweak how List Highlighter works. Please note that for your settings to be saved reliably, you
 			need to be logged into Chrome.
 		</p>
+		<!-- TODO description of how this works for reference -->
 	</section>
 
 	<section>
@@ -175,15 +176,15 @@
 						<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
 						<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
 
-						<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="green"	x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="red"		x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="purple"	x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="pink"	x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-						<rect class="trello-bg-color-selected" data-trello-bg="grey"	x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="green"	x="660" y="140" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="red"		x="760" y="140" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="purple"	x="660" y="215" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="pink"	x="760" y="215" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="grey"	x="660" y="365" width="95" height="70" rx="7" ry="7" />
 
 						<rect id="BlueButton"	class="trello-bg-color-button" data-trello-bg="blue"	x="665" y="70"  width="85" height="60" rx="3" ry="3" />
 						<rect id="OrangeButton"	class="trello-bg-color-button" data-trello-bg="orange"	x="765" y="70"  width="85" height="60" rx="3" ry="3" />
@@ -223,7 +224,6 @@
 				<input type="radio" id="CountCards" name="Count" checked>
 				Number of cards
 			</label>
-			<br>
 			<label for="CountPoints">
 				<input type="radio" id="CountPoints" name="Count" checked>
 				Number of points
@@ -245,7 +245,6 @@
 				<input type="checkbox" id="EnableHeaderCards" name="EnableHeaderCards">
 				Enable header cards
 			</label>
-			<br>
 			<label for="EnableSeparatorCards">
 				<input type="checkbox" id="EnableSeparatorCards" name="EnableSeparatorCards">
 				Enable separator cards
@@ -254,7 +253,9 @@
 
 		<details>
 
-			<summary><h3>What's this?</h3></summary>
+			<summary>
+				<h3>What's this?</h3>
+			</summary>
 
 			<p>Sometimes lists can get very long, yet you don't necessarily want to split it up into separate lists.</p>
 			<p>This feature lets you break up long lists by turning cards into sub-headings and separators (horizontal lines). Header cards have a native look and feel, matching Trello's list headings and separator lines.</p>
@@ -293,47 +294,60 @@
 
 	<section>
 
-		<!-- TODO Change this heading text -->
 		<h2>Fiddly little options</h2>
 
-		<p>
-			<label for="HideHashtags">
-				<input type="checkbox" id="HideHashtags" name="HideHashtags" checked>
-				Hide hashtags in list headers
-			</label>
-			<!-- TODO if checked, this will match ... -->
-		</p>
+		<p>Fine detail controls for how this extension operates.</p>
 
-		<p>
-			Highlight lists based on:<br>
-			<label for="HighlightTags">
-				<input type="checkbox" id="HighlightTags" name="HighlightTags" checked>
-				Tags <small>(e.g. if title contains #todo, #doing, #done, etc)</small>
-			</label>
-			<br>
-			<label for="HighlightTitles">
-				<input type="checkbox" id="HighlightTitles" name="HighlightTitles" checked>
-				Titles <small>(e.g. if title consists of "Todo", "Doing", "Done", etc)</small>
-			</label>
-		</p>
+		<details>
+			<summary>
+				<h3>Options</h3>
+			</summary>
 
-		<p>
-			<label for="MatchTitleSubstrings">
-				<input type="checkbox" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
-				Match title substrings
-			</label>
-			<!-- TODO if checked, this will match ... -->
-		</p>
+			<p>
+				<label for="HideHashtags">
+					<input type="checkbox" id="HideHashtags" name="HideHashtags" checked>
+					Hide hashtags in list headers<br>
+					<small>
+						By default, hashtags in list headers will not be shown. If this box is unchecked, hashtags will be visible.<br>
+						Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher data-trigger="HideHashtags" data-on="" data-off=" #todo"></text-switcher></strong>"
+					</small>
+				</label>
+			</p>
+
+			<p>
+				Highlight lists based on:<br>
+				<label for="HighlightTags">
+					<input type="checkbox" id="HighlightTags" name="HighlightTags" checked>
+					Tags<br>
+					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
+				</label>
+				<label for="HighlightTitles">
+					<input type="checkbox" id="HighlightTitles" name="HighlightTitles" checked>
+					Title text<br>
+					<small>(e.g. highlight list if title <text-switcher data-trigger="MatchTitleSubstrings" data-on="contains the text" data-off="is exactly">is exactly</text-switcher> "<strong>Todo</strong>", "<strong>Doing</strong>", "<strong>Done</strong>", etc)</small>
+				</label>
+				<label for="MatchTitleSubstrings" class="sub-setting">
+					<input type="checkbox" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
+					Match partial title text<br>
+					<small>
+						Currently:<br>
+						"<strong>To do</strong>" will be matched<br>
+						"<strong>Things to do</strong>" <text-switcher data-trigger="MatchTitleSubstrings" data-off="will not" data-on="will">will not</text-switcher> be matched
+					</small>
+				</label>
+			</p>
+
+		</details>
 
 	</section>
 
-	<section>
+	<footer>
 		<p>
 			For more information visit the
 			<a href="http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello">List Highlighter for Trello</a>
 			homepage.
 		</p>
-	</section>
+	</footer>
 
 	<template id="ColorTile">
 		<li>

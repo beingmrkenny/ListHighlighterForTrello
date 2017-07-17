@@ -15,13 +15,14 @@ button {
 
 	cursor: pointer;
 	user-select: none;
-}
 
-	button.mod-primary {
+	&.mod-primary {
 		color: #fff;
 		background: linear-gradient(to bottom,#61bd4f 0,#5aac44 100%);
 		box-shadow: 0 1px 0 #3f6f21;
 	}
+
+}
 
 input[type="text"] {
 	display: block;
@@ -43,4 +44,20 @@ input[type="text"] {
 label {
 	user-select: none;
 	cursor: pointer;
+	display: block;
+
+	&.disabled {
+		cursor: text;
+		color: gray;
+	}
+
+	&.sub-setting {
+		margin: 10px 21px 0;
+	}
+
+	small {
+		color: gray;
+		display: block;
+		margin-left: 24px;
+	}
 }

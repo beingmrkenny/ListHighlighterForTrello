@@ -101,6 +101,34 @@ Options.load('colors', function (result) {
 
 });
 
+// TODO This needs to be done on load, too
+var textSwitchers = document.querySelectorAll('text-switcher');
+for (let i = textSwitchers.length-1; i>-1; i--) {
+	let textSwitcher = textSwitchers[i],
+		trigger = $id(textSwitcher.dataset.trigger);
+	trigger.addEventListener('change', function () {
+		let trigger = this,
+			switchers = document.querySelectorAll(`[data-trigger='${trigger.id}']`);
+		for (let i = switchers.length-1; i>-1; i--) {
+			let switcher = switchers[i];
+			if (trigger.checked) {
+				switcher.textContent = switcher.dataset.on;
+			} else {
+				switcher.textContent = switcher.dataset.off
+			}
+		}
+
+	});
+}
+
+// TODO This needs to be done on load, too
+$id('HighlightTitles').addEventListener('change', function () {
+	var matchTitleSubstrings = $id('MatchTitleSubstrings');
+	var isDisabled = (!this.checked);
+	matchTitleSubstrings.disabled = isDisabled;
+	$(`[for='MatchTitleSubstrings']`).classList.toggle('disabled', isDisabled);
+});
+
 function saveColor (trelloBg, colorName) {
 	customDoingColors[ trelloBg ] = colorName;
 	Options.save(`colors.current.${trelloBg}`, colorName);

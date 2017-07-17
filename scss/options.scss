@@ -9,7 +9,7 @@
 }
 
 body {
-	margin: 70px auto;
+	margin: 70px auto 20px;
 	width: 700px;
 	line-height: 1.6em;
 
@@ -397,6 +397,11 @@ color-picker hr {
 	&:invalid {
 		border-color: red;
 	}
+}
+
+footer {
+	color: gray;
+	margin-top: 110px;
 }
 
 @import 'elements.scss';
