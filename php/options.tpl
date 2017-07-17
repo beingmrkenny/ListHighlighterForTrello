@@ -60,147 +60,147 @@
 
 		<h2>High priority colour</h2>
 
-			<ul class="color-tile-bar" id="DefaultColorBar" data-default="true">
-				{foreach from=$defaultTiles item=tile}
-				<li>
-					<input
-						type="radio"
-						id="{$tile.inputId}" class="color-tile-input {$tile.colorName}"
-						name="DefaultColor" value="{$tile.colorName}"
-						data-value="{$tile.color}" data-default="true" data-color-name="{$tile.colorName}">
-					<label
-						class="color-tile-label {$tile.colorName} {$tile.isLight}"
-						for="{$tile.inputId}"
-						data-value="{$tile.color}" data-default="true">
-						{if $tile.colorName == 'custom'}
-							<a href="#" class="edit-link" data-default="true">Edit</a>
-						{/if}
-						{$tile.colorName|ucwords}
-					</label>
-				</li>
-				{/foreach}
-			</ul>
+		<ul class="color-tile-bar" id="DefaultColorBar" data-default="true">
+			{foreach from=$defaultTiles item=tile}
+			<li>
+				<input
+					type="radio"
+					id="{$tile.inputId}" class="color-tile-input {$tile.colorName}"
+					name="DefaultColor" value="{$tile.colorName}"
+					data-value="{$tile.color}" data-default="true" data-color-name="{$tile.colorName}">
+				<label
+					class="color-tile-label {$tile.colorName} {$tile.isLight}"
+					for="{$tile.inputId}"
+					data-value="{$tile.color}" data-default="true">
+					{if $tile.colorName == 'custom'}
+						<a href="#" class="edit-link" data-default="true">Edit</a>
+					{/if}
+					{$tile.colorName|ucwords}
+				</label>
+			</li>
+			{/foreach}
+		</ul>
 
-			<details open>
+		<details open>
 
-				<summary>
-					<h3>More options</h3>
-				</summary>
+			<summary>
+				<h3>More options</h3>
+			</summary>
 
-				<p>
-					On some backgrounds the default high priority colour might look jarring (e.g. red lists on
-					a blue background) or they might not stand out (e.g. red lists on a red background). You can use
-					this tool to choose a separate highlight colour for each different background colour.
-				</p>
+			<p>
+				On some backgrounds the default high priority colour might look jarring (e.g. red lists on
+				a blue background) or they might not stand out (e.g. red lists on a red background). You can use
+				this tool to choose a separate highlight colour for each different background colour.
+			</p>
 
-				<p>
-					Change the background using the rectangles on the right-hand side, then choose the highlight colour
-					using the squares at the top. If no highlight colour is selected, the default will be used.
-				</p>
+			<p>
+				Change the background using the rectangles on the right-hand side, then choose the highlight colour
+				using the squares at the top. If no highlight colour is selected, the default will be used.
+			</p>
 
-				<div id="DummyBoard" data-trello-bg="blue" data-list-color-name="default">
+			<div id="DummyBoard" data-trello-bg="blue" data-list-color-name="default">
 
-					<div class="color-tile-bar-container"><ul class="color-tile-bar" data-default="false">
-						{foreach from=$dummyTiles item=tile}
-						<li {if $tile.inputId == 'Dummy-ColorTile-default'}id="DefaultDummyTile"{/if}>
-							<input
-								type="radio"
-								id="{$tile.inputId}" class="color-tile-input {$tile.colorName}"
-								name="DummyColor" value="{$tile.colorName}"
-								data-value="{$tile.color}" data-default="false" data-color-name="{$tile.colorName}">
-							<label
-								class="color-tile-label {$tile.colorName} {$tile.isLight}"
-								for="{$tile.inputId}"
-								data-value="{$tile.color}" data-default="false" data-color-name="{$tile.colorName}">
-								{if $tile.colorName == 'custom'}
-									<a href="#" class="edit-link" data-default="false">Edit</a>
-								{/if}
-								{$tile.colorName|ucwords}
-							</label>
-						</li>
-						{if $tile.inputId == 'Dummy-ColorTile-default'}<hr>{/if}
-						{/foreach}
-					</ul></div>
+				<div class="color-tile-bar-container"><ul class="color-tile-bar" data-default="false">
+					{foreach from=$dummyTiles item=tile}
+					<li {if $tile.inputId == 'Dummy-ColorTile-default'}id="DefaultDummyTile"{/if}>
+						<input
+							type="radio"
+							id="{$tile.inputId}" class="color-tile-input {$tile.colorName}"
+							name="DummyColor" value="{$tile.colorName}"
+							data-value="{$tile.color}" data-default="false" data-color-name="{$tile.colorName}">
+						<label
+							class="color-tile-label {$tile.colorName} {$tile.isLight}"
+							for="{$tile.inputId}"
+							data-value="{$tile.color}" data-default="false" data-color-name="{$tile.colorName}">
+							{if $tile.colorName == 'custom'}
+								<a href="#" class="edit-link" data-default="false">Edit</a>
+							{/if}
+							{$tile.colorName|ucwords}
+						</label>
+					</li>
+					{if $tile.inputId == 'Dummy-ColorTile-default'}<hr>{/if}
+					{/foreach}
+				</ul></div>
 
-					<svg id="DummyBoardSVG" viewBox="0 0 865 500" xmlns="http://www.w3.org/2000/svg">
-						<defs>
-							<linearGradient id="DropShadow" x1="0" y1="0" x2="0" y2="1">
-								<stop offset="0"  stop-color="rgba(0, 0, 0, 0.3)"/>
-								<stop offset="100%" stop-color="transparent"/>
-							</linearGradient>
-							<linearGradient id="ColorBlindFriendlyMode" x1="0" y1="0" x2="0" y2="12%" spreadMethod="repeat" gradientTransform="rotate(-37)">
-								<stop offset="25%" stop-color= "rgba(255,255,255,.5)" />
-								<stop offset="25%" stop-color= "transparent" />
-								<stop offset="50%" stop-color= "transparent" />
-								<stop offset="50%" stop-color= "rgba(255,255,255,.5)" />
-								<stop offset="75%" stop-color= "rgba(255,255,255,.5)" />
-								<stop offset="75%" stop-color= "transparent" />
-								<stop offset="100%" stop-color= "transparent" />
-							</linearGradient>
-						</defs>
-						<g class="normal-list">
-							<rect x="-35" y="60" width="180" height="285" rx="2.5" ry="2.5" class="list"/>
-							<rect x="-30" y="80" width="170" height="40" rx="2.5" ry="2.5" class="card"/>
-							<rect x="-30" y="125" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="-30" y="180" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
-							<rect x="-30" y="215" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="-30" y="270" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-						</g>
-						<g class="todo-list">
-							<rect x="155" y="60" width="180" height="175" rx="2.5" ry="2.5" class="list"/>
-							<rect x="160" y="80" width="170" height="20" rx="2.5" ry="2.5" class="card"/>
-							<rect x="160" y="105" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="160" y="160" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-						</g>
-						<g class="doing-list">
-							<rect x="345" y="60" width="180" height="240" rx="2.5" ry="2.5" class="list"/>
-							<rect x="345" y="60" width="180" height="240" rx="2.5" ry="2.5" class="color-blind-friendly-mask" fill="url(#ColorBlindFriendlyMode)" />
-							<rect x="350" y="80" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="350" y="135" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
-							<rect x="350" y="170" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="350" y="225" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-						</g>
-						<g class="done-list">
-							<rect x="535" y="60" width="180" height="410" rx="2.5" ry="2.5" class="list"/>
-							<rect x="540" y="80" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="115" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="170" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="225" width="170" height="20" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="250" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="305" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="340" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-							<rect x="540" y="395" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
-						</g>
-						<g>
-							<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
-							<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
+				<svg id="DummyBoardSVG" viewBox="0 0 865 500" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<linearGradient id="DropShadow" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="0"  stop-color="rgba(0, 0, 0, 0.3)"/>
+							<stop offset="100%" stop-color="transparent"/>
+						</linearGradient>
+						<linearGradient id="ColorBlindFriendlyMode" x1="0" y1="0" x2="0" y2="12%" spreadMethod="repeat" gradientTransform="rotate(-37)">
+							<stop offset="25%" stop-color= "rgba(255,255,255,.5)" />
+							<stop offset="25%" stop-color= "transparent" />
+							<stop offset="50%" stop-color= "transparent" />
+							<stop offset="50%" stop-color= "rgba(255,255,255,.5)" />
+							<stop offset="75%" stop-color= "rgba(255,255,255,.5)" />
+							<stop offset="75%" stop-color= "transparent" />
+							<stop offset="100%" stop-color= "transparent" />
+						</linearGradient>
+					</defs>
+					<g class="normal-list">
+						<rect x="-35" y="60" width="180" height="285" rx="2.5" ry="2.5" class="list"/>
+						<rect x="-30" y="80" width="170" height="40" rx="2.5" ry="2.5" class="card"/>
+						<rect x="-30" y="125" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="-30" y="180" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
+						<rect x="-30" y="215" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="-30" y="270" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+					</g>
+					<g class="todo-list">
+						<rect x="155" y="60" width="180" height="175" rx="2.5" ry="2.5" class="list"/>
+						<rect x="160" y="80" width="170" height="20" rx="2.5" ry="2.5" class="card"/>
+						<rect x="160" y="105" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="160" y="160" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+					</g>
+					<g class="doing-list">
+						<rect x="345" y="60" width="180" height="240" rx="2.5" ry="2.5" class="list"/>
+						<rect x="345" y="60" width="180" height="240" rx="2.5" ry="2.5" class="color-blind-friendly-mask" fill="url(#ColorBlindFriendlyMode)" />
+						<rect x="350" y="80" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="350" y="135" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
+						<rect x="350" y="170" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="350" y="225" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+					</g>
+					<g class="done-list">
+						<rect x="535" y="60" width="180" height="410" rx="2.5" ry="2.5" class="list"/>
+						<rect x="540" y="80" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="115" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="170" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="225" width="170" height="20" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="250" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="305" width="170" height="30" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="340" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+						<rect x="540" y="395" width="170" height="50" rx="2.5" ry="2.5" class="card"/>
+					</g>
+					<g>
+						<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
+						<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
 
-							<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="green"	x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="red"		x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="purple"	x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="pink"	x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect class="trello-bg-color-selected" data-trello-bg="grey"	x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="green"	x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="red"		x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="purple"	x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="pink"	x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+						<rect class="trello-bg-color-selected" data-trello-bg="grey"	x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
 
-							<rect id="BlueButton"	class="trello-bg-color-button" data-trello-bg="blue"	x="665" y="70"  width="85" height="60" rx="3" ry="3" />
-							<rect id="OrangeButton"	class="trello-bg-color-button" data-trello-bg="orange"	x="765" y="70"  width="85" height="60" rx="3" ry="3" />
-							<rect id="GreenButton"	class="trello-bg-color-button" data-trello-bg="green"	x="665" y="145" width="85" height="60" rx="3" ry="3" />
-							<rect id="RedButton"	class="trello-bg-color-button" data-trello-bg="red"		x="765" y="145" width="85" height="60" rx="3" ry="3" />
-							<rect id="PurpleButton" class="trello-bg-color-button" data-trello-bg="purple"	x="665" y="220" width="85" height="60" rx="3" ry="3" />
-							<rect id="PinkButton"	class="trello-bg-color-button" data-trello-bg="pink"	x="765" y="220" width="85" height="60" rx="3" ry="3" />
-							<rect id="LimeButton"	class="trello-bg-color-button" data-trello-bg="lime"	x="665" y="295" width="85" height="60" rx="3" ry="3" />
-							<rect id="SkyButton"	class="trello-bg-color-button" data-trello-bg="sky"		x="765" y="295" width="85" height="60" rx="3" ry="3" />
-							<rect id="GreyButton"	class="trello-bg-color-button" data-trello-bg="grey"	x="665" y="370" width="85" height="60" rx="3" ry="3" />
-						</g>
-						<rect width="865" height="10" style="fill: url(#DropShadow);"/>
-					</svg>
+						<rect id="BlueButton"	class="trello-bg-color-button" data-trello-bg="blue"	x="665" y="70"  width="85" height="60" rx="3" ry="3" />
+						<rect id="OrangeButton"	class="trello-bg-color-button" data-trello-bg="orange"	x="765" y="70"  width="85" height="60" rx="3" ry="3" />
+						<rect id="GreenButton"	class="trello-bg-color-button" data-trello-bg="green"	x="665" y="145" width="85" height="60" rx="3" ry="3" />
+						<rect id="RedButton"	class="trello-bg-color-button" data-trello-bg="red"		x="765" y="145" width="85" height="60" rx="3" ry="3" />
+						<rect id="PurpleButton" class="trello-bg-color-button" data-trello-bg="purple"	x="665" y="220" width="85" height="60" rx="3" ry="3" />
+						<rect id="PinkButton"	class="trello-bg-color-button" data-trello-bg="pink"	x="765" y="220" width="85" height="60" rx="3" ry="3" />
+						<rect id="LimeButton"	class="trello-bg-color-button" data-trello-bg="lime"	x="665" y="295" width="85" height="60" rx="3" ry="3" />
+						<rect id="SkyButton"	class="trello-bg-color-button" data-trello-bg="sky"		x="765" y="295" width="85" height="60" rx="3" ry="3" />
+						<rect id="GreyButton"	class="trello-bg-color-button" data-trello-bg="grey"	x="665" y="370" width="85" height="60" rx="3" ry="3" />
+					</g>
+					<rect width="865" height="10" style="fill: url(#DropShadow);"/>
+				</svg>
 
-				</div>
+			</div>
 
-			</details>
+		</details>
 
 	</section>
 
@@ -296,34 +296,34 @@
 		<!-- TODO Change this heading text -->
 		<h2>Fiddly little options</h2>
 
-			<p>
-				<label for="HideHashtags">
-					<input type="checkbox" id="HideHashtags" name="HideHashtags" checked>
-					Hide hashtags in list headers
-				</label>
-				<!-- TODO if checked, this will match ... -->
-			</p>
+		<p>
+			<label for="HideHashtags">
+				<input type="checkbox" id="HideHashtags" name="HideHashtags" checked>
+				Hide hashtags in list headers
+			</label>
+			<!-- TODO if checked, this will match ... -->
+		</p>
 
-			<p>
-				Highlight lists based on:<br>
-				<label for="HighlightTags">
-					<input type="checkbox" id="HighlightTags" name="HighlightTags" checked>
-					Tags <small>(e.g. if title contains #todo, #doing, #done, etc)</small>
-				</label>
-				<br>
-				<label for="HighlightTitles">
-					<input type="checkbox" id="HighlightTitles" name="HighlightTitles" checked>
-					Titles <small>(e.g. if title consists of "Todo", "Doing", "Done", etc)</small>
-				</label>
-			</p>
+		<p>
+			Highlight lists based on:<br>
+			<label for="HighlightTags">
+				<input type="checkbox" id="HighlightTags" name="HighlightTags" checked>
+				Tags <small>(e.g. if title contains #todo, #doing, #done, etc)</small>
+			</label>
+			<br>
+			<label for="HighlightTitles">
+				<input type="checkbox" id="HighlightTitles" name="HighlightTitles" checked>
+				Titles <small>(e.g. if title consists of "Todo", "Doing", "Done", etc)</small>
+			</label>
+		</p>
 
-			<p>
-				<label for="MatchTitleSubstrings">
-					<input type="checkbox" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
-					Match title substrings
-				</label>
-				<!-- TODO if checked, this will match ... -->
-			</p>
+		<p>
+			<label for="MatchTitleSubstrings">
+				<input type="checkbox" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
+				Match title substrings
+			</label>
+			<!-- TODO if checked, this will match ... -->
+		</p>
 
 	</section>
 
