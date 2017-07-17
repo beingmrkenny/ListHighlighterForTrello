@@ -255,30 +255,30 @@ body {
 		cursor: pointer;
 	}
 
-	.trello-bg-color-button {
-		stroke-width: 2px;
+	.trello-bg-color-selected {
+		stroke-width: 3px;
 		fill: #d8d8d8;
 	}
 
-	&[data-trello-bg="blue"] 	#BlueButton		{ fill: $blueTrello; }
-	&[data-trello-bg="orange"] 	#OrangeButton	{ fill: $orangeTrello; }
-	&[data-trello-bg="green"] 	#GreenButton	{ fill: $greenTrello; }
-	&[data-trello-bg="red"] 	#RedButton		{ fill: $redTrello; }
-	&[data-trello-bg="purple"] 	#PurpleButton	{ fill: $purpleTrello; }
-	&[data-trello-bg="pink"] 	#PinkButton		{ fill: $pinkTrello; }
-	&[data-trello-bg="lime"] 	#LimeButton		{ fill: $limeTrello; }
-	&[data-trello-bg="sky"] 	#SkyButton		{ fill: $skyTrello; }
-	&[data-trello-bg="grey"] 	#GreyButton		{ fill: $greyTrello; }
+	&[data-trello-bg="blue"] 	[data-trello-bg="blue"] 	{ stroke: $blueTrello; }
+	&[data-trello-bg="orange"] 	[data-trello-bg="orange"] 	{ stroke: $orangeTrello; }
+	&[data-trello-bg="green"] 	[data-trello-bg="green"] 	{ stroke: $greenTrello; }
+	&[data-trello-bg="red"] 	[data-trello-bg="red"] 	{ stroke: $redTrello; }
+	&[data-trello-bg="purple"] 	[data-trello-bg="purple"] 	{ stroke: $purpleTrello; }
+	&[data-trello-bg="pink"] 	[data-trello-bg="pink"] 	{ stroke: $pinkTrello; }
+	&[data-trello-bg="lime"] 	[data-trello-bg="lime"] 	{ stroke: $limeTrello; }
+	&[data-trello-bg="sky"] 	[data-trello-bg="sky"] 	{ stroke: $skyTrello; }
+	&[data-trello-bg="grey"] 	[data-trello-bg="grey"] 	{ stroke: $greyTrello; }
 
-	#BlueButton		{ stroke: $blueTrello; }
-	#OrangeButton	{ stroke: $orangeTrello; }
-	#GreenButton	{ stroke: $greenTrello; }
-	#RedButton		{ stroke: $redTrello; }
-	#PurpleButton	{ stroke: $purpleTrello; }
-	#PinkButton		{ stroke: $pinkTrello; }
-	#LimeButton		{ stroke: $limeTrello; }
-	#SkyButton		{ stroke: $skyTrello; }
-	#GreyButton		{ stroke: $greyTrello; }
+	#BlueButton		{ fill: $blueTrello; }
+	#OrangeButton	{ fill: $orangeTrello; }
+	#GreenButton	{ fill: $greenTrello; }
+	#RedButton		{ fill: $redTrello; }
+	#PurpleButton	{ fill: $purpleTrello; }
+	#PinkButton		{ fill: $pinkTrello; }
+	#LimeButton		{ fill: $limeTrello; }
+	#SkyButton		{ fill: $skyTrello; }
+	#GreyButton		{ fill: $greyTrello; }
 
 	#DefaultDummyTile + hr {
 		content: ' ';

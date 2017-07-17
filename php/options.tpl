@@ -81,7 +81,7 @@
 				{/foreach}
 			</ul>
 
-			<details>
+			<details open>
 
 				<summary>
 					<h3>More options</h3>
@@ -174,15 +174,26 @@
 						<g>
 							<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
 							<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
-							<rect id="BlueButton" class="trello-bg-color-button" data-trello-bg="blue" x="660" y="65" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="OrangeButton" class="trello-bg-color-button" data-trello-bg="orange" x="760" y="65" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="GreenButton" class="trello-bg-color-button" data-trello-bg="green" x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="RedButton" class="trello-bg-color-button" data-trello-bg="red" x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="PurpleButton" class="trello-bg-color-button" data-trello-bg="purple" x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="PinkButton" class="trello-bg-color-button" data-trello-bg="pink" x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="LimeButton" class="trello-bg-color-button" data-trello-bg="lime" x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="SkyButton" class="trello-bg-color-button" data-trello-bg="sky" x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
-							<rect id="GreyButton" class="trello-bg-color-button" data-trello-bg="grey" x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
+
+							<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="green"	x="660" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="red"		x="760" y="140" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="purple"	x="660" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="pink"	x="760" y="215" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="5.2" ry="5.2" />
+							<rect class="trello-bg-color-selected" data-trello-bg="grey"	x="660" y="365" width="95" height="70" rx="5.2" ry="5.2" />
+
+							<rect id="BlueButton"	class="trello-bg-color-button" data-trello-bg="blue"	x="665" y="70"  width="85" height="60" rx="3" ry="3" />
+							<rect id="OrangeButton"	class="trello-bg-color-button" data-trello-bg="orange"	x="765" y="70"  width="85" height="60" rx="3" ry="3" />
+							<rect id="GreenButton"	class="trello-bg-color-button" data-trello-bg="green"	x="665" y="145" width="85" height="60" rx="3" ry="3" />
+							<rect id="RedButton"	class="trello-bg-color-button" data-trello-bg="red"		x="765" y="145" width="85" height="60" rx="3" ry="3" />
+							<rect id="PurpleButton" class="trello-bg-color-button" data-trello-bg="purple"	x="665" y="220" width="85" height="60" rx="3" ry="3" />
+							<rect id="PinkButton"	class="trello-bg-color-button" data-trello-bg="pink"	x="765" y="220" width="85" height="60" rx="3" ry="3" />
+							<rect id="LimeButton"	class="trello-bg-color-button" data-trello-bg="lime"	x="665" y="295" width="85" height="60" rx="3" ry="3" />
+							<rect id="SkyButton"	class="trello-bg-color-button" data-trello-bg="sky"		x="765" y="295" width="85" height="60" rx="3" ry="3" />
+							<rect id="GreyButton"	class="trello-bg-color-button" data-trello-bg="grey"	x="665" y="370" width="85" height="60" rx="3" ry="3" />
 						</g>
 						<rect width="865" height="10" style="fill: url(#DropShadow);"/>
 					</svg>
