@@ -17,6 +17,13 @@ chrome.runtime.onMessage.addListener (
 );
 
 window.addEventListener('load', function () {
+
 	System.setup();
-	keepTrying(Card.processCards(document.querySelectorAll('.list-card')), 5, 700);
+
+	keepCounting (
+	    function () { Card.processCards(document.querySelectorAll('.list-card')) },
+	    function () { return document.querySelectorAll('.list-card').length; },
+		5,
+		500
+	);
 });

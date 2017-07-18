@@ -76,6 +76,49 @@ function keepTrying(callback, limit, interval) {
 
 }
 
+// NOTE This function uses a checker function which returns a boolean, rather than relying on try/catch
+// function keepChecking(callback, checker, limit, interval) {
+//
+// 	interval = (isNaN(interval) ? 500 : interval);
+// 	limit = (isNaN(limit) ? 5 : --limit);
+//
+// 	if (checker()) {
+// 		callback();
+// 	} else if (limit > 0) {
+// 		window.setTimeout(function () {
+// 			keepTrying(callback, checker, limit, interval);
+// 		}, interval);
+// 	}
+//
+// }
+
+// NOTE This function counts something, and applies the callback once the count has stopped changing
+function keepCounting(callback, counter, limit, interval, oldCount) {
+
+	interval = (isNaN(interval) ? 500 : interval);
+	limit = (isNaN(limit) ? 5 : --limit);
+
+	var newCount = counter();
+
+	if (
+		limit > 0 &&
+		(typeof oldCount == 'undefined' || newCount !== oldCount)
+	) {
+
+		window.setTimeout(function () {
+			keepCounting(callback, counter, limit, interval, newCount);
+		}, interval);
+
+	} else {
+
+		if (newCount > 0) {
+			callback();
+		}
+
+	}
+
+}
+
 function getTemplate (id) {
 	var templateContent = document.importNode($id(id).content, true);
 	return templateContent.firstElementChild;
