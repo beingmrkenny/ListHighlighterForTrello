@@ -48,12 +48,12 @@ function setupColorPicker (colorTileLabel) {
 
 function changeAllTheColors (hex, isDefaultBoard) {
 	if (isDefaultBoard) {
-		DefaultColorBar.setCustomColorHex(hex);
-		Dummy.setDefaultTileColorHex (hex);
+		DefaultColorBar.setCustomTileColorByHex(hex);
+		Dummy.setDefaultTileColorByHex (hex);
 		if ($id('DummyBoard').dataset.listColorName == 'default') {
-			Dummy.setDoingListColorHex (hex);
+			Dummy.setDoingListColorByHex (hex);
 		}
 	} else {
-		Dummy.setCustomTileColorHex(hex);
+		Dummy.setCustomTileColorByHex(hex);
 	}
 }

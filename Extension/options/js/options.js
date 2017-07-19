@@ -19,23 +19,23 @@ Options.load('colors', function (result) {
 			doingColorForBlue     = DoingColors.getColorNameForTrelloBg('blue'),
 			blueCustomHex         = DoingColors.getCustomHexForTrelloBg('blue') || fallbackDefaultCustom;
 
-		DefaultColorBar.setCustomColorName (defaultColorName);
-		DefaultColorBar.setCustomColorHex (defaultCustomHex);
+		DefaultColorBar.setCustomTileColorByName (defaultColorName);
+		DefaultColorBar.setCustomTileColorByHex (defaultCustomHex);
 
-		Dummy.setCustomTileColorName (defaultColorName);
-		Dummy.setCustomTileColorHex (blueCustomHex);
+		Dummy.setCustomTileColorByName (defaultColorName);
+		Dummy.setCustomTileColorByHex (blueCustomHex);
 
 		if (defaultColorName == 'custom') {
-			Dummy.setDefaultTileColorHex (defaultCustomHex);
+			Dummy.setDefaultTileColorByHex (defaultCustomHex);
 		} else {
-			Dummy.setDefaultTileColorName (defaultColorName);
+			Dummy.setDefaultTileColorByName (defaultColorName);
 		}
 
 		DefaultColorBar.selectByColorName (defaultColorName);
 
 		Dummy.selectTile (doingColorForBlue);
 		Dummy.setListColorName (doingColorForBlue);
-		Dummy.setDoingListColorName (doingColorForBlue);
+		Dummy.setDoingListColorByName (doingColorForBlue);
 
 		let tiles = document.querySelectorAll('.color-tile-label');
 		for (let i = tiles.length-1; i>-1; i--) {
@@ -55,18 +55,18 @@ Options.load('colors', function (result) {
 				}
 
 				if (tileIsDefault == true) {
-					Dummy.setDefaultTileColorName (colorName); // QUESTION Is this working? produces null, which is a shittence
+					Dummy.setDefaultTileColorByName (colorName); // QUESTION Is this working? produces null, which is a shittence
 					if (tileIsCustom) {
-						Dummy.setDefaultTileColorHex (customHex);
+						Dummy.setDefaultTileColorByHex (customHex);
 					}
 				}
 
 				if ( (tileIsDefault == true && listColorName == 'default') || tileIsDefault == false ) {
 					let listColor = (tileIsDefault) ? 'default' : colorName;
 					Dummy.setListColorName (listColor);
-					Dummy.setDoingListColorName (colorName); // QUESTION This might be a problem, does it produce null? why is it here?
+					Dummy.setDoingListColorByName (colorName); // QUESTION This might be a problem, does it produce null? why is it here?
 					if (tileIsCustom) {
-						Dummy.setDoingListColorHex (customHex);
+						Dummy.setDoingListColorByHex (customHex);
 					}
 				}
 
@@ -80,7 +80,7 @@ Options.load('colors', function (result) {
 			trelloBackgroundColorButtons[i].addEventListener('click', function () {
 				var trelloBg = this.dataset.trelloBg;
 				Dummy.changeBackgroundColor(trelloBg);
-				Dummy.setCustomTileColorHex(DoingColors.getCustomHexForTrelloBg(trelloBg));
+				Dummy.setCustomTileColorByHex(DoingColors.getCustomHexForTrelloBg(trelloBg));
 			});
 		}
 

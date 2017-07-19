@@ -1,30 +1,30 @@
 class Dummy {
 
-	static setCustomTileColorName (colorName) {
-		Tile.setColorName ($id('Dummy-ColorTile-custom'), colorName);
+	static setCustomTileColorByName (colorName) {
+		Tile.setColorByName ($id('Dummy-ColorTile-custom'), colorName);
 	}
 
-	static setCustomTileColorHex (hex) {
-		Tile.setCustomColorHex($('[for="Dummy-ColorTile-custom"]'), hex);
+	static setCustomTileColorByHex (hex) {
+		Tile.setCustomTileColorByHex($('[for="Dummy-ColorTile-custom"]'), hex);
 	}
 
-	static setDefaultTileColorName (colorName) {
-		Tile.setColorName ($id('Dummy-ColorTile-default'), colorName);
+	static setDefaultTileColorByName (colorName) {
+		Tile.setColorByName ($id('Dummy-ColorTile-default'), colorName);
 	}
 
-	static setDefaultTileColorHex (colorHex) {
-		Tile.setColorHex ($id('Dummy-ColorTile-default'), colorHex);
+	static setDefaultTileColorByHex (colorHex) {
+		Tile.setColorByHex ($id('Dummy-ColorTile-default'), colorHex);
 	}
 
 	static setListColorName (colorName) {
 		$id('DummyBoard').dataset.listColorName = colorName;
 	}
 
-	static setDoingListColorName (colorName) {
-		Dummy.setDoingListColorHex(DoingColors.getHexFromName(colorName));
+	static setDoingListColorByName (colorName) {
+		Dummy.setDoingListColorByHex(DoingColors.getHexFromName(colorName));
 	}
 
-	static setDoingListColorHex (hex) {
+	static setDoingListColorByHex (hex) {
 		var doing = document.querySelector('#DummyBoard .doing-list .list');
 		if (doing) {
 			doing.style.fill = hex;
@@ -47,7 +47,7 @@ class Dummy {
 			colorName = 'default';
 		}
 
-		Dummy.setDoingListColorName(colorName);
+		Dummy.setDoingListColorByName(colorName);
 		Dummy.selectTile(colorName);
 	}
 
