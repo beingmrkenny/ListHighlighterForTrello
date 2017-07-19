@@ -28,16 +28,16 @@ class Options {
 					gray    : null
 				},
 			},
-			wip : {
-				enabled                  : false,
-				pointsCount              : false,
-				cardCount                : true,
-				blockNewCardsOnFullLists : null
+			options : {
+				EnableWIP            : false,
+				Count                : 'Cards',
+				EnableHeaderCards    : false,
+				EnableSeparatorCards : false,
+				HideHashtags         : true,
+				HighlightTags        : true,
+				HighlightTitles      : true,
+				MatchTitleSubstrings : false
 			},
-			stripHashTags : true,
-			highlightHashTags   : true,
-			highlightTitles     : true,
-			matchTitleSubstrings : false,
 			colorBlindFriendlyMode : null
 		};
 
@@ -68,7 +68,7 @@ class Options {
 		var opath = option.split('.');
 
 		// TODO At some point it would be nice to do this dynamically
-		// QUESTION do what???
+		// i.e. have option name strings that just loop over as many things as are provided
 
 		if (opath.length == 1) {
 

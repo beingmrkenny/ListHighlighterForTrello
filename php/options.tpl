@@ -213,19 +213,20 @@
 
 		<p>
 			<label for="EnableWIP">
-				<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP" checked>
+				<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
 				Enable WIP
 			</label>
 		</p>
 
-		<p>
+		<!-- TODO This should be disabled if WIP is not enabled -->
+		<p class="sub-setting" data-master="EnableWIP">
 			Count:<br>
 			<label for="CountCards">
-				<input type="radio" class="options-input" id="CountCards" name="Count">
+				<input type="radio" class="options-input" id="CountCards" name="Count" value="Cards">
 				Number of cards
 			</label>
 			<label for="CountPoints">
-				<input type="radio" class="options-input" id="CountPoints" name="Count" checked>
+				<input type="radio" class="options-input" id="CountPoints" name="Count" value="Points">
 				Number of points
 			</label>
 		</p>
@@ -305,7 +306,7 @@
 
 			<p>
 				<label for="HideHashtags">
-					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags" checked>
+					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags">
 					Hide hashtags in list headers<br>
 					<small>
 						By default, hashtags in list headers will not be shown. If this box is unchecked, hashtags will be visible.<br>
@@ -317,16 +318,16 @@
 			<p>
 				Highlight lists based on:<br>
 				<label for="HighlightTags">
-					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags" checked>
+					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">
 					Tags<br>
 					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
 				</label>
 				<label for="HighlightTitles">
-					<input type="checkbox" class="options-input" id="HighlightTitles" name="HighlightTitles" checked>
+					<input type="checkbox" class="options-input" id="HighlightTitles" name="HighlightTitles">
 					Title text<br>
 					<small>(e.g. highlight list if title <text-switcher data-trigger="MatchTitleSubstrings" data-on="contains the text" data-off="is exactly">is exactly</text-switcher> "<strong>Todo</strong>", "<strong>Doing</strong>", "<strong>Done</strong>", etc)</small>
 				</label>
-				<label for="MatchTitleSubstrings" class="sub-setting">
+				<label for="MatchTitleSubstrings" class="sub-setting" data-master="HighlightTitles">
 					<input type="checkbox" class="options-input" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
 					Match partial title text<br>
 					<small>

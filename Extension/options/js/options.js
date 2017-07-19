@@ -101,33 +101,70 @@ Options.load('colors', function (result) {
 
 });
 
-// TODO This needs to be done on load, too
-var textSwitchers = document.querySelectorAll('text-switcher');
-for (let i = textSwitchers.length-1; i>-1; i--) {
-	let textSwitcher = textSwitchers[i],
-		trigger = $id(textSwitcher.dataset.trigger);
-	trigger.addEventListener('change', function () {
-		let trigger = this,
-			switchers = document.querySelectorAll(`[data-trigger='${trigger.id}']`);
-		for (let i = switchers.length-1; i>-1; i--) {
-			let switcher = switchers[i];
-			if (trigger.checked) {
-				switcher.textContent = switcher.dataset.on;
-			} else {
-				switcher.textContent = switcher.dataset.off
-			}
-		}
+Options.load('options', function (result) {
 
-	});
+	let options = result.options;
+	for (let name in options) {
+		let value = options[name];
+		if (typeof value == 'boolean') {
+			$id(name).checked = value;
+		} else {
+			$id(name+value).checked = true;
+		}
+	}
+
+	var textSwitchers = document.querySelectorAll('text-switcher');
+	for (let i = textSwitchers.length-1; i>-1; i--) {
+		let textSwitcher = textSwitchers[i],
+			trigger = $id(textSwitcher.dataset.trigger);
+		processTextSwitcherTrigger.call(trigger);
+		trigger.addEventListener('change', processTextSwitcherTrigger);
+	}
+
+	var subSettings = document.querySelectorAll('.sub-setting');
+	for (let i = subSettings.length-1; i>-1; i--) {
+		let master = $id(subSettings[i].dataset.master);
+		processSubSettings.call(master);
+		master.addEventListener('change', processSubSettings);
+	}
+
+	var optionInputs = document.querySelectorAll('.options-input');
+	for (let i = optionInputs.length-1; i>-1; i--) {
+		optionInputs[i].addEventListener('change', function () {
+			let input = this,
+				name = input.name,
+				value = (input.type == 'radio')
+					? document.querySelector(`input[name="${input.name}"]:checked`).value
+					: input.checked;
+			Options.save(`options.${name}`, value);
+		});
+	}
+
+});
+
+function processTextSwitcherTrigger () {
+	var trigger = this,
+		switchers = document.querySelectorAll(`[data-trigger='${trigger.id}']`);
+	for (let i = switchers.length-1; i>-1; i--) {
+		let switcher = switchers[i];
+		if (trigger.checked) {
+			switcher.textContent = switcher.dataset.on;
+		} else {
+			switcher.textContent = switcher.dataset.off
+		}
+	}
 }
 
-// TODO This needs to be done on load, too
-$id('HighlightTitles').addEventListener('change', function () {
-	var matchTitleSubstrings = $id('MatchTitleSubstrings');
-	var isDisabled = (!this.checked);
-	matchTitleSubstrings.disabled = isDisabled;
-	$(`[for='MatchTitleSubstrings']`).classList.toggle('disabled', isDisabled);
-});
+function processSubSettings () {
+	let master = this,
+		isDisabled = (!master.checked),
+		settingContainer = document.querySelector(`[data-master="${master.id}"]`),
+		inputs = settingContainer.querySelectorAll('input');
+	for (let i = inputs.length-1; i>-1; i--) {
+		inputs[i].disabled = isDisabled;
+	}
+	settingContainer.classList.toggle('disabled', isDisabled);
+}
 
 function saveColor (trelloBg, colorName) {
 	customDoingColors[ trelloBg ] = colorName;

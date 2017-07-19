@@ -404,6 +404,10 @@ footer {
 	margin-top: 110px;
 }
 
+.disabled {
+	color: gray;
+}
+
 @import 'elements.scss';
 @import 'forms.scss';
 
