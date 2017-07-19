@@ -55,19 +55,19 @@ Options.load('colors', function (result) {
 				}
 
 				if (tileIsDefault == true) {
+					Dummy.setDefaultTileColorName (colorName); // QUESTION Is this working? produces null, which is a shittence
 					if (tileIsCustom) {
 						Dummy.setDefaultTileColorHex (customHex);
 					}
-					Dummy.setDefaultTileColorName (colorName);
 				}
 
 				if ( (tileIsDefault == true && listColorName == 'default') || tileIsDefault == false ) {
 					let listColor = (tileIsDefault) ? 'default' : colorName;
 					Dummy.setListColorName (listColor);
+					Dummy.setDoingListColorName (colorName); // QUESTION This might be a problem, does it produce null? why is it here?
 					if (tileIsCustom) {
 						Dummy.setDoingListColorHex (customHex);
 					}
-					Dummy.setDoingListColorName (colorName);
 				}
 
 				saveColor(trelloBg, colorName);
