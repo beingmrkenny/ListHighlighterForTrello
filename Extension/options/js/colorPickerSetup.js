@@ -6,7 +6,7 @@ function setupColorPicker (colorTileLabel) {
 		left = boundingRect.left + window.scrollX + colorTileLabel.offsetWidth + 10;
 
 	var existing = $('color-picker'),
-		isDefaultBoard = j(input.dataset.default),
+		isDefaultColorBar = j(input.dataset.default),
 		previousColor = input.dataset.value,
 		colorPicker = getTemplate('ColorPicker'),
 		colorTilebar = input.closest('.color-tile-bar');
@@ -27,33 +27,37 @@ function setupColorPicker (colorTileLabel) {
 			ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
 			sv.style.backgroundColor = hex;
 			document.getElementById('ColorHex').textContent = hex;
-			changeAllTheColors (hex, isDefaultBoard)
+			changeAllTheColors (hex, isDefaultColorBar)
 		}
 	);
 
 	cp.setHex(input.dataset.value);
 
 	$id('CancelColor').addEventListener('click', function () {
-		changeAllTheColors (previousColor, isDefaultBoard)
+		changeAllTheColors (previousColor, isDefaultColorBar)
 		$('color-picker').remove();
 	});
 
 	$id('SaveColor').addEventListener('click', function () {
-		var trelloBg = (isDefaultBoard) ? 'default' : $id('DummyBoard').dataset.trelloBg;
+		var trelloBg = (isDefaultColorBar) ? 'default' : $id('DummyBoard').dataset.trelloBg;
 		saveCustomColor(trelloBg, input.dataset.value);
 		$('color-picker').remove();
 	});
 
 }
 
-function changeAllTheColors (hex, isDefaultBoard) {
-	if (isDefaultBoard) {
+function changeAllTheColors (hex, isDefaultColorBar) {
+	var listColorName = $id('DummyBoard').dataset.listColorName;
+	if (isDefaultColorBar) {
 		DefaultColorBar.setCustomTileColorByHex(hex);
 		Dummy.setDefaultTileColorByHex (hex);
-		if ($id('DummyBoard').dataset.listColorName == 'default') {
+		if (listColorName == 'default') {
 			Dummy.setDoingListColorByHex (hex);
 		}
 	} else {
 		Dummy.setCustomTileColorByHex(hex);
+		if (listColorName == 'custom') {
+			Dummy.setDoingListColorByHex (hex);
+		}
 	}
 }

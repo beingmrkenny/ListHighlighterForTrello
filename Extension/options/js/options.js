@@ -19,10 +19,7 @@ Options.load('colors', function (result) {
 			doingColorForBlue     = DoingColors.getColorNameForTrelloBg('blue'),
 			blueCustomHex         = DoingColors.getCustomHexForTrelloBg('blue') || fallbackDefaultCustom;
 
-		DefaultColorBar.setCustomTileColorByName (defaultColorName);
 		DefaultColorBar.setCustomTileColorByHex (defaultCustomHex);
-
-		Dummy.setCustomTileColorByName (defaultColorName);
 		Dummy.setCustomTileColorByHex (blueCustomHex);
 
 		if (defaultColorName == 'custom') {
@@ -35,7 +32,11 @@ Options.load('colors', function (result) {
 
 		Dummy.selectTile (doingColorForBlue);
 		Dummy.setListColorName (doingColorForBlue);
-		Dummy.setDoingListColorByName (doingColorForBlue);
+		if (doingColorForBlue == 'custom') {
+			Dummy.setDoingListColorByHex (blueCustomHex);
+		} else {
+			Dummy.setDoingListColorByName (doingColorForBlue);
+		}
 
 		let tiles = document.querySelectorAll('.color-tile-label');
 		for (let i = tiles.length-1; i>-1; i--) {
@@ -55,7 +56,7 @@ Options.load('colors', function (result) {
 				}
 
 				if (tileIsDefault == true) {
-					if (tileIsCustom) {
+					if (tileIsCustom || colorName == 'custom') {
 						Dummy.setDefaultTileColorByHex (customHex);
 					} else {
 						Dummy.setDefaultTileColorByName (colorName);
@@ -65,7 +66,7 @@ Options.load('colors', function (result) {
 				if ( (tileIsDefault == true && listColorName == 'default') || tileIsDefault == false ) {
 					let listColor = (tileIsDefault) ? 'default' : colorName;
 					Dummy.setListColorName (listColor);
-					if (tileIsCustom) {
+					if (tileIsCustom || colorName == 'custom') {
 						Dummy.setDoingListColorByHex (customHex);
 					} else {
 						Dummy.setDoingListColorByName (colorName);

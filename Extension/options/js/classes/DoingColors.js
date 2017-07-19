@@ -36,7 +36,16 @@ class DoingColors {
 	}
 
 	static getDefaultHex () {
-		return DoingColors.getHexFromName(DoingColors.getDefaultColorName());
+		var hex,
+			colorName = DoingColors.getDefaultColorName();
+
+		if (colorName == 'custom') {
+			hex = DoingColors.getCustomHexForTrelloBg('default');
+		} else {
+			hex = DoingColors.getHexFromName(colorName);
+		}
+
+		return hex;
 	}
 
 	static getColorNameForTrelloBg (trelloBg) {
@@ -45,11 +54,13 @@ class DoingColors {
 
 	static getCustomHexForTrelloBg (trelloBg) {
 		var hex = null;
+
 		if (Color.isHex(customDoingColors[trelloBg])) {
 			hex = customDoingColors[trelloBg];
 		} else {
 			hex = DoingColors.getHexFromName('grey');
 		}
+
 		return hex;
 	}
 
