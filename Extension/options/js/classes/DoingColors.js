@@ -30,12 +30,13 @@ class DoingColors {
 		return (currentDoingColors[trelloBg] !== null && currentDoingColors[trelloBg] !== 'default');
 	}
 
+	// Returns the name of a predefined color, like red, blue, green etc.
 	static getDefaultColorName () {
 		return currentDoingColors['default'];
 	}
 
 	static getDefaultHex () {
-		return DoingColors.getHexFromName(currentDoingColors['default']);
+		return DoingColors.getHexFromName(DoingColors.getDefaultColorName());
 	}
 
 	static getColorNameForTrelloBg (trelloBg) {

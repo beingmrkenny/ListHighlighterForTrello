@@ -25,9 +25,10 @@ class Dummy {
 	}
 
 	static setDoingListColorByHex (hex) {
-		var doing = document.querySelector('#DummyBoard .doing-list .list');
-		if (doing) {
-			doing.style.fill = hex;
+		if (hex) {
+			document.querySelector('#DummyBoard .doing-list .list').style.fill = hex;
+		} else {
+			throw new Error('No hex code provided');
 		}
 	}
 
