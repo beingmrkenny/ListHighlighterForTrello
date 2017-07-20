@@ -129,9 +129,19 @@ class Color {
 
 		m = l - c / 2;
 
-		this.red   = Math.round((r + m) * 255);
-		this.green = Math.round((g + m) * 255);
-		this.blue  = Math.round((b + m) * 255);
+		// this.red   = (r + m) * 255;
+
+		// this.green = (g + m) * 255;
+
+		// this.blue  = (b + m) * 255;
+
+		this.red   = Math.round( (((r + m) * 255) * 1000) / 1000 );
+		this.green = Math.round( (((g + m) * 255) * 1000) / 1000 );
+		this.blue  = Math.round( (((b + m) * 255) * 1000) / 1000 );
+
+		console.log(this.red);
+		console.log(this.green);
+		console.log(this.blue);
 
 	}
 
@@ -204,6 +214,10 @@ class Color {
 
 	getSaturation() {
 		return this.saturation;
+	}
+
+	getLightness() {
+		return this.lightness;
 	}
 
 	toHex() {

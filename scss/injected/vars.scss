@@ -24,7 +24,12 @@
 }
 
 .bmko_high-list {
-	--list-bg:                         #{#ec2f2f};
+
+	--high-pri: <highpri>
+	--high-pri-border: <highpriBorder>
+
+	// --list-bg:                         #{$highListBG};
+	--list-bg:                         #{var(--high-pri)};
 
 	--header-color:                    #{#fff};
 	--editing-color:                   #{$normalTextColor};
@@ -33,8 +38,10 @@
 	--list-button-bg:                  #{rgba(black, .1)};
 	--list-button-color:               #{white};
 
-	--card-border-bottom-color:        #{#af5d5d};
-	--active-card-border-bottom-color: #{#af5d5d};
+	// --card-border-bottom-color:        #{$highListBorder};
+	// --active-card-border-bottom-color: #{$highListBorder};
+	--card-border-bottom-color:        #{var(--high-pri-border)};
+	--active-card-border-bottom-color: #{var(--high-pri-border)};
 
 	--pencil-button-bg:                  #{#D6DADC};
 	--pencil-button-color:               #{#8c8c8c};

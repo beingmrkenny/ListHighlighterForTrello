@@ -30,6 +30,7 @@
 			"js": [
 				"js/third/autosize.min.js",
 				"js/classes/System.js",
+				"js/classes/Color.js",
 				"js/classes/ListHighlighter.js",
 				"js/classes/TrelloPage.js",
 				"js/classes/Card.js",
