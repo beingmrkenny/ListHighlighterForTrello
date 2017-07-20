@@ -17,13 +17,5 @@ chrome.runtime.onMessage.addListener (
 );
 
 window.addEventListener('load', function () {
-
 	System.setup();
-
-	keepCounting (
-	    function () { Card.processCards(document.querySelectorAll('.list-card')) },
-	    function () { return document.querySelectorAll('.list-card').length; },
-		5,
-		500
-	);
 });

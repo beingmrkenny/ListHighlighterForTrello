@@ -8,34 +8,32 @@ function $(query) {
 
 function createElement (string) {
 
-		var element, events;
+	var element, events, container = document.createElement('div');
 
-		var container = document.createElement('div');
-
-		if (typeof (string) != 'string') {
-			throw 'First parameter must be a string';
-		}
-
-		else if (typeof arguments[1] !== 'undefined') {
-			events = arguments[1];
-		}
-
-		string = string.trim();
-
-		switch (true) {
-			case /^<(:?th|td)\b/.test(string) :
-			case /^<tr\b/.test(string) :
-			case /^<t(:?r|head|body)/.test(string) :
-				console.warn('Table elements do not work with this function');
-				break;
-		}
-
-		container.innerHTML = string;
-
-		element = container.firstElementChild;
-
-		return element;
+	if (typeof (string) != 'string') {
+		throw 'First parameter must be a string';
 	}
+
+	else if (typeof arguments[1] !== 'undefined') {
+		events = arguments[1];
+	}
+
+	string = string.trim();
+
+	switch (true) {
+		case /^<(:?th|td)\b/.test(string) :
+		case /^<tr\b/.test(string) :
+		case /^<t(:?r|head|body)/.test(string) :
+			console.warn('Table elements do not work with this function');
+			break;
+	}
+
+	container.innerHTML = string;
+
+	element = container.firstElementChild;
+
+	return element;
+}
 
 function observe(params) {
 
@@ -76,37 +74,32 @@ function keepTrying(callback, limit, interval) {
 
 }
 
-// NOTE This function uses a checker function which returns a boolean, rather than relying on try/catch
-// function keepChecking(callback, checker, limit, interval) {
-//
-// 	interval = (isNaN(interval) ? 500 : interval);
-// 	limit = (isNaN(limit) ? 5 : --limit);
-//
-// 	if (checker()) {
-// 		callback();
-// 	} else if (limit > 0) {
-// 		window.setTimeout(function () {
-// 			keepTrying(callback, checker, limit, interval);
-// 		}, interval);
-// 	}
-//
-// }
-
-// NOTE This function counts something, and applies the callback once the count has stopped changing
-function keepCounting(callback, counter, limit, interval, oldCount) {
+function keepChecking(callback, checker, limit, interval) {
 
 	interval = (isNaN(interval) ? 500 : interval);
 	limit = (isNaN(limit) ? 5 : --limit);
 
-	var newCount = counter();
+	if (checker()) {
+		callback();
+	} else if (limit > 0) {
+		window.setTimeout(function () {
+			keepTrying(callback, checker, limit, interval);
+		}, interval);
+	}
 
-	if (
-		limit > 0 &&
-		(typeof oldCount == 'undefined' || newCount !== oldCount)
-	) {
+}
+
+function keepCounting(callback, countQuery, limit, interval, oldCount) {
+
+	interval = (isNaN(interval) ? 500 : interval);
+	limit = (isNaN(limit) ? 5 : --limit);
+
+	var newCount = document.querySelectorAll(countQuery).length;
+
+	if (limit > 0 && (typeof oldCount == 'undefined' || newCount !== oldCount)) {
 
 		window.setTimeout(function () {
-			keepCounting(callback, counter, limit, interval, newCount);
+			keepCounting(callback, countQuery, limit, interval, newCount);
 		}, interval);
 
 	} else {

@@ -1,20 +1,31 @@
+var GLOBAL = {
+	headerCardsEnabled : true,
+	separatorCardsEnabled : true,
+}
+
 class System {
 
 	static setup () {
-		watch ('title');
 		System.headerCardsSetup();
-		watch ('board');
-		watch ('listTitle');
 		keepTrying(ListHighlighter.highlight, 5, 700);
 		System.detectAndSaveColorBlindFriendlyMode();
+		watch ('title');
+		watch ('board');
+		watch ('listTitle');
 		watch ('body');
 	}
 
 	static headerCardsSetup () {
-		// used to be a title watcher here
-		watch ('listCardTitle');
-		watch ('board');
-		watch ('list');
+		if (GLOBAL.headerCardsEnabled || GLOBAL.separatorCardsEnabled) {
+			keepCounting (
+			    function () {
+					watch ('listCardTitle');
+					watch ('list');
+					Card.processCards(document.querySelectorAll('.list-card'));
+				},
+			    '.list-card', 5, 250
+			);
+		}
 	}
 
 	// TODO Does it need a destup method to get all observers and get rid of them
@@ -47,16 +58,18 @@ class System {
 		watch ('board');
 		watch ('listTitle');
 		ListHighlighter.highlight();
-		window.setTimeout (System.headerCardsSetup, 100);
+		System.headerCardsSetup();
 	}
 
 	// board
 	static checkForNewLists (mutationRecords) {
 
-	    var newList = mutationRecords[0].addedNodes[0];
-	    if (newList && newList.classList.contains('list-wrapper')) {
-	        watch ('list', newList.querySelector('.list-cards'));
-	    }
+		if (GLOBAL.headerCardsEnabled || GLOBAL.separatorCardsEnabled) {
+			var newList = mutationRecords[0].addedNodes[0];
+		    if (newList && newList.classList.contains('list-wrapper')) {
+		        watch ('list', newList.querySelector('.list-cards'));
+		    }
+		}
 
 		ListHighlighter.highlight();
 		watch ('listTitle');
