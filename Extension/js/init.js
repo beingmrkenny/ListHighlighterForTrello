@@ -1,5 +1,7 @@
 'use strict';
 
+var GLOBAL = {};
+
 chrome.runtime.onMessage.addListener (
 	function(request, sender, sendResponse) {
 		switch (request.message) {

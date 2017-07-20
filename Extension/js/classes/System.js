@@ -1,18 +1,25 @@
-var GLOBAL = {
-	headerCardsEnabled : true,
-	separatorCardsEnabled : true,
-}
-
 class System {
 
 	static setup () {
-		System.headerCardsSetup();
-		keepTrying(ListHighlighter.highlight, 5, 700);
-		System.detectAndSaveColorBlindFriendlyMode();
-		watch ('title');
-		watch ('board');
-		watch ('listTitle');
-		watch ('body');
+
+		Options.load('options', function (results) {
+
+			var options = results.options;
+
+			GLOBAL.headerCardsEnabled = options.EnableHeaderCards;
+			GLOBAL.separatorCardsEnabled = options.EnableSeparatorCards;
+
+			System.headerCardsSetup();
+			keepTrying(ListHighlighter.highlight, 5, 700);
+			System.detectAndSaveColorBlindFriendlyMode();
+
+			watch ('title');
+			watch ('board');
+			watch ('listTitle');
+			watch ('body');
+
+		});
+
 	}
 
 	static headerCardsSetup () {
