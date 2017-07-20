@@ -107,42 +107,39 @@ class ListHighlighter {
 
 		let listTitle = header.textContent.toLowerCase().trim();
 
-		if (listTitle.includes('{low}') ||
-			/#low(?:\s|$)/.test(listTitle)
+		if (
+			GLOBAL.HighlightTags && (listTitle.includes('{low}') || /#low(?:\s|$)/.test(listTitle))
 		) {
 			return LOW;
 		}
 
-		else if (listTitle == 'todo' ||
-			listTitle == 'to do' ||
-			listTitle.includes('{normal}') ||
-			listTitle.includes('{todo}') ||
-			listTitle.includes('{to do}') ||
-			/#(normal|to ?do)(?:\s|$)/.test(listTitle)
+		else if (
+			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'todo' || listTitle == 'to do')) ||
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings && (listTitle.includes('todo') || listTitle.includes('to do'))) ||
+			(GLOBAL.HighlightTags && (/\{(normal|to ?do)\}/.test(listTitle) || /#(normal|to ?do)(?:\s|$)/.test(listTitle)))
 		) {
 			return NORMAL;
 		}
 
-		else if (listTitle == 'today' ||
-			listTitle == 'doing' ||
-			listTitle.includes('{high}') ||
-			listTitle.includes('{today}') ||
-			listTitle.includes('{doing}') ||
-			/#(high|today|doing)(?:\s|$)/.test(listTitle)
+		else if (
+			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'today' || listTitle == 'doing')) ||
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings && (listTitle.includes('today') || listTitle.includes('doing'))) ||
+			(GLOBAL.HighlightTags && (/\{(high|today|doing)\}/.test(listTitle) || /#(high|today|doing)(?:\s|$)/.test(listTitle)))
 		) {
 			return HIGH;
 		}
 
-		else if (listTitle == 'trash' ||
-			listTitle == 'done' ||
-			listTitle.includes('{trash}') ||
-			listTitle.includes('{done}') ||
-			/#(trash|done)(?:\s|$)/.test(listTitle)
+		else if (
+			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'trash' || listTitle == 'done')) ||
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings && (listTitle.includes('trash') || listTitle.includes('done'))) ||
+			(GLOBAL.HighlightTags && (/\{(trash|done)\}/.test(listTitle) || /#(trash|done)(?:\s|$)/.test(listTitle)))
 		) {
 			return TRASH;
 		}
 
-		else if (listTitle.includes('{ignore}') || /#ignore(?:\s|$)/.test(listTitle)) {
+		else if (
+			GLOBAL.HighlightTags && (listTitle.includes('{ignore}') || /#ignore(?:\s|$)/.test(listTitle))
+		) {
 			return IGNORE;
 		}
 
