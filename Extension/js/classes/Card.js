@@ -33,7 +33,7 @@ class Card {
 
 	process () {
 
-		if (GLOBAL.headerCardsEnabled) {
+		if (GLOBAL.EnableHeaderCards) {
 			if (this.shouldBeHeader()) {
 				this.makeHeader();
 			} else {
@@ -41,7 +41,7 @@ class Card {
 			}
 		}
 
-		if (GLOBAL.separatorCardsEnabled) {
+		if (GLOBAL.EnableSeparatorCards) {
 			if (this.shouldBeRule()) {
 				this.makeRule();
 			} else {

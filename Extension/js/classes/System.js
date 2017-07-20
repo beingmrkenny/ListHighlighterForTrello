@@ -4,10 +4,9 @@ class System {
 
 		Options.load('options', function (results) {
 
-			var options = results.options;
-
-			GLOBAL.headerCardsEnabled = options.EnableHeaderCards;
-			GLOBAL.separatorCardsEnabled = options.EnableSeparatorCards;
+			for (let name in results.options) {
+				GLOBAL[name] = results.options[name];
+			}
 
 			System.headerCardsSetup();
 			keepTrying(ListHighlighter.highlight, 5, 700);
@@ -23,7 +22,7 @@ class System {
 	}
 
 	static headerCardsSetup () {
-		if (GLOBAL.headerCardsEnabled || GLOBAL.separatorCardsEnabled) {
+		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			keepCounting (
 			    function () {
 					watch ('listCardTitle');
@@ -71,7 +70,7 @@ class System {
 	// board
 	static checkForNewLists (mutationRecords) {
 
-		if (GLOBAL.headerCardsEnabled || GLOBAL.separatorCardsEnabled) {
+		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			var newList = mutationRecords[0].addedNodes[0];
 		    if (newList && newList.classList.contains('list-wrapper')) {
 		        watch ('list', newList.querySelector('.list-cards'));
