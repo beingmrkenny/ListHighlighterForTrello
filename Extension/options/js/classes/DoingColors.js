@@ -26,6 +26,22 @@ class DoingColors {
 
 	}
 
+	static getTrelloBg () {
+		var trelloBg, rgb = document.body.style.backgroundColor;
+		switch (rgb) {
+			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
+			case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
+			case 'rgb(81, 152, 57)'  : trelloBg = 'green'; break;
+			case 'rgb(176, 70, 50)'  : trelloBg = 'red'; break;
+			case 'rgb(137, 96, 158)' : trelloBg = 'purple'; break;
+			case 'rgb(205, 90, 145)' : trelloBg = 'pink'; break;
+			case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
+			case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
+			case 'rgb(131, 140, 145)': trelloBg = 'grey'; break;
+		}
+		return trelloBg;
+	}
+
 	static trelloBgHasDoingColor (trelloBg) {
 		return (currentDoingColors[trelloBg] !== null && currentDoingColors[trelloBg] !== 'default');
 	}

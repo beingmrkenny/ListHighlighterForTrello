@@ -9,13 +9,20 @@ class System {
 			}
 
 			System.headerCardsSetup();
-			keepTrying(ListHighlighter.highlight, 5, 700);
 			System.detectAndSaveColorBlindFriendlyMode();
 
-			watch ('title');
-			watch ('board');
-			watch ('listTitle');
-			watch ('body');
+			Options.load('colors', function (results) {
+				DoingColors.init(results.colors);
+				GLOBAL.highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+				ListHighlighter.highPriColorStyles();
+
+				keepTrying(ListHighlighter.highlight, 5, 700);
+
+				watch ('title');
+				watch ('board');
+				watch ('listTitle');
+				watch ('body');
+			});
 
 		});
 

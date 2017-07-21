@@ -25,21 +25,15 @@
 
 .bmko_high-list {
 
-	--high-pri: <highpri>
-	--high-pri-border: <highpriBorder>
-
-	// --list-bg:                         #{$highListBG};
 	--list-bg:                         #{var(--high-pri)};
 
-	--header-color:                    #{#fff};
+	--header-color:                    #{var(--high-pri-text)};
 	--editing-color:                   #{$normalTextColor};
-	--list-color:                      #{#fff};
+	--list-color:                      #{var(--high-pri-text)};
 
 	--list-button-bg:                  #{rgba(black, .1)};
-	--list-button-color:               #{white};
+	--list-button-color:               #{var(--high-pri-text)};
 
-	// --card-border-bottom-color:        #{$highListBorder};
-	// --active-card-border-bottom-color: #{$highListBorder};
 	--card-border-bottom-color:        #{var(--high-pri-border)};
 	--active-card-border-bottom-color: #{var(--high-pri-border)};
 
@@ -48,7 +42,7 @@
 
 	// FIXME badges in card footer - should be something else
 	--card-button-bg:                  #{rgba(black, .1)};
-	--card-button-color:               #{#fff};
+	--card-button-color:               #{var(--high-pri-text)};
 }
 
 .bmko_normal-list,

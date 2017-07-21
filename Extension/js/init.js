@@ -20,5 +20,4 @@ chrome.runtime.onMessage.addListener (
 
 window.addEventListener('load', function () {
 	System.setup();
-	var style = ListHighlighter.generateColors();
 });

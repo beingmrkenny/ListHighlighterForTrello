@@ -234,11 +234,11 @@ class ListHighlighter {
 
 	}
 
-	static generateColors () {
+	static highPriColorStyles () {
 
-		var highPri = '#ec2f2f',
-			color = new Color(highPri),
-			newColor = new Color();
+		var color = new Color(GLOBAL.highPri),
+			newColor = new Color(),
+			contrastColor, css, style;
 
 		color.toHSL();
 
@@ -248,10 +248,21 @@ class ListHighlighter {
 			color.getLightness() - 2.5
 		);
 
-		return `body {
-			--high-pri: ${highPri}
-			--high-pri-border: ${newColor.toHex()}
-		}`;
+		contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+
+		css = document.createTextNode(
+			`.bmko_high-list {
+				--high-pri: ${GLOBAL.highPri};
+				--high-pri-border: ${newColor.toHex()};
+				--high-pri-text: ${contrastColor};
+			}`
+		);
+
+		var style = document.createElement('style');
+		style.setAttribute('type', 'text/css');
+		style.appendChild(css);
+
+		document.head.appendChild(style);
 
 	}
 

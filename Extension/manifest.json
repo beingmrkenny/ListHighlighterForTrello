@@ -35,6 +35,7 @@
 				"js/classes/TrelloPage.js",
 				"js/classes/Card.js",
 				"js/classes/Options.js",
+				"options/js/classes/DoingColors.js",
 
 				"js/watch.js",
 				"js/functions.js",
