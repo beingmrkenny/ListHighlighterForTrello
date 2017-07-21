@@ -29,7 +29,8 @@ class Tile {
 		}
 	}
 
-	static select (defaultBar, colorName) {
+	// FIXME select doesn't communicate what this method does
+ 	static select (defaultBar, colorName) {
 		var parent = (defaultBar)
 			? $id('DefaultColorBar')
 			: $id('DummyBoard');

@@ -82,7 +82,7 @@
 			{/foreach}
 		</ul>
 
-		<details>
+		<details id="HighPriDetails">
 
 			<summary>
 				<h3>More options</h3>
@@ -304,12 +304,10 @@
 				<h3>Options</h3>
 			</summary>
 
-			<h4>Highlight lists based on:</h4>
-
 			<p>
 				<label for="HighlightTags">
 					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">
-					Hashtags<br>
+					Highlight lists based on hashtags<br>
 					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
 				</label>
 				<label for="HideHashtags" class="sub-setting" data-master="HighlightTags">
@@ -323,7 +321,7 @@
 
 				<label for="HighlightTitles">
 					<input type="checkbox" class="options-input" id="HighlightTitles" name="HighlightTitles">
-					Title text<br>
+					Highlight lists based on title text<br>
 					<small>(e.g. highlight list if title <text-switcher data-trigger="MatchTitleSubstrings" data-on="contains the text" data-off="is exactly">is exactly</text-switcher> "<strong>Todo</strong>", "<strong>Doing</strong>", "<strong>Done</strong>", etc)</small>
 				</label>
 				<label for="MatchTitleSubstrings" class="sub-setting" data-master="HighlightTitles">

@@ -408,6 +408,10 @@ footer {
 	color: gray;
 }
 
+[for="HighlightTitles"] {
+	margin-top: 20px;
+}
+
 @import 'elements.scss';
 @import 'forms.scss';
 

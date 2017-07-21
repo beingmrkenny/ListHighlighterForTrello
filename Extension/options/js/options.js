@@ -96,6 +96,20 @@ Options.load('colors', function (result) {
 			});
 		}
 
+		let expandHighPriDetails = false;
+		for (let key in result.colors.current) {
+			if (key != 'default') {
+				let value = result.colors.current[key];
+				if (value && value != 'default') {
+					expandHighPriDetails = true;
+					break;
+				}
+			}
+		}
+
+		if (expandHighPriDetails) {
+			$id('HighPriDetails').open = true;
+		}
 	}
 
 	setTimeout(function () {
