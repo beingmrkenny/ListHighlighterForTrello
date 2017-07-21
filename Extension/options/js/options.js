@@ -130,12 +130,19 @@ Options.load('options', function (result) {
 		}
 	}
 
-	var textSwitchers = document.querySelectorAll('text-switcher');
-	for (let i = textSwitchers.length-1; i>-1; i--) {
-		let textSwitcher = textSwitchers[i],
+	var textSwitchersSingle = document.querySelectorAll('text-switcher[data-trigger]');
+	for (let i = textSwitchersSingle.length-1; i>-1; i--) {
+		let textSwitcher = textSwitchersSingle[i],
 			trigger = $id(textSwitcher.dataset.trigger);
 		processTextSwitcherTrigger.call(trigger);
 		trigger.addEventListener('change', processTextSwitcherTrigger);
+	}
+
+	var textSwitcherMasters = document.querySelectorAll('input[data-slave]');
+	for (let i = textSwitcherMasters.length-1; i>-1; i--) {
+		let master = textSwitcherMasters[i];
+		processTextSwitcherTriggers.call(master);
+		master.addEventListener('change', processTextSwitcherTriggers);
 	}
 
 	var subSettings = document.querySelectorAll('.sub-setting');
@@ -161,6 +168,7 @@ Options.load('options', function (result) {
 
 function processTextSwitcherTrigger () {
 	var trigger = this,
+		triggers
 		switchers = document.querySelectorAll(`[data-trigger='${trigger.id}']`);
 	for (let i = switchers.length-1; i>-1; i--) {
 		let switcher = switchers[i];
@@ -170,6 +178,25 @@ function processTextSwitcherTrigger () {
 			switcher.textContent = switcher.dataset.off
 		}
 	}
+}
+
+function processTextSwitcherTriggers () {
+
+	var master = this,
+		slaveId = master.dataset.slave,
+		slave = $id(slaveId),
+		masters = document.querySelectorAll(`input[data-slave="${slaveId}"]`),
+		allChecked = true;
+
+	for (let i = masters.length-1; i>-1; i--) {
+		let master = masters[i];
+		if (!master.checked) {
+			allChecked = false;
+		}
+	}
+
+	slave.textContent = (allChecked) ? slave.dataset.on : slave.dataset.off;
+
 }
 
 function processSubSettings () {

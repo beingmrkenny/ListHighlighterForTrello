@@ -306,16 +306,16 @@
 
 			<p>
 				<label for="HighlightTags">
-					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">
+					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags" data-slave="HideHashtagsSwitcher">
 					Highlight lists based on hashtags<br>
 					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
 				</label>
 				<label for="HideHashtags" class="sub-setting" data-master="HighlightTags">
-					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags">
+					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags" data-slave="HideHashtagsSwitcher">
 					Hide hashtags in list headers<br>
 					<small>
 						If this box and the one above are checked, hashtags in list headers will be hidden.<br>
-						Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher data-trigger="HideHashtags" data-on="" data-off=" #todo"></text-switcher></strong>"
+						Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher id="HideHashtagsSwitcher" data-on="" data-off=" #todo"></text-switcher></strong>"
 					</small>
 				</label>
 
