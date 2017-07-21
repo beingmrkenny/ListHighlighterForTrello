@@ -129,19 +129,9 @@ class Color {
 
 		m = l - c / 2;
 
-		// this.red   = (r + m) * 255;
-
-		// this.green = (g + m) * 255;
-
-		// this.blue  = (b + m) * 255;
-
-		this.red   = Math.round( (((r + m) * 255) * 1000) / 1000 );
-		this.green = Math.round( (((g + m) * 255) * 1000) / 1000 );
-		this.blue  = Math.round( (((b + m) * 255) * 1000) / 1000 );
-
-		console.log(this.red);
-		console.log(this.green);
-		console.log(this.blue);
+		this.red   = Math.round( (r + m) * 255 );
+		this.green = Math.round( (g + m) * 255 );
+		this.blue  = Math.round( (b + m) * 255 );
 
 	}
 
@@ -197,15 +187,11 @@ class Color {
 			h /= 6;
 		}
 
-		h = Math.round(h*360);
-		s = Math.round(s*100);
-		l = Math.round(l*100);
+		this.hue = (h*100+0.5)|0;
+		this.saturation = ((s*100+0.5)|0);
+		this.lightness = ((l*100+0.5)|0);
 
-		this.hue = h;
-		this.saturation = s;
-		this.lightness = l;
-
-		return `hsl(${h}, ${s}%, ${l}%)`;
+		return `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`;
 	}
 
 	getHue() {

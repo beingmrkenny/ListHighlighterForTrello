@@ -235,41 +235,23 @@ class ListHighlighter {
 	}
 
 	static generateColors () {
-		// take high pri color
-		// desaturate by 50
-		// darken by 3
-		// the string is:
 
 		var highPri = '#ec2f2f',
 			color = new Color(highPri),
-			newColor = new Color(),
-			newSaturation, newLightness, highPriBorder, style;
+			newColor = new Color();
 
 		color.toHSL();
-		newSaturation = color.getSaturation() - 50;
-		newLightness  = color.getLightness() - 3;
 
-		console.log(color.getSaturation());
-		console.log(color.getLightness());
+		newColor.fromHSL(
+			color.getHue(),
+			color.getSaturation() - 49.1,
+			color.getLightness() - 2.5
+		);
 
-		newColor.fromHSL(color.getHue(), newSaturation, newLightness);
-		highPriBorder = newColor.toHex();
-
-		// border should be af5d5d
-		// higpri : hsl(0, 83%, 55%)
-		// border: hsl(0, 33%, 52%)
-
-		console.log(color.getHue());
-		console.log(newSaturation);
-		console.log(newLightness);
-		console.log('border should be #af5d5d');
-
-		style = `body {
+		return `body {
 			--high-pri: ${highPri}
-			--high-pri-border: ${highPriBorder}
+			--high-pri-border: ${newColor.toHex()}
 		}`;
-
-		return style;
 
 	}
 
