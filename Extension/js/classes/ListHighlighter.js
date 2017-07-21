@@ -238,15 +238,21 @@ class ListHighlighter {
 
 	static highPriColorStyles () {
 
-		var color = new Color(GLOBAL.highPri),
+		var color = new Color(),
 			newColor = new Color(),
-			contrastColor, css, style;
+			highPri, contrastColor, css, existingStyle;
 
 		DoingColors.init(GLOBAL.colors);
-		GLOBAL.highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
 
-		if (typeof GLOBAL.highPri == 'undefined') {
-			console.warn('no high pri color')
+		if (document.body.classList.contains('body-custom-board-background')) {
+			highPri = DoingColors.getDefaultHex();
+			color.fromHex(highPri);
+		} else {
+			highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+			color.fromHex(highPri);
+			if (typeof highPri == 'undefined') {
+				console.warn('no high pri color')
+			}
 		}
 
 		color.toHSL();
@@ -259,19 +265,22 @@ class ListHighlighter {
 
 		contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
 
-		css = document.createTextNode(
-			`.bmko_high-list {
-				--high-pri: ${GLOBAL.highPri};
-				--high-pri-border: ${newColor.toHex()};
-				--high-pri-text: ${contrastColor};
-			}`
-		);
+		css = `.bmko_high-list {
+			--high-pri: ${highPri};
+			--high-pri-border: ${newColor.toHex()};
+			--high-pri-text: ${contrastColor};
+		}`;
 
-		var style = document.createElement('style');
-		style.setAttribute('type', 'text/css');
-		style.appendChild(css);
-
-		document.head.appendChild(style);
+		existingStyle = $id('HighPriColorCSS');
+		if (existingStyle) {
+			existingStyle.textContent = css;
+		} else {
+			let style = document.createElement('style');
+			style.setAttribute('type', 'text/css');
+			style.setAttribute('id', 'HighPriColorCSS');
+			style.textContent = css;
+			document.head.appendChild(style);
+		}
 
 	}
 

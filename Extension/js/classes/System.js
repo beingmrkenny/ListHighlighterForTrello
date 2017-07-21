@@ -49,7 +49,7 @@ class System {
 
 			let mut = mutationRecords[0];
 
-			if (mut.attributeName == 'style' && mut.oldValue != document.body.getAttribute('style')) {
+			if (mut.attributeName == 'style' && mut.oldValue !== document.body.getAttribute('style')) {
 
 				ListHighlighter.highPriColorStyles()
 
