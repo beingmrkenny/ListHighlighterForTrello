@@ -12,8 +12,7 @@ class System {
 			System.detectAndSaveColorBlindFriendlyMode();
 
 			Options.load('colors', function (results) {
-				DoingColors.init(results.colors);
-				GLOBAL.highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+				GLOBAL.colors = results.colors;
 				ListHighlighter.highPriColorStyles();
 
 				keepTrying(ListHighlighter.highlight, 5, 700);
@@ -44,26 +43,35 @@ class System {
 	// TODO Does it need a destup method to get all observers and get rid of them
 
 	// body
-	static detectAndSaveColorBlindFriendlyMode (mutationRecords) {
+	static handleBodyAttributeChanges (mutationRecords) {
 
 		if (typeof mutationRecords !== 'undefined') {
 
-			let oldClass = mutationRecords[0].oldValue;
-			if (oldClass) {
-				let oldStatus = oldClass.includes('body-color-blind-mode-enabled'),
+			let mut = mutationRecords[0];
+
+			if (mut.attributeName == 'style' && mut.oldValue != document.body.getAttribute('style')) {
+
+				ListHighlighter.highPriColorStyles()
+
+			} else if (mut.attributeName == 'class') {
+
+				let oldStatus = mut.oldValue.includes('body-color-blind-mode-enabled'),
 					newStatus = document.body.classList.contains('body-color-blind-mode-enabled');
 				if (oldStatus !== newStatus) {
-					Options.save('colorBlindFriendlyMode', newStatus);
+					detectAndSaveColorBlindFriendlyMode(newStatus);
 				}
+
 			}
 
-		} else {
-			Options.save(
-				'colorBlindFriendlyMode',
-				document.body.classList.contains('body-color-blind-mode-enabled')
-			);
 		}
 
+	}
+
+	static detectAndSaveColorBlindFriendlyMode (passedMode) {
+		Options.save(
+			'colorBlindFriendlyMode',
+			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
+		);
 	}
 
 	// title

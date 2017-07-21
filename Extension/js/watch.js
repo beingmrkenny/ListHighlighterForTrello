@@ -4,7 +4,7 @@ function getWatcher(key, targets) {
 
 		body : {
 			targets: document.body,
-			observer : new MutationObserver(System.detectAndSaveColorBlindFriendlyMode),
+			observer : new MutationObserver(System.handleBodyAttributeChanges),
 			options : {childList: false, subtree: false, attributes: true, attributeOldValue: true}
 		},
 

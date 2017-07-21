@@ -208,6 +208,8 @@ class ListHighlighter {
 			document.body.classList.add('bmko_do-not-dim-lists');
 		}
 
+		ListHighlighter.highPriColorStyles();
+
 	}
 
 	static dehighlight() {
@@ -239,6 +241,13 @@ class ListHighlighter {
 		var color = new Color(GLOBAL.highPri),
 			newColor = new Color(),
 			contrastColor, css, style;
+
+		DoingColors.init(GLOBAL.colors);
+		GLOBAL.highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+
+		if (typeof GLOBAL.highPri == 'undefined') {
+			console.warn('no high pri color')
+		}
 
 		color.toHSL();
 

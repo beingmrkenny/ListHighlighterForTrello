@@ -20,6 +20,8 @@ class DoingColors {
 			hex = DoingColors.getCustomHexForTrelloBg(trelloBg);
 		} else if (result !== null) {
 			hex = DoingColors.getHexFromName(result);
+		} else {
+			hex = DoingColors.getDefaultHex();
 		}
 
 		return hex;
