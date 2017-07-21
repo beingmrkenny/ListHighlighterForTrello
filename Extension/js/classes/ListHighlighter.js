@@ -186,7 +186,7 @@ class ListHighlighter {
 						break;
 				}
 
-				if (GLOBAL.HideHashtags) {
+				if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
 					let textarea = header.nextElementSibling;
 					if (textarea && textarea.tagName == 'TEXTAREA') {
 						textarea.addEventListener('focus', ListHighlighter.retagHeader);
@@ -223,7 +223,7 @@ class ListHighlighter {
 			let list = lists[i];
 			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
 
-			if (GLOBAL.HideHashtags) {
+			if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
 				let textarea = list.querySelector('.list-header h2 + textarea');
 				if (textarea) {
 					ListHighlighter.retagHeader(textarea);
@@ -244,17 +244,15 @@ class ListHighlighter {
 
 		DoingColors.init(GLOBAL.colors);
 
-		if (document.body.classList.contains('body-custom-board-background')) {
-			highPri = DoingColors.getDefaultHex();
-			color.fromHex(highPri);
-		} else {
-			highPri = DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
-			color.fromHex(highPri);
-			if (typeof highPri == 'undefined') {
-				console.warn('no high pri color')
-			}
+		highPri = (document.body.classList.contains('body-custom-board-background'))
+			? DoingColors.getDefaultHex()
+			: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+
+		if (typeof highPri == 'undefined') {
+			throw new Error('no high pri color');
 		}
 
+		color.fromHex(highPri);
 		color.toHSL();
 
 		newColor.fromHSL(

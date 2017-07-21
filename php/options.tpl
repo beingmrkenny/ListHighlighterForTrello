@@ -82,7 +82,7 @@
 			{/foreach}
 		</ul>
 
-		<details open>
+		<details>
 
 			<summary>
 				<h3>More options</h3>
@@ -304,8 +304,15 @@
 				<h3>Options</h3>
 			</summary>
 
+			<h4>Highlight lists based on:</h4>
+
 			<p>
-				<label for="HideHashtags">
+				<label for="HighlightTags">
+					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">
+					Hashtags<br>
+					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
+				</label>
+				<label for="HideHashtags" class="sub-setting" data-master="HighlightTags">
 					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags">
 					Hide hashtags in list headers<br>
 					<small>
@@ -313,15 +320,7 @@
 						Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher data-trigger="HideHashtags" data-on="" data-off=" #todo"></text-switcher></strong>"
 					</small>
 				</label>
-			</p>
 
-			<p>
-				Highlight lists based on:<br>
-				<label for="HighlightTags">
-					<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">
-					Tags<br>
-					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
-				</label>
 				<label for="HighlightTitles">
 					<input type="checkbox" class="options-input" id="HighlightTitles" name="HighlightTitles">
 					Title text<br>
