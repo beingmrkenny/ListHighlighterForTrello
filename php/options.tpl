@@ -314,7 +314,7 @@
 					<input type="checkbox" class="options-input" id="HideHashtags" name="HideHashtags">
 					Hide hashtags in list headers<br>
 					<small>
-						By default, hashtags in list headers will not be shown. If this box is unchecked, hashtags will be visible.<br>
+						If this box and the one above are checked, hashtags in list headers will be hidden.<br>
 						Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher data-trigger="HideHashtags" data-on="" data-off=" #todo"></text-switcher></strong>"
 					</small>
 				</label>

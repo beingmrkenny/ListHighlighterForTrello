@@ -115,24 +115,24 @@ class ListHighlighter {
 
 		else if (
 			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'todo' || listTitle == 'to do')) ||
-			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && (listTitle.includes('todo') || listTitle.includes('to do'))) ||
-			(GLOBAL.HighlightTags   && (/\{(normal|to ?do)\}/.test(listTitle) || /#(normal|to ?do)(?:\s|$)/.test(listTitle)))
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && /(^|[^#])to ?do(?:\s|$)/.test(listTitle)) ||
+			(GLOBAL.HighlightTags   && (/\{(?:normal|to ?do)\}/.test(listTitle) || /#(?:normal|to ?do)(?:\s|$)/.test(listTitle)))
 		) {
 			return NORMAL;
 		}
 
 		else if (
 			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'today' || listTitle == 'doing')) ||
-			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && (listTitle.includes('today') || listTitle.includes('doing'))) ||
-			(GLOBAL.HighlightTags   && (/\{(high|today|doing)\}/.test(listTitle) || /#(high|today|doing)(?:\s|$)/.test(listTitle)))
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && /(^|[^#])(?:today|doing)(?:\s|$)/.test(listTitle)) ||
+			(GLOBAL.HighlightTags   && (/\{(?:high|today|doing)\}/.test(listTitle) || /#(?:high|today|doing)(?:\s|$)/.test(listTitle)))
 		) {
 			return HIGH;
 		}
 
 		else if (
 			(GLOBAL.HighlightTitles && !GLOBAL.MatchTitleSubstrings && (listTitle == 'trash' || listTitle == 'done')) ||
-			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && (listTitle.includes('trash') || listTitle.includes('done'))) ||
-			(GLOBAL.HighlightTags   && (/\{(trash|done)\}/.test(listTitle) || /#(trash|done)(?:\s|$)/.test(listTitle)))
+			(GLOBAL.HighlightTitles && GLOBAL.MatchTitleSubstrings  && /(^|[^#])(?:trash|done)(?:\s|$)/.test(listTitle)) ||
+			(GLOBAL.HighlightTags   && (/\{(?:trash|done)\}/.test(listTitle) || /#(?:trash|done)(?:\s|$)/.test(listTitle)))
 		) {
 			return TRASH;
 		}
