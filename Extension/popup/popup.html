@@ -12,26 +12,31 @@
 		<main id="Main">
 
 			<section id="ListHighlighter">
+
 				<h1>List&nbsp;Highlighter</h1>
-				<a class="button" href="/options/index.html" id="Settings" target="_blank"><span class="gear"></span> Settings</a>
-			</section>
 
-			<section id="ThisBoard">
+				<div>
+					<a class="button" href="/options/index.html" id="Settings" target="_blank"><span class="gear"></span> Settings</a>
+				</div>
 
-				<h2>Highlighting</h2>
-				<button type="button" id="HighlightOn" class="onoff on">
-					<span class="text">On</span>
-					<span class="indicator"></span>
-				</button>
+				<div id="BoardSpecific" style="display: none;">
 
-				<p class="off-blurb">
-					Highlighting is off until you switch it on again, or the page reloads.
-				</p>
+					<button type="button" id="HighlightOn" class="onoff on">
+						<span class="text">On</span>
+						<span class="indicator"></span>
+					</button>
+
+					<p class="off-blurb">
+						Highlighting is off until the page reloads or you switch it on again.
+					</p>
+
+				</div>
 
 			</section>
 
 		</main>
 
+		<script type="text/javascript" src="/js/classes/Color.js"></script>
 		<script type="text/javascript" src="/popup/popup.js"></script>
 
 	</body>

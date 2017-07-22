@@ -18,35 +18,35 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 
 function toggleBoardPopup (page) {
 
-	var thisBoard = document.getElementById('ThisBoard');
+	var section = document.getElementById('ListHighlighter'),
+		boardSpecific = document.getElementById('BoardSpecific');
+
+	section.style.backgroundColor = page.backgroundColor;
+
+	let color = new Color(page.backgroundColor);
+
+	if (color.isLight()) {
+		section.classList.remove('dark');
+	} else {
+		section.classList.add('dark');
+	}
+
+	section.style.display = 'block';
+
+	var highlightOn = document.getElementById('HighlightOn');
+
+	toggleHighlightButton(page.highlighted);
+
+	highlightOn.addEventListener('click', function () {
+		if (this.classList.contains('on')) {
+			highlight(false);
+		} else {
+			highlight(true);
+		}
+	});
 
 	if (page && page.isBoard) {
-
-		thisBoard.style.backgroundColor = page.backgroundColor;
-		if (page.backgroundColor) {
-			thisBoard.classList.add('dark');
-		} else {
-			thisBoard.classList.remove('dark');
-		}
-
-		thisBoard.style.display = 'block';
-
-		var highlightOn = document.getElementById('HighlightOn');
-
-		toggleHighlightButton(page.highlighted);
-
-		highlightOn.addEventListener('click', function () {
-			if (this.classList.contains('on')) {
-				highlight(false);
-			} else {
-				highlight(true);
-			}
-		});
-
-	} else {
-
-		thisBoard.style.display = 'none';
-
+		boardSpecific.style.display = 'block';
 	}
 
 }
