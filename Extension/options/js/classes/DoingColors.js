@@ -111,4 +111,50 @@ class DoingColors {
 
 	}
 
+	static highPriColorStyles () {
+
+		var color = new Color(),
+			newColor = new Color(),
+			highPri, contrastColor, css, existingStyle;
+
+		DoingColors.init(GLOBAL.colors);
+
+		highPri = (document.body.classList.contains('body-custom-board-background'))
+			? DoingColors.getDefaultHex()
+			: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+
+		if (typeof highPri == 'undefined') {
+			throw new Error('no high pri color');
+		}
+
+		color.fromHex(highPri);
+		color.toHSL();
+
+		newColor.fromHSL(
+			color.getHue(),
+			color.getSaturation() * 0.7,
+			45
+		);
+
+		contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+
+		css = `.bmko_high-list {
+			--high-pri: ${highPri};
+			--high-pri-border: ${newColor.toHex()};
+			--high-pri-text: ${contrastColor};
+		}`;
+
+		existingStyle = $id('HighPriColorCSS');
+		if (existingStyle) {
+			existingStyle.textContent = css;
+		} else {
+			let style = document.createElement('style');
+			style.setAttribute('type', 'text/css');
+			style.setAttribute('id', 'HighPriColorCSS');
+			style.textContent = css;
+			document.head.appendChild(style);
+		}
+
+	}
+
 }

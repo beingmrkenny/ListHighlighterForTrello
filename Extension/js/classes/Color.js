@@ -187,7 +187,7 @@ class Color {
 			h /= 6;
 		}
 
-		this.hue = (h*100+0.5)|0;
+		this.hue = 360 * ((h*100+0.5)|0)/100;
 		this.saturation = ((s*100+0.5)|0);
 		this.lightness = ((l*100+0.5)|0);
 

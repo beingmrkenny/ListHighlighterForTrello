@@ -13,7 +13,7 @@ class System {
 
 			Options.load('colors', function (results) {
 				GLOBAL.colors = results.colors;
-				ListHighlighter.highPriColorStyles();
+				DoingColors.highPriColorStyles();
 
 				keepTrying(ListHighlighter.highlight, 5, 700);
 
@@ -51,7 +51,7 @@ class System {
 
 			if (mut.attributeName == 'style' && mut.oldValue !== document.body.getAttribute('style')) {
 
-				ListHighlighter.highPriColorStyles()
+				DoingColors.highPriColorStyles()
 
 			} else if (mut.attributeName == 'class') {
 
