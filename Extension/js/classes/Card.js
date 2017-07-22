@@ -33,20 +33,16 @@ class Card {
 
 	process () {
 
-		if (GLOBAL.EnableHeaderCards) {
-			if (this.shouldBeHeader()) {
-				this.makeHeader();
-			} else {
-				this.unmakeHeader();
-			}
+		if (GLOBAL.EnableHeaderCards && this.shouldBeHeader()) {
+			this.makeHeader();
+		} else {
+			this.unmakeHeader();
 		}
 
-		if (GLOBAL.EnableSeparatorCards) {
-			if (this.shouldBeRule()) {
-				this.makeRule();
-			} else {
-				this.unmakeRule();
-			}
+		if (GLOBAL.EnableSeparatorCards && this.shouldBeRule()) {
+			this.makeRule();
+		} else {
+			this.unmakeRule();
 		}
 
 	}

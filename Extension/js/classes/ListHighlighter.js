@@ -208,7 +208,8 @@ class ListHighlighter {
 			document.body.classList.add('bmko_do-not-dim-lists');
 		}
 
-		DoingColors.highPriColorStyles();
+		// TODO I just commented this out - see if anything breaks and if not, delete it!
+		// DoingColors.highPriColorStyles();
 
 	}
 
@@ -223,8 +224,9 @@ class ListHighlighter {
 			let list = lists[i];
 			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
 
+			let textarea = list.querySelector('.list-header h2 + textarea');
+
 			if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
-				let textarea = list.querySelector('.list-header h2 + textarea');
 				if (textarea) {
 					ListHighlighter.retagHeader(textarea);
 					textarea.removeEventListener('focus', ListHighlighter.retagHeader);
@@ -234,6 +236,20 @@ class ListHighlighter {
 
 		}
 
+	}
+
+	static toggleHideHashtags (hide) {
+		var lists = document.querySelectorAll('.list');
+		for (var i = 0, len = lists.length; i < len; i++) {
+			let textarea = lists[i].querySelector('.list-header h2 + textarea');
+			if (textarea) {
+				if (hide) {
+					ListHighlighter.detagHeader(textarea);
+				} else {
+					ListHighlighter.retagHeader(textarea);
+				}
+			}
+		}
 	}
 
 }

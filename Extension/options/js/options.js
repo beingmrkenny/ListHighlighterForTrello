@@ -161,6 +161,7 @@ Options.load('options', function (result) {
 					? document.querySelector(`input[name="${input.name}"]:checked`).value
 					: input.checked;
 			Options.save(`options.${name}`, value);
+			sendMessage('rehighlight');
 		});
 	}
 
@@ -213,9 +214,22 @@ function processSubSettings () {
 function saveColor (trelloBg, colorName) {
 	customDoingColors[ trelloBg ] = colorName;
 	Options.save(`colors.current.${trelloBg}`, colorName);
+	sendMessage('colorChange');
 }
 
 function saveCustomColor (trelloBg, hex) {
 	customDoingColors[ trelloBg ] = hex;
 	Options.save(`colors.custom.${trelloBg}`, hex);
+	sendMessage('colorChange');
+}
+
+
+function sendMessage (message) {
+	chrome.tabs.query({}, function (tabs) {
+		chrome.tabs.sendMessage(
+			tabs[0].id,
+			{message: message},
+			function (response) {}
+		);
+	});
 }

@@ -4,10 +4,7 @@ class System {
 
 		Options.load('options', function (results) {
 
-			for (let name in results.options) {
-				GLOBAL[name] = results.options[name];
-			}
-
+			System.saveOptionsAsGlobal(results.options);
 			System.headerCardsSetup();
 			System.detectAndSaveColorBlindFriendlyMode();
 
@@ -25,6 +22,12 @@ class System {
 
 		});
 
+	}
+
+	static saveOptionsAsGlobal(options) {
+		for (let name in options) {
+			GLOBAL[name] = options[name];
+		}
 	}
 
 	static headerCardsSetup () {

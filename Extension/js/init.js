@@ -11,8 +11,22 @@ chrome.runtime.onMessage.addListener (
 					page: TrelloPage.getDetails()
 				});
 				break;
-			case 'highlight' :
+			case 'highlight' : // FIXME change this to toggle highlight
 				ListHighlighter.toggleHighlight(request.highlight);
+				break;
+			case 'colorChange' :
+				Options.load('colors', function (results) {
+					GLOBAL.colors = results.colors;
+					DoingColors.highPriColorStyles();
+				});
+				break;
+			case 'rehighlight' :
+				Options.load('options', function (results) {
+					System.saveOptionsAsGlobal(results.options);
+					ListHighlighter.highlight();
+					ListHighlighter.toggleHideHashtags (results.options.HideHashtags);
+					Card.processCards(document.querySelectorAll('.list-card'));
+				});
 				break;
 		}
 	}
