@@ -39,9 +39,9 @@ function toggleBoardPopup (page) {
 
 	highlightOn.addEventListener('click', function () {
 		if (this.classList.contains('on')) {
-			highlight(false);
+			toggleHighlight(false);
 		} else {
-			highlight(true);
+			toggleHighlight(true);
 		}
 	});
 
@@ -51,11 +51,11 @@ function toggleBoardPopup (page) {
 
 }
 
-function toggleHighlightButton(highlight) {
+function toggleHighlightButton(showButton) {
 	var highlightOn = document.getElementById('HighlightOn');
 	var offBlurb = document.querySelector('.off-blurb');
 
-	if (highlight) {
+	if (showButton) {
 		highlightOn.classList.add('on');
 		highlightOn.querySelector('.text').textContent = 'On';
 		offBlurb.hidden = true;
@@ -66,17 +66,17 @@ function toggleHighlightButton(highlight) {
 	}
 }
 
-function highlight(highlight) {
+function toggleHighlight(highlightStatus) {
 
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		chrome.tabs.sendMessage(
 			tabs[0].id,
 			{
-				message: 'highlight',
-				highlight: highlight
+				message: 'highlightToggle',
+				highlightStatus: highlightStatus
 			}
 		);
 	});
 
-	toggleHighlightButton(highlight)
+	toggleHighlightButton(highlightStatus);
 }

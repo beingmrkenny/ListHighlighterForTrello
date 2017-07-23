@@ -24,7 +24,7 @@ function createElement (string) {
 		case /^<(:?th|td)\b/.test(string) :
 		case /^<tr\b/.test(string) :
 		case /^<t(:?r|head|body)/.test(string) :
-			console.warn('Table elements do not work with this function');
+			throw new Error('Table elements do not work with this function');
 			break;
 	}
 

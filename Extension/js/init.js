@@ -11,8 +11,8 @@ chrome.runtime.onMessage.addListener (
 					page: TrelloPage.getDetails()
 				});
 				break;
-			case 'highlight' : // FIXME change this to toggle highlight
-				ListHighlighter.toggleHighlight(request.highlight);
+			case 'highlightToggle' :
+				ListHighlighter.toggleHighlight(request.highlightStatus);
 				break;
 			case 'colorChange' :
 				Options.load('colors', function (results) {

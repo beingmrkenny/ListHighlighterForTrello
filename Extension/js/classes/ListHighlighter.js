@@ -152,14 +152,19 @@ class ListHighlighter {
 	static toggleHighlight (highlight) {
 		if (typeof highlight === 'boolean') {
 			if (highlight) {
-				ListHighlighter.highlight();
+				ListHighlighter.highlight('override');
 			} else {
-				ListHighlighter.dehighlight();
+				ListHighlighter.dehighlight('override');
 			}
+			document.body.classList.toggle('bmko_list-highlighter-toggled-off', !highlight);
 		}
 	}
 
-	static highlight() {
+	static highlight(override) {
+
+		if (document.body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+			return;
+		}
 
 		document.body.classList.add('bmko_list-highlighter-applied');
 
@@ -208,12 +213,13 @@ class ListHighlighter {
 			document.body.classList.add('bmko_do-not-dim-lists');
 		}
 
-		// TODO I just commented this out - see if anything breaks and if not, delete it!
-		// DoingColors.highPriColorStyles();
-
 	}
 
-	static dehighlight() {
+	static dehighlight(override) {
+
+		if (document.body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+			return;
+		}
 
 		document.body.classList.remove('bmko_list-highlighter-applied');
 
