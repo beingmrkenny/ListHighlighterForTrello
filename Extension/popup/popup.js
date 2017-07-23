@@ -26,9 +26,9 @@ function toggleBoardPopup (page) {
 	let color = new Color(page.backgroundColor);
 
 	if (color.isLight()) {
-		section.classList.remove('dark');
+		section.classList.remove('dark-background');
 	} else {
-		section.classList.add('dark');
+		section.classList.add('dark-background');
 	}
 
 	section.style.display = 'block';

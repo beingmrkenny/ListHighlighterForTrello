@@ -99,3 +99,10 @@ body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 	--scrollbar-track-color:           #{rgba(#333, .05)};
 	--scrollbar-thumb-color:           #{rgba(#333, .08)};
 }
+
+.body-custom-board-background {
+	.bmko_ignore-list,
+	.bmko_trash-list {
+		--list-bg: #{rgba($defaultListBg, 0.3)};
+	}
+}

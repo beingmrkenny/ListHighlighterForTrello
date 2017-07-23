@@ -8,18 +8,15 @@ body {
 	background: white;
 }
 
-#ListHighlighter,
-#ThisBoard {
+#ListHighlighter {
 	margin: 10px;
 	padding: 10px 20px 20px;
 
 	border-radius: 4px;
 	color: #4d4d4d;
 	background: #edeff0;
-}
 
-#ThisBoard {
-	&.dark {
+	&.dark-background {
 		color: white;
 	}
 }
