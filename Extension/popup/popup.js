@@ -23,9 +23,10 @@ function toggleBoardPopup (page) {
 
 	section.style.backgroundColor = page.backgroundColor;
 
-	let color = new Color(page.backgroundColor);
+	let	isCustomBackground = page.isCustomBackground,
+		color = new Color(page.backgroundColor);
 
-	if (color.isLight()) {
+	if (isCustomBackground || color.isLight()) {
 		section.classList.remove('dark-background');
 	} else {
 		section.classList.add('dark-background');

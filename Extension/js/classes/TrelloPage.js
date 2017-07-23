@@ -6,6 +6,10 @@ class TrelloPage {
 		return document.body.classList.contains('body-board-view');
 	}
 
+	static isCustomBackground() {
+		return document.body.classList.contains('body-custom-board-background');
+	}
+
 	static getBoardBackground () {
 		var color = document.body.style.backgroundColor;
 		if (typeof color != 'string') {
@@ -22,6 +26,7 @@ class TrelloPage {
 		return {
 			isBoard: TrelloPage.isBoard(),
 			backgroundColor: TrelloPage.getBoardBackground(),
+			isCustomBackground: TrelloPage.isCustomBackground(),
 			highlighted: TrelloPage.isHighlighted()
 		}
 	}
