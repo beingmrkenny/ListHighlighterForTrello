@@ -24,8 +24,10 @@ Options.load('colors', function (result) {
 
 		if (defaultColorName == 'custom') {
 			Dummy.setDefaultTileColorByHex (defaultCustomHex);
+			setTodoListIconColor(defaultCustomHex);
 		} else {
 			Dummy.setDefaultTileColorByName (defaultColorName);
+			setTodoListIconColor(defaultColorName);
 		}
 
 		DefaultColorBar.selectByColorName (defaultColorName);
@@ -58,8 +60,10 @@ Options.load('colors', function (result) {
 				if (tileIsDefault == true) {
 					if (tileIsCustom || colorName == 'custom') {
 						Dummy.setDefaultTileColorByHex (customHex);
+						setTodoListIconColor(customHex);
 					} else {
 						Dummy.setDefaultTileColorByName (colorName);
+						setTodoListIconColor(colorName);
 					}
 				}
 
@@ -198,6 +202,13 @@ function processTextSwitcherTriggers () {
 
 	slave.textContent = (allChecked) ? slave.dataset.on : slave.dataset.off;
 
+}
+
+function setTodoListIconColor (color) {
+	var hex = (Color.isHex(color))
+		? color
+		: DoingColors.getHexFromName(color)
+	$id('TodoList').style.fill = hex;
 }
 
 function processSubSettings () {
