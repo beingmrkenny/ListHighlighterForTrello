@@ -134,27 +134,27 @@ Options.load('options', function (result) {
 		}
 	}
 
-	var textSwitchersSingle = document.querySelectorAll('text-switcher[data-trigger]');
-	for (let i = textSwitchersSingle.length-1; i>-1; i--) {
-		let textSwitcher = textSwitchersSingle[i],
-			trigger = $id(textSwitcher.dataset.trigger);
-		processTextSwitcherTrigger.call(trigger);
-		trigger.addEventListener('change', processTextSwitcherTrigger);
-	}
-
-	var textSwitcherMasters = document.querySelectorAll('input[data-slave]');
-	for (let i = textSwitcherMasters.length-1; i>-1; i--) {
-		let master = textSwitcherMasters[i];
-		processTextSwitcherTriggers.call(master);
-		master.addEventListener('change', processTextSwitcherTriggers);
-	}
-
-	var subSettings = document.querySelectorAll('.sub-setting');
-	for (let i = subSettings.length-1; i>-1; i--) {
-		let master = $id(subSettings[i].dataset.master);
-		processSubSettings.call(master);
-		master.addEventListener('change', processSubSettings);
-	}
+	// var textSwitchersSingle = document.querySelectorAll('text-switcher[data-trigger]');
+	// for (let i = textSwitchersSingle.length-1; i>-1; i--) {
+	// 	let textSwitcher = textSwitchersSingle[i],
+	// 		trigger = $id(textSwitcher.dataset.trigger);
+	// 	processTextSwitcherTrigger.call(trigger);
+	// 	trigger.addEventListener('change', processTextSwitcherTrigger);
+	// }
+	//
+	// var textSwitcherMasters = document.querySelectorAll('input[data-slave]');
+	// for (let i = textSwitcherMasters.length-1; i>-1; i--) {
+	// 	let master = textSwitcherMasters[i];
+	// 	processTextSwitcherTriggers.call(master);
+	// 	master.addEventListener('change', processTextSwitcherTriggers);
+	// }
+	//
+	// var subSettings = document.querySelectorAll('.sub-setting');
+	// for (let i = subSettings.length-1; i>-1; i--) {
+	// 	let master = $id(subSettings[i].dataset.master);
+	// 	processSubSettings.call(master);
+	// 	master.addEventListener('change', processSubSettings);
+	// }
 
 	var optionInputs = document.querySelectorAll('.options-input');
 	for (let i = optionInputs.length-1; i>-1; i--) {
@@ -170,6 +170,55 @@ Options.load('options', function (result) {
 	}
 
 });
+
+var optionsControls = {
+	HighlightTags : {
+		disableInput : 'HideHastags',
+		textSwitcher : {
+			linkedInput: 'HideHastags',
+			targets : ['HideHashtagsSwitcher']
+		}
+	},
+	HideHastags : {
+		textSwitcher : {
+			linkedInput: 'HighlightTags',
+			targets : ['HideHashtagsSwitcher']
+		}
+	},
+	HighlightTitles : {
+		disableInput : 'MatchTitleSubstrings'
+	},
+	MatchTitleSubstrings : {
+		textSwitcher : {
+			targets: ['HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher']
+		}
+	}
+}
+
+// TODO
+// TODO
+// TODO
+var optionControlInputs = document.querySelectorAll('.option-control');
+for (let i = optionControlInputs.length; i>-1; i--) {
+	let input = optionControlInputs[i];
+
+	input.addEventListener('change', function() {
+		let input = this;
+		let config = optionsControls[this.id];
+		if (config.disableInput) {
+			if (input.checked) {
+				// disable input and grey out for
+			} else {
+				// opposite of that
+			}
+			if (config.textSwitcher) {
+				// find textswitcher and do the appropriate thing
+				// take into account any possible linkedInput element
+			}
+		}
+	});
+
+}
 
 function processTextSwitcherTrigger () {
 	var trigger = this,
