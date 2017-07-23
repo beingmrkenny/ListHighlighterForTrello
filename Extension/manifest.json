@@ -10,12 +10,14 @@
 	"homepage_url": "http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
 
 	"web_accessible_resources" : [
-		"img/buttonIcon.png"
+		"img/buttonIcon.png",
+		"img/buttonIconDehighlighted.png"
 	],
 
 	"browser_action" : {
 		"default_title" : "List Highlighter",
-		"default_popup" : "popup/popup.html"
+		"default_popup" : "popup/popup.html",
+		"default_icon" : "img/buttonIcon.png"
 	},
 
 	"options_page" : "options/index.html",
