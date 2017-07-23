@@ -103,6 +103,6 @@ body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 .body-custom-board-background {
 	.bmko_ignore-list,
 	.bmko_trash-list {
-		--list-bg: #{rgba($defaultListBg, 0.3)};
+		--list-bg: #{rgba($defaultListBg, 0.2)};
 	}
 }

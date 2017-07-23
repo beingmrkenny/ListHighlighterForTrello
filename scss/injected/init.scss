@@ -87,6 +87,10 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 			&:not(.active-card) {
 				background: var(--card-bg);
 				border-bottom-color: var(--card-border-bottom-color);
+				color: var(--card-color);
+				.list-card-title {
+					color: var(--card-color);
+				}
 				a, textarea {
 					color: var(--card-color);
 				}
