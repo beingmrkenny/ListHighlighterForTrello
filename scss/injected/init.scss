@@ -150,7 +150,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 		}
 	}
 
-	.bmko_low-list {
+	&.bmko_low-list {
 		@include low();
 	}
 

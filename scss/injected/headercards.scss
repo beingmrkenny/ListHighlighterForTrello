@@ -88,6 +88,16 @@
 	--card-bg: transparent !important; // FIXME get rid of this important
 }
 
+.bmko_list-highlighter-applied .list.bmko_normal-list .list-card.bmko_header-card-applied {
+	--card-button-color: #{$normalTextColor};
+	@include badges();
+}
+
+.bmko_list-highlighter-applied .list.bmko_low-list .list-card.bmko_header-card-applied {
+	--card-button-color: #{#000};
+	@include badges();
+}
+
 .bmko_high-list {
 
 	.bmko_header-card {

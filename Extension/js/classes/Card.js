@@ -151,21 +151,24 @@ class Card {
 		}
 	}
 
+
+	// CHARACTER LIST is '=_#/-';
+
 	getHeaderStripRegex() {
 		// var originalRe = /^[^\p{L}\d\s]{3,}\s*/u;
-		var re = /^(?:[=_-]{3,}\s*|#\s+)(.+?)(?:\s*[=_-]{3,})?$/;
+		var re = /^(?:[=_/-]{2,}\s*|#+\s+)(.+?)(?:\s*[=_#/-]+)?$/;
 		return re;
 	}
 
 	getRuleRegex () {
 		// var originalRe = /^[^\p{L}\d\s]{3,}$/u;
-		var re = /^[=_-]{3,}$/;
+		var re = /^[=_/-]{2,}$/;
 		return re;
 	}
 
 	getHeaderRegex () {
 		// var originalRe =  /^[^\p{L}\d\s]{3,}.+$/u;
-		var re = /^(?:[=_-]{3,}[^=_-]|#\s+).+$/;
+		var re = /^(?:[=_/-]{2,}\s*|#+\s+).+$/;
 		return re;
 	}
 

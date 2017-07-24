@@ -260,31 +260,36 @@
 
 			<p>Sometimes lists can get very long, yet you don't necessarily want to split it up into separate lists.</p>
 			<p>This feature lets you break up long lists by turning cards into sub-headings and separators (horizontal lines). Header cards have a native look and feel, matching Trello's list headings and separator lines.</p>
-			<p>To create a header card, start your card text with three or more dash symbols (<code>---</code>) or one or more hash symbols (<code>#</code>), similar to Markdown's heading syntax.</p>
-			<p>Header and separator cards can be dragged, just like normal cards, and clicking on them opens them for editing as usual. To turn them back into normal cards, just change the text.</p>
+			<p>Header and separator cards can be dragged just like normal cards, and clicking on them opens them for editing as usual. To turn them back into normal cards, just change the text.</p>
 
 			<h4>Header cards</h4>
 			<p>Header cards are fully fledged Trello cards, meaning, you can use stickers, checklists, labels and all the other Trello features if you like.</p>
 			<ul>
-				<li>To make a header card, start your card text with one or more hash (#) symbols.</li>
-				<li>If you don't like the hash symbol, you can also use three or more line symbols:<br> dashes (---), equals signs (===) or underscores (___).</li>
-				<li>Dash characters get stripped from the end of header cards too, so you can put them on both sides of the header text if you want cards to look like headers in the Trello app (see last example below).</li>
+				<li>
+					To make a header card, start your card text with one of these patterns.
+					<ul>
+						<li>On or more hash symbol (<code>#</code>), familiar if you use Markdown</li>
+						<li>Single line comment syntax from various programming languages; (<code>--</code>, <code>//</code>, or <code>#</code>)</li>
+						<li>Two or more equals signs (<code>==</code>) or underscore characters (<code>__</code>)</li>
+					</ul>
+				</li>
+				<li>Header symbols get stripped from the end of header cards too, so you can put them on both sides of the text if you want cards to look like headers where this web extension is not available (see last example below).</li>
 			</ul>
-			<h5>Examples</h5>
+			<h5>Header Examples</h5>
 			<ul>
 				<li># Small tasks</li>
-				<li>#### Other tasks</li>
-				<li>--- Ready for QA</li>
-				<li>-=-=-=-=-= Ready for QA</li>
-				<li>--- 😃</li>
+				<li>#### Small tasks</li>
+				<li>-- Ready for QA</li>
+				<li>// Ready for code review</li>
+				<li>== 😃</li>
 				<li>---------- Website items ----------</li>
 			</ul>
 			<h4>Separator cards</h4>
-			<p>Unlike header cards, all of content on a separator cards is hidden — the entire card is replaced by a horizontal line.</p>
-			<p>To make a separator card, type three (or more) line symbols in a row and no other text. Line symbols are dashes (---), equals signs (===) or underscores (___). You can mix them up if you like.</p>
+			<p>All content on separator cards is hidden — the entire card is replaced by a horizontal line.</p>
+			<p>To make a separator card, type two (or more) line symbols in a row and no other text. Line symbols are dashes (--), equals signs (==) or underscores (__). You can mix them up if you like.</p>
 			<h5>Examples</h5>
 			<ul>
-				<li>---</li>
+				<li>--</li>
 				<li>-=-=-=-=-=</li>
 				<li>___________________________________________</li>
 			</ul>
