@@ -124,37 +124,74 @@ Options.load('colors', function (result) {
 
 Options.load('options', function (result) {
 
-	let options = result.options;
-	for (let name in options) {
-		let value = options[name];
-		if (typeof value == 'boolean') {
-			$id(name).checked = value;
-		} else {
-			$id(name+value).checked = true;
+	var optionsControls = {
+		HighlightTags : {
+			disableInput : 'HideHashtags',
+			textSwitcher : {
+				linkedInput: 'HideHashtags',
+				targets : ['HideHashtagsSwitcher']
+			}
+		},
+		HideHashtags : {
+			textSwitcher : {
+				linkedInput: 'HighlightTags',
+				targets : ['HideHashtagsSwitcher']
+			}
+		},
+		HighlightTitles : {
+			disableInput : 'MatchTitleSubstrings'
+		},
+		MatchTitleSubstrings : {
+			textSwitcher : {
+				targets: ['HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher']
+			}
 		}
 	}
 
-	// var textSwitchersSingle = document.querySelectorAll('text-switcher[data-trigger]');
-	// for (let i = textSwitchersSingle.length-1; i>-1; i--) {
-	// 	let textSwitcher = textSwitchersSingle[i],
-	// 		trigger = $id(textSwitcher.dataset.trigger);
-	// 	processTextSwitcherTrigger.call(trigger);
-	// 	trigger.addEventListener('change', processTextSwitcherTrigger);
-	// }
-	//
-	// var textSwitcherMasters = document.querySelectorAll('input[data-slave]');
-	// for (let i = textSwitcherMasters.length-1; i>-1; i--) {
-	// 	let master = textSwitcherMasters[i];
-	// 	processTextSwitcherTriggers.call(master);
-	// 	master.addEventListener('change', processTextSwitcherTriggers);
-	// }
-	//
-	// var subSettings = document.querySelectorAll('.sub-setting');
-	// for (let i = subSettings.length-1; i>-1; i--) {
-	// 	let master = $id(subSettings[i].dataset.master);
-	// 	processSubSettings.call(master);
-	// 	master.addEventListener('change', processSubSettings);
-	// }
+	var optionControlInputs = document.querySelectorAll('.option-control');
+	for (let i = optionControlInputs.length-1; i>-1; i--) {
+		let input = optionControlInputs[i];
+
+		input.addEventListener('change', function() {
+
+			let input = this,
+				config = optionsControls[this.id];
+
+			if (config.disableInput) {
+				let label = document.querySelector(`[for="${config.disableInput}"]`);
+				$id(config.disableInput).disabled = (!input.checked);
+				label.classList.toggle('disabled', (!input.checked));
+			}
+
+			if (config.textSwitcher) {
+				let on = input.checked;
+				if (config.textSwitcher.linkedInput) {
+					on = (on && $id(config.textSwitcher.linkedInput).checked);
+				}
+				for (let i = config.textSwitcher.targets.length-1; i>-1; i--) {
+					let switcher = $id(config.textSwitcher.targets[i]);
+					switcher.textContent = (on)
+						? switcher.dataset.on
+						: switcher.dataset.off;
+				}
+			}
+
+		});
+
+	}
+
+	let options = result.options;
+	for (let name in options) {
+		let input, value = options[name];
+		if (typeof value == 'boolean') {
+			input = $id(name);
+			input.checked = value;
+		} else {
+			input = $id(name+value);
+			input.checked = true;
+		}
+		input.dispatchEvent(new Event('change'));
+	}
 
 	var optionInputs = document.querySelectorAll('.options-input');
 	for (let i = optionInputs.length-1; i>-1; i--) {
@@ -171,104 +208,11 @@ Options.load('options', function (result) {
 
 });
 
-var optionsControls = {
-	HighlightTags : {
-		disableInput : 'HideHastags',
-		textSwitcher : {
-			linkedInput: 'HideHastags',
-			targets : ['HideHashtagsSwitcher']
-		}
-	},
-	HideHastags : {
-		textSwitcher : {
-			linkedInput: 'HighlightTags',
-			targets : ['HideHashtagsSwitcher']
-		}
-	},
-	HighlightTitles : {
-		disableInput : 'MatchTitleSubstrings'
-	},
-	MatchTitleSubstrings : {
-		textSwitcher : {
-			targets: ['HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher']
-		}
-	}
-}
-
-// TODO
-// TODO
-// TODO
-var optionControlInputs = document.querySelectorAll('.option-control');
-for (let i = optionControlInputs.length; i>-1; i--) {
-	let input = optionControlInputs[i];
-
-	input.addEventListener('change', function() {
-		let input = this;
-		let config = optionsControls[this.id];
-		if (config.disableInput) {
-			if (input.checked) {
-				// disable input and grey out for
-			} else {
-				// opposite of that
-			}
-			if (config.textSwitcher) {
-				// find textswitcher and do the appropriate thing
-				// take into account any possible linkedInput element
-			}
-		}
-	});
-
-}
-
-function processTextSwitcherTrigger () {
-	var trigger = this,
-		triggers
-		switchers = document.querySelectorAll(`[data-trigger='${trigger.id}']`);
-	for (let i = switchers.length-1; i>-1; i--) {
-		let switcher = switchers[i];
-		if (trigger.checked) {
-			switcher.textContent = switcher.dataset.on;
-		} else {
-			switcher.textContent = switcher.dataset.off
-		}
-	}
-}
-
-function processTextSwitcherTriggers () {
-
-	var master = this,
-		slaveId = master.dataset.slave,
-		slave = $id(slaveId),
-		masters = document.querySelectorAll(`input[data-slave="${slaveId}"]`),
-		allChecked = true;
-
-	for (let i = masters.length-1; i>-1; i--) {
-		let master = masters[i];
-		if (!master.checked) {
-			allChecked = false;
-		}
-	}
-
-	slave.textContent = (allChecked) ? slave.dataset.on : slave.dataset.off;
-
-}
-
 function setTodoListIconColor (color) {
 	var hex = (Color.isHex(color))
 		? color
 		: DoingColors.getHexFromName(color)
 	$id('TodoList').style.fill = hex;
-}
-
-function processSubSettings () {
-	let master = this,
-		isDisabled = (!master.checked),
-		settingContainer = document.querySelector(`[data-master="${master.id}"]`),
-		inputs = settingContainer.querySelectorAll('input');
-	for (let i = inputs.length-1; i>-1; i--) {
-		inputs[i].disabled = isDisabled;
-	}
-	settingContainer.classList.toggle('disabled', isDisabled);
 }
 
 function saveColor (trelloBg, colorName) {
@@ -282,7 +226,6 @@ function saveCustomColor (trelloBg, hex) {
 	Options.save(`colors.custom.${trelloBg}`, hex);
 	sendMessage('colorChange');
 }
-
 
 function sendMessage (message) {
 	chrome.tabs.query({}, function (tabs) {

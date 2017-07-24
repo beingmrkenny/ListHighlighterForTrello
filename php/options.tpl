@@ -310,7 +310,7 @@
 					Highlight lists based on hashtags<br>
 					<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
 				</label>
-				<label for="HideHashtags">
+				<label for="HideHashtags" class="sub-setting">
 					<input type="checkbox" class="option-control options-input" id="HideHashtags" name="HideHashtags">
 					Hide hashtags in list headers<br>
 					<small>
@@ -324,7 +324,7 @@
 					Highlight lists based on title text<br>
 					<small>(e.g. highlight list if title <text-switcher id="HighlightTitlesSwitcher" data-on="contains the text" data-off="is exactly">is exactly</text-switcher> "<strong>Todo</strong>", "<strong>Doing</strong>", "<strong>Done</strong>", etc)</small>
 				</label>
-				<label for="MatchTitleSubstrings" data-master="HighlightTitles">
+				<label for="MatchTitleSubstrings" class="sub-setting">
 					<input type="checkbox" class="option-control options-input" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
 					Match partial title text<br>
 					<small>

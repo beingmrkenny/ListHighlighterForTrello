@@ -404,8 +404,9 @@ footer {
 	margin-top: 110px;
 }
 
-.disabled {
-	color: gray;
+.disabled,
+.disabled small {
+	color: rgb(187, 187, 187);
 }
 
 [for="HighlightTitles"] {
