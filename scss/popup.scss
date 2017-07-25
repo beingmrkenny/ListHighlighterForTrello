@@ -47,6 +47,10 @@ button,
 	color: #4d4d4d;
 }
 
+.dark-background #HighlightIndicator {
+	color: white;
+}
+
 button,
 .button {
 	position: relative;
@@ -116,6 +120,8 @@ button,
 		display: inline-block;
 		width: 20px;
 		height: 20px;
+		border: 1px solid rgba(255, 255, 255, 0.28);
+		border-radius: 2px;
 	}
 
 	&.on::before {

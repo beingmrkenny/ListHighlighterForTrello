@@ -26,7 +26,11 @@ function toggleBoardPopup (page) {
 
 	section.style.backgroundColor = page.backgroundColor;
 
-	if (isCustomBackground || color.isLight()) {
+	if (isCustomBackground
+		|| color.isLight()
+		|| !page
+		|| (page && !page.isBoard)
+	) {
 		section.classList.remove('dark-background');
 	} else {
 		section.classList.add('dark-background');
