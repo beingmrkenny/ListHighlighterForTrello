@@ -28,11 +28,28 @@ h2 {
 	font-size: 16px;
 }
 
+div {
+	margin: 20px 0 0;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+button,
+.button,
+#HighlightIndicator {
+	font: 14px 'Helvetica Neue',Arial,Helvetica,sans-serif;
+	font-weight: 700;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #4d4d4d;
+}
+
 button,
 .button {
 	position: relative;
-
-	display: block;
 
 	line-height: 18px;
 	box-sizing: border-box;
@@ -43,16 +60,9 @@ button,
 
 	cursor: pointer;
 
-	font: 14px 'Helvetica Neue',Arial,Helvetica,sans-serif;
-	font-weight: 700;
-	text-decoration: none;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-
 	border: 1px solid #e2e4e6;
 	border-bottom-color: #cdd2d4;
 	border-radius: 3px;
-	color: #4d4d4d;
 	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
 
 	user-select: none;
@@ -61,21 +71,6 @@ button,
 		border-color: #298fca #298fca #026aa7;
 		color: #fff;
 		background: #298fca;
-	}
-
-	& .indicator {
-		position: absolute;
-		top: 6px;
-		left: 9px;
-
-		line-height: 20px;
-		width: 20px;
-		height: 20px;
-
-		font-family: trellicons;
-		font-size: 16px;
-
-		color: #999;
 	}
 
 	& img {
@@ -106,11 +101,16 @@ button,
 	padding-left: 32px;
 }
 
-.onoff {
+#HighlightIndicator {
+
+	position: relative;
+	top: 2px;
+	left: 3px;
 
 	&::before {
 		position: relative;
-		top: -1px;
+		top: 4px;
+		margin-right: 6px;
 		background: url('/img/256off.svg') no-repeat;
 		content: ' ';
 		display: inline-block;
@@ -118,51 +118,7 @@ button,
 		height: 20px;
 	}
 
-	&.on {
-		&::before {
-			background: url('/img/256.svg') no-repeat;
-		}
-		padding-right: 40px;
-		.indicator {
-			display: block;
-		}
-	}
-
-	.text {
-		position: relative;
-		top: -5px;
-		margin-left: 3px;
-	}
-
-	.indicator {
-		position: absolute;
-		top: 5px;
-		right: 5px;
-		left: auto;
-
-		display: none;
-
-		line-height: 17px;
-		height: 17px;
-		margin: 0;
-		padding: 2px 4px;
-
-		font-size: 12px;
-		font-weight: normal;
-		text-align: center;
-
-		border-radius: 3px;
-		color: #fff;
-		background-color: #61bd4f;
-
-		-webkit-font-smoothing: antialiased;
-
-		&::before {
-			content: '\e910';
-		}
-	}
-
-	&:hover .on {
-		background: rgba(255,255,255,.3);
+	&.on::before {
+		background: url('/img/256.svg') no-repeat;
 	}
 }

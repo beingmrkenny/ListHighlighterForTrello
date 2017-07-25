@@ -19,12 +19,12 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 function toggleBoardPopup (page) {
 
 	var section = document.getElementById('ListHighlighter'),
-		boardSpecific = document.getElementById('BoardSpecific');
+		boardSpecific = document.getElementById('BoardSpecific'),
+		button = document.getElementById('HighlightToggle'),
+		isCustomBackground = page.isCustomBackground,
+		color = new Color(page.backgroundColor);
 
 	section.style.backgroundColor = page.backgroundColor;
-
-	let	isCustomBackground = page.isCustomBackground,
-		color = new Color(page.backgroundColor);
 
 	if (isCustomBackground || color.isLight()) {
 		section.classList.remove('dark-background');
@@ -34,11 +34,9 @@ function toggleBoardPopup (page) {
 
 	section.style.display = 'block';
 
-	var highlightOn = document.getElementById('HighlightOn');
-
 	toggleHighlightButton(page.highlighted);
 
-	highlightOn.addEventListener('click', function () {
+	button.addEventListener('click', function () {
 		if (this.classList.contains('on')) {
 			toggleHighlight(false);
 		} else {
@@ -53,16 +51,19 @@ function toggleBoardPopup (page) {
 }
 
 function toggleHighlightButton(showButton) {
-	var highlightOn = document.getElementById('HighlightOn');
-	var offBlurb = document.querySelector('.off-blurb');
+	var button = document.getElementById('HighlightToggle'),
+		indicator = document.getElementById('HighlightIndicator'),
+		offBlurb = document.querySelector('.off-blurb');
 
 	if (showButton) {
-		highlightOn.classList.add('on');
-		highlightOn.querySelector('.text').textContent = 'On';
+		button.classList.add('on');
+		indicator.classList.add('on');
+		indicator.textContent = 'On';
 		offBlurb.hidden = true;
 	} else {
-		highlightOn.classList.remove('on');
-		highlightOn.querySelector('.text').textContent = 'Off';
+		button.classList.remove('on');
+		indicator.classList.remove('on');
+		indicator.textContent = 'Off';
 		offBlurb.hidden = false;
 	}
 }
