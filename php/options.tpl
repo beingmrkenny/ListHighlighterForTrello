@@ -256,18 +256,7 @@
 			</label>
 		</p>
 
-		<!-- TODO This should be disabled if WIP is not enabled -->
-		<p class="sub-setting" data-master="EnableWIP">
-			Count:<br>
-			<label for="CountCards">
-				<input type="radio" class="options-input" id="CountCards" name="Count" value="Cards">
-				Number of cards
-			</label>
-			<label for="CountPoints">
-				<input type="radio" class="options-input" id="CountPoints" name="Count" value="Points">
-				Number of points
-			</label>
-		</p>
+		<!-- TODO Cards count as 1 unless they have a number in [brackets] -->
 
 	</section>
 

@@ -30,7 +30,6 @@ class Options {
 			},
 			options : {
 				EnableWIP            : false,
-				Count                : 'Cards',
 				EnableHeaderCards    : false,
 				EnableSeparatorCards : false,
 				HideHashtags         : true,
@@ -63,41 +62,22 @@ class Options {
 		});
 	}
 
-	static save (option, value) {
-
-		var opath = option.split('.');
-
-		// TODO At some point it would be nice to do this dynamically
-		// i.e. have option name strings that just loop over as many things as are provided
-
-		if (opath.length == 1) {
-
-			let saveObject = {
-				[option] : value
-			};
-
-			chrome.storage.sync.set(saveObject);
-
-		} else if (opath.length > 1) {
-
-			Options.load(opath[0], function (result) {
-
-				var result = (Object.keys(result).length > 0)
-					? result
-					: Options.defaults();
-
-				if (opath.length == 2) {
-					result [opath[0]] [opath[1]] = value;
-				} else if (opath.length == 3) {
-					result [opath[0]] [opath[1]] [opath[2]] = value;
-				}
-
-				chrome.storage.sync.set(result);
-
-			});
-
+	static createSaveObject (obj, path, value) {
+		var props = path.split("."), prop, i, x = props.length - 1;
+		for(i = 0; i < x; i++) {
+			prop = props[i];
+			if (typeof obj[prop] == 'undefined') {
+				obj[prop] = {};
+			}
+			obj = obj[prop];
 		}
+		obj[props[i]] = value;
+	}
 
+	static save (option, value) {
+		var saveObject = {};
+		Options.createSaveObject (saveObject, option, value);
+		chrome.storage.sync.set(saveObject);
 	}
 
 	static resetIfEmpty () {

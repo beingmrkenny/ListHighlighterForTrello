@@ -126,7 +126,7 @@ Options.load('options', function (result) {
 
 	var optionsControls = {
 		HighlightTags : {
-			disableInput : 'HideHashtags',
+			disableInputs : ['HideHashtags'],
 			textSwitcher : {
 				linkedInput: 'HideHashtags',
 				targets : ['HideHashtagsSwitcher']
@@ -139,7 +139,7 @@ Options.load('options', function (result) {
 			}
 		},
 		HighlightTitles : {
-			disableInput : 'MatchTitleSubstrings'
+			disableInputs : ['MatchTitleSubstrings']
 		},
 		MatchTitleSubstrings : {
 			textSwitcher : {
@@ -157,10 +157,13 @@ Options.load('options', function (result) {
 			let input = this,
 				config = optionsControls[this.id];
 
-			if (config.disableInput) {
-				let label = document.querySelector(`[for="${config.disableInput}"]`);
-				$id(config.disableInput).disabled = (!input.checked);
-				label.classList.toggle('disabled', (!input.checked));
+			if (config.disableInputs) {
+				let disableInputs = config.disableInputs;
+				for (let i = disableInputs.length-1; i>-1; i--) {
+					let label = document.querySelector(`[for="${disableInputs[i]}"]`);
+					$id(disableInputs[i]).disabled = (!input.checked);
+					label.classList.toggle('disabled', (!input.checked));
+				}
 			}
 
 			if (config.textSwitcher) {
