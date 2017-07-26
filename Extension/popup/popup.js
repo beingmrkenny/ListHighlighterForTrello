@@ -54,18 +54,20 @@ function toggleBoardPopup (page) {
 
 }
 
-function toggleHighlightButton(showButton) {
+function toggleHighlightButton(highlightingOn) {
 	var button = document.getElementById('HighlightToggle'),
 		indicator = document.getElementById('HighlightIndicator'),
 		offBlurb = document.querySelector('.off-blurb');
 
-	if (showButton) {
+	if (highlightingOn) {
 		button.classList.add('on');
+		button.textContent = 'Switch Off';
 		indicator.classList.add('on');
 		indicator.textContent = 'On';
 		offBlurb.hidden = true;
 	} else {
 		button.classList.remove('on');
+		button.textContent = 'Switch On';
 		indicator.classList.remove('on');
 		indicator.textContent = 'Off';
 		offBlurb.hidden = false;

@@ -1,5 +1,4 @@
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log(request);
+chrome.runtime.onMessage.addListener(function(request) {
     if (request.toggledOff) {
 		chrome.browserAction.setIcon({path: '/img/buttonIconDehighlighted.png'});
 	} else {
