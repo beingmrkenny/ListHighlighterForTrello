@@ -46,7 +46,7 @@
 
 		</svg>
 
-		<h1>List Highlighter for Trello Settings</h1>
+		<h1>Settings</h1>
 	</header>
 
 	<section>

@@ -75,9 +75,10 @@ class Options {
 	}
 
 	static save (option, value) {
-		var saveObject = {};
-		Options.createSaveObject (saveObject, option, value);
-		chrome.storage.sync.set(saveObject);
+		Options.load('options', function (saveObject) {
+			Options.createSaveObject(saveObject, option, value);
+			chrome.storage.sync.set(saveObject);
+		});
 	}
 
 	static resetIfEmpty () {
