@@ -57,8 +57,6 @@
 		<!-- TODO description of how this works for reference -->
 	</section>
 
-
-
 	<section>
 
 		<h2>Highlighting</h2>

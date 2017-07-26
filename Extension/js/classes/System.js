@@ -9,6 +9,7 @@ class System {
 			System.detectAndSaveColorBlindFriendlyMode();
 
 			Options.load('colors', function (results) {
+
 				GLOBAL.colors = results.colors;
 				DoingColors.highPriColorStyles();
 
@@ -81,6 +82,7 @@ class System {
 	static processPageOnTitleChange () {
 		watch ('board');
 		watch ('listTitle');
+		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
 	}
