@@ -56,6 +56,10 @@
 		padding: 0 6px 0 3px;
 	}
 
+	&.is-stickered.list-card .list-card-details {
+		background-color: transparent;
+	}
+
 	.badges {
 		padding-left: 0;
 		margin-left: -4px;
