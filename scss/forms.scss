@@ -44,7 +44,7 @@ input[type="text"] {
 label {
 	user-select: none;
 	cursor: pointer;
-	display: block;
+	display: table; // HACK make them block without 100% width
 
 	&.disabled {
 		cursor: text;
