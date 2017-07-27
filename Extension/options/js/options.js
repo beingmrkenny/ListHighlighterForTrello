@@ -32,7 +32,12 @@ Options.load('colors', function (colors) {
 
 		DefaultColorBar.selectByColorName (defaultColorName);
 
-		Dummy.selectTile (doingColorForBlue);
+		if (DoingColors.trelloBgHasDoingColor('blue')) {
+			Dummy.selectTile (doingColorForBlue);
+		} else {
+			Dummy.selectTile ('default');
+		}
+
 		Dummy.setListColorName (doingColorForBlue);
 		if (doingColorForBlue == 'custom') {
 			Dummy.setDoingListColorByHex (blueCustomHex);
