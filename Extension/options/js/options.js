@@ -1,7 +1,5 @@
 Options.resetIfEmpty();
 
-Options.dump();
-
 Options.load('colorBlindFriendlyMode', function (colorBlindFriendlyMode) {
 	document.body.classList.toggle(
 		'color-blind-friendly-mode',
