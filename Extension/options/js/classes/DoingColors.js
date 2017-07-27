@@ -39,7 +39,7 @@ class DoingColors {
 			case 'rgb(205, 90, 145)' : trelloBg = 'pink'; break;
 			case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
 			case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
-			case 'rgb(131, 140, 145)': trelloBg = 'grey'; break;
+			case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
 		}
 		return trelloBg;
 	}
@@ -76,7 +76,7 @@ class DoingColors {
 		if (Color.isHex(customDoingColors[trelloBg])) {
 			hex = customDoingColors[trelloBg];
 		} else {
-			hex = DoingColors.getHexFromName('grey');
+			hex = DoingColors.getHexFromName('gray');
 		}
 
 		return hex;
@@ -96,7 +96,7 @@ class DoingColors {
 				'violet' : '#ba55e2',
 				'pink'   : '#ff80ce',
 				'black'  : '#000000',
-				'grey'   : '#e2e4e6'
+				'gray'   : '#e2e4e6'
 			};
 
 		if (colorName == 'default') {

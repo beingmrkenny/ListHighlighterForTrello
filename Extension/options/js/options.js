@@ -13,7 +13,7 @@ Options.load('colors', function (colors) {
 
 		DoingColors.init(colors);
 
-		let fallbackDefaultCustom = DoingColors.getHexFromName('grey'),
+		let fallbackDefaultCustom = DoingColors.getHexFromName('gray'),
 			defaultColorName      = DoingColors.getDefaultColorName(),
 			defaultCustomHex      = DoingColors.getCustomHexForTrelloBg('default') || fallbackDefaultCustom,
 			doingColorForBlue     = DoingColors.getColorNameForTrelloBg('blue'),

@@ -218,7 +218,7 @@ body {
 	&[data-trello-bg='blue']	{ background: $blueTrello; }
 	&[data-trello-bg='purple']	{ background: $purpleTrello; }
 	&[data-trello-bg='pink']	{ background: $pinkTrello; }
-	&[data-trello-bg='grey']	{ background: $greyTrello; }
+	&[data-trello-bg='gray']	{ background: $grayTrello; }
 
 	.list {
 		fill: rgb(226, 228, 230);
@@ -268,7 +268,7 @@ body {
 	&[data-trello-bg="pink"] 	[data-trello-bg="pink"] 	{ stroke: $pinkTrello; }
 	&[data-trello-bg="lime"] 	[data-trello-bg="lime"] 	{ stroke: $limeTrello; }
 	&[data-trello-bg="sky"] 	[data-trello-bg="sky"] 	{ stroke: $skyTrello; }
-	&[data-trello-bg="grey"] 	[data-trello-bg="grey"] 	{ stroke: $greyTrello; }
+	&[data-trello-bg="gray"] 	[data-trello-bg="gray"] 	{ stroke: $grayTrello; }
 
 	#BlueButton		{ fill: $blueTrello; }
 	#OrangeButton	{ fill: $orangeTrello; }
@@ -278,7 +278,7 @@ body {
 	#PinkButton		{ fill: $pinkTrello; }
 	#LimeButton		{ fill: $limeTrello; }
 	#SkyButton		{ fill: $skyTrello; }
-	#GreyButton		{ fill: $greyTrello; }
+	#GrayButton		{ fill: $grayTrello; }
 
 	#DefaultDummyTile + hr {
 		content: ' ';
