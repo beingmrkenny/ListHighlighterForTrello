@@ -2,15 +2,15 @@ class System {
 
 	static setup () {
 
-		Options.load('options', function (results) {
+		Options.load('options', function (options) {
 
-			System.saveOptionsAsGlobal(results.options);
+			System.saveOptionsAsGlobal(options);
 			System.headerCardsSetup();
 			System.detectAndSaveColorBlindFriendlyMode();
 
-			Options.load('colors', function (results) {
+			Options.load('colors', function (colors) {
 
-				GLOBAL.colors = results.colors;
+				GLOBAL.colors = colors;
 				DoingColors.highPriColorStyles();
 
 				keepTrying(ListHighlighter.highlight, 5, 700);

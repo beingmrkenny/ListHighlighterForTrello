@@ -15,16 +15,16 @@ chrome.runtime.onMessage.addListener (
 				ListHighlighter.toggleHighlight(request.highlightStatus);
 				break;
 			case 'colorChange' :
-				Options.load('colors', function (results) {
-					GLOBAL.colors = results.colors;
+				Options.load('colors', function (colors) {
+					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
 				});
 				break;
 			case 'rehighlight' :
-				Options.load('options', function (results) {
-					System.saveOptionsAsGlobal(results.options);
+				Options.load('options', function (options) {
+					System.saveOptionsAsGlobal(options);
 					ListHighlighter.highlight();
-					ListHighlighter.toggleHideHashtags (results.options.HideHashtags);
+					ListHighlighter.toggleHideHashtags (options.HideHashtags);
 					Card.processCards(document.querySelectorAll('.list-card'));
 				});
 				break;

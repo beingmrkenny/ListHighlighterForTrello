@@ -1,17 +1,19 @@
 Options.resetIfEmpty();
 
-Options.load('colorBlindFriendlyMode', function (result) {
+Options.dump();
+
+Options.load('colorBlindFriendlyMode', function (colorBlindFriendlyMode) {
 	document.body.classList.toggle(
 		'color-blind-friendly-mode',
-		(typeof result.colorBlindFriendlyMode !== 'undefined' && result.colorBlindFriendlyMode === true)
+		(typeof colorBlindFriendlyMode !== 'undefined' && colorBlindFriendlyMode === true)
 	);
 });
 
-Options.load('colors', function (result) {
+Options.load('colors', function (colors) {
 
-	if (result.colors) {
+	if (colors) {
 
-		DoingColors.init(result.colors);
+		DoingColors.init(colors);
 
 		let fallbackDefaultCustom = DoingColors.getHexFromName('grey'),
 			defaultColorName      = DoingColors.getDefaultColorName(),
@@ -101,9 +103,9 @@ Options.load('colors', function (result) {
 		}
 
 		let expandHighPriDetails = false;
-		for (let key in result.colors.current) {
+		for (let key in colors.current) {
 			if (key != 'default') {
-				let value = result.colors.current[key];
+				let value = colors.current[key];
 				if (value && value != 'default') {
 					expandHighPriDetails = true;
 					break;
@@ -122,7 +124,7 @@ Options.load('colors', function (result) {
 
 });
 
-Options.load('options', function (result) {
+Options.load('options', function (options) {
 
 	var optionsControls = {
 		HighlightTags : {
@@ -183,7 +185,6 @@ Options.load('options', function (result) {
 
 	}
 
-	let options = result.options;
 	for (let name in options) {
 		let input, value = options[name];
 		if (typeof value == 'boolean') {

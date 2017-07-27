@@ -42,23 +42,36 @@ class Options {
 
 	}
 
-	static load (option, callback) {
+	static createLoadObject (obj, props) {
+		var prop, i, x = props.length - 1;
+		for(i = 0; i < x; i++) {
+			prop = props[i];
+			if (typeof obj[prop] == 'undefined') {
+				obj[prop] = {};
+			}
+			obj = obj[prop];
+		}
+		return obj[props[i]];
+	}
+
+	static load (path, callback) {
 
 		if (typeof callback !== 'function') {
 			throw new Error('Callback must be supplied');
 		}
 
-		var opath = option.split('.');
+		var key = (typeof path == 'string') ? path.split('.') : null;
 
-		chrome.storage.sync.get(opath[0], function (result) {
+		chrome.storage.sync.get(key, function (result) {
 
 			var returnVal = result;
 
-			if (opath.length == 2) {
-				returnVal = result[opath[1]];
+			if (key) {
+				returnVal = Options.createLoadObject(result, key);
 			}
 
 			callback(returnVal);
+
 		});
 	}
 
@@ -74,14 +87,15 @@ class Options {
 		obj[props[i]] = value;
 	}
 
-	static save (option, value) {
-		Options.load('options', function (saveObject) {
-			Options.createSaveObject(saveObject, option, value);
+	static save (path, value) {
+		Options.load(null, function (saveObject) {
+			Options.createSaveObject(saveObject, path, value);
 			chrome.storage.sync.set(saveObject);
 		});
 	}
 
 	static resetIfEmpty () {
+
 		chrome.storage.sync.get(null, function (existingSettings) {
 
 			var defaults = Options.defaults();
@@ -108,5 +122,36 @@ class Options {
 			});
 		}
 	}
+
+	static clear () {
+		chrome.storage.sync.clear();
+	}
+
+	static dump (asString = false) {
+		chrome.storage.sync.get(null, function (existingSettings) {
+			var dump = (asString) ? JSON.stringify(existingSettings) : existingSettings
+			console.log(dump);
+		});
+	}
+
+	static createRemoveObject (obj, path) {
+	    var props = path.split("."), prop, i, x = props.length - 1;
+	    for(i = 0; i < x; i++) {
+	        prop = props[i];
+	        if (typeof obj[prop] == 'undefined') {
+	            obj[prop] = {};
+	        }
+	        obj = obj[prop];
+	    }
+	    delete obj[props[i]];
+	}
+
+	static remove (path) {
+		Options.load(null, function (allOptions) {
+			Options.createRemoveObject(allOptions, path);
+			chrome.storage.sync.set(saveObject);
+		});
+	}
+
 
 }
