@@ -236,10 +236,12 @@ function saveCustomColor (trelloBg, hex) {
 
 function sendMessage (message) {
 	chrome.tabs.query({}, function (tabs) {
-		chrome.tabs.sendMessage(
-			tabs[0].id,
-			{message: message},
-			function (response) {}
-		);
+		for (let i = tabs.length-1; i>-1; i--) {
+			chrome.tabs.sendMessage(
+				tabs[i].id,
+				{message: message},
+				function (response) {}
+			);
+		}
 	});
 }
