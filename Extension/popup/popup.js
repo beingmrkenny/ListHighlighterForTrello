@@ -19,7 +19,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 function toggleBoardPopup (page) {
 
 	var section = document.getElementById('ListHighlighter'),
-		boardSpecific = document.getElementById('BoardSpecific'),
+		boardSpecific = document.querySelectorAll('.board-specific'),
 		button = document.getElementById('HighlightToggle'),
 		isCustomBackground = page.isCustomBackground,
 		color = new Color(page.backgroundColor);
@@ -49,7 +49,10 @@ function toggleBoardPopup (page) {
 	});
 
 	if (page && page.isBoard) {
-		boardSpecific.style.display = 'block';
+		document.body.classList.add('trello-page');
+		for (let i = boardSpecific.length-1; i>-1; i--) {
+			boardSpecific[i].style.display = 'block';
+		}
 	}
 
 }

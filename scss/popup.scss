@@ -6,12 +6,15 @@ body {
 	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
 	background: white;
+
+	&.trello-page {
+		width: 250px;
+	}
 }
 
 #ListHighlighter {
 	margin: 10px;
 	padding: 10px 20px 20px;
-	width: 150px;
 
 	border-radius: 4px;
 	color: #4d4d4d;
@@ -20,6 +23,11 @@ body {
 	&.dark-background {
 		color: white;
 	}
+}
+
+h1 {
+	display: flex;
+	justify-content: space-between;
 }
 
 h1,
@@ -35,6 +43,8 @@ div {
 
 p {
 	margin-bottom: 0;
+	display: flex;
+	justify-content: space-between;
 }
 
 button,
@@ -55,6 +65,7 @@ button,
 button,
 .button {
 	position: relative;
+	display: inline-block;
 
 	line-height: 18px;
 	box-sizing: border-box;
@@ -102,19 +113,12 @@ button,
 }
 
 #Settings {
-	width: 120px;
 	padding-left: 32px;
 }
 
 #HighlightIndicator {
 
-	position: relative;
-	top: 2px;
-	left: 3px;
-
 	&::before {
-		position: relative;
-		top: 4px;
 		margin-right: 6px;
 		background: url('/img/256off.svg') no-repeat;
 		content: ' ';
@@ -123,9 +127,14 @@ button,
 		height: 20px;
 		border: 1px solid rgba(255, 255, 255, 0.28);
 		border-radius: 2px;
+		vertical-align: middle;
 	}
 
 	&.on::before {
 		background: url('/img/256.svg') no-repeat;
 	}
+}
+
+.board-specific {
+	display: none;
 }
