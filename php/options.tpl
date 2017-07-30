@@ -265,7 +265,7 @@
 		<h2>Header and separator cards</h2>
 
 		<p>
-			Split up long lists with sub-headers and separators
+			Split up long lists with sub-headers and separators (horizontal lines).
 		</p>
 
 		<p>
