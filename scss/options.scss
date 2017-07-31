@@ -9,16 +9,15 @@
 }
 
 body {
-	margin: 70px auto 20px;
-	width: 700px;
-	line-height: 1.6em;
+    width: 700px;
+    margin: 70px auto 20px;
 
-	font-family: 'Helvetica Neue', 'Helvetica', Arial sans-serif;
-	font-size: 16px;
-
-	color: $bodyTextColor;
-
+    line-height: 1.6em;
+    font-family: 'Helvetica Neue', 'Helvetica', Arial sans-serif;
+    font-size: 16px;
+    color: $bodyTextColor;
 }
+
 
 #MainHeader {
 
@@ -65,24 +64,25 @@ body {
 	}
 
 	label {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: center;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: flex-end;
+	    align-items: center;
+	    width: 60px;
+	    height: 60px;
 
-		width: 60px;
-		height: 60px;
+	    text-align: center;
+	    color: white;
+	    border-radius: 3px;
 
-		cursor: pointer;
+	    transition: height .25s, color .25s, background-color .25s;
 
-		text-align: center;
+	    cursor: pointer;
+	    user-select: none;
 
-		border-radius: 3px;
-		color: white;
-
-		user-select: none;
-
-		transition: height .25s, color .25s, background-color .25s;
+		&:hover {
+			height: 65px;
+		}
 
 		&::before {
 			transition: color .25s;
@@ -133,19 +133,16 @@ body {
 		height: 83px;
 
 		&::before {
-			position: absolute;
-			top: 15px;
-			left: 18px;
+		    position: absolute;
+		    top: 15px;
+		    left: 18px;
+		    width: 26px;
+		    height: 20px;
 
-			@include trellicons('\e910');
+		    font-size: 26px;
+		    border-radius: 3px;
 
-			width: 26px;
-			height: 20px;
-
-			font-size: 26px;
-
-			border-radius: 3px;
-
+		    @include trellicons('\e910');
 		}
 
 		.edit-link {
@@ -172,6 +169,10 @@ body {
 		label {
 			width: 50px;
 			height: 50px;
+
+			&:hover {
+				height: 55px;
+			}
 
 			font-size: 13px;
 		}
@@ -281,15 +282,16 @@ body {
 	#GrayButton		{ fill: $grayTrello; }
 
 	#DefaultDummyTile + hr {
-		content: ' ';
-		display: block;
-		margin: 23px 5px;
-		height: 5px;
-		width: 5px;
-		background: white;
-		border-radius: 10px;
-		border: 0;
-		opacity: .3;
+	    display: block;
+	    opacity: .3;
+	    content: ' ';
+	    width: 5px;
+	    height: 5px;
+	    margin: 23px 5px;
+
+	    background: white;
+	    border: 0;
+	    border-radius: 10px;
 	}
 
 }
@@ -302,101 +304,101 @@ body {
 }
 
 color-picker {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 200px;
+    padding: 15px;
 
-	position: absolute;
-	top: 0;
-	left: calc(100% + 10px);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 200px;
-	padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 4px #c5c5c5);
 
-	background-color: #f5f5f5;
-	border-radius: 5px;
-	filter: drop-shadow(0 0 4px #c5c5c5);
+    &[hidden] {
+        display: none;
+    }
 
-	&[hidden] {
-		display: none;
-	}
+    &::before {
+        position: absolute;
+        z-index: -1;
+        top: 25px;
+        left: -7px;
+        display: inline-block;
+        content: ' ';
+        width: 15px;
+        height: 15px;
+        transform: rotate(45deg);
 
-	&::before {
-		position: absolute;
-		z-index: -1;
-		top: 25px;
-		left: -7px;
-		display: inline-block;
-		content: ' ';
-		width: 15px;
-		height: 15px;
-		transform: rotate(45deg);
+        background-color: #f5f5f5;
+    }
 
-		background-color: #f5f5f5;
-	}
 
-	* {
-		display: block;
-		box-sizing: border-box;
-	}
+    * {
+        display: block;
+        box-sizing: border-box;
+    }
 
-	component-picker {
-		position: relative;
-		margin-bottom: 15px;
-	}
+    component-picker {
+        position: relative;
+        margin-bottom: 15px;
+    }
 
-	.sv-picker {
-		width: 200px;
-		height: 200px;
-	}
+    .sv-picker {
+        width: 200px;
+        height: 200px;
+    }
 
-	.hue-picker {
-		width: 200px;
-		height: 30px;
-	}
+    .hue-picker {
+        width: 200px;
+        height: 30px;
+    }
 
-	range-display {
-		height: 100%;
-	}
+    range-display {
+        height: 100%;
+    }
 
-	.sv-range {
-		cursor: pointer;
-	}
+    .sv-range {
+        cursor: pointer;
+    }
 
-	.hue-range {
-		overflow-x: hidden;
+    .hue-range {
+        overflow-x: hidden;
 
-		border-radius: 3px;
+        border-radius: 3px;
 
-		cursor: pointer;
-	}
+        cursor: pointer;
+    }
 
-	position-indicator {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 20px;
-		height: 20px;
+    position-indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
 
-		border: 2px solid white;
-		border-radius: 10px;
-		box-shadow: 0 0 3px gray;
+        border: 2px solid white;
+        border-radius: 10px;
+        box-shadow: 0 0 3px gray;
 
-		pointer-events: none;
-	}
+        pointer-events: none;
+    }
 
-	.hue-indicator {
-		top: 5px;
+    .hue-indicator {
+        top: 5px;
 
-		background: white;
-	}
+        background: white;
+    }
 
-	hr {
-		width: 100%;
-		visibility: hidden;
-		margin: 0;
-	}
-
+    hr {
+        visibility: hidden;
+        width: 100%;
+        margin: 0;
+    }
 }
+
 
 #ColorHex {
 	text-transform: lowercase;
