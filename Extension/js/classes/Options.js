@@ -94,7 +94,7 @@ class Options {
 		});
 	}
 
-	static resetIfEmpty () {
+	static resetIfEmpty (callback) {
 
 		chrome.storage.sync.get(null, function (existingSettings) {
 
@@ -109,6 +109,10 @@ class Options {
 				chrome.storage.sync.set({
 					[key] : existingSettings[key]
 				});
+			}
+
+			if (typeof callback == 'function') {
+				callback();
 			}
 
 		});

@@ -2,27 +2,24 @@ class System {
 
 	static setup () {
 
-		Options.resetIfEmpty();
+		Options.resetIfEmpty(function () {
 
-		Options.load('options', function (options) {
+			Options.load('options', function (options) {
 
-			System.saveOptionsAsGlobal(options);
-			System.headerCardsSetup();
-			System.detectAndSaveColorBlindFriendlyMode();
+				System.saveOptionsAsGlobal(options);
+				System.headerCardsSetup();
+				System.detectAndSaveColorBlindFriendlyMode();
 
-			Options.load('colors', function (colors) {
+				Options.load('colors', function (colors) {
+					GLOBAL.colors = colors;
+					DoingColors.highPriColorStyles();
+					keepTrying(ListHighlighter.highlight, 5, 700);
+					watch ('title');
+					watch ('board');
+					watch ('listTitle');
+					watch ('body');
+				});
 
-				console.log(colors);
-
-				GLOBAL.colors = colors;
-				DoingColors.highPriColorStyles();
-
-				keepTrying(ListHighlighter.highlight, 5, 700);
-
-				watch ('title');
-				watch ('board');
-				watch ('listTitle');
-				watch ('body');
 			});
 
 		});
