@@ -40,29 +40,38 @@
 
 .bmko_header-card {
 
+	.list-card-details {
+		padding: 0 6px 0 3px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.list-card-labels {
+		margin-bottom: 0;
+		order: 1;
+	}
+
 	h3 {
-		margin: 2px 0 1px 0;
+		margin: 0 0 1px 0;
 		font-weight: 700;
 		color: inherit;
 		-webkit-text-fill-color: inherit;
 		font-size: 14px;
+		order: 2;
+	}
+
+	.badges {
+		padding-left: 0;
+		margin-left: -4px;
+		order: 3;
 	}
 
 	.list-card-title {
 		display: none;
 	}
 
-	.list-card-details {
-		padding: 0 6px 0 3px;
-	}
-
 	&.is-stickered.list-card .list-card-details {
 		background-color: transparent;
-	}
-
-	.badges {
-		padding-left: 0;
-		margin-left: -4px;
 	}
 
 	.list-card-operation {
@@ -73,15 +82,17 @@
 
 }
 
-.bmko_horizontal-rule-card {
-	min-height: 20px;
+.list-card.bmko_horizontal-rule-card {
+	min-height: 0;
+	padding: 10px 0;
 
 	div, span, p {
 		display: none;
 	}
 
 	hr {
-		margin-top: 13px;
+		margin: 0;
+
 		background: #999;
 		color: #999;
 	}
