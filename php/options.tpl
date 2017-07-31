@@ -47,15 +47,13 @@
 		</svg>
 
 		<h1>Settings</h1>
-	</header>
 
-	<section>
 		<p>
 			Here you can tweak how List Highlighter works. Please note that for your settings to be saved reliably, you
 			need to be logged into Chrome.
 		</p>
 		<!-- TODO description of how this works for reference -->
-	</section>
+	</header>
 
 	<section>
 
@@ -245,39 +243,26 @@
 
 	<section>
 
-		<h2>Work in progress</h2>
-
-		<!-- TODO Describe what this is -->
-
-		<p>
-			<label for="EnableWIP">
-				<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
-				Enable WIP
-			</label>
-		</p>
-
-		<!-- TODO Cards count as 1 unless they have a number in [brackets] -->
-
-	</section>
-
-	<section>
-
 		<h2>Header and separator cards</h2>
 
 		<p>
 			Split up long lists with sub-headers and separators (horizontal lines).
 		</p>
 
-		<p>
-			<label for="EnableHeaderCards">
-				<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
-				Enable header cards
-			</label>
-			<label for="EnableSeparatorCards">
-				<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-				Enable separator cards
-			</label>
-		</p>
+		<ul class="color-tile-bar standard-bar">
+			<li>
+				<input type="checkbox" class="options-input color-tile-input" id="EnableHeaderCards" name="EnableHeaderCards">
+				<label for="EnableHeaderCards" class="color-tile-label standard-input">
+					Header cards
+				</label>
+			</li>
+			<li>
+				<input type="checkbox" class="options-input color-tile-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+				<label for="EnableSeparatorCards" class="color-tile-label standard-input">
+					Separator cards
+				</label>
+			</li>
+		</ul>
 
 		<details>
 
@@ -312,6 +297,23 @@
 			</ul>
 
 		</details>
+
+	</section>
+
+	<section>
+
+		<h2>Work in progress</h2>
+
+		<!-- TODO Describe what this is -->
+
+		<p>
+			<label for="EnableWIP">
+				<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
+				Enable WIP
+			</label>
+		</p>
+
+		<!-- TODO Cards count as 1 unless they have a number in [brackets] -->
 
 	</section>
 

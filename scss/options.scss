@@ -18,7 +18,6 @@ body {
     color: $bodyTextColor;
 }
 
-
 #MainHeader {
 
 	h1 {
@@ -108,6 +107,12 @@ body {
 			}
 		}
 
+		&.standard-input {
+			background: #8e8e8e;
+			width: 130px;
+			margin-right: 10px;
+		}
+
 	}
 
 	.edit-link {
@@ -128,14 +133,16 @@ body {
 	}
 
 	input:checked + label {
-		position: relative;
+
+		&.standard-input {
+			background: $blueTrello;
+		}
 
 		height: 83px;
 
 		&::before {
-		    position: absolute;
-		    top: 15px;
-		    left: 18px;
+		    position: relative;
+		    top: -20px;
 		    width: 26px;
 		    height: 20px;
 
@@ -153,6 +160,10 @@ body {
 	input {
 		display: none;
 	}
+}
+
+.standard-bar {
+	justify-content: flex-start;
 }
 
 .color-tile-bar-container {
@@ -184,13 +195,11 @@ body {
 		}
 
 		input:checked + label {
-			position: relative;
 
 			height: 73px;
 
 			&::before {
-				top: 10px;
-				left: 13px;
+				top: -15px;
 
 				width: 26px;
 				height: 20px;
@@ -398,7 +407,6 @@ color-picker {
         margin: 0;
     }
 }
-
 
 #ColorHex {
 	text-transform: lowercase;
