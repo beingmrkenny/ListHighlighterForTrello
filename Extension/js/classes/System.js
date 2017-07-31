@@ -2,6 +2,8 @@ class System {
 
 	static setup () {
 
+		Options.resetIfEmpty();
+
 		Options.load('options', function (options) {
 
 			System.saveOptionsAsGlobal(options);
@@ -9,6 +11,8 @@ class System {
 			System.detectAndSaveColorBlindFriendlyMode();
 
 			Options.load('colors', function (colors) {
+
+				console.log(colors);
 
 				GLOBAL.colors = colors;
 				DoingColors.highPriColorStyles();
