@@ -22,7 +22,13 @@ function toggleBoardPopup (page) {
 		boardSpecific = document.querySelectorAll('.board-specific'),
 		button = document.getElementById('HighlightToggle'),
 		isCustomBackground = page.isCustomBackground,
-		color = new Color(page.backgroundColor);
+		color = new Color(page.backgroundColor),
+		trelloBoard = (page && page.isBoard);
+
+	document.body.classList.toggle('trello-page', trelloBoard);
+	for (let i = boardSpecific.length-1; i>-1; i--) {
+		boardSpecific[i].hidden = !trelloBoard;
+	}
 
 	section.style.backgroundColor = page.backgroundColor;
 
@@ -36,9 +42,9 @@ function toggleBoardPopup (page) {
 		section.classList.add('dark-background');
 	}
 
-	section.style.display = 'block';
-
-	toggleHighlightButton(page.highlighted);
+	if (trelloBoard) {
+		toggleHighlightButton(page.highlighted);
+	}
 
 	button.addEventListener('click', function () {
 		if (this.classList.contains('on')) {
@@ -47,13 +53,6 @@ function toggleBoardPopup (page) {
 			toggleHighlight(true);
 		}
 	});
-
-	if (page && page.isBoard) {
-		document.body.classList.add('trello-page');
-		for (let i = boardSpecific.length-1; i>-1; i--) {
-			boardSpecific[i].style.display = 'block';
-		}
-	}
 
 }
 

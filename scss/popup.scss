@@ -43,6 +43,9 @@ div {
 
 p {
 	margin-bottom: 0;
+}
+
+.buttons {
 	display: flex;
 	justify-content: space-between;
 }
@@ -65,7 +68,6 @@ button,
 button,
 .button {
 	position: relative;
-	display: inline-block;
 
 	line-height: 18px;
 	box-sizing: border-box;
@@ -133,8 +135,4 @@ button,
 	&.on::before {
 		background: url('/img/256.svg') no-repeat;
 	}
-}
-
-.board-specific {
-	display: none;
 }
