@@ -164,6 +164,14 @@ body {
 
 .standard-bar {
 	justify-content: flex-start;
+	input + label::before {
+		color: #bfbfbf;
+		font-size: 25px;
+		@include trellicons('\e915');
+	}
+	input:checked + label::before {
+		color: #fff;
+	}
 }
 
 .color-tile-bar-container {

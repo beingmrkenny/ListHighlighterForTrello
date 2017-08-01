@@ -58,9 +58,7 @@
 
 	<section>
 
-		<h2>Highlighting</h2>
-
-		<h3>Colour</h3>
+		<h2>Colour</h2>
 
 		<ul class="color-tile-bar" id="DefaultColorBar" data-default="true">
 			{foreach from=$defaultTiles item=tile}
@@ -206,9 +204,91 @@
 
 		</details>
 
+	</section>
+
+	<section>
+
+		<h2>More features</h2>
+
+		<h3>
+			Split up long lists with sub-headers and separators
+		</h3>
+
+		<ul class="color-tile-bar standard-bar">
+			<li>
+				<input type="checkbox" class="options-input color-tile-input" id="EnableHeaderCards" name="EnableHeaderCards">
+				<label for="EnableHeaderCards" class="color-tile-label standard-input">
+					Header cards
+				</label>
+			</li>
+			<li>
+				<input type="checkbox" class="options-input color-tile-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+				<label for="EnableSeparatorCards" class="color-tile-label standard-input">
+					Separator cards
+				</label>
+			</li>
+		</ul>
+
 		<details>
 
-			<summary><h3>Fiddly little options</h3></summary>
+			<summary>More information</summary>
+
+			<h4>Header cards</h4>
+			<p>To make a header card, start your card text with one of these patterns.</p>
+			<ul>
+				<li>One or more hash symbol (<code>#</code>), as in Markdown</li>
+				<li>Single line comment syntax from various programming languages: (<code>--</code>, <code>//</code>, or <code>#</code>)</li>
+				<li>Two or more equals signs (<code>==</code>) or underscore characters (<code>__</code>)</li>
+			</ul>
+			<h5>E.g.</h5>
+			<ul>
+				<li># Small tasks</li>
+				<li>#### Small tasks</li>
+				<li>-- Ready for QA</li>
+				<li>// Ready for code review</li>
+				<li>== 😃</li>
+				<li>---------- Website items ----------</li>
+			</ul>
+
+			<h4>Separator cards</h4>
+			<p>To make a separator card, type two (or more) line symbols in a row, and no other text. Line symbols are dashes (--), equals signs (==) or underscores (__).</p>
+			<h5>E.g.</h5>
+			<ul>
+				<li>--</li>
+				<li>-=-=-=-=-=</li>
+				<li>___________________________________________</li>
+			</ul>
+
+		</details>
+
+		<h3>Work in progress</h3>
+
+		<ul class="color-tile-bar standard-bar">
+			<li>
+				<input type="checkbox" class="options-input color-tile-input" id="EnableWIP" name="EnableWIP">
+				<label for="EnableWIP" class="color-tile-label standard-input">
+					Enable WIP
+				</label>
+			</li>
+		</ul>
+
+		<details>
+
+			<summary>More information</summary>
+
+		</details>
+
+	</section>
+
+	<section>
+
+		<h2>Fiddly little options</h2>
+
+		<p>Fine tuning for how List Highlighter operates</p>
+
+		<details>
+
+			<summary>Options</summary>
 
 			<label for="HighlightTags">
 				<input type="checkbox" class="option-control options-input" id="HighlightTags" name="HighlightTags">
@@ -240,83 +320,6 @@
 			</label>
 
 		</details>
-
-
-	</section>
-
-	<section>
-
-		<h2>Header and separator cards</h2>
-
-		<p>
-			Split up long lists with sub-headers and separators (horizontal lines).
-		</p>
-
-		<ul class="color-tile-bar standard-bar">
-			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableHeaderCards" name="EnableHeaderCards">
-				<label for="EnableHeaderCards" class="color-tile-label standard-input">
-					Header cards
-				</label>
-			</li>
-			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-				<label for="EnableSeparatorCards" class="color-tile-label standard-input">
-					Separator cards
-				</label>
-			</li>
-		</ul>
-
-		<details>
-
-			<summary>
-				<h3>More info</h3>
-			</summary>
-
-			<h4>Header cards</h4>
-			<p>To make a header card, start your card text with one of these patterns.</p>
-			<ul>
-				<li>One or more hash symbol (<code>#</code>), as in Markdown</li>
-				<li>Single line comment syntax from various programming languages: (<code>--</code>, <code>//</code>, or <code>#</code>)</li>
-				<li>Two or more equals signs (<code>==</code>) or underscore characters (<code>__</code>)</li>
-			</ul>
-			<h5>E.g.</h5>
-			<ul>
-				<li># Small tasks</li>
-				<li>#### Small tasks</li>
-				<li>-- Ready for QA</li>
-				<li>// Ready for code review</li>
-				<li>== 😃</li>
-				<li>---------- Website items ----------</li>
-			</ul>
-
-			<h4>Separator cards</h4>
-			<p>To make a separator card, type two (or more) line symbols in a row, and no other text. Line symbols are dashes (--), equals signs (==) or underscores (__).</p>
-			<h5>E.g.</h5>
-			<ul>
-				<li>--</li>
-				<li>-=-=-=-=-=</li>
-				<li>___________________________________________</li>
-			</ul>
-
-		</details>
-
-	</section>
-
-	<section>
-
-		<h2>Work in progress</h2>
-
-		<!-- TODO Describe what this is -->
-
-		<p>
-			<label for="EnableWIP">
-				<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
-				Enable WIP
-			</label>
-		</p>
-
-		<!-- TODO Cards count as 1 unless they have a number in [brackets] -->
 
 	</section>
 
