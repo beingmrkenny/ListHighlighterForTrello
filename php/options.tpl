@@ -186,6 +186,7 @@
 						<rect class="trello-bg-color-selected" data-trello-bg="lime"	x="660" y="290" width="95" height="70" rx="7" ry="7" />
 						<rect class="trello-bg-color-selected" data-trello-bg="sky"		x="760" y="290" width="95" height="70" rx="7" ry="7" />
 						<rect class="trello-bg-color-selected" data-trello-bg="gray"	x="660" y="365" width="95" height="70" rx="7" ry="7" />
+						<rect class="trello-bg-color-selected" data-trello-bg="photo"	x="760" y="365" width="95" height="70" rx="7" ry="7" />
 
 						<rect id="BlueButton"	class="trello-bg-color-button" data-trello-bg="blue"	x="665" y="70"  width="85" height="60" rx="3" ry="3" />
 						<rect id="OrangeButton"	class="trello-bg-color-button" data-trello-bg="orange"	x="765" y="70"  width="85" height="60" rx="3" ry="3" />
@@ -196,6 +197,7 @@
 						<rect id="LimeButton"	class="trello-bg-color-button" data-trello-bg="lime"	x="665" y="295" width="85" height="60" rx="3" ry="3" />
 						<rect id="SkyButton"	class="trello-bg-color-button" data-trello-bg="sky"		x="765" y="295" width="85" height="60" rx="3" ry="3" />
 						<rect id="GrayButton"	class="trello-bg-color-button" data-trello-bg="gray"	x="665" y="370" width="85" height="60" rx="3" ry="3" />
+						<rect id="PhotoButton"	class="trello-bg-color-button" data-trello-bg="photo"	x="765" y="370" width="85" height="60" rx="3" ry="3" />
 					</g>
 					<rect width="865" height="10" style="fill: url(#DropShadow);"/>
 				</svg>
