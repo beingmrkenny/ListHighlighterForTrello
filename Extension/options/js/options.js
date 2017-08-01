@@ -49,8 +49,6 @@ Options.load('colors', function (colors) {
 		for (let i = tiles.length-1; i>-1; i--) {
 			tiles[i].addEventListener('click', function () {
 
-				console.log('click');
-
 				var tile = this,
 					input = $id(tile.getAttribute('for')),
 					colorName = input.value,
