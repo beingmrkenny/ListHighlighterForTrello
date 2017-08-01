@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<meta charset="utf-8">
 	<title>List Highlighter for Trello Settings</title>
 	<link rel="stylesheet" href="/css/options.css">
 </head>
