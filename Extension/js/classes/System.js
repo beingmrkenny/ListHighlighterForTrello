@@ -66,6 +66,12 @@ class System {
 					detectAndSaveColorBlindFriendlyMode(newStatus);
 				}
 
+				let oldPhotoBg = mut.oldValue.includes('body-custom-board-background'),
+					newPhotoBg = document.body.classList.contains('body-custom-board-background');
+				if (oldPhotoBg !== newPhotoBg) {
+					DoingColors.highPriColorStyles();
+				}
+
 			}
 
 		}
