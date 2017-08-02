@@ -36,6 +36,4 @@ window.addEventListener('load', function () {
 	System.setup();
 });
 
-window.addEventListener('focus', function () {
-	chrome.runtime.sendMessage({toggledOff: document.body.classList.contains('bmko_list-highlighter-toggled-off')}, function() {});
-});
+window.addEventListener('focus', System.toggleToolbarButton);

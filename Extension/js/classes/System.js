@@ -18,6 +18,7 @@ class System {
 					watch ('board');
 					watch ('listTitle');
 					watch ('body');
+					System.toggleToolbarButton();
 				});
 
 			});
@@ -76,6 +77,10 @@ class System {
 
 		}
 
+	}
+
+	static toggleToolbarButton() {
+		chrome.runtime.sendMessage({toggledOff: document.body.classList.contains('bmko_list-highlighter-toggled-off')}, function() {});
 	}
 
 	static detectAndSaveColorBlindFriendlyMode (passedMode) {
