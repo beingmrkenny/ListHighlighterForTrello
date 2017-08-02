@@ -24,6 +24,10 @@ body {
 		line-height: 37px;
 	}
 
+	h4 {
+		margin-top: 60px;
+	}
+
 	img, svg {
 		float: left;
 	}
@@ -37,6 +41,24 @@ body {
 		width: 52px;
 		margin-top: -6px;
 		margin-right: 14px;
+	}
+
+	dl div {
+	    margin-bottom: 10px;
+	    margin-left: 20px;
+	}
+
+	dt {
+	    font-weight: bold;
+	}
+
+	dt,
+	dd {
+	    display: inline;
+	}
+
+	dd {
+	    margin-left: 0;
 	}
 
 }
@@ -439,7 +461,10 @@ color-picker {
 
 footer {
 	color: gray;
-	margin-top: 110px;
+	margin-top: 120px;
+	p {
+		margin: 5px 0;
+	}
 }
 
 .disabled,
@@ -456,4 +481,58 @@ footer {
 
 body.preload * {
 	transition: none !important;
+}
+
+// STYILNG
+
+.tag {
+    padding: 0 2px;
+	font-weight: bold;
+
+    background: #d0f2ff;
+    border-radius: 2px;
+}
+
+$listBG: #e2e4e6;
+$highListBG: #ec2f2f;
+$normalTextColor: #292929;
+$ignoreTextColor: rgba(19, 19, 19, .4);
+
+.high,
+.normal,
+.done,
+.ignore,
+.low {
+    margin-bottom: 5px;
+    padding: 5px 7px;
+
+    border-radius: 3px;
+}
+
+.high {
+    background: $highListBG;
+    color: white;
+}
+
+.normal {
+    background: $listBG;
+    color: $normalTextColor;
+}
+
+.low {
+    background: transparentize($listBG, .5);
+    color: transparentize(#444, .6);
+}
+
+.ignore,
+.done {
+    opacity: .5;
+    background: transparentize($listBG, .93);
+    color: $ignoreTextColor;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
+}
+
+.done {
+    text-decoration: line-through;
+    text-shadow: 1px 1px 0 white;
 }

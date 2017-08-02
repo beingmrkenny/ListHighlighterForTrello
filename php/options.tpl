@@ -49,16 +49,136 @@
 
 		<h1>Settings</h1>
 
+		<p>Highlight todo, doing and done lists.</p>
+
 		<p>
-			Here you can tweak how List Highlighter works. Please note that for your settings to be saved reliably, you
-			need to be logged into Chrome.
+		    <span class="normal"><b>To do</b> lists stay as they are.</span>
+		    <span class="high"><b>Doing</b> lists are highlighted.</span>
+		    <span class="done"><b>Done</b> lists are greyed out.</span>
 		</p>
-		<!-- TODO description of how this works for reference -->
+
+		<p>
+		    Just name your list Todo, Doing, or Done, and styles will be applied automatically. Or name it what you like
+		    and tag it <code class="tag">#todo</code>,
+		    <code class="tag">#doing</code>, or <code class="tag">#done</code>.
+		</p>
+
+		<details>
+
+		    <summary>More information</summary>
+
+		    <h4>Priorities</h4>
+
+		    <p>
+		        List Highlighter uses four different list styles, based on priority:
+		    </p>
+
+		    <dl>
+		        <div>
+		            <dt class="high">High</dt>
+		            <dd>lists have a highlighted background</dd>
+		        </div>
+		        <div>
+		            <dt class="normal">Normal</dt>
+		            <dd>lists have the default appearance (no change)</dd>
+		        </div>
+		        <div>
+		            <dt class="low">Low</dt>
+		            <dd>lists are dimmed a little bit</dd>
+		        </div>
+		        <div>
+		            <dt class="ignore">Ignore</dt>
+		            <dd>lists are faded and grayed out</dd>
+		        </div>
+		    </dl>
+
+		    <h4>Titles</h4>
+
+		    <p>The following titles can be used. Titles are not case sensitive.</p>
+
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>Title</th>
+		                <th>Priority applied</th>
+		                <th>Other effects</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr>
+		                <td><strong>Doing</strong> or <strong>Today</strong></td>
+		                <td><span class="high">high</span></td>
+		                <td>low priority applied to all untagged lists</td>
+		            </tr>
+		            <tr>
+		                <td><strong>Todo</strong> or <strong>To do</strong></td>
+		                <td><span class="normal">normal</span></td>
+		                <td>low priority applied to all untagged lists</td>
+		            </tr>
+		            <tr>
+		                <td><strong>Done</strong> or <strong>Trash</strong></td>
+		                <td><span class="done">ignore</span></td>
+		                <td><del>strikethrough</del> applied to cards on the list</td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+		    <h4>Hashtags</h4>
+
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>Tag</th>
+		                <th>Priority applied</th>
+		                <th>Other effects</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr>
+		                <td><code class="tag">#high</code>, <code class="tag">#today</code>, <code class="tag">#doing</code></td>
+		                <td><span class="high">high</span></td>
+		                <td>low priority applied to all untagged lists</td>
+		            </tr>
+		            <tr>
+		                <td><code class="tag">#normal</code>, <code class="tag">#todo</code>, <code class="tag">#to do</code></td>
+		                <td><span class="normal">normal</span></td>
+		                <td>low priority applied to all untagged lists</td>
+		            </tr>
+		            <tr>
+		                <td><code class="tag">#low</code></td>
+		                <td><span class="low">low</span></td>
+		                <td><i>none</i></td>
+		            </tr>
+		            <tr>
+		                <td><code class="tag">#ignore</code></td>
+		                <td><span class="ignore">ignore</span></td>
+		                <td><i>none</i></td>
+		            </tr>
+		            <tr>
+		                <td><code class="tag">#trash</code>, <code class="tag">#done</code></td>
+		                <td><span class="done">ignore</span></td>
+		                <td><del>strikethrough</del> applied to cards</td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+		    <p><strong>Examples</strong>: &ldquo;Remaining tasks #todo&rdquo;, &ldquo;Urgent tasks #high&rdquo;, &ldquo;Backlog #low&rdquo;, &ldquo;Abandoned tasks&nbsp;#ignore&rdquo;, &ldquo;Completed tasks #done&rdquo;</p>
+
+			<h4>Notes</h4>
+
+		    <ul>
+		        <li>Hashtags override titles</li>
+		        <li>Hashtags only appear when you are editing the title, although you can change this in Fine Tuning, below</li>
+		        <li>The first tag is applied and others are ignored. E.g. &ldquo;Abandoned #ignore #high&rdquo; will be highlighted as an ignore list, and the title text will appear as &ldquo;Abandoned #high&rdquo;</li>
+		        <li>Tags will be visible on other platforms, e.g. mobile apps and browsers without this extension installed</li>
+		    </ul>
+
+		</details>
 	</header>
 
 	<section>
 
-		<h2>Colour</h2>
+		<h2>Highlight Colour</h2>
 
 		<ul class="color-tile-bar" id="DefaultColorBar" data-default="true">
 			{foreach from=$defaultTiles item=tile}
@@ -83,19 +203,10 @@
 
 		<details id="HighPriDetails">
 
-			<summary>
-				<h3>More colour options</h3>
-			</summary>
+			<summary>More colour options</summary>
 
 			<p>
-				On some backgrounds the default high priority colour might look jarring (e.g. red lists on
-				a blue background) or they might not stand out (e.g. red lists on a red background). You can use
-				this tool to choose a separate highlight colour for each different background colour.
-			</p>
-
-			<p>
-				Change the background using the rectangles on the right-hand side, then choose the highlight colour
-				using the squares at the top. If no highlight colour is selected, the default will be used.
+				On some backgrounds the high priority colour might be jarring (e.g. red lists on a blue background) or it might not stand out (e.g. red lists on a red background). You can use this tool to choose a separate high priority colour for each different background.
 			</p>
 
 			<div id="DummyBoard" data-trello-bg="blue" data-list-color-name="default">
@@ -115,7 +226,11 @@
 							{if $tile.colorName == 'custom'}
 								<a href="#" class="edit-link" data-default="false">Edit</a>
 							{/if}
-							{$tile.colorName|ucwords}
+							{if $tile.colorName == 'default'}
+								Default
+							{else}
+								{$tile.colorName|ucwords}
+							{/if}
 						</label>
 					</li>
 					{if $tile.inputId == 'Dummy-ColorTile-default'}<hr>{/if}
@@ -179,7 +294,7 @@
 					</g>
 					<g>
 						<rect x="650" y="0" width="215" height="500" style="fill: rgb(216, 216, 216);"/>
-						<text x="685" y="53" id="BackgroundColorsHeader">Background Colors</text>
+						<text x="685" y="53" id="BackgroundColorsHeader">Change Background</text>
 
 						<rect class="trello-bg-color-selected" data-trello-bg="blue"	x="660" y="65"  width="95" height="70" rx="7" ry="7" />
 						<rect class="trello-bg-color-selected" data-trello-bg="orange"	x="760" y="65"  width="95" height="70" rx="7" ry="7" />
@@ -240,11 +355,11 @@
 			<summary>More information</summary>
 
 			<h4>Header cards</h4>
-			<p>To make a header card, start your card text with one of these patterns.</p>
+			<p>To make a header card, start your card text with one of these patterns. Header cards look like Trello list headers and help break up long lists.</p>
 			<ul>
-				<li>One or more hash symbol (<code>#</code>), as in Markdown</li>
-				<li>Single line comment syntax from various programming languages: (<code>--</code>, <code>//</code>, or <code>#</code>)</li>
-				<li>Two or more equals signs (<code>==</code>) or underscore characters (<code>__</code>)</li>
+				<li>One or more hash (pound) symbols (<code class="tag">#</code>), as in Markdown</li>
+				<li>Single line comment syntax from various programming languages: (<code class="tag">--</code>, <code class="tag">//</code>, or <code class="tag">#</code>)</li>
+				<li>Two or more line symbols: dashes (<code class="tag">--</code>), equals signs, (<code class="tag">==</code>) or underscore characters (<code class="tag">__</code>)</li>
 			</ul>
 			<h5>E.g.</h5>
 			<ul>
@@ -257,7 +372,7 @@
 			</ul>
 
 			<h4>Separator cards</h4>
-			<p>To make a separator card, type two (or more) line symbols in a row, and no other text. Line symbols are dashes (--), equals signs (==) or underscores (__).</p>
+			<p>To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>). Separator cards turn into horizontal lines, and make a visual gap between cards.</p>
 			<h5>E.g.</h5>
 			<ul>
 				<li>--</li>
@@ -267,7 +382,7 @@
 
 		</details>
 
-		<h3>Work in progress</h3>
+		{* <h3>Work in progress</h3>
 
 		<ul class="color-tile-bar standard-bar">
 			<li>
@@ -282,15 +397,15 @@
 
 			<summary>More information</summary>
 
-		</details>
+		</details> *}
 
 	</section>
 
 	<section>
 
-		<h2>Fiddly little options</h2>
+		<h2>Fine tuning</h2>
 
-		<p>Fine tuning for how List Highlighter operates</p>
+		<p>Fiddly little options to tweak how List Highlighter operates</p>
 
 		<details>
 
@@ -333,10 +448,13 @@
 		<p>
 			For more information visit the
 			<a href="http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello">List Highlighter for Trello</a>
-			homepage.
+			homepage
 		</p>
 		<p>
 			Beach photo by <a href="https://unsplash.com/photos/nFSw6m01-38?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Breno Machado</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+		</p>
+		<p>
+			Color Picker based on <a href="https://github.com/DavidDurman/FlexiColorPicker">FlexiColorPicker by David Durman</a>
 		</p>
 	</footer>
 
