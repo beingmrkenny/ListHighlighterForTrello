@@ -237,7 +237,10 @@ body {
 	&[data-trello-bg='purple']	{ background: $purpleTrello; }
 	&[data-trello-bg='pink']	{ background: $pinkTrello; }
 	&[data-trello-bg='gray']	{ background: $grayTrello; }
-	&[data-trello-bg='photo']	{ background: $grayTrello; }
+	&[data-trello-bg='photo']	{
+		background: url('/img/dummyBackgroundPhoto.jpg');
+		background-size: cover;
+	}
 
 	.list {
 		fill: rgb(226, 228, 230);
@@ -288,7 +291,7 @@ body {
 	&[data-trello-bg="lime"] 	[data-trello-bg="lime"] 	{ stroke: $limeTrello; }
 	&[data-trello-bg="sky"] 	[data-trello-bg="sky"] 	{ stroke: $skyTrello; }
 	&[data-trello-bg="gray"] 	[data-trello-bg="gray"] 	{ stroke: $grayTrello; }
-	&[data-trello-bg="photo"] 	[data-trello-bg="photo"] 	{ stroke: $grayTrello; }
+	&[data-trello-bg="photo"] 	.trello-bg-color-selected[data-trello-bg="photo"] 	{ stroke: #4f6b0e; }
 
 	#BlueButton		{ fill: $blueTrello; }
 	#OrangeButton	{ fill: $orangeTrello; }
@@ -299,7 +302,7 @@ body {
 	#LimeButton		{ fill: $limeTrello; }
 	#SkyButton		{ fill: $skyTrello; }
 	#GrayButton		{ fill: $grayTrello; }
-	#PhotoButton	{ fill: $grayTrello; }
+	#PhotoButton	{ fill: url(#Beach); }
 
 	#DefaultDummyTile + hr {
 	    display: block;

@@ -137,6 +137,12 @@
 							<stop offset="75%" stop-color= "transparent" />
 							<stop offset="100%" stop-color= "transparent" />
 						</linearGradient>
+						<pattern id="Beach" patternUnits="objectBoundingBox" width="1" height="1">
+							<image xlink:href="/img/thumbnail.jpg" width="85" height="60" />
+						</pattern>
+						<pattern id="BeachLg" patternUnits="objectBoundingBox" width="1" height="1">
+							<image xlink:href="/img/dummyBackgroundPhoto.jpg" width="680" height="393" />
+						</pattern>
 					</defs>
 					<g class="normal-list">
 						<rect x="-35" y="60" width="180" height="285" rx="2.5" ry="2.5" class="list"/>
@@ -328,6 +334,9 @@
 			For more information visit the
 			<a href="http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello">List Highlighter for Trello</a>
 			homepage.
+		</p>
+		<p>
+			Beach photo by <a href="https://unsplash.com/photos/nFSw6m01-38?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Breno Machado</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 		</p>
 	</footer>
 
