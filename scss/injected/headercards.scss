@@ -60,6 +60,11 @@
 		order: 2;
 	}
 
+	.bmko_list-highlighter-toggled-off & h3 {
+		color: $trelloListHeaderColor;
+		-webkit-text-fill-color: $trelloListHeaderColor;
+	}
+
 	.badges {
 		padding-left: 0;
 		margin-left: -4px;

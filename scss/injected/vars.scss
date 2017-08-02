@@ -9,7 +9,7 @@
 
 	--card-bg:                         #{#fff};
 	--card-border-bottom-color:        #{#ccc};
-	--card-color:                      #{#4d4d4d};
+	--card-color:                      #{$trelloListHeaderColor};
 
 	--active-card-bg:                  #{#EDEFF0};
 	--active-card-border-bottom-color: #{#D6DADC};
@@ -47,7 +47,7 @@
 
 .bmko_normal-list,
 body.bmko_do-not-dim-lists .bmko_low-list {
-	--list-bg:                         #{$defaultListBg};
+	--list-bg:                         #{$listBG};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};
 
@@ -56,7 +56,7 @@ body.bmko_do-not-dim-lists .bmko_low-list {
 }
 
 body:not(.bmko_do-not-dim-lists) .bmko_low-list {
-	--list-bg:                         #{rgba($defaultListBg, 0.5)};
+	--list-bg:                         #{rgba($listBG, 0.5)};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};
 
@@ -78,7 +78,7 @@ body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 
 .bmko_ignore-list,
 .bmko_trash-list {
-	--list-bg:                         #{rgba($defaultListBg, 0.07)};
+	--list-bg:                         #{rgba($listBG, 0.07)};
 	--header-color:                    #{$ignoreTextColor};
 	--editing-color:                   #{$ignoreTextColor};
 	--list-header-text-shadow:         #{1px 1px 0 rgba(white, 0.2)};
@@ -103,6 +103,6 @@ body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 .body-custom-board-background {
 	.bmko_ignore-list,
 	.bmko_trash-list {
-		--list-bg: #{rgba($defaultListBg, 0.2)};
+		--list-bg: #{rgba($listBG, 0.2)};
 	}
 }
