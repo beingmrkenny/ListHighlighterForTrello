@@ -152,6 +152,10 @@ body {
 		    @include trellicons('\e910');
 		}
 
+		&.custom::before {
+			top: -10px;
+		}
+
 		.edit-link {
 			display: inline;
 		}
@@ -213,6 +217,10 @@ body {
 				height: 20px;
 
 				font-size: 21px;
+			}
+
+			&.custom::before {
+				top: -5px;
 			}
 		}
 	}

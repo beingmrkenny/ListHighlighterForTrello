@@ -48,7 +48,12 @@ class Dummy {
 			colorName = 'default';
 		}
 
-		Dummy.setDoingListColorByName(colorName);
+		if (colorName == 'custom') {
+			Dummy.setDoingListColorByHex(DoingColors.getCustomHexForTrelloBg(trelloBg));
+		} else {
+			Dummy.setDoingListColorByName(colorName);
+		}
+
 		Dummy.selectTile(colorName);
 	}
 

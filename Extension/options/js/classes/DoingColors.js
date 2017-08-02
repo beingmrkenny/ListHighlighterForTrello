@@ -29,8 +29,15 @@ class DoingColors {
 	}
 
 	static getTrelloBg () {
-		var trelloBg, rgb = document.body.style.backgroundColor;
-		switch (rgb) {
+		var trelloBg, background;
+
+		if (document.body.classList.contains('body-custom-board-background')) {
+			background = 'photo';
+		} else {
+			background = document.body.style.backgroundColor;
+		}
+
+		switch (background) {
 			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
 			case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
 			case 'rgb(81, 152, 57)'  : trelloBg = 'green'; break;
@@ -40,6 +47,7 @@ class DoingColors {
 			case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
 			case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
 			case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
+			case 'photo'			 : trelloBg = 'photo'; break;
 		}
 		return trelloBg;
 	}
@@ -120,7 +128,7 @@ class DoingColors {
 		DoingColors.init(GLOBAL.colors);
 
 		highPri = (document.body.classList.contains('body-custom-board-background'))
-			? DoingColors.getDefaultHex()
+			? DoingColors.getHexForTrelloBg('photo')
 			: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
 
 		if (typeof highPri == 'undefined') {

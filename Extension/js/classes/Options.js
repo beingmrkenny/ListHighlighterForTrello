@@ -13,7 +13,8 @@ class Options {
 					pink    : null,
 					lime    : null,
 					sky     : null,
-					gray    : null
+					gray    : null,
+					photo   : null
 				},
 				custom : {
 					default : null,
@@ -25,7 +26,8 @@ class Options {
 					pink    : null,
 					lime    : null,
 					sky     : null,
-					gray    : null
+					gray    : null,
+					photo   : null
 				},
 			},
 			options : {
