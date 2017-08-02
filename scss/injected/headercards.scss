@@ -54,8 +54,8 @@
 	h3 {
 		margin: 0 0 1px 0;
 		font-weight: 700;
-		color: inherit;
-		-webkit-text-fill-color: inherit;
+		color: var(--header-color);
+		-webkit-text-fill-color: var(--header-color);
 		font-size: 14px;
 		order: 2;
 	}
