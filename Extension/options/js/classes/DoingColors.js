@@ -29,13 +29,10 @@ class DoingColors {
 	}
 
 	static getTrelloBg () {
-		var trelloBg, background;
-
-		if (document.body.classList.contains('body-custom-board-background')) {
-			background = 'photo';
-		} else {
-			background = document.body.style.backgroundColor;
-		}
+		var trelloBg,
+			background = (document.body.classList.contains('body-custom-board-background'))
+				? 'photo'
+				: document.body.style.backgroundColor;
 
 		switch (background) {
 			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
