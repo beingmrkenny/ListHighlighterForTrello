@@ -91,7 +91,7 @@
 		<h2>More features</h2>
 
 		<h3>
-			Split up long lists with sub-headers and separators
+			Header and separator cards
 		</h3>
 
 		<ul class="standard-options">
@@ -111,12 +111,12 @@
 
 		<details>
 
-			<summary>More information</summary>
+			<summary>Header and separator cards</summary>
 
 			<h4>Header cards</h4>
-			<p>To make a header card, start your card text with one of these patterns. Header cards look like Trello list headers and help break up long lists.</p>
+			<p>Header cards look like Trello list headers and help break up long lists. To make a header card, start your card text with one of these patterns. </p>
 			<ul>
-				<li>One or more hash (pound) symbols (<code class="tag">#</code>), as in Markdown</li>
+				<li>One or more hash (pound) symbols (<code class="tag">#</code>), as in Markdown (make sure you leave a space after the hash)</li>
 				<li>Single line comment syntax from various programming languages: (<code class="tag">--</code>, <code class="tag">//</code>, or <code class="tag">#</code>)</li>
 				<li>Two or more line symbols: dashes (<code class="tag">--</code>), equals signs, (<code class="tag">==</code>) or underscore characters (<code class="tag">__</code>)</li>
 			</ul>
@@ -131,7 +131,7 @@
 			</ul>
 
 			<h4>Separator cards</h4>
-			<p>To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>). Separator cards turn into horizontal lines, and make a visual gap between cards.</p>
+			<p>Separator cards turn into horizontal lines, and make a visual gap between cards. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>).</p>
 			<h5>E.g.</h5>
 			<ul>
 				<li>--</li>
@@ -157,49 +157,6 @@
 			<summary>More information</summary>
 
 		</details> *}
-
-	</section>
-
-	<section>
-
-		<h2>Fine tuning</h2>
-
-		<p>Fiddly little options to tweak how List Highlighter operates</p>
-
-		<details>
-
-			<summary>Options</summary>
-
-			<label for="HighlightTags">
-				<input type="checkbox" class="option-control options-input" id="HighlightTags" name="HighlightTags">
-				Highlight lists based on hashtags<br>
-				<small>(e.g. highlight list if title is tagged <strong>#todo</strong>, <strong>#doing</strong>, <strong>#done</strong>, etc)</small>
-			</label>
-			<label for="HideHashtags" class="sub-setting">
-				<input type="checkbox" class="option-control options-input" id="HideHashtags" name="HideHashtags">
-				Hide hashtags in list headers<br>
-				<small>
-					If this box and the one above are checked, hashtags in list headers will be hidden.<br>
-					Currently, "<strong>Thursday tasks #todo</strong>" will appear as "<strong>Thursday tasks<text-switcher id="HideHashtagsSwitcher" data-on="" data-off=" #todo"></text-switcher></strong>"
-				</small>
-			</label>
-
-			<label for="HighlightTitles">
-				<input type="checkbox" class="option-control options-input" id="HighlightTitles" name="HighlightTitles">
-				Highlight lists based on title text<br>
-				<small>(e.g. highlight list if title <text-switcher id="HighlightTitlesSwitcher" data-on="contains the text" data-off="is exactly">is exactly</text-switcher> "<strong>Todo</strong>", "<strong>Doing</strong>", "<strong>Done</strong>", etc)</small>
-			</label>
-			<label for="MatchTitleSubstrings" class="sub-setting">
-				<input type="checkbox" class="option-control options-input" id="MatchTitleSubstrings" name="MatchTitleSubstrings">
-				Match partial title text<br>
-				<small>
-					Currently:<br>
-					"<strong>To do</strong>" will be matched<br>
-					"<strong>Things to do</strong>" <text-switcher id="MatchTitleSubstringsSwitcher" data-off="will not" data-on="will">will not</text-switcher> be matched
-				</small>
-			</label>
-
-		</details>
 
 	</section>
 

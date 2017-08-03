@@ -12,7 +12,7 @@
 
 <details>
 
-    <summary>More information</summary>
+    <summary>More information &amp; fine tuning</summary>
 
     <h4>Priorities</h4>
 
@@ -115,9 +115,13 @@
 
     <ul>
         <li>Hashtags override titles</li>
-        <li>Hashtags only appear when you are editing the title, although you can change this in Fine Tuning, below</li>
+        <li>Hashtags only appear when you are editing the title, although you can change this in fine tuning, below</li>
         <li>The first tag is applied and others are ignored. E.g. &ldquo;Abandoned #ignore #high&rdquo; will be highlighted as an ignore list, and the title text will appear as &ldquo;Abandoned #high&rdquo;</li>
         <li>Tags will be visible on other platforms, e.g. mobile apps and browsers without this extension installed</li>
     </ul>
+
+    <h4>Fine tuning</h4>
+
+    {include file="./highlightingFineTuning.tpl"}
 
 </details>
