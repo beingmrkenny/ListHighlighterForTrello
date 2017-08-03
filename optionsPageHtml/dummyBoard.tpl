@@ -1,6 +1,6 @@
 <div id="DummyBoard" data-trello-bg="blue" data-list-color-name="default">
 
-	<div class="color-tile-bar-container"><ul class="color-tile-bar" data-default="false">
+	<div class="dummy-board-color-tile-bar"><ul class="color-tile-bar" data-default="false">
 		{foreach from=$dummyTiles item=tile}
 		<li {if $tile.inputId == 'Dummy-ColorTile-default'}id="DefaultDummyTile"{/if}>
 			<input
