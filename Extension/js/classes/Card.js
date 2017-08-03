@@ -110,7 +110,6 @@ class Card {
 	makeRule () {
 		this.apply();
 		this.card.classList.add(this.ruleClass);
-		this.disableStickers();
 		if (!this.card.querySelector('hr')) {
 			let hr = document.createElement('hr');
 			this.card.appendChild(hr);
@@ -120,7 +119,6 @@ class Card {
 	unmakeRule () {
 		this.card.classList.remove(this.ruleClass);
 		this.clearApplied();
-		this.reenableStickers();
 		let hr = this.card.querySelector('hr');
 		if (hr) {
 			hr.remove();
@@ -162,13 +160,13 @@ class Card {
 
 	getRuleRegex () {
 		// var originalRe = /^[^\p{L}\d\s]{3,}$/u;
-		var re = /^[=_/-]{2,}$/;
+		var re = /^[=_-]{2,}$/;
 		return re;
 	}
 
 	getHeaderRegex () {
 		// var originalRe =  /^[^\p{L}\d\s]{3,}.+$/u;
-		var re = /^(?:[=_/-]{2,}\s*|#+\s+).+$/;
+		var re = /^(?:[=_/-]{2,}\s*|#+\s+)[^=_#/-]+[=_#/-]*$/;
 		return re;
 	}
 
