@@ -26,7 +26,7 @@ function setupColorPicker (colorTileLabel) {
 				sv = document.querySelector('.sv-indicator');
 			ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
 			sv.style.backgroundColor = hex;
-			document.getElementById('ColorHex').textContent = hex;
+			// document.getElementById('ColorHex').textContent = hex;
 			changeAllTheColors (hex, isDefaultColorBar)
 		}
 	);

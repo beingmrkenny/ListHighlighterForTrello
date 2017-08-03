@@ -232,12 +232,15 @@ function setTodoListColorForPage (color) {
 }
 
 function saveColor (trelloBg, colorName) {
-	customDoingColors[ trelloBg ] = colorName;
+	currentDoingColors[ trelloBg ] = colorName;
 	Options.save(`colors.current.${trelloBg}`, colorName);
 	sendMessage('colorChange');
 }
 
 function saveCustomColor (trelloBg, hex) {
+	if (hex == 'custom') {
+		throw new Error('Provided color is not a hex code');
+	}
 	customDoingColors[ trelloBg ] = hex;
 	Options.save(`colors.custom.${trelloBg}`, hex);
 	sendMessage('colorChange');

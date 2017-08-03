@@ -37,7 +37,7 @@ class Tile {
 		var appropriateColorInput = (colorName == 'default')
 			? $id('Dummy-ColorTile-default')
 			: parent.querySelector(`[value="${colorName}"]`);
-		if (appropriateColorInput) {
+		if (appropriateColorInput && !appropriateColorInput.checked) {
 			appropriateColorInput.checked = true;
 		}
 	}

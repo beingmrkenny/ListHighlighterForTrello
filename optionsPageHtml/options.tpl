@@ -233,7 +233,7 @@
 				<range-display class="hue-range"></range-display>
 				<position-indicator class="hue-indicator"></position-indicator>
 			</component-picker>
-			<span id="ColorHex" data-pattern="#?[a-fA-F0-9]{6}"></span>
+			{* <span id="ColorHex" data-pattern="#?[a-fA-F0-9]{6}"></span> *}
 			<hr class="spacer">
 			<button type="button" id="CancelColor">Cancel</button>
 			<button type="button" class="mod-primary" id="SaveColor">Save</button>
