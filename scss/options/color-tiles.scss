@@ -109,12 +109,6 @@
 			}
 		}
 
-		&.standard-input {
-			background: #8e8e8e;
-			width: 130px;
-			margin-right: 10px;
-		}
-
 	}
 
 	.edit-link {
@@ -135,10 +129,6 @@
 	}
 
 	input:checked + label {
-
-		&.standard-input {
-			background: $blueTrello;
-		}
 
 		height: 83px;
 
@@ -165,24 +155,5 @@
 
 	input {
 		display: none;
-	}
-}
-
-.standard-bar {
-	justify-content: flex-start;
-
-	input:checked,
-	input {
-		& + label {
-			// position: relative;
-			&::before {
-				content: ' ';
-				width: 40px;
-				height: 20px;
-				background: white;
-				border-radius: 70px;
-				top: 20px;
-			}
-		}
 	}
 }

@@ -94,14 +94,14 @@
 			Split up long lists with sub-headers and separators
 		</h3>
 
-		<ul>
-			<li>
+		<ul class="standard-options">
+			<li class="standard-option-widget">
 				<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
 				<label for="EnableHeaderCards">
 					Header cards
 				</label>
 			</li>
-			<li>
+			<li class="standard-option-widget">
 				<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
 				<label for="EnableSeparatorCards">
 					Separator cards
