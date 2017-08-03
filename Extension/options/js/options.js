@@ -24,10 +24,10 @@ Options.load('colors', function (colors) {
 
 		if (defaultColorName == 'custom') {
 			Dummy.setDefaultTileColorByHex (defaultCustomHex);
-			setTodoListIconColor(defaultCustomHex);
+			setTodoListColorForPage(defaultCustomHex);
 		} else {
 			Dummy.setDefaultTileColorByName (defaultColorName);
-			setTodoListIconColor(defaultColorName);
+			setTodoListColorForPage(defaultColorName);
 		}
 
 		DefaultColorBar.selectByColorName (defaultColorName);
@@ -65,10 +65,10 @@ Options.load('colors', function (colors) {
 				if (tileIsDefault == true) {
 					if (tileIsCustom || colorName == 'custom') {
 						Dummy.setDefaultTileColorByHex (customHex);
-						setTodoListIconColor(customHex);
+						setTodoListColorForPage(customHex);
 					} else {
 						Dummy.setDefaultTileColorByName (colorName);
-						setTodoListIconColor(colorName);
+						setTodoListColorForPage(colorName);
 					}
 				}
 
@@ -215,11 +215,11 @@ Options.load('options', function (options) {
 
 });
 
-function setTodoListIconColor (color) {
+function setTodoListColorForPage (color) {
 	var hex = (Color.isHex(color))
 		? color
-		: DoingColors.getHexFromName(color)
-	$id('TodoList').style.fill = hex;
+		: DoingColors.getHexFromName(color);
+	DoingColors.highPriColorStylesOptions(hex);
 }
 
 function saveColor (trelloBg, colorName) {

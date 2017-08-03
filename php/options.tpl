@@ -452,8 +452,7 @@
 		</p>
 		<p>
 			Beach photo by <a href="https://unsplash.com/photos/nFSw6m01-38?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Breno Machado</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-		</p>
-		<p>
+			<br>
 			Color Picker based on <a href="https://github.com/DavidDurman/FlexiColorPicker">FlexiColorPicker by David Durman</a>
 		</p>
 	</footer>

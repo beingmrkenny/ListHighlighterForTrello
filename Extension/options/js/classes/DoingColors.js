@@ -162,4 +162,35 @@ class DoingColors {
 
 	}
 
+	static highPriColorStylesOptions (highPri) {
+
+		var color = new Color(),
+			contrastColor, css, existingStyle;
+
+		if (typeof highPri == 'undefined') {
+			throw new Error('no high pri color');
+		}
+
+		color.fromHex(highPri);
+
+		contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+
+		css = `body {
+			--high-pri: ${highPri};
+			--high-pri-text: ${contrastColor};
+		}`;
+
+		existingStyle = $id('HighPriColorCSS');
+		if (existingStyle) {
+			existingStyle.textContent = css;
+		} else {
+			let style = document.createElement('style');
+			style.setAttribute('type', 'text/css');
+			style.setAttribute('id', 'HighPriColorCSS');
+			style.textContent = css;
+			document.head.appendChild(style);
+		}
+
+	}
+
 }

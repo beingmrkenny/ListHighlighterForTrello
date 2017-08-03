@@ -64,7 +64,7 @@ body {
 }
 
 #TodoList {
-	fill: $red;
+	fill: var(--high-pri);
 }
 
 .color-tile-bar {
@@ -461,9 +461,12 @@ color-picker {
 
 footer {
 	color: gray;
-	margin-top: 120px;
+	margin-top: 150px;
+	margin-bottom: 10px;
+	font-size: 14px;
 	p {
-		margin: 5px 0;
+		margin: 15px 0;
+		line-height: 1.3;
 	}
 }
 
@@ -493,11 +496,6 @@ body.preload * {
     border-radius: 2px;
 }
 
-$listBG: #e2e4e6;
-$highListBG: #ec2f2f;
-$normalTextColor: #292929;
-$ignoreTextColor: rgba(19, 19, 19, .4);
-
 .high,
 .normal,
 .done,
@@ -510,8 +508,8 @@ $ignoreTextColor: rgba(19, 19, 19, .4);
 }
 
 .high {
-    background: $highListBG;
-    color: white;
+    background: var(--high-pri);
+    color: var(--high-pri-text);
 }
 
 .normal {
