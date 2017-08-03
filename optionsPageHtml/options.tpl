@@ -94,16 +94,16 @@
 			Split up long lists with sub-headers and separators
 		</h3>
 
-		<ul class="color-tile-bar standard-bar">
+		<ul>
 			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableHeaderCards" name="EnableHeaderCards">
-				<label for="EnableHeaderCards" class="color-tile-label standard-input">
+				<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
+				<label for="EnableHeaderCards">
 					Header cards
 				</label>
 			</li>
 			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-				<label for="EnableSeparatorCards" class="color-tile-label standard-input">
+				<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+				<label for="EnableSeparatorCards">
 					Separator cards
 				</label>
 			</li>
