@@ -5,7 +5,6 @@
 #DummyBoard {
 
 	border-radius: 5px;
-	// transition: background .25s;
 	@include transition(background);
 
 	#DummyBoardSVG {
@@ -46,7 +45,6 @@
 
 	.doing-list .list {
 		fill: $red;
-		// transition: fill .25s;
 		@include transition(fill);
 	}
 
@@ -70,7 +68,6 @@
 
 	.trello-bg-color-indicator {
 		fill: none;
-		// transition: fill .25s;
 		@include transition(fill);
 	}
 

@@ -76,7 +76,6 @@
 	    color: white;
 	    border-radius: 3px;
 
-	    // transition: height .25s, color .25s, background-color .25s;
 		@include transition(height, color, background-color);
 
 	    cursor: pointer;
@@ -87,7 +86,6 @@
 		}
 
 		&::before {
-			// transition: color .25s;
 			@include transition(color);
 			color: white;
 		}
