@@ -42,7 +42,10 @@ function setupColorPicker (colorTileLabel) {
 		var trelloBg = (isDefaultColorBar) ? 'default' : $id('DummyBoard').dataset.trelloBg,
 			hex = input.dataset.value;
 		saveCustomColor(trelloBg, hex);
-		setTodoListIconColor(hex);
+		Dummy.activateTrelloBgButtonIndicator(trelloBg, hex);
+		if (isDefaultColorBar) {
+			setTodoListColorForPage(hex);
+		}
 		$('color-picker').remove();
 	});
 

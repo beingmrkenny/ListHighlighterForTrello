@@ -312,6 +312,10 @@ body {
 		fill: #d8d8d8;
 	}
 
+	.trello-bg-color-indicator {
+		fill: none;
+	}
+
 	&[data-trello-bg="blue"] 	[data-trello-bg="blue"] 	{ stroke: $blueTrello; }
 	&[data-trello-bg="orange"] 	[data-trello-bg="orange"] 	{ stroke: $orangeTrello; }
 	&[data-trello-bg="green"] 	[data-trello-bg="green"] 	{ stroke: $greenTrello; }
@@ -323,16 +327,16 @@ body {
 	&[data-trello-bg="gray"] 	[data-trello-bg="gray"] 	{ stroke: $grayTrello; }
 	&[data-trello-bg="photo"] 	.trello-bg-color-selected[data-trello-bg="photo"] 	{ stroke: #4f6b0e; }
 
-	#BlueButton		{ fill: $blueTrello; }
-	#OrangeButton	{ fill: $orangeTrello; }
-	#GreenButton	{ fill: $greenTrello; }
-	#RedButton		{ fill: $redTrello; }
-	#PurpleButton	{ fill: $purpleTrello; }
-	#PinkButton		{ fill: $pinkTrello; }
-	#LimeButton		{ fill: $limeTrello; }
-	#SkyButton		{ fill: $skyTrello; }
-	#GrayButton		{ fill: $grayTrello; }
-	#PhotoButton	{ fill: url(#Beach); }
+	.trello-bg-color-button[data-trello-bg="blue"] 	{ fill: $blueTrello; }
+	.trello-bg-color-button[data-trello-bg="orange"] 	{ fill: $orangeTrello; }
+	.trello-bg-color-button[data-trello-bg="green"] 	{ fill: $greenTrello; }
+	.trello-bg-color-button[data-trello-bg="red"] 	{ fill: $redTrello; }
+	.trello-bg-color-button[data-trello-bg="purple"] 	{ fill: $purpleTrello; }
+	.trello-bg-color-button[data-trello-bg="pink"] 	{ fill: $pinkTrello; }
+	.trello-bg-color-button[data-trello-bg="lime"] 	{ fill: $limeTrello; }
+	.trello-bg-color-button[data-trello-bg="sky"] 	{ fill: $skyTrello; }
+	.trello-bg-color-button[data-trello-bg="gray"] 	{ fill: $grayTrello; }
+	.trello-bg-color-button[data-trello-bg="photo"] 	{ fill: url(#Beach); }
 
 	#DefaultDummyTile + hr {
 	    display: block;

@@ -57,4 +57,18 @@ class Dummy {
 		Dummy.selectTile(colorName);
 	}
 
+	static activateTrelloBgButtonIndicator(trelloBg, color) {
+		let hex, indicator = document.querySelector(`.trello-bg-color-indicator[data-trello-bg="${trelloBg}"]`);
+		if (Color.isHex(color)) {
+			hex = color;
+		} else {
+			switch (color) {
+				case 'custom'  : hex = DoingColors.getCustomHexForTrelloBg(trelloBg); break;
+				case 'default' : hex = 'none'; break;
+				default        : hex = DoingColors.getHexFromName(color); break;
+			}
+		}
+		indicator.style.fill = hex || 'none';
+	}
+
 }

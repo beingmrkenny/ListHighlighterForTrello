@@ -82,6 +82,8 @@ Options.load('colors', function (colors) {
 					}
 				}
 
+				Dummy.activateTrelloBgButtonIndicator(trelloBg, colorName);
+
 				saveColor(trelloBg, colorName);
 
 			});
@@ -106,12 +108,12 @@ Options.load('colors', function (colors) {
 		}
 
 		let expandHighPriDetails = false;
-		for (let key in colors.current) {
-			if (key != 'default') {
-				let value = colors.current[key];
-				if (value && value != 'default') {
+		for (let trelloBg in colors.current) {
+			if (trelloBg != 'default') {
+				let colorName = colors.current[trelloBg];
+				if (colorName && colorName != 'default') {
+					Dummy.activateTrelloBgButtonIndicator(trelloBg, colorName);
 					expandHighPriDetails = true;
-					break;
 				}
 			}
 		}
@@ -192,12 +194,19 @@ Options.load('options', function (options) {
 		let input, value = options[name];
 		if (typeof value == 'boolean') {
 			input = $id(name);
-			input.checked = value;
+			if (input) {
+				input.checked = value;
+			}
+
 		} else {
 			input = $id(name+value);
-			input.checked = true;
+			if (input) {
+				input.checked = true;
+			}
 		}
-		input.dispatchEvent(new Event('change'));
+		if (input) {
+			input.dispatchEvent(new Event('change'));
+		}
 	}
 
 	var optionInputs = document.querySelectorAll('.options-input');
