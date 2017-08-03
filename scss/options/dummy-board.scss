@@ -1,0 +1,119 @@
+#TodoList {
+	fill: var(--high-pri);
+}
+
+#DummyBoard {
+
+	border-radius: 5px;
+	// transition: background .25s;
+	@include transition(background);
+
+	#DummyBoardSVG {
+		border-radius: 0 0 3px 5px;
+		margin-bottom: -7px;
+	}
+
+	&[data-trello-bg='red']		{ background: $redTrello; }
+	&[data-trello-bg='orange']	{ background: $orangeTrello; }
+	&[data-trello-bg='lime'] 	{ background: $limeTrello; }
+	&[data-trello-bg='green']	{ background: $greenTrello; }
+	&[data-trello-bg='sky']		{ background: $skyTrello; }
+	&[data-trello-bg='blue']	{ background: $blueTrello; }
+	&[data-trello-bg='purple']	{ background: $purpleTrello; }
+	&[data-trello-bg='pink']	{ background: $pinkTrello; }
+	&[data-trello-bg='gray']	{ background: $grayTrello; }
+	&[data-trello-bg='photo']	{
+		background: url('/img/dummyBackgroundPhoto.jpg');
+		background-size: cover;
+	}
+
+	.list {
+		fill: rgb(226, 228, 230);
+	}
+
+	.card {
+		fill: white;
+	}
+
+	.normal-list {
+		.list {
+			fill: rgba(226, 228, 230, .498039);
+		}
+		.card {
+			fill: rgba(255, 255, 255, .2);
+		}
+	}
+
+	.doing-list .list {
+		fill: $red;
+		// transition: fill .25s;
+		@include transition(fill);
+	}
+
+	.done-list {
+		.list {
+			fill: rgba(226, 228, 230, .0666667);
+		}
+		.card {
+			fill: rgba(255, 255, 255, .0588235);
+		}
+	}
+
+	.trello-bg-color-button {
+		cursor: pointer;
+	}
+
+	.trello-bg-color-selected {
+		stroke-width: 3px;
+		fill: #d8d8d8;
+	}
+
+	.trello-bg-color-indicator {
+		fill: none;
+		// transition: fill .25s;
+		@include transition(fill);
+	}
+
+	&[data-trello-bg="blue"] 	[data-trello-bg="blue"] 	{ stroke: $blueTrello; }
+	&[data-trello-bg="orange"] 	[data-trello-bg="orange"] 	{ stroke: $orangeTrello; }
+	&[data-trello-bg="green"] 	[data-trello-bg="green"] 	{ stroke: $greenTrello; }
+	&[data-trello-bg="red"] 	[data-trello-bg="red"] 	{ stroke: $redTrello; }
+	&[data-trello-bg="purple"] 	[data-trello-bg="purple"] 	{ stroke: $purpleTrello; }
+	&[data-trello-bg="pink"] 	[data-trello-bg="pink"] 	{ stroke: $pinkTrello; }
+	&[data-trello-bg="lime"] 	[data-trello-bg="lime"] 	{ stroke: $limeTrello; }
+	&[data-trello-bg="sky"] 	[data-trello-bg="sky"] 	{ stroke: $skyTrello; }
+	&[data-trello-bg="gray"] 	[data-trello-bg="gray"] 	{ stroke: $grayTrello; }
+	&[data-trello-bg="photo"] 	.trello-bg-color-selected[data-trello-bg="photo"] 	{ stroke: #4f6b0e; }
+
+	.trello-bg-color-button[data-trello-bg="blue"] 	{ fill: $blueTrello; }
+	.trello-bg-color-button[data-trello-bg="orange"] 	{ fill: $orangeTrello; }
+	.trello-bg-color-button[data-trello-bg="green"] 	{ fill: $greenTrello; }
+	.trello-bg-color-button[data-trello-bg="red"] 	{ fill: $redTrello; }
+	.trello-bg-color-button[data-trello-bg="purple"] 	{ fill: $purpleTrello; }
+	.trello-bg-color-button[data-trello-bg="pink"] 	{ fill: $pinkTrello; }
+	.trello-bg-color-button[data-trello-bg="lime"] 	{ fill: $limeTrello; }
+	.trello-bg-color-button[data-trello-bg="sky"] 	{ fill: $skyTrello; }
+	.trello-bg-color-button[data-trello-bg="gray"] 	{ fill: $grayTrello; }
+	.trello-bg-color-button[data-trello-bg="photo"] 	{ fill: url(#Beach); }
+
+	#DefaultDummyTile + hr {
+	    display: block;
+	    opacity: .3;
+	    content: ' ';
+	    width: 5px;
+	    height: 5px;
+	    margin: 23px 5px;
+
+	    background: white;
+	    border: 0;
+	    border-radius: 10px;
+	}
+
+}
+
+.color-blind-friendly-mask {
+	display: none;
+	.color-blind-friendly-mode & {
+		display: auto;
+	}
+}
