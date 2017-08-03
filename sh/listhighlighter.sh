@@ -10,7 +10,7 @@ lhcompile () {
 	lhpcss;
 	lhocss;
 
-	php -f $DIR/../php/generateOptions.php;
+	php -f $DIR/../optionsPageHtml/generateOptions.php;
 }
 
 lhcss () {

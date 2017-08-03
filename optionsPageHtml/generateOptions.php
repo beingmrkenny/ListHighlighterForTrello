@@ -12,7 +12,7 @@ require $smartyClass;
 require 'Color.php';
 
 $smarty = new Smarty();
-$smarty->setTemplateDir('./php');
+$smarty->setTemplateDir('./optionsPageHtml');
 $smarty->setCompileDir('/tmp/templates_c');
 $smarty->setCacheDir('/tmp/smarty_cache');
 
@@ -63,7 +63,7 @@ foreach ($colors as $colorName => $color) {
 
 $smarty->assign('defaultTiles', $defaultTiles);
 $smarty->assign('dummyTiles', $dummyTiles);
-$fileContents = $smarty->fetch($lhDir.'/php/options.tpl');
+$fileContents = $smarty->fetch($lhDir.'/optionsPageHtml/options.tpl');
 $file = $lhDir.'/Extension/options/index.html';
 
 file_put_contents($file, $fileContents);
