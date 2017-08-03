@@ -131,7 +131,7 @@
 			</ul>
 
 			<h4>Separator cards</h4>
-			<p>Separator cards turn into horizontal lines, and make a visual gap between cards. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>).</p>
+			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>).</p>
 			<h5>E.g.</h5>
 			<ul>
 				<li>--</li>
