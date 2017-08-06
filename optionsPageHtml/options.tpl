@@ -74,7 +74,7 @@
 
 		<details id="HighPriDetails">
 
-			<summary>More colour options</summary>
+			<summary data-contents="Settings">More</summary>
 
 			<p>
 				On some backgrounds the high priority colour might be jarring (e.g. red lists on a blue background) or it might not stand out (e.g. red lists on a red background). You can use this tool to choose a separate high priority colour for each different background.
@@ -111,32 +111,30 @@
 
 		<details>
 
-			<summary>Header and separator cards</summary>
+			<summary data-contents="Information">More</summary>
 
 			<h4>Header cards</h4>
-			<p>Header cards are styled just like Trello list headers. To make a header card, start your card text with one of these patterns. </p>
+			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one of these patterns:</p>
 			<ul>
-				<li>One or more hash (pound) symbols (<code class="tag">#</code>), as in Markdown (make sure you leave a space after the hash)</li>
-				<li>Single line comment syntax from various programming languages: (<code class="tag">--</code>, <code class="tag">//</code>, or <code class="tag">#</code>)</li>
-				<li>Two or more line symbols: dashes (<code class="tag">--</code>), equals signs, (<code class="tag">==</code>) or underscore characters (<code class="tag">__</code>)</li>
+				<li>Markdown header syntax (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash</li>
+				<li>Single line comment syntax (<kbd class="tag">--</kbd>, <kbd class="tag">//</kbd>)</li>
 			</ul>
 			<h5>E.g.</h5>
 			<ul>
-				<li># Small tasks</li>
-				<li>#### Small tasks</li>
-				<li>-- Ready for QA</li>
-				<li>// Ready for code review</li>
-				<li>== 😃</li>
-				<li>---------- Website items ----------</li>
+				<li><kbd># Small tasks</kbd></li>
+				<li><kbd>#### Small tasks</kbd></li>
+				<li><kbd>-- Ready for QA</kbd></li>
+				<li><kbd>// Ready for code review</kbd></li>
+				<li><kbd>---------- Website items ----------</kbd><br>(Symbols are stripped from the end of the line, so this will appear as &ldquo;Website items&rdquo;)</li>
 			</ul>
 
 			<h4>Separator cards</h4>
-			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<code class="tag">--</code>), equals signs (<code class="tag">==</code>) or underscores (<code class="tag">__</code>).</p>
+			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
 			<h5>E.g.</h5>
 			<ul>
-				<li>--</li>
-				<li>-=-=-=-=-=</li>
-				<li>___________________________________________</li>
+				<li><kbd>--</kbd></li>
+				<li><kbd>-=-=-=-=-=</kbd></li>
+				<li><kbd>_____________________________</kbd></li>
 			</ul>
 
 		</details>

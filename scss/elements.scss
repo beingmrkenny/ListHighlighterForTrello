@@ -63,9 +63,6 @@ details {
 	border-radius: 5px;
 	&[open] summary {
 		margin-bottom: 20px;
-		&::after {
-			display: none;
-		}
 	}
 }
 
@@ -80,10 +77,24 @@ summary {
 		display: inline;
 		margin: 0;
 	}
-	&:after {
-		content: 'Expand';
+	&::after {
+		content: attr(data-contents);
 		float: right;
+		font-style: italic;
 
 		color: #999;
+	}
+}
+
+kbd {
+	font-style: italic;
+	font-family: inherit;
+	&.tag {
+		font-family: monospace;
+		font-style: normal;
+		font-weight: bold;
+		background: #d0f2ff;
+		border-radius: 2px;
+		padding: 0 2px;
 	}
 }

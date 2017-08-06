@@ -154,7 +154,7 @@ class Card {
 
 	getHeaderStripRegex() {
 		// var originalRe = /^[^\p{L}\d\s]{3,}\s*/u;
-		var re = /^(?:[=_/-]{2,}\s*|#+\s+)(.+?)(?:\s*[=_#/-]+)?$/;
+		var re = /^(?:[/-]{2,}\s*|#+\s+)(.+?)(?:\s*[#/-]+)?$/;
 		return re;
 	}
 
@@ -166,7 +166,7 @@ class Card {
 
 	getHeaderRegex () {
 		// var originalRe =  /^[^\p{L}\d\s]{3,}.+$/u;
-		var re = /^(?:[=_/-]{2,}\s*|#+\s+)[^=_#/-]+[=_#/-]*$/;
+		var re = /^(?:[/-]{2,}\s*|#+\s+)[^#/-]+[#/-]*$/;
 		return re;
 	}
 

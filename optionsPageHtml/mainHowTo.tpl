@@ -6,13 +6,13 @@
 
 <p>
     Name your list Todo, Doing, or Done, and styles will be applied automatically. Or name it what you like
-    and tag it <code class="tag">#todo</code>,
-    <code class="tag">#doing</code>, or <code class="tag">#done</code>.
+    and tag it <kbd class="tag">#todo</kbd>,
+    <kbd class="tag">#doing</kbd>, or <kbd class="tag">#done</kbd>.
 </p>
 
 <details>
 
-    <summary>More information &amp; fine tuning</summary>
+    <summary data-contents="Settings, Information">More</summary>
 
     <h4>Priorities</h4>
 
@@ -82,41 +82,48 @@
         </thead>
         <tbody>
             <tr>
-                <td><code class="tag">#high</code>, <code class="tag">#today</code>, <code class="tag">#doing</code></td>
+                <td><kbd class="tag">#high</kbd>, <kbd class="tag">#today</kbd>, <kbd class="tag">#doing</kbd></td>
                 <td><span class="high">high</span></td>
                 <td>low priority applied to all untagged lists</td>
             </tr>
             <tr>
-                <td><code class="tag">#normal</code>, <code class="tag">#todo</code>, <code class="tag">#to do</code></td>
+                <td><kbd class="tag">#normal</kbd>, <kbd class="tag">#todo</kbd>, <kbd class="tag">#to do</kbd></td>
                 <td><span class="normal">normal</span></td>
                 <td>low priority applied to all untagged lists</td>
             </tr>
             <tr>
-                <td><code class="tag">#low</code></td>
+                <td><kbd class="tag">#low</kbd></td>
                 <td><span class="low">low</span></td>
                 <td><i>none</i></td>
             </tr>
             <tr>
-                <td><code class="tag">#ignore</code></td>
+                <td><kbd class="tag">#ignore</kbd></td>
                 <td><span class="ignore">ignore</span></td>
                 <td><i>none</i></td>
             </tr>
             <tr>
-                <td><code class="tag">#trash</code>, <code class="tag">#done</code></td>
+                <td><kbd class="tag">#trash</kbd>, <kbd class="tag">#done</kbd></td>
                 <td><span class="done">ignore</span></td>
                 <td><del>strikethrough</del> applied to cards</td>
             </tr>
         </tbody>
     </table>
 
-    <p><strong>Examples</strong>: &ldquo;Remaining tasks #todo&rdquo;, &ldquo;Urgent tasks #high&rdquo;, &ldquo;Backlog #low&rdquo;, &ldquo;Abandoned tasks&nbsp;#ignore&rdquo;, &ldquo;Completed tasks #done&rdquo;</p>
+    <h5>E.g.</h5>
+    <ul>
+        <li><kbd>Remaining tasks #todo</kbd></li>
+        <li><kbd>Urgent tasks #high</kbd></li>
+        <li><kbd>Backlog #low</kbd></li>
+        <li><kbd>Abandoned tasks #ignore</kbd></li>
+        <li><kbd>Completed tasks #done</kbd></li>
+    </ul>
 
     <h4>Notes</h4>
 
     <ul>
         <li>Hashtags override titles</li>
-        <li>Hashtags only appear when you are editing the title, although you can change this in fine tuning, below</li>
-        <li>The first tag is applied and others are ignored. E.g. &ldquo;Abandoned #ignore #high&rdquo; will be highlighted as an ignore list, and the title text will appear as &ldquo;Abandoned #high&rdquo;</li>
+        <li>Hashtags only appear when you are editing the title, although you can change this in fine tuning below</li>
+        <li>Only the first tag is applied. E.g. &ldquo;<kbd>Abandoned #ignore #high</kbd>&rdquo; will be highlighted as an ignore list, and the title text will appear as &ldquo;Abandoned #high&rdquo;</li>
         <li>Tags will be visible on other platforms, e.g. mobile apps and browsers without this extension installed</li>
     </ul>
 

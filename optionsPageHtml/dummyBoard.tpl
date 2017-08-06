@@ -33,13 +33,13 @@
 				<stop offset="100%" stop-color="transparent"/>
 			</linearGradient>
 			<linearGradient id="ColorBlindFriendlyMode" x1="0" y1="0" x2="0" y2="12%" spreadMethod="repeat" gradientTransform="rotate(-37)">
-				<stop offset="25%" stop-color= "rgba(255,255,255,.5)" />
-				<stop offset="25%" stop-color= "transparent" />
-				<stop offset="50%" stop-color= "transparent" />
-				<stop offset="50%" stop-color= "rgba(255,255,255,.5)" />
-				<stop offset="75%" stop-color= "rgba(255,255,255,.5)" />
-				<stop offset="75%" stop-color= "transparent" />
-				<stop offset="100%" stop-color= "transparent" />
+				<stop offset="25%" stop-color="rgba(255,255,255,.5)" />
+				<stop offset="25%" stop-color="transparent" />
+				<stop offset="50%" stop-color="transparent" />
+				<stop offset="50%" stop-color="rgba(255,255,255,.5)" />
+				<stop offset="75%" stop-color="rgba(255,255,255,.5)" />
+				<stop offset="75%" stop-color="transparent" />
+				<stop offset="100%" stop-color="transparent" />
 			</linearGradient>
 			<pattern id="Beach" patternUnits="objectBoundingBox" width="1" height="1">
 				<image xlink:href="/img/thumbnail.jpg" width="85" height="60" />
