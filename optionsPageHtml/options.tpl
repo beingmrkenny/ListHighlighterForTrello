@@ -114,7 +114,7 @@
 			<summary>Header and separator cards</summary>
 
 			<h4>Header cards</h4>
-			<p>Header cards look like Trello list headers and help break up long lists. To make a header card, start your card text with one of these patterns. </p>
+			<p>Header cards are styled just like Trello list headers. To make a header card, start your card text with one of these patterns. </p>
 			<ul>
 				<li>One or more hash (pound) symbols (<code class="tag">#</code>), as in Markdown (make sure you leave a space after the hash)</li>
 				<li>Single line comment syntax from various programming languages: (<code class="tag">--</code>, <code class="tag">//</code>, or <code class="tag">#</code>)</li>

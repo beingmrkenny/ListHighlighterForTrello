@@ -68,7 +68,9 @@ class Dummy {
 				default        : hex = DoingColors.getHexFromName(color); break;
 			}
 		}
-		indicator.style.fill = hex || 'none';
+		if (indicator) {
+			indicator.style.fill = hex || 'none';
+		}
 	}
 
 }
