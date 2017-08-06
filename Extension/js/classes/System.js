@@ -64,7 +64,7 @@ class System {
 				let oldStatus = mut.oldValue.includes('body-color-blind-mode-enabled'),
 					newStatus = document.body.classList.contains('body-color-blind-mode-enabled');
 				if (oldStatus !== newStatus) {
-					detectAndSaveColorBlindFriendlyMode(newStatus);
+					System.detectAndSaveColorBlindFriendlyMode(newStatus);
 				}
 
 				let oldPhotoBg = mut.oldValue.includes('body-custom-board-background'),
