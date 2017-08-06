@@ -51,6 +51,8 @@ class System {
 	// body
 	static handleBodyAttributeChanges (mutationRecords) {
 
+		console.log('body attr change');
+
 		if (typeof mutationRecords !== 'undefined') {
 
 			let mut = mutationRecords[0];
@@ -92,6 +94,7 @@ class System {
 
 	// title
 	static processPageOnTitleChange () {
+		console.log('process page on title change');
 		watch ('board');
 		watch ('listTitle');
 		DoingColors.highPriColorStyles();
@@ -101,6 +104,8 @@ class System {
 
 	// board
 	static checkForNewLists (mutationRecords) {
+
+		console.log('check for new lists');
 
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			var newList = mutationRecords[0].addedNodes[0];
@@ -115,6 +120,7 @@ class System {
 
 	// list
 	static checkForNewCards (mutationRecords) {
+		console.log('check for new cards');
 	    if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
 	        var newCard = mutationRecords[0].addedNodes[0];
 	        if (newCard && newCard.classList.contains('list-card')) {

@@ -20,6 +20,8 @@ function getWatcher(key, targets) {
 			options : {childList: true, subtree: false}
 		},
 
+		// FIXME This is called 4 times when dragging
+		// mutation observers are cumulative
 		list : {
 			targets : targets || document.querySelectorAll('.list-cards'),
 			observer: new MutationObserver(System.checkForNewCards),
@@ -32,6 +34,7 @@ function getWatcher(key, targets) {
 			options : {childList: true, subtree: false}
 		},
 
+		// FIXME This is called 25 times on updating a title
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
 			observer : new MutationObserver(Card.processListCardTitle),
