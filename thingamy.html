@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Things</title>
+        <style media="screen">
+
+            html, body {
+                height: 100%;
+            }
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .highlighted {
+                --currentBg: #ec2f2f;
+                --currentText: white;
+                --nextBg: #ffab4a;
+                position: relative;
+
+            }
+
+            .highlighted::before, .highlighted::after {
+                z-index: -1;
+                content: ' ';
+                position: absolute;
+                top : 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+
+                padding: 5px 15px;
+                border-radius: 3px;
+            }
+
+            .highlighted .text {
+                color: var(--currentText);
+                transition: color .1s;
+            }
+
+            .highlighted::before {
+                background: var(--currentBg);
+            }
+
+            .highlighted::after {
+                background: var(--nextBg);
+                -webkit-clip-path: circle(0);
+                -webkit-animation: scale 10s cubic-bezier(0.755, 0.05, 0.855, 0.06) forwards infinite;
+            }
+
+            @keyframes scale {
+                from {
+                    -webkit-clip-path: circle(0);
+                }
+                95% {
+                    -webkit-clip-path: circle(0);
+                }
+                to {
+                    -webkit-clip-path: circle(400px);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <span class="highlighted">
+            <span class="text">This is a thing of a thing</span>
+        </span>
+
+        <script type="text/javascript">
+
+            var next = 0;
+
+            var culuhs = [
+                ['#ec2f2f', '#ffffff'],
+                ['#ffab4a', '#000000'],
+                ['#f2d600', '#000000'],
+                ['#61bd4f', '#ffffff'],
+
+                ['#0ed4f3', '#000000'],
+                ['#00a2ff', '#000000'],
+                ['#30458a', '#ffffff'],
+                ['#ba55e2', '#000000'],
+
+                ['#ff80ce', '#000000'],
+                ['#000000', '#ffffff']
+            ];
+
+            var len = culuhs.length;
+
+            document.querySelector('.highlighted').addEventListener('animationiteration', function () {
+
+                next = (next+1 == len) ? 0 : ++next;
+                var nextNext = (next == len-1) ? 0 : next+1,
+                    currentCuluhs = culuhs[next],
+                    nextCuluhs = culuhs[nextNext];
+
+                this.style.setProperty('--currentBg', currentCuluhs[0]);
+                this.style.setProperty('--currentText', currentCuluhs[1]);
+                this.style.setProperty('--nextBg', nextCuluhs[0]);
+
+            }, false);
+        </script>
+    </body>
+</html>
