@@ -149,12 +149,9 @@ class Card {
 		}
 	}
 
-
-	// CHARACTER LIST is '=_#/-';
-
 	getHeaderStripRegex() {
 		// var originalRe = /^[^\p{L}\d\s]{3,}\s*/u;
-		var re = /^(?:[/-]{2,}\s*|#+\s+)(.+?)(?:\s*[#/-]+)?$/;
+		var re = /^(?:[/-]{2,}|#+\s)(.+?)(?:\s*[#/-]+)?$/;
 		return re;
 	}
 
@@ -166,7 +163,7 @@ class Card {
 
 	getHeaderRegex () {
 		// var originalRe =  /^[^\p{L}\d\s]{3,}.+$/u;
-		var re = /^(?:[/-]{2,}\s*|#+\s+)[^#/-]+[#/-]*$/;
+		var re = /^(?:[/-]{2,}|#+\s)[^#/-].*/;
 		return re;
 	}
 
