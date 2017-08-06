@@ -18,26 +18,31 @@
                 --currentBg: #ec2f2f;
                 --currentText: white;
                 --nextBg: #ffab4a;
+                --nextText: black;
+                --animationInterval: 60s;
                 position: relative;
-
+                color: var(--currentText);
             }
 
             .highlighted::before, .highlighted::after {
                 z-index: -1;
                 content: ' ';
+                border-radius: 3px;
                 position: absolute;
                 top : 0;
                 left: 0;
+            }
+
+            .highlighted::before, .highlighted::after, .highlighted .text {
                 height: 100%;
                 width: 100%;
-
-                padding: 5px 15px;
-                border-radius: 3px;
+                box-sizing: border-box;
             }
 
             .highlighted .text {
-                color: var(--currentText);
-                transition: color .1s;
+                animation: culuhs var(--animationInterval) forwards infinite;
+                display: inline-block;
+                padding: 5px 15px;
             }
 
             .highlighted::before {
@@ -47,18 +52,38 @@
             .highlighted::after {
                 background: var(--nextBg);
                 -webkit-clip-path: circle(0);
-                -webkit-animation: scale 10s cubic-bezier(0.755, 0.05, 0.855, 0.06) forwards infinite;
+                clip-path: circle(0);
+                animation: scale var(--animationInterval) cubic-bezier(0.86, 0, 0.07, 1) forwards infinite;
+            }
+
+            @keyframes culuhs {
+                from {
+                    color: var(--currentText);
+                }
+                96% {
+                    color: var(--currentText);
+                }
+                97% {
+                    color: var(--nextText);
+                }
+                to {
+                    color: var(--nextText);
+                }
             }
 
             @keyframes scale {
                 from {
                     -webkit-clip-path: circle(0);
+                    clip-path: circle(0);
                 }
                 95% {
                     -webkit-clip-path: circle(0);
+                    clip-path: circle(0);
                 }
                 to {
+                    color: var(--currentText);
                     -webkit-clip-path: circle(400px);
+                    clip-path: circle(400px);
                 }
             }
 
@@ -71,37 +96,50 @@
 
         <script type="text/javascript">
 
-            var next = 0;
+            var next = 0, nextNext;
 
+            // var culuhs = [
+            //     ['#ec2f2f', '#ffffff'],
+            //     ['#ffab4a', '#000000'],
+            //     ['#f2d600', '#ffffff'],
+            //     ['#61bd4f', '#000'],
+            //     ['#0ed4f3', '#ffffff'],
+            //     ['#00a2ff', '#000'],
+            //     ['#30458a', '#ffffff'],
+            //     ['#ba55e2', '#000'],
+            //     ['#ff80ce', '#ffffff'],
+            //     ['#000000', '#000']
+            // ];
             var culuhs = [
-                ['#ec2f2f', '#ffffff'],
-                ['#ffab4a', '#000000'],
-                ['#f2d600', '#000000'],
-                ['#61bd4f', '#ffffff'],
-
-                ['#0ed4f3', '#000000'],
-                ['#00a2ff', '#000000'],
-                ['#30458a', '#ffffff'],
-                ['#ba55e2', '#000000'],
-
-                ['#ff80ce', '#000000'],
-                ['#000000', '#ffffff']
+                ['#ec2f2f', '#fff'],
+                ['#ffab4a', '#000'],
+                ['#f2d600', '#000'],
+                ['#61bd4f', '#fff'],
+                ['#0ed4f3', '#000'],
+                ['#00a2ff', '#fff'],
+                ['#30458a', '#fff'],
+                ['#ba55e2', '#fff'],
+                ['#ff80ce', '#000'],
+                ['#000000', '#fff']
             ];
 
             var len = culuhs.length;
 
-            document.querySelector('.highlighted').addEventListener('animationiteration', function () {
+            document.querySelector('.highlighted').addEventListener('animationiteration', function (event) {
 
-                next = (next+1 == len) ? 0 : ++next;
-                var nextNext = (next == len-1) ? 0 : next+1,
-                    currentCuluhs = culuhs[next],
-                    nextCuluhs = culuhs[nextNext];
+                if (event.target == this) {
+                    next = (next+1 == len) ? 0 : ++next;
+                    nextNext = (next == len-1) ? 0 : next+1;
+                    var currentCuluhs = culuhs[next],
+                        nextCuluhs = culuhs[nextNext];
 
-                this.style.setProperty('--currentBg', currentCuluhs[0]);
-                this.style.setProperty('--currentText', currentCuluhs[1]);
-                this.style.setProperty('--nextBg', nextCuluhs[0]);
+                    this.style.setProperty('--currentBg', currentCuluhs[0]);
+                    this.style.setProperty('--currentText', currentCuluhs[1]);
+                    this.style.setProperty('--nextBg', nextCuluhs[0]);
+                    this.style.setProperty('--nextText', nextCuluhs[1]);
+                }
 
-            }, false);
+            }, true);
         </script>
     </body>
 </html>
