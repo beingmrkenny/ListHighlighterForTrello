@@ -1,4 +1,4 @@
-<p>
+<p class="examples">
     <span class="normal"><b>To do</b> lists stay as they are.</span>
     <span class="high"><b>Doing</b> lists are highlighted.</span>
     <span class="done"><b>Done</b> lists are greyed out.</span>
@@ -14,32 +14,11 @@
 
     <summary data-contents="Settings, Information">More</summary>
 
-    <h4>Priorities</h4>
+	<h2>Fine tuning</h2>
 
-    <p>
-        List Highlighter uses four different list styles, based on priority:
-    </p>
+	{include file="./highlightingFineTuning.tpl"}
 
-    <dl>
-        <div>
-            <dt class="high">High</dt>
-            <dd>lists have a highlighted background</dd>
-        </div>
-        <div>
-            <dt class="normal">Normal</dt>
-            <dd>lists have the default appearance (no change)</dd>
-        </div>
-        <div>
-            <dt class="low">Low</dt>
-            <dd>lists are dimmed a little bit</dd>
-        </div>
-        <div>
-            <dt class="ignore">Ignore</dt>
-            <dd>lists are faded and grayed out</dd>
-        </div>
-    </dl>
-
-    <h4>Titles</h4>
+    <h2>Titles</h2>
 
     <p>The following titles can be used. Titles are not case sensitive.</p>
 
@@ -70,7 +49,7 @@
         </tbody>
     </table>
 
-    <h4>Hashtags</h4>
+    <h2>Hashtags</h2>
 
     <table>
         <thead>
@@ -108,27 +87,5 @@
             </tr>
         </tbody>
     </table>
-
-    <h5>E.g.</h5>
-    <ul>
-        <li><kbd>Remaining tasks #todo</kbd></li>
-        <li><kbd>Urgent tasks #high</kbd></li>
-        <li><kbd>Backlog #low</kbd></li>
-        <li><kbd>Abandoned tasks #ignore</kbd></li>
-        <li><kbd>Completed tasks #done</kbd></li>
-    </ul>
-
-    <h4>Notes</h4>
-
-    <ul>
-        <li>Hashtags override titles</li>
-        <li>Hashtags only appear when you are editing the title, although you can change this in fine tuning below</li>
-        <li>Only the first tag is applied. E.g. &ldquo;<kbd>Abandoned #ignore #high</kbd>&rdquo; will be highlighted as an ignore list, and the title text will appear as &ldquo;Abandoned #high&rdquo;</li>
-        <li>Tags will be visible on other platforms, e.g. mobile apps and browsers without this extension installed</li>
-    </ul>
-
-    <h4>Fine tuning</h4>
-
-    {include file="./highlightingFineTuning.tpl"}
 
 </details>

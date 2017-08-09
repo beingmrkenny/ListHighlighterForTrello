@@ -52,24 +52,11 @@ body.preload * {
 		margin-right: 14px;
 	}
 
-	dl div {
-	    margin-bottom: 10px;
-	    margin-left: 20px;
-	}
+}
 
-	dt {
-	    font-weight: bold;
-	}
-
-	dt,
-	dd {
-	    display: inline;
-	}
-
-	dd {
-	    margin-left: 0;
-	}
-
+.examples {
+	display: flex;
+	justify-content: space-between;
 }
 
 footer {
@@ -86,10 +73,6 @@ footer {
 .disabled,
 .disabled small {
 	color: rgb(187, 187, 187);
-}
-
-[for="HighlightTitles"] {
-	margin-top: 20px;
 }
 
 // STYILNG
@@ -123,7 +106,7 @@ footer {
 .ignore,
 .done {
     opacity: .5;
-    background: transparentize($listBG, .93);
+    background: transparentize($listBG, .7);
     color: $ignoreTextColor;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
 }

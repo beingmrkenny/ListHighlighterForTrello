@@ -46,14 +46,10 @@ input[type="text"] {
 label {
 	user-select: none;
 	cursor: pointer;
-	display: table; // HACK make them block without 100% width
+	display: table; // HACK to make them block without 100% width
 
 	&.disabled {
 		cursor: text;
-	}
-
-	&.sub-setting {
-		margin: 10px 21px 0;
 	}
 
 	small {
@@ -61,4 +57,15 @@ label {
 		display: block;
 		margin-left: 24px;
 	}
+}
+
+.fine-tuning-label {
+	margin-left: 10px;
+	&.sub-setting {
+		margin: 10px 40px 0;
+	}
+}
+
+[for="HighlightTitles"] {
+	margin-top: 20px;
 }
