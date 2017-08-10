@@ -10,13 +10,19 @@ function getWatcher(key, targets) {
 
 		title : {
 			targets : document.querySelector('title'),
-			observer : new MutationObserver(System.processPageOnTitleChange),
+			observer : new MutationObserver(function () {
+				console.log('process page on title change');
+				System.processPageOnTitleChange();
+			}),
 			options : {characterData: true, childList: true, subtree: false}
 		},
 
 		board : {
 			targets : document.getElementById('board'),
-			observer: new MutationObserver(System.checkForNewLists),
+			observer: new MutationObserver(function () {
+				console.log('check for new lists');
+				System.checkForNewLists();
+			}),
 			options : {childList: true, subtree: false}
 		},
 
@@ -24,20 +30,29 @@ function getWatcher(key, targets) {
 		// mutation observers are cumulative
 		list : {
 			targets : targets || document.querySelectorAll('.list-cards'),
-			observer: new MutationObserver(System.checkForNewCards),
+			observer: new MutationObserver(function () {
+				console.log('check for new cards');
+				System.checkForNewCards();
+			}),
 			options : {childList: true, subtree: false}
 		},
 
 		listTitle : {
 			targets : document.querySelectorAll('.list-header h2'),
-			observer : new MutationObserver(ListHighlighter.highlight),
+			observer : new MutationObserver(function () {
+				console.log('listhighlighter highlight from list header h2 change');
+				ListHighlighter.highlight();
+			}),
 			options : {childList: true, subtree: false}
 		},
 
 		// FIXME This is called 25 times on updating a title
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
-			observer : new MutationObserver(Card.processListCardTitle),
+			observer : new MutationObserver(function () {
+				console.log('card process list card title from list card title change');
+				Card.processListCardTitle();
+			}),
 			options : {characterData: true, childList: true, subtree: false}
 		}
 
