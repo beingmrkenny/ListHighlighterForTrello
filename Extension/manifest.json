@@ -34,7 +34,7 @@
 		{
 			"all_frames" : true,
 			"js": [
-				"js/third/autosize.min.js",
+				"js/third/autosize.js",
 				"js/classes/System.js",
 				"js/classes/Color.js",
 				"js/classes/ListHighlighter.js",
