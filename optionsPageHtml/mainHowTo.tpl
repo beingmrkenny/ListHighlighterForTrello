@@ -12,7 +12,7 @@
 
 <details>
 
-    <summary data-contents="Settings, Information">More</summary>
+    <summary data-contents="Fine tuning, Information">More</summary>
 
 	<h2>Fine tuning</h2>
 
@@ -20,7 +20,7 @@
 
     <h2>Titles</h2>
 
-    <p>The following titles can be used. Titles are not case sensitive.</p>
+    <p>The following titles will be recognised. Titles are not case sensitive.</p>
 
     <table>
         <thead>

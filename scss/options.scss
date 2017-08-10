@@ -57,6 +57,14 @@ body.preload * {
 .examples {
 	display: flex;
 	justify-content: space-between;
+	.high,
+	.normal,
+	.done,
+	.ignore,
+	.low {
+	    padding: 5px 15px;
+	    border-radius: 3px;
+	}
 }
 
 footer {
