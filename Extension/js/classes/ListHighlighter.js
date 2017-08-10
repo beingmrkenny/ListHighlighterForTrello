@@ -162,8 +162,6 @@ class ListHighlighter {
 
 	static highlight(override) {
 
-		console.log('listhighlighter highlight');
-
 		if (document.body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
 			return;
 		}

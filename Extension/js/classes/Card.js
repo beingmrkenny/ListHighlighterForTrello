@@ -10,7 +10,6 @@ class Card {
 	}
 
 	static processListCardTitle () {
-		console.log('process list card title');
 		if (arguments[0] && arguments[0][0] && arguments[0][0] instanceof MutationRecord) {
 			let card = new Card(arguments[0][0].target.closest('.list-card'));
 			card.process();
