@@ -5,6 +5,38 @@ lhwatch () {
 	fswatch -0xvo "$listHighlighterDir" -e css/* | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
 }
 
+lhrelease () {
+
+	# Prepare the stuff for release
+	lhcompile;
+	find "$DIR/../Extension/" -type f -name .DS_Store -exec rm {} \;
+
+	# Copy extension to temp and duplicate it
+	if [[ -d /tmp/ListHighlighter ]];        then rm -r /tmp/ListHighlighter;        fi
+	if [[ -d /tmp/ListHighlighterFirefox ]]; then rm -r /tmp/ListHighlighterFirefox; fi
+	cp -r $DIR/../Extension /tmp/ListHighlighter;
+	cp -r /tmp/ListHighlighter /tmp/ListHighlighterFirefox;
+	rm /tmp/ListHighlighter/firefoxApplications.json;
+
+	# Process the manifest for firefox
+	php -f $DIR/processManifestForFirefox.php;
+	rm /tmp/ListHighlighterFirefox/firefoxApplications.json;
+
+	# Make the zips
+	if [[ -f ~/Desktop/ListHighlighter.zip ]];        then rm ~/Desktop/ListHighlighter.zip;        fi
+	if [[ -f ~/Desktop/ListHighlighterFirefox.zip ]]; then rm ~/Desktop/ListHighlighterFirefox.zip; fi
+	cd /tmp/ListHighlighter/
+	zip -r ~/Desktop/ListHighlighter.zip ./
+	cd /tmp/ListHighlighterFirefox/
+	zip -r ~/Desktop/ListHighlighterFirefox.zip ./
+
+	# Check the zips for dirty horrible hidden files
+	unzip -vl ~/Desktop/ListHighlighter.zip
+	unzip -vl ~/Desktop/ListHighlighterFirefox.zip
+	# zip -d ~/Desktop/ListHighlighter.zip __MACOSX/\*
+	# zip -d ~/Desktop/ListHighlighterFirefox.zip __MACOSX/\*
+}
+
 lhcompile () {
 	lhcss;
 	lhpcss;
