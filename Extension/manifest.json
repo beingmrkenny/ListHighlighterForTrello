@@ -65,12 +65,6 @@
 		"32"  : "img/192.png",
 		"48"  : "img/192.png",
 		"64"  : "img/192.png"
-	},
-
-	"applications": {
-		"gecko": {
-			"id": "list.highlighter@beingmrkenny.co.uk"
-		}
 	}
 
 }
