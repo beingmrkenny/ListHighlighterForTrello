@@ -19,7 +19,7 @@ lhrelease () {
 	rm /tmp/ListHighlighter/firefoxApplications.json;
 
 	# Process the manifest for firefox
-	php -f $DIR/processManifestForFirefox.php;
+	php -f $DIR/processManifest.php;
 	rm /tmp/ListHighlighterFirefox/firefoxApplications.json;
 
 	# Make the zips
