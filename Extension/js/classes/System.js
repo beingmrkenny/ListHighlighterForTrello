@@ -80,7 +80,10 @@ class System {
 	}
 
 	static toggleToolbarButton() {
-		chrome.runtime.sendMessage({toggledOff: document.body.classList.contains('bmko_list-highlighter-toggled-off')}, function() {});
+		var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
+		if (typeof toggle == 'boolean') {
+			chrome.runtime.sendMessage({toggledOff: toggle}, function() {});
+		}
 	}
 
 	static detectAndSaveColorBlindFriendlyMode (passedMode) {

@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td><strong>Done</strong> or <strong>Trash</strong></td>
-                <td><span class="done">ignore</span></td>
+                <td><span class="done">trash</span></td>
                 <td><del>strikethrough</del> applied to cards on the list</td>
             </tr>
         </tbody>
@@ -82,7 +82,7 @@
             </tr>
             <tr>
                 <td><kbd class="tag">#trash</kbd>, <kbd class="tag">#done</kbd></td>
-                <td><span class="done">ignore</span></td>
+                <td><span class="done">trash</span></td>
                 <td><del>strikethrough</del> applied to cards</td>
             </tr>
         </tbody>
