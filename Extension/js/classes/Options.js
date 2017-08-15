@@ -129,35 +129,4 @@ class Options {
 		}
 	}
 
-	static clear () {
-		chrome.storage.sync.clear();
-	}
-
-	static dump (asString = false) {
-		chrome.storage.sync.get(null, function (existingSettings) {
-			var dump = (asString) ? JSON.stringify(existingSettings) : existingSettings
-			console.log(dump);
-		});
-	}
-
-	static createRemoveObject (obj, path) {
-	    var props = path.split("."), prop, i, x = props.length - 1;
-	    for(i = 0; i < x; i++) {
-	        prop = props[i];
-	        if (typeof obj[prop] == 'undefined') {
-	            obj[prop] = {};
-	        }
-	        obj = obj[prop];
-	    }
-	    delete obj[props[i]];
-	}
-
-	static remove (path) {
-		Options.load(null, function (allOptions) {
-			Options.createRemoveObject(allOptions, path);
-			chrome.storage.sync.set(saveObject);
-		});
-	}
-
-
 }

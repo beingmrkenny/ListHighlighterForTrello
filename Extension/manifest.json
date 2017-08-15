@@ -34,6 +34,7 @@
 		{
 			"all_frames" : true,
 			"js": [
+				"js/debug.js",
 				"js/third/autosize.js",
 				"js/classes/System.js",
 				"js/classes/Color.js",

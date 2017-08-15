@@ -46,7 +46,7 @@ class System {
 		}
 	}
 
-	// TODO Does it need a destup method to get all observers and get rid of them
+	// QUESTION Does it need a desetup method to get all observers and get rid of them
 
 	// body
 	static handleBodyAttributeChanges (mutationRecords) {
@@ -60,7 +60,6 @@ class System {
 				DoingColors.highPriColorStyles()
 
 			} else if (mut.attributeName == 'class') {
-
 
 				let oldStatus = mut.oldValue.includes('body-color-blind-mode-enabled'),
 					newStatus = document.body.classList.contains('body-color-blind-mode-enabled');
@@ -119,10 +118,13 @@ class System {
 	    if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
 	        var newCard = mutationRecords[0].addedNodes[0];
 	        if (newCard && newCard.classList.contains('list-card')) {
+				// for new cards and dragged cards
 	            Card.processCards(newCard);
 	            watch ('listCardTitle', newCard.querySelector('.list-card-title'));
 	        } else {
-	            Card.processCards(mutationRecords[0].target.querySelectorAll('.list-card'));
+				// for dragging between lists
+				let card = mutationRecords[0].target.querySelectorAll('.list-card');
+	            Card.processCards(card);
 	        }
 	    }
 	}
