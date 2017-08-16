@@ -1,23 +1,23 @@
 class System {
 
-	static setup () {
+	static setup() {
 
-		Options.resetIfEmpty(function () {
+		Options.resetIfEmpty(function() {
 
-			Options.load('options', function (options) {
+			Options.load('options', function(options) {
 
 				System.saveOptionsAsGlobal(options);
 				System.headerCardsSetup();
 				System.detectAndSaveColorBlindFriendlyMode();
 
-				Options.load('colors', function (colors) {
+				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
 					keepTrying(ListHighlighter.highlight, 5, 700);
-					watch ('title');
-					watch ('board');
-					watch ('listTitle');
-					watch ('body');
+					watch('title');
+					watch('board');
+					watch('listTitle');
+					watch('body');
 					System.toggleToolbarButton();
 				});
 
@@ -33,15 +33,15 @@ class System {
 		}
 	}
 
-	static headerCardsSetup () {
+	static headerCardsSetup() {
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
-			keepCounting (
-					function () {
-					watch ('listCardTitle');
-					watch ('list');
+			keepCounting(
+				function() {
+					watch('listCardTitle');
+					watch('list');
 					Card.processCards(document.querySelectorAll('.list-card'));
 				},
-					'.list-card', 5, 250
+				'.list-card', 5, 250
 			);
 		}
 	}
@@ -49,7 +49,7 @@ class System {
 	// QUESTION Does it need a desetup method to get all observers and get rid of them
 
 	// body
-	static handleBodyAttributeChanges (mutationRecords) {
+	static handleBodyAttributeChanges(mutationRecords) {
 
 		if (typeof mutationRecords !== 'undefined') {
 
@@ -79,16 +79,18 @@ class System {
 
 	}
 
-	static toggleToolbarButton () {
+	static toggleToolbarButton() {
 		if (document && document.body) {
 			var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
 			if (typeof toggle == 'boolean') {
-				chrome.runtime.sendMessage({toggledOff: toggle}, function() {});
+				chrome.runtime.sendMessage({
+					toggledOff: toggle
+				}, function() {});
 			}
 		}
 	}
 
-	static detectAndSaveColorBlindFriendlyMode (passedMode) {
+	static detectAndSaveColorBlindFriendlyMode(passedMode) {
 		Options.save(
 			'colorBlindFriendlyMode',
 			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
@@ -96,43 +98,43 @@ class System {
 	}
 
 	// title
-	static processPageOnTitleChange () {
-		watch ('board');
-		watch ('listTitle');
+	static processPageOnTitleChange() {
+		watch('board');
+		watch('listTitle');
 		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
 	}
 
 	// board
-	static checkForNewLists (mutationRecords) {
+	static checkForNewLists(mutationRecords) {
 
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			var newList = mutationRecords[0].addedNodes[0];
-				if (newList && newList.classList.contains('list-wrapper')) {
-						watch ('list', newList.querySelector('.list-cards'));
-				}
+			if (newList && newList.classList.contains('list-wrapper')) {
+				watch('list', newList.querySelector('.list-cards'));
+			}
 		}
 
 		// FIXME commenting this seems to have no effect
 		// ListHighlighter.highlight();
-		watch ('listTitle');
+		watch('listTitle');
 	}
 
 	// list
-	static checkForNewCards (mutationRecords) {
-			if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
-					var newCard = mutationRecords[0].addedNodes[0];
-					if (newCard && newCard.classList.contains('list-card')) {
+	static checkForNewCards(mutationRecords) {
+		if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
+			var newCard = mutationRecords[0].addedNodes[0];
+			if (newCard && newCard.classList.contains('list-card')) {
 				// for new cards and dragged cards
-							Card.processCards(newCard);
-							watch ('listCardTitle', newCard.querySelector('.list-card-title'));
-					} else {
+				Card.processCards(newCard);
+				watch('listCardTitle', newCard.querySelector('.list-card-title'));
+			} else {
 				// for dragging between lists
 				let card = mutationRecords[0].target.querySelectorAll('.list-card');
-							Card.processCards(card);
-					}
+				Card.processCards(card);
 			}
+		}
 	}
 
 }
