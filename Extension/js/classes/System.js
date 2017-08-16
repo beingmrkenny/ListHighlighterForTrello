@@ -6,6 +6,7 @@ class System {
 				System.saveOptionsAsGlobal(options);
 				System.detectAndSaveColorBlindFriendlyMode();
 				System.headerCardsSetup();
+				System.cardLabelText();
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
@@ -45,6 +46,47 @@ class System {
 			}, 0);
 
 		}
+	}
+
+	static cardLabelText () {
+
+		var labelTextDisplayed = document.body.classList.contains('body-card-label-text', 'body-card-label-text-on'),
+			firstLabel = document.querySelector('.card-label.mod-card-front');
+
+		// FIXME This setTimeout is commented but WHO CAN KNOW it might be needed, check and remove as nec
+		// setTimeout(function () {
+
+			if (GLOBAL.ShowCardLabelText && !$id('CardLabelTextStyle') && firstLabel) {
+
+				let transform = '';
+				if (GLOBAL.CardLabelsUppercase) {
+					transform =
+						`.body-card-label-text .card-label.mod-card-front,
+						.body-card-label-text-on .card-label.mod-card-front,
+						.body-card-label-text .card-label.mod-card-detail,
+						.body-card-label-text-on .card-label.mod-card-detail {
+							text-transform: uppercase;
+						}`;
+				}
+
+				document.head.appendChild(createElement(
+					`<style type="text/css" id="CardLabelTextStyle">
+						.body-card-label-text .card-label.mod-card-front,
+						.body-card-label-text-on .card-label.mod-card-front {
+							padding: 0 3px;
+						}
+						${transform}
+					</style>`
+				));
+
+			}
+
+			if (GLOBAL.ShowCardLabelText !== labelTextDisplayed && firstLabel) {
+				firstLabel.click();
+			}
+
+		// }, 0);
+
 	}
 
 	// QUESTION Does it need a desetup method to get all observers and get rid of them

@@ -31,15 +31,19 @@ class Options {
 				},
 			},
 			options : {
-				EnableWIP                 : false,
-				EnableHeaderCards         : false,
-				EnableSeparatorCards      : false,
-				HideHashtags              : true,
-				HighlightTags             : true,
-				HighlightTitles           : true,
-				MatchTitleSubstrings      : false,
-				HeaderCardsExtraSpace     : false,
-				SeparatorCardsVisibleLine : false
+				EnableWIP                   : false,
+				EnableHeaderCards           : false,
+				EnableSeparatorCards        : false,
+				HideHashtags                : true,
+				HighlightTags               : true,
+				HighlightTitles             : true,
+				MatchTitleSubstrings        : false,
+				HeaderCardsExtraSpace       : false,
+				SeparatorCardsVisibleLine   : false,
+				ShowCardLabelText			: false,
+				HideCompletedItems			: false,
+				HideActivity			    : false,
+				CardLabelsUppercase			: false
 			},
 			colorBlindFriendlyMode : null
 		};

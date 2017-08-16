@@ -94,24 +94,58 @@
 			Cards
 		</h3>
 
-		<ul class="standard-options">
-			<li class="standard-option-widget">
-				<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
-				<label for="EnableHeaderCards">
-					Header cards
-				</label>
-			</li>
-			<li class="standard-option-widget">
-				<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-				<label for="EnableSeparatorCards">
-					Separator cards
-				</label>
-			</li>
-		</ul>
+		<div class="multiple-standard-options">
+
+			<ul class="standard-options">
+				<li class="standard-option-widget">
+					<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
+					<label for="EnableHeaderCards">
+						Header cards
+					</label>
+				</li>
+				<li class="standard-option-widget">
+					<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+					<label for="EnableSeparatorCards">
+						Separator cards
+					</label>
+				</li>
+			</ul>
+
+			<ul class="standard-options">
+				<li class="standard-option-widget">
+					<input type="checkbox" class="options-input" id="ShowCardLabelText" name="ShowCardLabelText">
+					<label for="ShowCardLabelText">
+						Show card label text
+					</label>
+				</li>
+			</ul>
+
+			<ul class="standard-options">
+				<li class="standard-option-widget">
+					<input type="checkbox" class="options-input" id="HideCompletedItems" name="HideCompletedItems">
+					<label for="HideCompletedItems">
+						Hide completed
+					</label>
+				</li>
+				<li class="standard-option-widget">
+					<input type="checkbox" class="options-input" id="HideActivity" name="HideActivity">
+					<label for="HideActivity">
+						Hide activity
+					</label>
+				</li>
+			</ul>
+
+		</div>
 
 		<details>
 
 			<summary data-contents="Fine Tuning, Information">More</summary>
+
+			<h4>Card labels</h4>
+			<label for="CardLabelsUppercase" class="fine-tuning-label">
+				<input type="checkbox" class="option-control options-input" id="CardLabelsUppercase" name="CardLabelsUppercase">
+				Show labels in uppercase
+			</label>
 
 			<h4>Header cards</h4>
 			<label for="HeaderCardsExtraSpace" class="fine-tuning-label">
