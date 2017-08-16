@@ -4,8 +4,8 @@ class System {
 		Options.resetIfEmpty(function() {
 			Options.load('options', function(options) {
 				System.saveOptionsAsGlobal(options);
-				System.headerCardsSetup();
 				System.detectAndSaveColorBlindFriendlyMode();
+				System.headerCardsSetup();
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
@@ -39,8 +39,11 @@ class System {
 				'.list-card', 5, 250
 			);
 
-			body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
-			body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
+			setTimeout(function () {
+				body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
+				body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
+			}, 0);
+
 		}
 	}
 
