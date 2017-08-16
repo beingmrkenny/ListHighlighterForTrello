@@ -6,6 +6,7 @@ class System {
 				System.saveOptionsAsGlobal(options);
 				System.headerCardsSetup();
 				System.detectAndSaveColorBlindFriendlyMode();
+				document.body.classList.toggle('bmko_header-cards-extra-space', (options.HeaderCardsExtraSpace));
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();

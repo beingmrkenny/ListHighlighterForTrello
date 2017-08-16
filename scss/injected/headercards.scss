@@ -35,6 +35,10 @@
 
 .bmko_header-card {
 
+	.bmko_header-cards-extra-space & {
+		margin-top: 20px;
+	}
+
 	.list-card-details {
 		padding: 0 6px 0 3px;
 		display: flex;

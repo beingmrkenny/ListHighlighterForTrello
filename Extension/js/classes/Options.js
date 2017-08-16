@@ -31,13 +31,14 @@ class Options {
 				},
 			},
 			options : {
-				EnableWIP            : false,
-				EnableHeaderCards    : false,
-				EnableSeparatorCards : false,
-				HideHashtags         : true,
-				HighlightTags        : true,
-				HighlightTitles      : true,
-				MatchTitleSubstrings : false
+				EnableWIP             : false,
+				EnableHeaderCards     : false,
+				EnableSeparatorCards  : false,
+				HideHashtags          : true,
+				HighlightTags         : true,
+				HighlightTitles       : true,
+				MatchTitleSubstrings  : false,
+				HeaderCardsExtraSpace : false
 			},
 			colorBlindFriendlyMode : null
 		};
