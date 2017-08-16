@@ -131,6 +131,17 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 
 	// List type-specific styles
 
+	&.bmko_high-list .member {
+		background: transparent;
+		color: var(--header-color);
+	}
+
+	&.bmko_high-list .member-initials {
+		border: 1px solid var(--header-color);
+		box-sizing: border-box;
+		opacity: .9;
+	}
+
 	&.bmko_high-list .active-card .list-card-operation {
 		color: var(--pencil-button-color);
 		&:hover {
