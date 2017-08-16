@@ -26,6 +26,10 @@ Your `.gitignore` file should look like this:
 	*.css
 	Extension/options/index.html
 
+## JavaScript (very brief intro)
+
+The first script the browser hits is `js/init.js`. This sets up the messenger between contexts and triggers the mutation observers that watch the page for changes. `js/classes/System.js` is basically a container for the methods which set up the mutation observers.
+
 ## Scss
 
 All CSS is written in Scss which is then compiled. The compiled CSS is not checked into the repo.
