@@ -116,7 +116,7 @@
 			<h4>Header cards</h4>
 			<label for="HeaderCardsExtraSpace" class="fine-tuning-label">
 				<input type="checkbox" class="option-control options-input" id="HeaderCardsExtraSpace" name="HeaderCardsExtraSpace">
-				Add a little extra space above header cards
+				Add extra space above header cards
 			</label>
 			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash, or two or more dashes (<kbd class="tag">--</kbd>) or forward slashes (<kbd class="tag">//</kbd>). Symbols will be stripped from card fronts. Symbols at the end of the title will also be stripped.</p>
 
