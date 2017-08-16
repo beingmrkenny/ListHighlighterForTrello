@@ -102,18 +102,23 @@
 
 }
 
-.bmko_list-highlighter-applied .bmko_header-card-applied {
-	--card-bg: transparent !important; // FIXME get rid of this important
-}
+.bmko_list-highlighter-applied .list {
 
-.bmko_list-highlighter-applied .list.bmko_normal-list .list-card.bmko_header-card-applied {
-	--card-button-color: #{$normalTextColor};
-	@include badges();
-}
+	&.bmko_normal-list .list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
+		--card-button-color: #{$normalTextColor};
+		@include badges();
+	}
 
-.bmko_list-highlighter-applied .list.bmko_low-list .list-card.bmko_header-card-applied {
-	--card-button-color: #{#000};
-	@include badges();
+	&.bmko_low-list .list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
+		--card-button-color: #{#000};
+		@include badges();
+	}
+
+	.list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
+		--card-bg: transparent !important; // FIXME get rid of this important
+		background: var(--card-bg);
+	}
+
 }
 
 .bmko_high-list {

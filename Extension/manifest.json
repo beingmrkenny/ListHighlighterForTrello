@@ -34,7 +34,6 @@
 		{
 			"all_frames" : true,
 			"js": [
-				"js/debug.js",
 				"js/third/autosize.js",
 				"js/classes/System.js",
 				"js/classes/Color.js",
@@ -43,6 +42,7 @@
 				"js/classes/Card.js",
 				"js/classes/Options.js",
 				"options/js/classes/DoingColors.js",
+				"js/debug.js",
 
 				"js/watch.js",
 				"js/functions.js",

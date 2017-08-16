@@ -14,6 +14,7 @@ function getWatcher(key, targets) {
 			options : {characterData: true, childList: true, subtree: false}
 		},
 
+		// Watch board for changes to lists
 		board : {
 			targets : document.getElementById('board'),
 			observer: new MutationObserver(System.checkForNewLists),

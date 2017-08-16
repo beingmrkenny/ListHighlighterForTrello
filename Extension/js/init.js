@@ -32,8 +32,6 @@ chrome.runtime.onMessage.addListener (
 	}
 );
 
-window.addEventListener('load', function () {
-	System.setup();
-});
+window.addEventListener('load', System.setup);
 
 window.addEventListener('focus', System.toggleToolbarButton);
