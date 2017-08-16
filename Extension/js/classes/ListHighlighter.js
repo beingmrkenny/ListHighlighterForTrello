@@ -71,12 +71,12 @@ class ListHighlighter {
 
 	static getNewHeight(textarea, text) {
 
-		var height, reference = document.createElement('textarea');
-		var styles = window.getComputedStyle(textarea);
+		var height,
+			reference = document.createElement('textarea'),
+			styles = window.getComputedStyle(textarea);
 
 		reference.className = textarea.className;
 		reference.setAttribute('rows', 1);
-
 		reference.value = text;
 
 		var styleProps = {
@@ -91,12 +91,9 @@ class ListHighlighter {
 		}
 
 		document.body.appendChild(reference);
-
 		autosize(reference);
 		autosize.update(reference);
-
 		var height = reference.style.height;
-
 		reference.remove();
 
 		return height;
@@ -168,7 +165,7 @@ class ListHighlighter {
 
 		document.body.classList.add('bmko_list-highlighter-applied');
 
-		var lists  = document.querySelectorAll('.list');
+		var lists = document.querySelectorAll('.list');
 
 		for (var i = 0, len = lists.length; i < len; i++) {
 
@@ -230,9 +227,8 @@ class ListHighlighter {
 			let list = lists[i];
 			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
 
-			let textarea = list.querySelector('.list-header h2 + textarea');
-
 			if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
+				let textarea = list.querySelector('.list-header h2 + textarea');
 				if (textarea) {
 					ListHighlighter.retagHeader(textarea);
 					textarea.removeEventListener('focus', ListHighlighter.retagHeader);

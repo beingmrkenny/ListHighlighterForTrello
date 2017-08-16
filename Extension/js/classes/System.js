@@ -1,15 +1,11 @@
 class System {
 
 	static setup() {
-
 		Options.resetIfEmpty(function() {
-
 			Options.load('options', function(options) {
-
 				System.saveOptionsAsGlobal(options);
 				System.headerCardsSetup();
 				System.detectAndSaveColorBlindFriendlyMode();
-
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
@@ -20,11 +16,8 @@ class System {
 					watch('body');
 					System.toggleToolbarButton();
 				});
-
 			});
-
 		});
-
 	}
 
 	static saveOptionsAsGlobal(options) {
@@ -72,11 +65,8 @@ class System {
 				if (oldPhotoBg !== newPhotoBg) {
 					DoingColors.highPriColorStyles();
 				}
-
 			}
-
 		}
-
 	}
 
 	static toggleToolbarButton() {
@@ -108,17 +98,14 @@ class System {
 
 	// board
 	static checkForNewLists(mutationRecords) {
-
-		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
-			var newList = mutationRecords[0].addedNodes[0];
-			if (newList && newList.classList.contains('list-wrapper')) {
+		var newList = mutationRecords[0].addedNodes[0];
+		if (newList && newList.classList.contains('list-wrapper')) {
+			ListHighlighter.highlight();
+			watch('listTitle');
+			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 				watch('list', newList.querySelector('.list-cards'));
 			}
 		}
-
-		// FIXME commenting this seems to have no effect
-		// ListHighlighter.highlight();
-		watch('listTitle');
 	}
 
 	// list
