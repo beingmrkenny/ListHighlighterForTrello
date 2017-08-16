@@ -14,13 +14,13 @@
 }
 
 body {
-    width: 700px;
-    margin: 70px auto 20px;
+	width: 700px;
+	margin: 70px auto 20px;
 
-    line-height: 1.6em;
-    font-family: 'Helvetica Neue', 'Helvetica', Arial sans-serif;
-    font-size: 16px;
-    color: $bodyTextColor;
+	line-height: 1.6em;
+	font-family: 'Helvetica Neue', 'Helvetica', Arial sans-serif;
+	font-size: 16px;
+	color: $bodyTextColor;
 }
 
 body.preload * {
@@ -62,8 +62,8 @@ body.preload * {
 	.done,
 	.ignore,
 	.low {
-	    padding: 5px 15px;
-	    border-radius: 3px;
+		padding: 5px 15px;
+		border-radius: 3px;
 	}
 }
 
@@ -90,38 +90,38 @@ footer {
 .done,
 .ignore,
 .low {
-    margin-bottom: 5px;
-    padding: 5px 7px;
+	margin-bottom: 5px;
+	padding: 5px 7px;
 
-    border-radius: 3px;
+	border-radius: 3px;
 }
 
 .high {
-    background: var(--high-pri);
-    color: var(--high-pri-text);
+	background: var(--high-pri);
+	color: var(--high-pri-text);
 }
 
 .normal {
-    background: $listBG;
-    color: $normalTextColor;
+	background: $listBG;
+	color: $normalTextColor;
 }
 
 .low {
-    background: transparentize($listBG, .5);
-    color: transparentize(#444, .6);
+	background: transparentize($listBG, .5);
+	color: transparentize(#444, .6);
 }
 
 .ignore,
 .done {
-    opacity: .5;
-    background: transparentize($listBG, .7);
-    color: $ignoreTextColor;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
+	opacity: .5;
+	background: transparentize($listBG, .7);
+	color: $ignoreTextColor;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
 }
 
 .done {
-    text-decoration: line-through;
-    text-shadow: 1px 1px 0 white;
+	text-decoration: line-through;
+	text-shadow: 1px 1px 0 white;
 }
 
 @import 'options/color-picker';

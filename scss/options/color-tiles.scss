@@ -65,21 +65,21 @@
 	}
 
 	label {
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: flex-end;
-	    align-items: center;
-	    width: 60px;
-	    height: 60px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+		width: 60px;
+		height: 60px;
 
-	    text-align: center;
-	    color: white;
-	    border-radius: 3px;
+		text-align: center;
+		color: white;
+		border-radius: 3px;
 
 		@include transition(height, color, background-color);
 
-	    cursor: pointer;
-	    user-select: none;
+		cursor: pointer;
+		user-select: none;
 
 		&:hover {
 			height: 65px;
@@ -133,15 +133,15 @@
 		height: 83px;
 
 		&::before {
-		    position: relative;
-		    top: -20px;
-		    width: 26px;
-		    height: 20px;
+			position: relative;
+			top: -20px;
+			width: 26px;
+			height: 20px;
 
-		    font-size: 26px;
-		    border-radius: 3px;
+			font-size: 26px;
+			border-radius: 3px;
 
-		    @include trellicons('\e910');
+			@include trellicons('\e910');
 		}
 
 		&.custom::before {

@@ -1,83 +1,83 @@
 .standard-options {
-    display: flex;
-    margin: 0;
-    padding: 0;
+	display: flex;
+	margin: 0;
+	padding: 0;
 }
 
 .standard-option-widget {
-    display: block;
+	display: block;
 
-    input {
-        display: none;
-    }
+	input {
+		display: none;
+	}
 
-    label {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80px;
-        margin-right: 10px;
-        padding: 5px;
-        padding-top: 40px;
+	label {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 80px;
+		margin-right: 10px;
+		padding: 5px;
+		padding-top: 40px;
 
-        line-height: 1;
-        text-align: center;
-        color: #4e4e4e;
-        background: #afafaf;
-        border-radius: 3px;
+		line-height: 1;
+		text-align: center;
+		color: #4e4e4e;
+		background: #afafaf;
+		border-radius: 3px;
 
-        &::before,
-        &::after {
-            position: absolute;
-        }
+		&::before,
+		&::after {
+			position: absolute;
+		}
 
-        &::before {
-            top: 10px;
-            left: 50%;
-            display: inline-block;
-            content: 'OFF';
-            width: 40px;
-            height: 18px;
-            margin-left: -27px;
-            padding: 0 6px;
+		&::before {
+			top: 10px;
+			left: 50%;
+			display: inline-block;
+			content: 'OFF';
+			width: 40px;
+			height: 18px;
+			margin-left: -27px;
+			padding: 0 6px;
 
-            line-height: 19px;
-            font-size: 13px;
-            text-align: right;
-            background: gray;
-            border-radius: 10px;
+			line-height: 19px;
+			font-size: 13px;
+			text-align: right;
+			background: gray;
+			border-radius: 10px;
 
-            transition: background .25s;
-        }
+			transition: background .25s;
+		}
 
-        &::after {
-            top: 12px;
-            left: 50%;
-            display: inline-block;
-            content: ' ';
-            width: 14px;
-            height: 14px;
-            margin-left: -25px;
+		&::after {
+			top: 12px;
+			left: 50%;
+			display: inline-block;
+			content: ' ';
+			width: 14px;
+			height: 14px;
+			margin-left: -25px;
 
-            background: white;
-            border-radius: 10px;
+			background: white;
+			border-radius: 10px;
 
-            transition: margin-left .25s;
-        }
-    }
+			transition: margin-left .25s;
+		}
+	}
 
-    input:checked + label {
-        color: white;
-        background: $blueTrello;
-        &::before {
-            content: 'ON';
+	input:checked + label {
+		color: white;
+		background: $blueTrello;
+		&::before {
+			content: 'ON';
 
-            text-align: left;
-            background: #64bb02;
-        }
-        &::after {
-            margin-left: 9px;
-        }
-    }
+			text-align: left;
+			background: #64bb02;
+		}
+		&::after {
+			margin-left: 9px;
+		}
+	}
 }

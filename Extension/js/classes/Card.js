@@ -162,7 +162,7 @@ class Card {
 	}
 
 	getHeaderRegex () {
-		// var originalRe =  /^[^\p{L}\d\s]{3,}.+$/u;
+		// var originalRe = /^[^\p{L}\d\s]{3,}.+$/u;
 		// There's this too but it might be overkill
 		// var re = /^(?:\/\/+[^/].*|--+[^-].*|#+ [^#].*)/;
 		var re = /^(?:[/-]{2,}|#+\s)[^#/-].*/;

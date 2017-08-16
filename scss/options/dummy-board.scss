@@ -94,16 +94,16 @@
 	.trello-bg-color-button[data-trello-bg="photo"] 	{ fill: url(#Beach); }
 
 	#DefaultDummyTile + hr {
-	    display: block;
-	    opacity: .3;
-	    content: ' ';
-	    width: 5px;
-	    height: 5px;
-	    margin: 23px 5px;
+		display: block;
+		opacity: .3;
+		content: ' ';
+		width: 5px;
+		height: 5px;
+		margin: 23px 5px;
 
-	    background: white;
-	    border: 0;
-	    border-radius: 10px;
+		background: white;
+		border: 0;
+		border-radius: 10px;
 	}
 
 }

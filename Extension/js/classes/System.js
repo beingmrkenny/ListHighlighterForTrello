@@ -36,12 +36,12 @@ class System {
 	static headerCardsSetup () {
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			keepCounting (
-			    function () {
+					function () {
 					watch ('listCardTitle');
 					watch ('list');
 					Card.processCards(document.querySelectorAll('.list-card'));
 				},
-			    '.list-card', 5, 250
+					'.list-card', 5, 250
 			);
 		}
 	}
@@ -109,29 +109,30 @@ class System {
 
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 			var newList = mutationRecords[0].addedNodes[0];
-		    if (newList && newList.classList.contains('list-wrapper')) {
-		        watch ('list', newList.querySelector('.list-cards'));
-		    }
+				if (newList && newList.classList.contains('list-wrapper')) {
+						watch ('list', newList.querySelector('.list-cards'));
+				}
 		}
 
-		ListHighlighter.highlight();
+		// FIXME commenting this seems to have no effect
+		// ListHighlighter.highlight();
 		watch ('listTitle');
 	}
 
 	// list
 	static checkForNewCards (mutationRecords) {
-	    if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
-	        var newCard = mutationRecords[0].addedNodes[0];
-	        if (newCard && newCard.classList.contains('list-card')) {
+			if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
+					var newCard = mutationRecords[0].addedNodes[0];
+					if (newCard && newCard.classList.contains('list-card')) {
 				// for new cards and dragged cards
-	            Card.processCards(newCard);
-	            watch ('listCardTitle', newCard.querySelector('.list-card-title'));
-	        } else {
+							Card.processCards(newCard);
+							watch ('listCardTitle', newCard.querySelector('.list-card-title'));
+					} else {
 				// for dragging between lists
 				let card = mutationRecords[0].target.querySelectorAll('.list-card');
-	            Card.processCards(card);
-	        }
-	    }
+							Card.processCards(card);
+					}
+			}
 	}
 
 }
