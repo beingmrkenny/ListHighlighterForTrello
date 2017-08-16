@@ -15,6 +15,7 @@ lhrelease () {
 	if [[ -d /tmp/ListHighlighter ]];        then rm -r /tmp/ListHighlighter;        fi
 	if [[ -d /tmp/ListHighlighterFirefox ]]; then rm -r /tmp/ListHighlighterFirefox; fi
 	cp -r $DIR/../Extension /tmp/ListHighlighter;
+	if [[ -f /tmp/ListHighlighter/js/debug.js ]]; then rm /tmp/ListHighlighter/js/debug.js; fi
 	cp -r /tmp/ListHighlighter /tmp/ListHighlighterFirefox;
 	rm /tmp/ListHighlighter/firefoxApplications.json;
 
