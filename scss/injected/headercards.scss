@@ -88,6 +88,7 @@
 
 .list-card.bmko_horizontal-rule-card {
 	padding: 0;
+	margin-bottom: 4px;
 
 	.list-card-cover, .list-card-details, span, p {
 		display: none;
@@ -98,10 +99,6 @@
 			display: inline-block;
 		}
 		padding-bottom: 50px;
-	}
-
-	hr {
-		margin: 0;
 	}
 
 }
@@ -173,5 +170,11 @@
 	hr {
 		background: transparent;
 		color: transparent;
+		margin: 0;
+	}
+	.bmko_separator-cards-visible-line & hr {
+		background: var(--header-color);
+		color: var(--header-color);
+		margin: 20px 0 0;
 	}
 }

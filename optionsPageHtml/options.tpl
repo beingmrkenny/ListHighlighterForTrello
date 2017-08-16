@@ -121,6 +121,10 @@
 			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash, or two or more dashes (<kbd class="tag">--</kbd>) or forward slashes (<kbd class="tag">//</kbd>). Symbols will be stripped from card fronts. Symbols at the end of the title will also be stripped.</p>
 
 			<h4>Separator cards</h4>
+			<label for="SeparatorCardsVisibleLine" class="fine-tuning-label">
+				<input type="checkbox" class="option-control options-input" id="SeparatorCardsVisibleLine" name="SeparatorCardsVisibleLine">
+				Show separators as a visible line
+			</label>
 			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
 
 		</details>

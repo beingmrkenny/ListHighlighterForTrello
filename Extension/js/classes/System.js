@@ -7,6 +7,7 @@ class System {
 				System.headerCardsSetup();
 				System.detectAndSaveColorBlindFriendlyMode();
 				document.body.classList.toggle('bmko_header-cards-extra-space', (options.HeaderCardsExtraSpace));
+				document.body.classList.toggle('bmko_separator-cards-visible-line', (options.SeparatorCardsVisibleLine));
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
