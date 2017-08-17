@@ -29,6 +29,7 @@ chrome.runtime.onMessage.addListener (
 					setTimeout(function () {
 						System.headerCardsSetup();
 						System.cardLabelText();
+						System.processCardDetailWindow();
 					}, 0)
 				});
 				break;
