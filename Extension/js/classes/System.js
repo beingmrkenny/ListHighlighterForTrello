@@ -8,15 +8,19 @@ class System {
 				setTimeout(function () {
 					System.headerCardsSetup();
 					System.cardLabelText();
-				}, 0)
+				}, 0);
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
 					keepTrying(ListHighlighter.highlight, 5, 700);
+					if (window.location.pathname.startsWith('/c/')) {
+						System.processCardDetailWindow();
+					}
 					watch('title');
 					watch('board');
 					watch('listTitle');
 					watch('body');
+					watch('viewCard');
 					System.toggleToolbarButton();
 				});
 			});
@@ -92,6 +96,38 @@ class System {
 
 	}
 
+	static toggleToolbarButton() {
+		if (document && document.body) {
+			var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
+			if (typeof toggle == 'boolean') {
+				chrome.runtime.sendMessage({
+					toggledOff: toggle
+				}, function() {});
+			}
+		}
+	}
+
+	static detectAndSaveColorBlindFriendlyMode(passedMode) {
+		Options.save(
+			'colorBlindFriendlyMode',
+			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
+		);
+	}
+
+	static clickHideItems() {
+		var shownCompletedItems = document.querySelectorAll('.js-hide-checked-items:not(.hide)');
+		for (let i = shownCompletedItems.length -1; i > -1; i--) {
+			shownCompletedItems[i].click();
+		}
+	}
+
+	static clickHideDetails() {
+	    var hideDetails = document.querySelector('.js-hide-details');
+	    if (hideDetails && !hideDetails.classList.contains('hide')) {
+	        hideDetails.click();
+	    }
+	}
+
 	// QUESTION Does it need a desetup method to get all observers and get rid of them
 
 	// body
@@ -120,24 +156,6 @@ class System {
 				}
 			}
 		}
-	}
-
-	static toggleToolbarButton() {
-		if (document && document.body) {
-			var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
-			if (typeof toggle == 'boolean') {
-				chrome.runtime.sendMessage({
-					toggledOff: toggle
-				}, function() {});
-			}
-		}
-	}
-
-	static detectAndSaveColorBlindFriendlyMode(passedMode) {
-		Options.save(
-			'colorBlindFriendlyMode',
-			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
-		);
 	}
 
 	// title
@@ -175,6 +193,29 @@ class System {
 				Card.processCards(card);
 			}
 		}
+	}
+
+	// view card details
+	static processCardDetailWindow(mutationRecords) {
+
+		if (document.querySelector('.card-detail-window')) {
+
+			if (GLOBAL.HideCompletedItems) {
+				keepCounting(System.clickHideItems, '.js-hide-checked-items');
+			}
+
+			if (GLOBAL.HideActivity) {
+				keepChecking (
+					System.clickHideDetails,
+					function () {
+						var target = document.querySelector('.js-hide-details');
+						return (target && !target.classList.contains('hide'));
+					}
+				);
+			}
+
+		}
+
 	}
 
 }
