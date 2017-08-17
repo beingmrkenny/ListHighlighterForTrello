@@ -70,17 +70,34 @@ class Options {
 
 		var key = (typeof path == 'string') ? path.split('.') : null;
 
-		chrome.storage.sync.get(key, function (result) {
+		setTimeout(function () {
 
-			var returnVal = result;
+			chrome.storage.sync.get(key, function (result) {
 
-			if (key) {
-				returnVal = Options.createLoadObject(result, key);
-			}
+				var returnVal = result;
 
-			callback(returnVal);
+				if (key) {
+					returnVal = Options.createLoadObject(returnVal, key);
+				}
 
-		});
+				if (key == 'colors') {
+					GLOBAL.colors = returnVal;
+				}
+
+				if (key == 'options') {
+					for (let name in returnVal) {
+						GLOBAL[name] = returnVal[name];
+					}
+				}
+
+				if (typeof callback == 'function') {
+					callback(returnVal);
+				}
+
+			});
+
+		}, 0);
+
 	}
 
 	static createSaveObject (obj, path, value) {

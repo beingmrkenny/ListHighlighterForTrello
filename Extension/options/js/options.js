@@ -1,3 +1,5 @@
+var GLOBAL = {};
+
 Options.resetIfEmpty();
 
 Options.load('colorBlindFriendlyMode', function (colorBlindFriendlyMode) {

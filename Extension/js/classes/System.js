@@ -3,14 +3,10 @@ class System {
 	static setup() {
 		Options.resetIfEmpty(function() {
 			Options.load('options', function(options) {
-				System.saveOptionsAsGlobal(options);
+				System.headerCardsSetup();
+				System.cardLabelText();
 				System.detectAndSaveColorBlindFriendlyMode();
-				setTimeout(function () {
-					System.headerCardsSetup();
-					System.cardLabelText();
-				}, 0);
 				Options.load('colors', function(colors) {
-					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
 					keepTrying(ListHighlighter.highlight, 5, 700);
 					if (window.location.pathname.startsWith('/c/')) {
@@ -25,12 +21,6 @@ class System {
 				});
 			});
 		});
-	}
-
-	static saveOptionsAsGlobal(options) {
-		for (let name in options) {
-			GLOBAL[name] = options[name];
-		}
 	}
 
 	static headerCardsSetup() {
