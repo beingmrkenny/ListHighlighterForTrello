@@ -29,6 +29,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 .bmko_list-highlighter-applied .list {
 	color: var(--list-color);
 	background: var(--list-bg);
+	transition: background .25s;
 
 	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
 		background: var(--scrollbar-track-color);
