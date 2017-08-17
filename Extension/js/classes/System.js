@@ -53,10 +53,9 @@ class System {
 		var labelTextDisplayed = document.body.classList.contains('body-card-label-text', 'body-card-label-text-on'),
 			firstLabel = document.querySelector('.card-label.mod-card-front');
 
-		// FIXME This setTimeout is commented but WHO CAN KNOW it might be needed, check and remove as nec
-		// setTimeout(function () {
+		setTimeout(function () {
 
-			if (GLOBAL.ShowCardLabelText && !$id('CardLabelTextStyle') && firstLabel) {
+			if (GLOBAL.ShowCardLabelText && firstLabel) {
 
 				let transform = '';
 				if (GLOBAL.CardLabelsUppercase) {
@@ -69,7 +68,7 @@ class System {
 						}`;
 				}
 
-				document.head.appendChild(createElement(
+				let style = createElement(
 					`<style type="text/css" id="CardLabelTextStyle">
 						.body-card-label-text .card-label.mod-card-front,
 						.body-card-label-text-on .card-label.mod-card-front {
@@ -77,7 +76,15 @@ class System {
 						}
 						${transform}
 					</style>`
-				));
+				);
+
+				let existingStyle = $id('CardLabelTextStyle');
+
+				if (existingStyle) {
+					existingStyle.remove();
+				}
+
+				document.head.appendChild(style);
 
 			}
 
@@ -85,7 +92,7 @@ class System {
 				firstLabel.click();
 			}
 
-		// }, 0);
+		}, 0);
 
 	}
 
