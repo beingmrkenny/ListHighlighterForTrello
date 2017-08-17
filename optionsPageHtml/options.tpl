@@ -141,18 +141,12 @@
 
 			<summary data-contents="Fine Tuning, Information">More</summary>
 
-			<h4>Card labels</h4>
-			<label for="CardLabelsUppercase" class="fine-tuning-label">
-				<input type="checkbox" class="option-control options-input" id="CardLabelsUppercase" name="CardLabelsUppercase">
-				Show labels in uppercase
-			</label>
-
 			<h4>Header cards</h4>
 			<label for="HeaderCardsExtraSpace" class="fine-tuning-label">
 				<input type="checkbox" class="option-control options-input" id="HeaderCardsExtraSpace" name="HeaderCardsExtraSpace">
 				Add extra space above header cards
 			</label>
-			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash, or two or more dashes (<kbd class="tag">--</kbd>) or forward slashes (<kbd class="tag">//</kbd>). Symbols will be stripped from card fronts. Symbols at the end of the title will also be stripped.</p>
+			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash, or two or more dashes (<kbd class="tag">--</kbd>) or forward slashes (<kbd class="tag">//</kbd>). Symbols at the beginning and end of the title will be stripped.</p>
 
 			<h4>Separator cards</h4>
 			<label for="SeparatorCardsVisibleLine" class="fine-tuning-label">
@@ -160,6 +154,19 @@
 				Show separators as a visible line
 			</label>
 			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
+
+			<h4>Card labels</h4>
+			<label for="CardLabelsUppercase" class="fine-tuning-label">
+				<input type="checkbox" class="option-control options-input" id="CardLabelsUppercase" name="CardLabelsUppercase">
+				Show labels in uppercase
+			</label>
+			<p>This option causes card labels to display their text (if they have it).</p>
+
+			<h4>Hide completed</h4>
+			<p>This option hides completed checklist items when you open a card.</p>
+
+			<h4>Hide activity</h4>
+			<p>This option hides activity details when you open a card.</p>
 
 		</details>
 
