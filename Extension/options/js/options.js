@@ -219,8 +219,9 @@ Options.load('options', function (options) {
 				value = (input.type == 'radio')
 					? document.querySelector(`input[name="${input.name}"]:checked`).value
 					: input.checked;
-			Options.save(`options.${name}`, value);
-			sendMessage('rehighlight');
+			Options.save(`options.${name}`, value, function () {
+				sendMessage('rehighlight');
+			});
 		});
 	}
 
@@ -235,8 +236,10 @@ function setTodoListColorForPage (color) {
 
 function saveColor (trelloBg, colorName) {
 	currentDoingColors[ trelloBg ] = colorName;
-	Options.save(`colors.current.${trelloBg}`, colorName);
-	sendMessage('colorChange');
+	Options.save(`colors.current.${trelloBg}`, colorName, function () {
+		sendMessage('colorChange');
+	});
+
 }
 
 function saveCustomColor (trelloBg, hex) {
@@ -244,8 +247,9 @@ function saveCustomColor (trelloBg, hex) {
 		throw new Error('Provided color is not a hex code');
 	}
 	customDoingColors[ trelloBg ] = hex;
-	Options.save(`colors.custom.${trelloBg}`, hex);
-	sendMessage('colorChange');
+	Options.save(`colors.custom.${trelloBg}`, hex, function () {
+		sendMessage('colorChange');
+	});
 }
 
 function sendMessage (message) {
