@@ -164,7 +164,7 @@ Options.load('options', function (options) {
 			let input = this,
 				config = optionsControls[this.id];
 
-			if (config.disableInputs) {
+			if (config && config.disableInputs) {
 				let disableInputs = config.disableInputs;
 				for (let i = disableInputs.length-1; i>-1; i--) {
 					let label = document.querySelector(`[for="${disableInputs[i]}"]`);
@@ -173,7 +173,7 @@ Options.load('options', function (options) {
 				}
 			}
 
-			if (config.textSwitcher) {
+			if (config && config.textSwitcher) {
 				let on = input.checked;
 				if (config.textSwitcher.linkedInput) {
 					on = (on && $id(config.textSwitcher.linkedInput).checked);

@@ -26,8 +26,10 @@ chrome.runtime.onMessage.addListener (
 					ListHighlighter.highlight();
 					ListHighlighter.toggleHideHashtags (options.HideHashtags);
 					Card.processCards(document.querySelectorAll('.list-card'));
-					System.headerCardsSetup();
-					System.cardLabelText();
+					setTimeout(function () {
+						System.headerCardsSetup();
+						System.cardLabelText();
+					}, 0)
 				});
 				break;
 		}

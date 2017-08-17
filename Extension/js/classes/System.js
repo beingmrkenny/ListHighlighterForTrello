@@ -5,8 +5,10 @@ class System {
 			Options.load('options', function(options) {
 				System.saveOptionsAsGlobal(options);
 				System.detectAndSaveColorBlindFriendlyMode();
-				System.headerCardsSetup();
-				System.cardLabelText();
+				setTimeout(function () {
+					System.headerCardsSetup();
+					System.cardLabelText();
+				}, 0)
 				Options.load('colors', function(colors) {
 					GLOBAL.colors = colors;
 					DoingColors.highPriColorStyles();
@@ -40,10 +42,8 @@ class System {
 				'.list-card', 5, 250
 			);
 
-			setTimeout(function () {
-				body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
-				body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
-			}, 0);
+			body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
+			body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
 
 		}
 	}
@@ -53,46 +53,42 @@ class System {
 		var labelTextDisplayed = document.body.classList.contains('body-card-label-text', 'body-card-label-text-on'),
 			firstLabel = document.querySelector('.card-label.mod-card-front');
 
-		setTimeout(function () {
+		if (GLOBAL.ShowCardLabelText && firstLabel) {
 
-			if (GLOBAL.ShowCardLabelText && firstLabel) {
-
-				let transform = '';
-				if (GLOBAL.CardLabelsUppercase) {
-					transform =
-						`.body-card-label-text .card-label.mod-card-front,
-						.body-card-label-text-on .card-label.mod-card-front,
-						.body-card-label-text .card-label.mod-card-detail,
-						.body-card-label-text-on .card-label.mod-card-detail {
-							text-transform: uppercase;
-						}`;
-				}
-
-				let style = createElement(
-					`<style type="text/css" id="CardLabelTextStyle">
-						.body-card-label-text .card-label.mod-card-front,
-						.body-card-label-text-on .card-label.mod-card-front {
-							padding: 0 3px;
-						}
-						${transform}
-					</style>`
-				);
-
-				let existingStyle = $id('CardLabelTextStyle');
-
-				if (existingStyle) {
-					existingStyle.remove();
-				}
-
-				document.head.appendChild(style);
-
+			let transform = '';
+			if (GLOBAL.CardLabelsUppercase) {
+				transform =
+					`.body-card-label-text .card-label.mod-card-front,
+					.body-card-label-text-on .card-label.mod-card-front,
+					.body-card-label-text .card-label.mod-card-detail,
+					.body-card-label-text-on .card-label.mod-card-detail {
+						text-transform: uppercase;
+					}`;
 			}
 
-			if (GLOBAL.ShowCardLabelText !== labelTextDisplayed && firstLabel) {
-				firstLabel.click();
+			let style = createElement(
+				`<style type="text/css" id="CardLabelTextStyle">
+					.body-card-label-text .card-label.mod-card-front,
+					.body-card-label-text-on .card-label.mod-card-front {
+						padding: 0 3px;
+					}
+					${transform}
+				</style>`
+			);
+
+			let existingStyle = $id('CardLabelTextStyle');
+
+			if (existingStyle) {
+				existingStyle.remove();
 			}
 
-		}, 0);
+			document.head.appendChild(style);
+
+		}
+
+		if (GLOBAL.ShowCardLabelText !== labelTextDisplayed && firstLabel) {
+			firstLabel.click();
+		}
 
 	}
 
