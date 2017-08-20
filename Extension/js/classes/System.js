@@ -64,7 +64,12 @@ class System {
 				`<style type="text/css" id="CardLabelTextStyle">
 					.body-card-label-text .card-label.mod-card-front,
 					.body-card-label-text-on .card-label.mod-card-front {
+						min-width: auto;
 						padding: 0 3px;
+					}
+					.body-card-label-text .card-label.mod-card-front[title=''],
+					.body-card-label-text-on .card-label.mod-card-front[title=''] {
+						min-width: 42px;
 					}
 					${transform}
 				</style>`
