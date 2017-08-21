@@ -4,7 +4,6 @@ class System {
 		Options.resetIfEmpty(function() {
 			Options.load('options', function(options) {
 				System.headerCardsSetup();
-				System.cardLabelText();
 				System.detectAndSaveColorBlindFriendlyMode();
 				Options.load('colors', function(colors) {
 					DoingColors.highPriColorStyles();
@@ -18,6 +17,7 @@ class System {
 					watch('body');
 					watch('viewCard');
 					System.toggleToolbarButton();
+					keepCounting(System.cardLabelText, '.card-label', 5, 700);
 				});
 			});
 		});
@@ -160,6 +160,7 @@ class System {
 		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
+		System.cardLabelText();
 	}
 
 	// board
