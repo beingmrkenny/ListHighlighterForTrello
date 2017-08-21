@@ -8,16 +8,11 @@ class System {
 				Options.load('colors', function(colors) {
 					DoingColors.highPriColorStyles();
 					keepTrying(ListHighlighter.highlight, 5, 700);
-					if (window.location.pathname.startsWith('/c/')) {
-						System.processCardDetailWindow();
-					}
 					watch('title');
 					watch('board');
 					watch('listTitle');
 					watch('body');
-					watch('viewCard');
 					System.toggleToolbarButton();
-					keepCounting(System.cardLabelText, '.card-label', 5, 700);
 				});
 			});
 		});
@@ -42,55 +37,6 @@ class System {
 		}
 	}
 
-	static cardLabelText () {
-
-		var labelTextDisplayed = document.body.classList.contains('body-card-label-text', 'body-card-label-text-on'),
-			firstLabel = document.querySelector('.card-label.mod-card-front');
-
-		if (GLOBAL.ShowCardLabelText && firstLabel) {
-
-			let transform = '';
-			if (GLOBAL.CardLabelsUppercase) {
-				transform =
-					`.body-card-label-text .card-label.mod-card-front,
-					.body-card-label-text-on .card-label.mod-card-front,
-					.body-card-label-text .card-label.mod-card-detail,
-					.body-card-label-text-on .card-label.mod-card-detail {
-						text-transform: uppercase;
-					}`;
-			}
-
-			let style = createElement(
-				`<style type="text/css" id="CardLabelTextStyle">
-					.body-card-label-text .card-label.mod-card-front,
-					.body-card-label-text-on .card-label.mod-card-front {
-						min-width: auto;
-						padding: 0 3px;
-					}
-					.body-card-label-text .card-label.mod-card-front[title=''],
-					.body-card-label-text-on .card-label.mod-card-front[title=''] {
-						min-width: 42px;
-					}
-					${transform}
-				</style>`
-			);
-
-			let existingStyle = $id('CardLabelTextStyle');
-
-			if (existingStyle) {
-				existingStyle.remove();
-			}
-
-			document.head.appendChild(style);
-
-		}
-
-		if (GLOBAL.ShowCardLabelText !== labelTextDisplayed && firstLabel) {
-			firstLabel.click();
-		}
-
-	}
-
 	static toggleToolbarButton() {
 		if (document && document.body) {
 			var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
@@ -107,20 +53,6 @@ class System {
 			'colorBlindFriendlyMode',
 			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
 		);
-	}
-
-	static clickHideItems() {
-		var shownCompletedItems = document.querySelectorAll('.js-hide-checked-items:not(.hide)');
-		for (let i = shownCompletedItems.length -1; i > -1; i--) {
-			shownCompletedItems[i].click();
-		}
-	}
-
-	static clickHideDetails() {
-	    var hideDetails = document.querySelector('.js-hide-details');
-	    if (hideDetails && !hideDetails.classList.contains('hide')) {
-	        hideDetails.click();
-	    }
 	}
 
 	// QUESTION Does it need a desetup method to get all observers and get rid of them
@@ -160,7 +92,6 @@ class System {
 		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
-		System.cardLabelText();
 	}
 
 	// board
@@ -189,29 +120,6 @@ class System {
 				Card.processCards(card);
 			}
 		}
-	}
-
-	// view card details
-	static processCardDetailWindow(mutationRecords) {
-
-		if (document.querySelector('.card-detail-window')) {
-
-			if (GLOBAL.HideCompletedItems) {
-				keepCounting(System.clickHideItems, '.js-hide-checked-items');
-			}
-
-			if (GLOBAL.HideActivity) {
-				keepChecking (
-					System.clickHideDetails,
-					function () {
-						var target = document.querySelector('.js-hide-details');
-						return (target && !target.classList.contains('hide'));
-					}
-				);
-			}
-
-		}
-
 	}
 
 }

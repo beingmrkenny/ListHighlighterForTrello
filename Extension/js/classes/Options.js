@@ -39,11 +39,7 @@ class Options {
 				HighlightTitles             : true,
 				MatchTitleSubstrings        : false,
 				HeaderCardsExtraSpace       : false,
-				SeparatorCardsVisibleLine   : false,
-				ShowCardLabelText			: false,
-				HideCompletedItems			: false,
-				HideActivity			    : false,
-				CardLabelsUppercase			: false
+				SeparatorCardsVisibleLine   : false
 			},
 			colorBlindFriendlyMode : null
 		};

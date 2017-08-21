@@ -39,12 +39,6 @@ function getWatcher(key, targets) {
 			targets : targets || document.querySelectorAll('.list-card-title'),
 			observer : new MutationObserver(Card.processListCardTitle),
 			options : {characterData: true, childList: true, subtree: false}
-		},
-
-		viewCard : {
-			targets : targets || document.querySelectorAll('.window-wrapper'),
-			observer : new MutationObserver(System.processCardDetailWindow),
-			options : {childList: true, subtree: false}
 		}
 
 	};

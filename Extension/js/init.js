@@ -25,8 +25,6 @@ chrome.runtime.onMessage.addListener (
 					ListHighlighter.toggleHideHashtags (options.HideHashtags);
 					Card.processCards(document.querySelectorAll('.list-card'));
 					System.headerCardsSetup();
-					System.cardLabelText();
-					System.processCardDetailWindow();
 				});
 				break;
 		}

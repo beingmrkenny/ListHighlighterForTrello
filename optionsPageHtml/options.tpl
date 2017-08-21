@@ -111,30 +111,6 @@
 				</li>
 			</ul>
 
-			<ul class="standard-options">
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="ShowCardLabelText" name="ShowCardLabelText">
-					<label for="ShowCardLabelText">
-						Show card label text
-					</label>
-				</li>
-			</ul>
-
-			<ul class="standard-options">
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="HideCompletedItems" name="HideCompletedItems">
-					<label for="HideCompletedItems">
-						Hide completed
-					</label>
-				</li>
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="HideActivity" name="HideActivity">
-					<label for="HideActivity">
-						Hide activity
-					</label>
-				</li>
-			</ul>
-
 		</div>
 
 		<details>
@@ -154,19 +130,6 @@
 				Show separators as a visible line
 			</label>
 			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
-
-			<h4>Card labels</h4>
-			<label for="CardLabelsUppercase" class="fine-tuning-label">
-				<input type="checkbox" class="option-control options-input" id="CardLabelsUppercase" name="CardLabelsUppercase">
-				Show labels in uppercase
-			</label>
-			<p>This option causes card labels to display their text (if they have it).</p>
-
-			<h4>Hide completed</h4>
-			<p>This option hides completed checklist items when you open a card.</p>
-
-			<h4>Hide activity</h4>
-			<p>This option hides activity details when you open a card.</p>
 
 		</details>
 
