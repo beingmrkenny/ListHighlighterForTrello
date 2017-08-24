@@ -18,7 +18,7 @@ function setupColorPicker (colorTileLabel) {
 	colorPicker.hidden = false;
 	colorTilebar.appendChild(colorPicker);
 
-	var cp = ColorPicker(
+	var cp = ColorPicker (
 		document.querySelector('.hue-range'),
 		document.querySelector('.sv-range'),
 		function(hex, hsv, rgb, pickerCoordinate, sliderCoordinate) {
@@ -26,7 +26,7 @@ function setupColorPicker (colorTileLabel) {
 				sv = document.querySelector('.sv-indicator');
 			ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
 			sv.style.backgroundColor = hex;
-			// document.getElementById('ColorHex').textContent = hex;
+			$id('ColorHex').value = hex;
 			changeAllTheColors (hex, isDefaultColorBar)
 		}
 	);
@@ -47,6 +47,20 @@ function setupColorPicker (colorTileLabel) {
 			setTodoListColorForPage(hex);
 		}
 		$('color-picker').remove();
+	});
+
+	$id('ColorHex').addEventListener('change', function (event) {
+		var input = this;
+		if (input.checkValidity()) {
+			let hex = input.value;
+			hex = hex.replace('#', '');
+			if (hex.length == 3) {
+				let hexes = hex.split();
+				hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+			}
+			hex = '#'+hex;
+			cp.setHex(hex);
+		}
 	});
 
 }
