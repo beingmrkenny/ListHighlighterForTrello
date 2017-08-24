@@ -99,3 +99,21 @@ color-picker {
 		border-color: red;
 	}
 }
+
+.custom-color-picker-button-container {
+	width: 100%;
+	margin-bottom: 15px;
+	flex-wrap: wrap;
+}
+
+.custom-color-picker-button {
+	float: left;
+	display: inline-block;
+	margin: 0 2px 2px 0;
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	background-image: none;
+	border: 0;
+	box-shadow: none;
+}

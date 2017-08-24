@@ -28,8 +28,9 @@ class Options {
 					sky     : null,
 					gray    : null,
 					photo   : null
-				},
+				}
 			},
+			recentColors : [],
 			options : {
 				EnableWIP                   : false,
 				EnableHeaderCards           : false,

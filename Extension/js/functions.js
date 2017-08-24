@@ -6,6 +6,10 @@ function $(query) {
 	return document.querySelector(query);
 }
 
+function $$(query) {
+	return document.querySelectorAll(query);
+}
+
 function createElement (string) {
 
 	var element, events, container = document.createElement('div');

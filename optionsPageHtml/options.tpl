@@ -172,6 +172,10 @@
 		</li>
 	</template>
 
+	<template id="CustomColorPickerButton">
+		<button type="button" class="custom-color-picker-button recent-color-button" data-color="" style=""></button>
+	</template>
+
 	<template id="ColorPicker">
 		<color-picker hidden>
 			<component-picker class="sv-picker">
@@ -182,6 +186,13 @@
 				<range-display class="hue-range"></range-display>
 				<position-indicator class="hue-indicator"></position-indicator>
 			</component-picker>
+			<div class="custom-color-picker-button-container">
+				{foreach from=$defaultTiles item=tile}
+					{if $tile.colorName != 'custom'}
+						<button type="button" class="custom-color-picker-button" data-color="{$tile.color}" style="background-color: {$tile.color};"></button>
+					{/if}
+				{/foreach}
+			</div>
 			<input type="text" id="ColorHex" pattern="{literal}^#?[a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?${/literal}">
 			<hr class="spacer">
 			<button type="button" id="CancelColor">Cancel</button>

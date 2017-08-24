@@ -1,3 +1,5 @@
+var cp;
+
 function setupColorPicker (colorTileLabel) {
 
 	var input = colorTileLabel.parentNode.querySelector('input'),
@@ -18,7 +20,7 @@ function setupColorPicker (colorTileLabel) {
 	colorPicker.hidden = false;
 	colorTilebar.appendChild(colorPicker);
 
-	var cp = ColorPicker (
+	cp = ColorPicker (
 		document.querySelector('.hue-range'),
 		document.querySelector('.sv-range'),
 		function(hex, hsv, rgb, pickerCoordinate, sliderCoordinate) {
@@ -42,6 +44,7 @@ function setupColorPicker (colorTileLabel) {
 		var trelloBg = (isDefaultColorBar) ? 'default' : $id('DummyBoard').dataset.trelloBg,
 			hex = input.dataset.value;
 		saveCustomColor(trelloBg, hex);
+		saveRecentColor(hex);
 		Dummy.activateTrelloBgButtonIndicator(trelloBg, hex);
 		if (isDefaultColorBar) {
 			setTodoListColorForPage(hex);
@@ -62,6 +65,59 @@ function setupColorPicker (colorTileLabel) {
 			cp.setHex(hex);
 		}
 	});
+
+	displayRecentColors();
+
+	var customColorPickers = $$('.custom-color-picker-button');
+	for (let i = customColorPickers.length-1; i>-1; i--) {
+		recentButtonSetupClick(customColorPickers[i]);
+	}
+
+}
+
+function recentButtonSetupClick(button) {
+	button.addEventListener('click', function (event) {
+		cp.setHex(this.dataset.color);
+	});
+}
+
+function saveRecentColor(hex) {
+	Options.load('recentColors', function (recentColors) {
+		while (recentColors.length > 9) {
+			recentColors.shift();
+		}
+		recentColors.push(hex);
+		Options.save('recentColors', recentColors);
+	});
+}
+
+function displayRecentColors (recentColors) {
+	if (recentColors) {
+		actuallyDisplayRecentColors (recentColors);
+	} else {
+		Options.load('recentColors', actuallyDisplayRecentColors);
+	}
+}
+
+function actuallyDisplayRecentColors (recentColors) {
+
+	var container = $('.custom-color-picker-button-container');
+
+	var existing = $$('.recent-color-button');
+	if (existing) {
+		for (let i = existing.length-1; i>-1; i--) {
+			existing[i].remove();
+		}
+	}
+
+	for (let i = recentColors.length-1; i>-1; i--) {
+		let hex = recentColors[i];
+		let button = getTemplate('CustomColorPickerButton');
+		button.dataset.color = hex;
+		button.style.backgroundColor = hex;
+		recentButtonSetupClick(button);
+		container.appendChild(button);
+	}
 
 }
 
