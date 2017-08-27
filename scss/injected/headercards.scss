@@ -133,8 +133,9 @@
 	}
 
 	.list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
-		--card-bg: transparent !important; // FIXME get rid of this important
-		background: var(--card-bg);
+		// --card-bg: transparent !important; // FIXME get rid of this important
+		// background: var(--card-bg);
+		background: transparent !important;
 	}
 
 }

@@ -47,6 +47,16 @@ Options.load('colors', function (colors) {
 			Dummy.setDoingListColorByName (doingColorForBlue);
 		}
 
+		let inputs = document.querySelectorAll('.color-tile-input');
+		for (let i=inputs.length-1; i>-1; i--) {
+			inputs[i].addEventListener('change', function () {
+				let colorPicker = $('color-picker');
+				if (colorPicker) {
+					colorPicker.remove();
+				}
+			});
+		}
+
 		let tiles = document.querySelectorAll('.color-tile-label');
 		for (let i = tiles.length-1; i>-1; i--) {
 			tiles[i].addEventListener('click', function () {
