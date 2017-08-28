@@ -10,35 +10,6 @@ function $$(query) {
 	return document.querySelectorAll(query);
 }
 
-function createElement (string) {
-
-	var element, events, container = document.createElement('div');
-
-	if (typeof (string) != 'string') {
-		throw 'First parameter must be a string';
-	}
-
-	else if (typeof arguments[1] !== 'undefined') {
-		events = arguments[1];
-	}
-
-	string = string.trim();
-
-	switch (true) {
-		case /^<(:?th|td)\b/.test(string) :
-		case /^<tr\b/.test(string) :
-		case /^<t(:?r|head|body)/.test(string) :
-			throw new Error('Table elements do not work with this function');
-			break;
-	}
-
-	container.innerHTML = string;
-
-	element = container.firstElementChild;
-
-	return element;
-}
-
 function observe(params) {
 
 	var observer = new MutationObserver(function (node) { params.callback(node, observer); });

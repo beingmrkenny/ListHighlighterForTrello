@@ -6,19 +6,6 @@
 
 	var picker, slide, hueOffset = 15, svgNS = 'http://www.w3.org/2000/svg';
 
-	// This HTML snippet is inserted into the innerHTML property of the passed color picker element
-	// when the no-hassle call to ColorPicker() is used, i.e. ColorPicker(function(hex, hsv, rgb) { ... });
-
-	var colorpickerHTMLSnippet =
-		`<div class="picker-wrapper">
-				<div class="picker"></div>
-				<div class="picker-indicator"></div>
-		</div>
-		<div class="slide-wrapper">
-				<div class="slide"></div>
-				<div class="slide-indicator"></div>
-		</div>`;
-
 	/**
 	 * Create SVG element.
 	 */
@@ -177,32 +164,9 @@
 		this.s = 1;
 		this.v = 1;
 
-		if (!callback) {
-			// call of the form ColorPicker(element, funtion(hex, hsv, rgb) { ... }), i.e. the no-hassle call.
-
-			var element = slideElement;
-			element.innerHTML = colorpickerHTMLSnippet;
-
-			this.slideElement = element.getElementsByClassName('slide')[0];
-			this.pickerElement = element.getElementsByClassName('picker')[0];
-			var slideIndicator = element.getElementsByClassName('slide-indicator')[0];
-			var pickerIndicator = element.getElementsByClassName('picker-indicator')[0];
-
-			ColorPicker.fixIndicators(slideIndicator, pickerIndicator);
-
-			this.callback = function(hex, hsv, rgb, pickerCoordinate, slideCoordinate) {
-
-				ColorPicker.positionIndicators(slideIndicator, pickerIndicator, slideCoordinate, pickerCoordinate);
-
-				pickerElement(hex, hsv, rgb);
-			};
-
-		} else {
-
-			this.callback = callback;
-			this.pickerElement = pickerElement;
-			this.slideElement = slideElement;
-		}
+		this.callback = callback;
+		this.pickerElement = pickerElement;
+		this.slideElement = slideElement;
 
 		// Generate uniq IDs for linearGradients so that we don't have the same IDs within one document.
 		// Then reference those gradients in the associated rectangles.
