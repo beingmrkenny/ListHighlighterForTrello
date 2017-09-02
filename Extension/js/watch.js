@@ -62,8 +62,8 @@ function watch (watcherKey, targets) {
 
 function executeWatcher (target, watcher) {
 	// FIXME workaround till I can work out how not to apply this multiple times in a better way
-	if (!target.dataset.watched) {
-		target.dataset.watched = 'yes';
+	if (!target.dataset.bmkoWatched) {
+		target.dataset.bmkoWatched = 'yes';
 		watcher.observer.observe(target, watcher.options);
 	}
 }
