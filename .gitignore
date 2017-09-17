@@ -1,0 +1,6 @@
+config/bash.sh
+config/options.inc
+*.css
+Extension/options/index.html
+.gitconfig
+/Images
