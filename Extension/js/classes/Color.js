@@ -1,6 +1,7 @@
 class Color {
 
-	// FIXME these non-static methods, why do they take string as an argument, should be using this.string, or be static
+	// REVIEW these non-static methods
+	// why do they take string as an argument, should be using this.string, or be static
 
 	constructor (string) {
 		if (typeof string == 'string') {

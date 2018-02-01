@@ -39,7 +39,7 @@
 		@include badges();
 
 		.list-card-cover {
-			opacity: .4;
+			opacity: var(--card-cover-opacity);
 		}
 
 	}

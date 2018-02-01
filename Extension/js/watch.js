@@ -30,7 +30,14 @@ function getWatcher(key, targets) {
 
 		listTitle : {
 			targets : document.querySelectorAll('.list-header h2'),
-			observer : new MutationObserver(ListHighlighter.highlight),
+			observer : new MutationObserver(function (mutationRecords) {
+				var listTitle = mutationRecords[0].target;
+				ListHighlighter.highlight();
+				if (listTitle && listTitle.parentNode) {
+					let listWorkPoints = new ListWorkPoints(listTitle.closest('.list'));
+					listWorkPoints.update();
+				}
+			}),
 			options : {childList: true, subtree: false}
 		},
 
@@ -51,8 +58,8 @@ function watch (watcherKey, targets) {
 	var watcher = getWatcher(watcherKey, targets);
 
 	if (watcher.targets instanceof NodeList || Array.isArray(watcher.targets)) {
-		for (let i = watcher.targets.length - 1; i > -1; i--) {
-			executeWatcher (watcher.targets[i], watcher);
+		for (let target of watcher.targets) {
+			executeWatcher (target, watcher);
 		}
 	} else if (watcher.targets instanceof HTMLElement) {
 		executeWatcher (watcher.targets, watcher);

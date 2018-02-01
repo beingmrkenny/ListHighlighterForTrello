@@ -15,5 +15,5 @@ fi
 command -v osascript >/dev/null 2>&1;
 if [[ "$?" == 0 && $refreshOnWatch == true ]]; then
 	# To get chrome to refresh automatically via macOS's AppleScript
-	osascript $DIR/chrome.scpt;
+	osascript $DIR/chrome.scpt $openOptionsOnRefresh;
 fi

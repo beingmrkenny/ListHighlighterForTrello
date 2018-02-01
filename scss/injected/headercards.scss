@@ -35,8 +35,6 @@
 
 .bmko_header-card {
 
-	transition: margin-top .25s;
-
 	.bmko_header-cards-extra-space & {
 		margin-top: 20px;
 	}
@@ -91,8 +89,6 @@
 .list-card.bmko_horizontal-rule-card {
 
 	padding: 0;
-
-	transition: padding .25s;
 
 	.bmko_header-cards-extra-space & {
 		padding: 13px 0 0;

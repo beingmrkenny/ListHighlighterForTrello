@@ -48,8 +48,8 @@ Options.load('colors', function (colors) {
 		}
 
 		let inputs = document.querySelectorAll('.color-tile-input');
-		for (let i=inputs.length-1; i>-1; i--) {
-			inputs[i].addEventListener('change', function () {
+		for (let input of inputs) {
+			input.addEventListener('change', function () {
 				let colorPicker = $('color-picker');
 				if (colorPicker) {
 					colorPicker.remove();
@@ -58,8 +58,8 @@ Options.load('colors', function (colors) {
 		}
 
 		let tiles = document.querySelectorAll('.color-tile-label');
-		for (let i = tiles.length-1; i>-1; i--) {
-			tiles[i].addEventListener('click', function () {
+		for (let tile of tiles) {
+			tile.addEventListener('click', function () {
 
 				var tile = this,
 					input = $id(tile.getAttribute('for')),
@@ -102,8 +102,8 @@ Options.load('colors', function (colors) {
 		}
 
 		let trelloBackgroundColorButtons = document.querySelectorAll('.trello-bg-color-button');
-		for (let i=trelloBackgroundColorButtons.length-1; i>-1; i--) {
-			trelloBackgroundColorButtons[i].addEventListener('click', function () {
+		for (let button of trelloBackgroundColorButtons) {
+			button.addEventListener('click', function () {
 				var trelloBg = this.dataset.trelloBg;
 				Dummy.changeBackgroundColor(trelloBg);
 				Dummy.setCustomTileColorByHex(DoingColors.getCustomHexForTrelloBg(trelloBg));
@@ -111,8 +111,7 @@ Options.load('colors', function (colors) {
 		}
 
 		let editCustomColorLinks = document.querySelectorAll('.edit-link');
-		for (let i=editCustomColorLinks.length-1; i>-1; i--) {
-			let link = editCustomColorLinks[i];
+		for (let link of editCustomColorLinks) {
 			link.addEventListener('click', function (event) {
 				event.preventDefault();
 				setupColorPicker(this.closest('.color-tile-label'));
@@ -165,11 +164,10 @@ Options.load('options', function (options) {
 				targets: ['HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher']
 			}
 		}
-	}
+	};
 
 	var optionControlInputs = document.querySelectorAll('.option-control');
-	for (let i = optionControlInputs.length-1; i>-1; i--) {
-		let input = optionControlInputs[i];
+	for (let input of optionControlInputs) {
 
 		input.addEventListener('change', function() {
 
@@ -178,9 +176,9 @@ Options.load('options', function (options) {
 
 			if (config && config.disableInputs) {
 				let disableInputs = config.disableInputs;
-				for (let i = disableInputs.length-1; i>-1; i--) {
-					let label = document.querySelector(`[for="${disableInputs[i]}"]`);
-					$id(disableInputs[i]).disabled = (!input.checked);
+				for (let disableInput of disableInputs) {
+					let label = document.querySelector(`[for="${disableInputs}"]`);
+					$id(disableInput).disabled = (!input.checked);
 					label.classList.toggle('disabled', (!input.checked));
 				}
 			}
@@ -190,8 +188,8 @@ Options.load('options', function (options) {
 				if (config.textSwitcher.linkedInput) {
 					on = (on && $id(config.textSwitcher.linkedInput).checked);
 				}
-				for (let i = config.textSwitcher.targets.length-1; i>-1; i--) {
-					let switcher = $id(config.textSwitcher.targets[i]);
+				for (let target of config.textSwitcher.targets) {
+					let switcher = $id(target);
 					switcher.textContent = (on)
 						? switcher.dataset.on
 						: switcher.dataset.off;
@@ -222,8 +220,8 @@ Options.load('options', function (options) {
 	}
 
 	var optionInputs = document.querySelectorAll('.options-input');
-	for (let i = optionInputs.length-1; i>-1; i--) {
-		optionInputs[i].addEventListener('change', function () {
+	for (let optionInput of optionInputs) {
+		optionInput.addEventListener('change', function () {
 			let input = this,
 				name = input.name,
 				value = (input.type == 'radio')
@@ -264,9 +262,9 @@ function saveCustomColor (trelloBg, hex) {
 
 function sendMessage (message) {
 	chrome.tabs.query({}, function (tabs) {
-		for (let i = tabs.length-1; i>-1; i--) {
+		for (let tab of tabs) {
 			chrome.tabs.sendMessage(
-				tabs[i].id,
+				tab.id,
 				{message: message},
 				function (response) {}
 			);

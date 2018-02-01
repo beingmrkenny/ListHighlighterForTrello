@@ -1,0 +1,99 @@
+@mixin warningBackground ($color, $bgColor, $opacity) {
+	@if $color != transparent {
+		$color: rgba($color, $opacity);
+	}
+	@if $bgColor != transparent {
+		$bgColor: rgba($bgColor, $opacity);
+	}
+	background-image: linear-gradient(to bottom right, $color 25%, $bgColor 25%, $bgColor 50%, $color 50%, $color 75%, $bgColor 75%, $bgColor);
+	background-size: 2pc 2pc;
+}
+
+@mixin displayBlock {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	content: " ";
+}
+
+@keyframes flash {
+	from,
+	50%,
+	to {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+.list-card.placeholder {
+	width: 100% !important;
+}
+
+.bmko_list-limit-notice {
+	opacity: var(--opacity);
+	margin: 10px -26px 6px -2px;
+
+	font-size: 12px;
+	text-align: right;
+	text-transform: uppercase;
+	color: var(--header-color);
+	border-radius: 4px;
+
+	transition: padding 0.25s;
+
+	-webkit-text-fill-color: var(--header-color);
+
+	.updated {
+		animation-name: flash;
+		animation-duration: 1s;
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	.bmko_list-over & {
+		padding: 6px 10px;
+
+		font-weight: bold;
+		text-align: center;
+		border: 2px solid;
+		border-radius: 3px;
+
+		animation-name: flash;
+		animation-duration: 1s;
+		animation-fill-mode: both;
+	}
+}
+
+.bmko_list-would-be-over:not([data-bmko-original-list]),
+.bmko_list-full:not([data-bmko-original-list]),
+.bmko_list-over:not([data-bmko-original-list]) {
+	.placeholder:not(.bmko_header-card-placeholder)::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		border-radius: 3px;
+
+		@include warningBackground(rgb(247, 199, 92), black, 0.2);
+		@include displayBlock;
+	}
+}
+
+.bmko_ignore-list,
+.bmko_trash-list {
+	.bmko_list-limit-notice,
+	.placeholder:not(.bmko_header-card-placeholder)::before {
+		display: none !important;
+	}
+}

@@ -1,19 +1,10 @@
 
-@import '../colors';
-@import 'vars';
-@import 'mixins';
+@import "../colors";
+@import "vars";
+@import "mixins";
 
 body.body-color-blind-mode-enabled .bmko_high-list {
-	background-image: linear-gradient(
-		to bottom right,
-		rgba(255,255,255,.5) 25%,
-		transparent 25%,
-		transparent 50%,
-		rgba(255,255,255,.5) 50%,
-		rgba(255,255,255,.5) 75%,
-		transparent 75%,
-		transparent
-	);
+	background-image: linear-gradient(to bottom right, rgba(255,255,255,0.5) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5) 75%, transparent 75%, transparent);
 	background-size: 2pc 2pc;
 
 	.open-card-composer {
@@ -29,7 +20,8 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 .bmko_list-highlighter-applied .list {
 	color: var(--list-color);
 	background: var(--list-bg);
-	transition: background .25s;
+
+	transition: background 0.25s;
 
 	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
 		background: var(--scrollbar-track-color);
@@ -126,7 +118,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 	.icon-lg {
 		&.dark-hover,
 		&.dark-background-hover {
-			opacity: .7;
+			opacity: 0.7;
 
 			color: var(--card-button-color);
 			&:hover {
@@ -145,7 +137,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 	}
 
 	&.bmko_high-list .member-initials {
-		opacity: .9;
+		opacity: 0.9;
 		box-sizing: border-box;
 
 		border: 1px solid var(--header-color);
@@ -167,7 +159,7 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
 		.confirm {
-			opacity: .5;
+			opacity: 0.5;
 		}
 	}
 
@@ -176,4 +168,5 @@ body.body-color-blind-mode-enabled .bmko_high-list {
 	}
 }
 
-@import 'headercards';
+@import "workPoints";
+@import "headercards";

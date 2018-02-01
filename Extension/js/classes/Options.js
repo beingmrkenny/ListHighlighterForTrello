@@ -32,7 +32,6 @@ class Options {
 			},
 			recentColors : [],
 			options : {
-				EnableWIP                   : false,
 				EnableHeaderCards           : false,
 				EnableSeparatorCards        : false,
 				HideHashtags                : true,
@@ -40,7 +39,9 @@ class Options {
 				HighlightTitles             : true,
 				MatchTitleSubstrings        : false,
 				HeaderCardsExtraSpace       : false,
-				SeparatorCardsVisibleLine   : false
+				SeparatorCardsVisibleLine   : false,
+				EnableWIP                   : false,
+				IgnorePointsOnCards			: false
 			},
 			colorBlindFriendlyMode : null
 		};

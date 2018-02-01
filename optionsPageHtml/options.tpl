@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>List Highlighter for Trello Settings</title>
 	<link rel="stylesheet" href="/css/options.css">
+	<link rel="icon" href="/img/buttonIcon.png">
 </head>
 
 <body class="preload">
@@ -90,26 +91,37 @@
 
 		<h2>More features</h2>
 
-		<h3>
-			Cards
-		</h3>
-
 		<div class="multiple-standard-options">
 
-			<ul class="standard-options">
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
-					<label for="EnableHeaderCards">
-						Header cards
-					</label>
-				</li>
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-					<label for="EnableSeparatorCards">
-						Separator cards
-					</label>
-				</li>
-			</ul>
+			<div class="standard-options">
+				<h3>Cards</h3>
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
+						<label for="EnableHeaderCards">
+							Header cards
+						</label>
+					</li>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+						<label for="EnableSeparatorCards">
+							Separator cards
+						</label>
+					</li>
+				</ul>
+			</div>
+
+			<div class="standard-options">
+				<h3>Lists</h3>
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
+						<label for="EnableWIP">
+							Work Points
+						</label>
+					</li>
+				</ul>
+			</div>
 
 		</div>
 
@@ -131,24 +143,14 @@
 			</label>
 			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
 
+			<h4>Work Points</h4>
+			<p>Limit the amount of cards that a list can contain. Useful for keeping the "doing" list manageable. Set the number of cards a list can contain by putting a number in square brackets in the title. One card = one point. If you want it to be worth more, put a number in brackets in the card text.</p>
+			<label for="IgnorePointsOnCards" class="fine-tuning-label">
+				<input type="checkbox" class="option-control options-input" id="IgnorePointsOnCards" name="IgnorePointsOnCards">
+				Ignore points on cards
+			</label>
+
 		</details>
-
-		{* <h3>Work in progress</h3>
-
-		<ul class="color-tile-bar standard-bar">
-			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableWIP" name="EnableWIP">
-				<label for="EnableWIP" class="color-tile-label standard-input">
-					Enable WIP
-				</label>
-			</li>
-		</ul>
-
-		<details>
-
-			<summary>More information</summary>
-
-		</details> *}
 
 	</section>
 

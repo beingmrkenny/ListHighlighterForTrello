@@ -69,8 +69,8 @@ function setupColorPicker (colorTileLabel) {
 	displayRecentColors();
 
 	var customColorPickers = $$('.custom-color-picker-button');
-	for (let i = customColorPickers.length-1; i>-1; i--) {
-		recentButtonSetupClick(customColorPickers[i]);
+	for (let picker of customColorPickers) {
+		recentButtonSetupClick(picker);
 	}
 
 }
@@ -105,13 +105,12 @@ function actuallyDisplayRecentColors (recentColors) {
 
 	var existing = $$('.recent-color-button');
 	if (existing) {
-		for (let i = existing.length-1; i>-1; i--) {
-			existing[i].remove();
+		for (let button of existing) {
+			button.remove();
 		}
 	}
 
-	for (let i = recentColors.length-1; i>-1; i--) {
-		let hex = recentColors[i];
+	for (let hex of recentColors) {
 		let button = getTemplate('CustomColorPickerButton');
 		button.dataset.color = hex;
 		button.style.backgroundColor = hex;

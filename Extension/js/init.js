@@ -21,10 +21,12 @@ chrome.runtime.onMessage.addListener (
 				break;
 			case 'rehighlight' :
 				Options.load('options', function (options) {
+					System.headerCardsSetup();
+					Card.processCards(document.querySelectorAll('.list-card'));
 					ListHighlighter.highlight();
 					ListHighlighter.toggleHideHashtags (options.HideHashtags);
-					Card.processCards(document.querySelectorAll('.list-card'));
-					System.headerCardsSetup();
+					ListWorkPoints.updateLists();
+					ListWorkPoints.toggleWIP();
 				});
 				break;
 		}

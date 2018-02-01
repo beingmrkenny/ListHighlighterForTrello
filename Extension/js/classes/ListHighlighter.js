@@ -1,4 +1,4 @@
-'use script';
+'use strict';
 
 const HIGH   = 'high';
 const NORMAL = 'normal';
@@ -8,24 +8,63 @@ const TRASH  = 'trash';
 
 class ListHighlighter {
 
-	static detagHeader (header) {
+    // Removes first #tag and first [\d] from the textarea content
+	static detagHeaderTextarea (header) {
 
-		if (header && header.textContent) {
+		let hideTags = (GLOBAL.HighlightTags && GLOBAL.HideHashtags),
+			hideWipNumbers = (GLOBAL.EnableWIP);
 
-			let tagList = 'to ?do|today|doing|trash|done|normal|low|high|ignore';
-			let r = new RegExp(`(?:\\s*(?:\{(${tagList})\}|#(?:${tagList})))\\s*`, 'i');
-			let matches = header.textContent.match(r);
-			let textarea = header.nextElementSibling;
-			let title = header.textContent;
+		if (header && header.textContent && (hideTags || hideWipNumbers)) {
+
+			let textarea = header.nextElementSibling,
+				title = header.textContent;
 
 			if (textarea && textarea.tagName == 'TEXTAREA') {
-				let newValue;
-				if (matches && typeof matches[0] == 'string') {
-					title = header.textContent.replace(matches[0], ' ').trim();
-					textarea.value = title;
-				} else {
-					title = textarea.value;
+
+				let tagList = 'to ?do\\b|today\\b|doing\\b|trash\\b|done\\b|normal\\b|low\\b|high\\b|ignore\\b',
+					r;
+
+				if (hideTags && hideWipNumbers) {
+
+					r = `#(?:${tagList})|(?:\[[0-9]+\])`;
+
+				} else if (!hideTags && hideWipNumbers) {
+
+					r = `(?:\[[0-9]+\])`;
+
+				} else if (hideTags && !hideWipNumbers) {
+
+					r = `#(?:${tagList})`;
+
 				}
+
+				let regex = new RegExp(r, 'gi'),
+					matches = title.match(regex);
+
+				if (matches && typeof matches[0] == 'string') {
+
+					let countTagDone = false,
+						hashTagDone = false;
+
+					for (let match of matches) {
+
+						if (countTagDone == false && match.startsWith('[')) {
+							match = match.replace(/(\[|\])/g, '\\$1');
+							title = title.replace(new RegExp(`\\s*${match}\\s*`), ' ').trim();
+							countTagDone = true;
+						}
+
+						if (hashTagDone == false && match.startsWith('#')) {
+							title = title.replace(new RegExp(`\\s*${match}\\b\\s*`), ' ').trim();
+							hashTagDone = true;
+						}
+
+					}
+
+				}
+
+				textarea.value = title;
+
 			}
 
 			textarea.style.height = ListHighlighter.getNewHeight(textarea, title);
@@ -34,25 +73,18 @@ class ListHighlighter {
 
 	}
 
-	static detagHeaderTimeout () {
-
-		var textarea;
-
-		if (arguments[0] instanceof HTMLTextAreaElement) {
-			textarea = arguments[0];
-		} else if (arguments[0] instanceof Event) {
-			textarea = arguments[0].target;
-		}
-
+	static detagHeaderTextareaTimeout () {
 		var textarea = this;
 		var header = textarea.previousElementSibling;
 		window.setTimeout(function () {
-			ListHighlighter.detagHeader(header);
+			ListHighlighter.detagHeaderTextarea(header);
 		}, 10);
-
 	}
 
-	static retagHeader () {
+	// puts textContent from the h2 tag back into the textarea
+	// called when a header textarea is focussed on
+    // called when list highlighting is switched off on one or all lists
+	static retagHeaderTextarea () {
 
 		var textarea;
 
@@ -62,7 +94,12 @@ class ListHighlighter {
 			textarea = arguments[0].target;
 		}
 
-		var newValue = textarea.previousElementSibling.textContent;
+		var newValue = textarea.previousElementSibling.textContent,
+			hasFocus = (document.hasFocus() && textarea === document.activeElement);
+		console.log(hasFocus);
+		if (GLOBAL.EnableWIP && !hasFocus) {
+			newValue = newValue.replace(/\s*\[[0-9]+\]\s*/, ' ');
+		}
 
 		textarea.value = newValue;
 		textarea.style.height = ListHighlighter.getNewHeight(textarea, newValue);
@@ -102,7 +139,13 @@ class ListHighlighter {
 
 	static getListTypeFromHeader (header) {
 
-		let listTitle = header.textContent.toLowerCase().trim();
+		let listTitle = header.textContent.toLowerCase();
+
+		if (GLOBAL.EnableWIP) {
+			listTitle = listTitle.replace(/\s*\[[0-9]+\]\s*/, ' ');
+		}
+
+		listTitle = listTitle.trim();
 
 		if (
 			GLOBAL.HighlightTags && (listTitle.includes('{low}') || /#low(?:\s|$)/.test(listTitle))
@@ -167,13 +210,13 @@ class ListHighlighter {
 
 		var lists = document.querySelectorAll('.list');
 
-		for (var i = 0, len = lists.length; i < len; i++) {
+		for (let list of lists) {
 
-			let list = lists[i],
-				header = list.querySelector('.list-header h2');
+			let header = list.querySelector('.list-header h2');
 
 			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
 
+			// COMBAK is there ever not a header??
 			if (header) {
 
 				let type = ListHighlighter.getListTypeFromHeader(header);
@@ -188,12 +231,12 @@ class ListHighlighter {
 						break;
 				}
 
-				if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
+				if ((GLOBAL.HighlightTags && GLOBAL.HideHashtags) || GLOBAL.EnableWIP) {
 					let textarea = header.nextElementSibling;
 					if (textarea && textarea.tagName == 'TEXTAREA') {
-						textarea.addEventListener('focus', ListHighlighter.retagHeader);
-						textarea.addEventListener('blur', ListHighlighter.detagHeaderTimeout);
-						ListHighlighter.detagHeader(header);
+						textarea.addEventListener('focus', ListHighlighter.retagHeaderTextarea);
+						textarea.addEventListener('blur', ListHighlighter.detagHeaderTextareaTimeout);
+						ListHighlighter.detagHeaderTextarea(header);
 					}
 				}
 
@@ -222,17 +265,16 @@ class ListHighlighter {
 
 		var lists = document.querySelectorAll('.list');
 
-		for (var i = 0, len = lists.length; i < len; i++) {
+		for (let list of lists) {
 
-			let list = lists[i];
 			list.classList.remove('bmko_high-list', 'bmko_normal-list', 'bmko_low-list', 'bmko_ignore-list', 'bmko_trash-list');
 
-			if (GLOBAL.HighlightTags && GLOBAL.HideHashtags) {
+			if ((GLOBAL.HighlightTags && GLOBAL.HideHashtags) || GLOBAL.EnableWIP) {
 				let textarea = list.querySelector('.list-header h2 + textarea');
 				if (textarea) {
-					ListHighlighter.retagHeader(textarea);
-					textarea.removeEventListener('focus', ListHighlighter.retagHeader);
-					textarea.removeEventListener('blur', ListHighlighter.detagHeaderTimeout);
+					ListHighlighter.retagHeaderTextarea(textarea);
+					textarea.removeEventListener('focus', ListHighlighter.retagHeaderTextarea);
+					textarea.removeEventListener('blur', ListHighlighter.detagHeaderTextareaTimeout);
 				}
 			}
 
@@ -242,13 +284,13 @@ class ListHighlighter {
 
 	static toggleHideHashtags (hide) {
 		var lists = document.querySelectorAll('.list');
-		for (var i = 0, len = lists.length; i < len; i++) {
-			let textarea = lists[i].querySelector('.list-header h2 + textarea');
+		for (let list of lists) {
+			let textarea = list.querySelector('.list-header h2 + textarea');
 			if (textarea) {
 				if (hide) {
-					ListHighlighter.detagHeader(textarea);
+					ListHighlighter.detagHeaderTextarea(textarea);
 				} else {
-					ListHighlighter.retagHeader(textarea);
+					ListHighlighter.retagHeaderTextarea(textarea);
 				}
 			}
 		}

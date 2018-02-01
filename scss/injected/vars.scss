@@ -53,6 +53,8 @@ body.bmko_do-not-dim-lists .bmko_low-list {
 
 	--list-button-bg:                  #{#D6DADC};
 	--list-button-color:               #{#8c8c8c};
+
+	--card-cover-opacity:			   #{1};
 }
 
 body:not(.bmko_do-not-dim-lists) .bmko_low-list {
@@ -74,6 +76,8 @@ body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 	--card-button-color:               #{transparentize($ignoreTextColor, .1)};
 
 	--opacity:                         #{.6};
+
+	--card-cover-opacity:			   #{.4};
 }
 
 .bmko_ignore-list,
