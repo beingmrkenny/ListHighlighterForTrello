@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<title>List Highlighter for Trello Settings</title>
 	<link rel="stylesheet" href="/css/options.css">
-	<link rel="icon" href="/img/buttonIcon.png">
 </head>
 
 <body class="preload">
@@ -145,10 +144,15 @@
 
 			<h4>Work Points</h4>
 			<p>Limit the amount of cards that a list can contain. Useful for keeping the "doing" list manageable. Set the number of cards a list can contain by putting a number in square brackets in the title. One card = one point. If you want it to be worth more, put a number in brackets in the card text.</p>
+			<label for="RefuseNewCards" class="fine-tuning-label">
+				<input type="checkbox" class="option-control options-input" id="RefuseNewCards" name="RefuseNewCards">
+				Refuse new cards on full lists
+			</label>
 			<label for="IgnorePointsOnCards" class="fine-tuning-label">
 				<input type="checkbox" class="option-control options-input" id="IgnorePointsOnCards" name="IgnorePointsOnCards">
 				Ignore points on cards
 			</label>
+			<p></p>
 
 		</details>
 

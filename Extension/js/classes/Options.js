@@ -41,7 +41,8 @@ class Options {
 				HeaderCardsExtraSpace       : false,
 				SeparatorCardsVisibleLine   : false,
 				EnableWIP                   : false,
-				IgnorePointsOnCards			: false
+				IgnorePointsOnCards			: false,
+				RefuseNewCards				: false
 			},
 			colorBlindFriendlyMode : null
 		};
