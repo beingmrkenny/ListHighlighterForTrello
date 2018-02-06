@@ -46,7 +46,7 @@
 }
 
 .bmko_normal-list,
-body.bmko_do-not-dim-lists .bmko_low-list {
+#classic-body.bmko_do-not-dim-lists .bmko_low-list {
 	--list-bg:                         #{$listBG};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};
@@ -55,7 +55,7 @@ body.bmko_do-not-dim-lists .bmko_low-list {
 	--list-button-color:               #{#8c8c8c};
 }
 
-body:not(.bmko_do-not-dim-lists) .bmko_low-list {
+#classic-body:not(.bmko_do-not-dim-lists) .bmko_low-list {
 	--list-bg:                         #{rgba($listBG, 0.5)};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};

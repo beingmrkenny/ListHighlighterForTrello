@@ -30,9 +30,12 @@ class DoingColors {
 
 	static getTrelloBg () {
 		var trelloBg,
-			background = (document.body.classList.contains('body-custom-board-background'))
+			body = getTrelloBody(),
+			background = (body.classList.contains('body-custom-board-background'))
 				? 'photo'
-				: document.body.style.backgroundColor;
+				: body.style.backgroundColor;
+
+		console.log(background);
 
 		switch (background) {
 			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
@@ -120,11 +123,12 @@ class DoingColors {
 
 		var color = new Color(),
 			newColor = new Color(),
+			body = getTrelloBody(),
 			highPri, contrastColor, css, existingStyle;
 
 		DoingColors.init(GLOBAL.colors);
 
-		highPri = (document.body.classList.contains('body-custom-board-background'))
+		highPri = (body.classList.contains('body-custom-board-background'))
 			? DoingColors.getHexForTrelloBg('photo')
 			: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
 

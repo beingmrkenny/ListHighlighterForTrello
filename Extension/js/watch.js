@@ -3,7 +3,7 @@ function getWatcher(key, targets) {
 	var watchers = {
 
 		body : {
-			targets: document.body,
+			targets: getTrelloBody(),
 			observer : new MutationObserver(System.handleBodyAttributeChanges),
 			options : {childList: false, subtree: false, attributes: true, attributeOldValue: true}
 		},

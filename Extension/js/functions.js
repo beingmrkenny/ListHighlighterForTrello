@@ -95,3 +95,7 @@ function getTemplate (id) {
 function j (string) {
 	return JSON.parse(string);
 }
+
+function getTrelloBody () {
+	return document.getElementById('classic-body');
+}

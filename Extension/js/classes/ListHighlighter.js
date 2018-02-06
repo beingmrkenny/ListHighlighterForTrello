@@ -153,17 +153,20 @@ class ListHighlighter {
 			} else {
 				ListHighlighter.dehighlight('override');
 			}
-			document.body.classList.toggle('bmko_list-highlighter-toggled-off', !highlight);
+			let body = getTrelloBody();
+			body.classList.toggle('bmko_list-highlighter-toggled-off', !highlight);
 		}
 	}
 
 	static highlight(override) {
 
-		if (document.body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+		var body = getTrelloBody();
+
+		if (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
 			return;
 		}
 
-		document.body.classList.add('bmko_list-highlighter-applied');
+		body.classList.add('bmko_list-highlighter-applied');
 
 		var lists = document.querySelectorAll('.list');
 
@@ -205,20 +208,22 @@ class ListHighlighter {
 			document.querySelectorAll('.bmko_normal-list').length > 0 ||
 			document.querySelectorAll('.bmko_high-list').length > 0
 		) {
-			document.body.classList.remove('bmko_do-not-dim-lists');
+			body.classList.remove('bmko_do-not-dim-lists');
 		} else {
-			document.body.classList.add('bmko_do-not-dim-lists');
+			body.classList.add('bmko_do-not-dim-lists');
 		}
 
 	}
 
 	static dehighlight(override) {
 
-		if (document.body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+		var body = getTrelloBody();
+
+		if (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
 			return;
 		}
 
-		document.body.classList.remove('bmko_list-highlighter-applied');
+		body.classList.remove('bmko_list-highlighter-applied');
 
 		var lists = document.querySelectorAll('.list');
 

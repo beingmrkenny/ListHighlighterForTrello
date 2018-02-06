@@ -3,15 +3,18 @@
 class TrelloPage {
 
 	static isBoard() {
-		return document.body.classList.contains('body-board-view');
+		var body = getTrelloBody();
+		return body.classList.contains('body-board-view');
 	}
 
 	static isCustomBackground() {
-		return document.body.classList.contains('body-custom-board-background');
+		var body = getTrelloBody();
+		return body.classList.contains('body-custom-board-background');
 	}
 
 	static getBoardBackground () {
-		var color = document.body.style.backgroundColor;
+		var body = getTrelloBody(),
+			color = body.style.backgroundColor;
 		if (typeof color != 'string') {
 			color = null;
 		}
@@ -19,7 +22,8 @@ class TrelloPage {
 	}
 
 	static isHighlighted () {
-		return document.body.classList.contains('bmko_list-highlighter-applied');
+		var body = getTrelloBody();
+		return body.classList.contains('bmko_list-highlighter-applied');
 	}
 
 	static getDetails () {

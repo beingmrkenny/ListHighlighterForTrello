@@ -20,7 +20,7 @@ class System {
 
 	static headerCardsSetup() {
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
-			let body = document.body;
+			let body = getTrelloBody();
 
 			keepCounting(
 				function() {
@@ -39,7 +39,8 @@ class System {
 
 	static toggleToolbarButton() {
 		if (document && document.body) {
-			var toggle = document.body.classList.contains('bmko_list-highlighter-toggled-off');
+			var body = getTrelloBody();
+			var toggle = body.classList.contains('bmko_list-highlighter-toggled-off');
 			if (typeof toggle == 'boolean') {
 				chrome.runtime.sendMessage({
 					toggledOff: toggle
@@ -49,9 +50,10 @@ class System {
 	}
 
 	static detectAndSaveColorBlindFriendlyMode(passedMode) {
+		var body = getTrelloBody();
 		Options.save(
 			'colorBlindFriendlyMode',
-			passedMode || document.body.classList.contains('body-color-blind-mode-enabled')
+			passedMode || body.classList.contains('body-color-blind-mode-enabled')
 		);
 	}
 
@@ -62,22 +64,23 @@ class System {
 
 		if (typeof mutationRecords !== 'undefined') {
 
-			let mut = mutationRecords[0];
+			let mut = mutationRecords[0],
+				body = getTrelloBody();
 
-			if (mut.attributeName == 'style' && mut.oldValue !== document.body.getAttribute('style')) {
+			if (mut.attributeName == 'style' && mut.oldValue !== body.getAttribute('style')) {
 
 				DoingColors.highPriColorStyles()
 
 			} else if (mut.attributeName == 'class') {
 
 				let oldStatus = mut.oldValue.includes('body-color-blind-mode-enabled'),
-					newStatus = document.body.classList.contains('body-color-blind-mode-enabled');
+					newStatus = body.classList.contains('body-color-blind-mode-enabled');
 				if (oldStatus !== newStatus) {
 					System.detectAndSaveColorBlindFriendlyMode(newStatus);
 				}
 
 				let oldPhotoBg = mut.oldValue.includes('body-custom-board-background'),
-					newPhotoBg = document.body.classList.contains('body-custom-board-background');
+					newPhotoBg = body.classList.contains('body-custom-board-background');
 				if (oldPhotoBg !== newPhotoBg) {
 					DoingColors.highPriColorStyles();
 				}

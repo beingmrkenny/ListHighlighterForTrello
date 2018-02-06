@@ -3,7 +3,7 @@
 @import 'vars';
 @import 'mixins';
 
-body.body-color-blind-mode-enabled .bmko_high-list {
+#classic-body.body-color-blind-mode-enabled .bmko_high-list {
 	background-image: linear-gradient(
 		to bottom right,
 		rgba(255,255,255,.5) 25%,
