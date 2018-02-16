@@ -1,4 +1,4 @@
-This config directory should contain two files:
+This config directory should contain two files (contents below):
 
 - bash.sh
 - options.inc
@@ -7,14 +7,15 @@ This config directory should contain two files:
 
 	listHighlighterDir='/Path/to/ListHighlighterForTrello';
 	refreshOnWatch=false;
+	openOptionsOnRefresh=false;
 
-`listHighlighterDir` should be the full path to where you have the List Highlighter repo checked out
+- The `listHighlighterDir` variable should be the full path to where you have the List Highlighter repo checked out
 
-`refreshOnWatch` boolean variable (see "Watch" in main config).
+- The `refreshOnWatch` variable is boolean (determines whether to refresh Chrome on every update).
 
 # `options.inc`
 
 	<?php
 	$smartyClass = '/Path/to/Smarty.class.php';
 
-`$smartyClass` is the full path to your Smarty installation
+- `$smartyClass` is the full path to your Smarty installation

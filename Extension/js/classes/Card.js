@@ -23,10 +23,99 @@ class Card {
 		}
 
 		if (Array.isArray(cards) || cards instanceof NodeList) {
-			for (let i = cards.length -1; i>-1; i--) {
-				let card = new Card(cards[i]);
+			for (let card of cards) {
+				card = new Card(card);
 				card.process();
 			}
+		}
+
+	}
+
+	updatePointsBadge (points) {
+
+		let remove = false,
+			badge = this.card.querySelector('.bmko_card-count-badge');
+
+		if (typeof points == 'number' && points != 1) {
+
+			if (badge) {
+				badge.textContent = '× '+points;
+			} else {
+				badge = document.createElement('span');
+				badge.classList.add('bmko_card-count-badge');
+				badge.textContent = '× '+points;
+				this.card.querySelector('.js-custom-field-badges').appendChild(badge);
+			}
+
+		} else {
+
+			remove = true;
+
+		}
+
+		if (remove && badge) {
+			badge.remove();
+		}
+
+	}
+
+	showPointsTag () {
+
+		var title = this.card.querySelector('.list-card-title'),
+			cardText = '';
+
+		for (let i = 1, x = title.childNodes.length; i<x; i++) {
+			cardText += title.childNodes[i].textContent;
+		}
+
+		while (title.childNodes.length > 1) {
+			title.childNodes[title.childNodes.length-1].remove();
+		}
+
+		title.appendChild(document.createTextNode(cardText));
+
+	}
+
+	hidePointsTag (countString) {
+
+		if (countString != '1') {
+
+			var title = this.card.querySelector('.list-card-title'),
+				cardText = '';
+
+			for (let i = 1, x = title.childNodes.length; i<x; i++) {
+				cardText += title.childNodes[i].textContent;
+			}
+
+			var tag = `[${countString}]`,
+				splits = cardText.split(tag),
+				firstTextNode = document.createTextNode(''),
+				hiddenTagNode = document.createElement('span'),
+				remainingNode = document.createTextNode('');
+
+			hiddenTagNode.classList.add('bmko_hide');
+			hiddenTagNode.textContent = tag;
+
+			for (let i in splits) {
+				if (i == 0) {
+					firstTextNode.textContent = splits[i];
+				} else if (i == 1) {
+					remainingNode.textContent += splits[i];
+				} else {
+					remainingNode.textContent += `${tag}${splits[i]}`;
+				}
+			}
+
+			while (title.childNodes.length > 1) {
+				title.childNodes[title.childNodes.length-1].remove();
+			}
+
+			title.appendChild(firstTextNode);
+			title.appendChild(hiddenTagNode);
+			if (remainingNode.textContent.length > 0) {
+				title.appendChild(remainingNode);
+			}
+
 		}
 
 	}
@@ -43,6 +132,10 @@ class Card {
 			this.makeRule();
 		} else {
 			this.unmakeRule();
+		}
+
+		if (GLOBAL.EnableWIP) {
+			let listWorkPoints = new ListWorkPoints(this.card.closest('.list'));
 		}
 
 	}

@@ -2,7 +2,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 source $DIR/../config/bash.sh;
 
 lhwatch () {
-	fswatch -0xvo "$listHighlighterDir" -e css/* | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
+	lhgo;
+	fswatch -0xv -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
+}
+
+lhgo () {
+	$DIR/watchhandler.sh;
 }
 
 lhrelease () {
@@ -42,6 +47,8 @@ lhcompile () {
 	lhcss;
 	lhpcss;
 	lhocss;
+
+	osacompile -o $DIR/chrome.scpt $DIR/chrome.applescript
 
 	php -f $DIR/../optionsPageHtml/generateOptions.php;
 }

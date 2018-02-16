@@ -20,8 +20,8 @@ function observe(params) {
 
 	if (params.targets instanceof NodeList || Array.isArray(params.targets)) {
 
-		for (let i = params.targets.length - 1; i > -1; i--) {
-			observer.observe(params.targets[i], params.options);
+		for (let target of params.targets) {
+			observer.observe(target, params.options);
 		}
 
 	} else if (params.targets instanceof HTMLElement) {

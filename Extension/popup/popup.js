@@ -19,15 +19,15 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 function toggleBoardPopup (page) {
 
 	var section = document.getElementById('ListHighlighter'),
-		boardSpecific = document.querySelectorAll('.board-specific'),
+		boardSpecifics = document.querySelectorAll('.board-specific'),
 		button = document.getElementById('HighlightToggle'),
 		isCustomBackground = page.isCustomBackground,
 		color = new Color(page.backgroundColor),
 		trelloBoard = (page && page.isBoard);
 
 	document.body.classList.toggle('trello-page', trelloBoard);
-	for (let i = boardSpecific.length-1; i>-1; i--) {
-		boardSpecific[i].hidden = !trelloBoard;
+	for (let boardSpecific of boardSpecifics) {
+		boardSpecific.hidden = !trelloBoard;
 	}
 
 	section.style.backgroundColor = page.backgroundColor;

@@ -8,6 +8,7 @@ class System {
 				Options.load('colors', function(colors) {
 					DoingColors.highPriColorStyles();
 					keepTrying(ListHighlighter.highlight, 5, 700);
+					keepCounting(ListWorkPoints.toggleWIP, '.list-card:not(.bmko_header-card-applied)');
 					watch('title');
 					watch('board');
 					watch('listTitle');
@@ -19,20 +20,24 @@ class System {
 	}
 
 	static headerCardsSetup() {
-		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
+		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards || GLOBAL.EnableWIP) {
 			let body = getTrelloBody();
 
 			keepCounting(
 				function() {
-					watch('listCardTitle');
 					watch('list');
-					Card.processCards(document.querySelectorAll('.list-card'));
+					if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
+						watch('listCardTitle');
+						Card.processCards(document.querySelectorAll('.list-card'));
+					}
 				},
 				'.list-card', 5, 250
 			);
 
-			body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
-			body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
+			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
+				body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
+				body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
+			}
 
 		}
 	}
@@ -95,6 +100,7 @@ class System {
 		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
+		ListWorkPoints.toggleWIP();
 	}
 
 	// board
@@ -103,26 +109,88 @@ class System {
 		if (newList && newList.classList.contains('list-wrapper')) {
 			ListHighlighter.highlight();
 			watch('listTitle');
-			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
+			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards || GLOBAL.EnableWIP) {
 				watch('list', newList.querySelector('.list-cards'));
 			}
 		}
 	}
 
-	// list
+	// list - observes .list-cards
 	static checkForNewCards(mutationRecords) {
 		if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
-			var newCard = mutationRecords[0].addedNodes[0];
-			if (newCard && newCard.classList.contains('list-card')) {
-				// for new cards and dragged cards
+
+			var listCards = mutationRecords[0].target,
+				newCard = mutationRecords[0].addedNodes[0],
+				isAddedCard = (typeof newCard != 'undefined'
+					&& newCard instanceof HTMLElement
+					&& newCard.classList.contains('active-card')
+				),
+				allLists;
+
+			if (isAddedCard) {
 				Card.processCards(newCard);
 				watch('listCardTitle', newCard.querySelector('.list-card-title'));
 			} else {
 				// for dragging between lists
-				let card = mutationRecords[0].target.querySelectorAll('.list-card');
-				Card.processCards(card);
+				// QUESTION is this necessary?
+				Card.processCards(listCards.querySelectorAll('.list-card'));
+			}
+
+			if (GLOBAL.EnableWIP) {
+
+				allLists = document.querySelectorAll('.list');
+
+				if (listCards.parentNode && isAddedCard) {
+					ListWorkPoints.updateLists();
+				}
+
+				let draggedCard = document.body.querySelector('body > .list-card');
+
+				// QUESTION need this?
+				if (draggedCard && draggedCard.classList.contains('bmko_header-card-applied')) {
+					$('.placeholder').classList.add('bmko_header-card-placeholder');
+					for (let list of allLists) {
+						let lwp = new ListWorkPoints(list);
+					}
+				}
+
+				for (let record of mutationRecords) {
+
+					if (draggedCard) {
+
+						for (let list of allLists) {
+							let lwp = new ListWorkPoints(list);
+							lwp.toggleWouldBeOverWhileDragging(draggedCard);
+						}
+
+					} else {
+						ListWorkPoints.updateLists(allLists);
+					}
+
+				}
+
+				if (typeof mutationRecords[0].removedNodes[0] == 'undefined') {
+
+					if (!draggedCard) {
+
+						// Card just been dropped
+						for (let list of allLists) {
+							let lwp = new ListWorkPoints(list);
+							lwp.toggleOriginalList(false);
+						}
+
+					} else if (!$('[data-bmko-original-list]')) {
+
+						// Card picked up
+						let lwp = new ListWorkPoints(listCards.closest('.list'));
+						lwp.toggleOriginalList(true);
+
+					}
+				}
+
 			}
 		}
 	}
+
 
 }

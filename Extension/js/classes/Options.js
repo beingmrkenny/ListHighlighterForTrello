@@ -32,7 +32,6 @@ class Options {
 			},
 			recentColors : [],
 			options : {
-				EnableWIP                   : false,
 				EnableHeaderCards           : false,
 				EnableSeparatorCards        : false,
 				HideHashtags                : true,
@@ -40,7 +39,10 @@ class Options {
 				HighlightTitles             : true,
 				MatchTitleSubstrings        : false,
 				HeaderCardsExtraSpace       : false,
-				SeparatorCardsVisibleLine   : false
+				SeparatorCardsVisibleLine   : false,
+				EnableWIP                   : false,
+				CountAllCards				: false,
+				EnablePointsOnCards			: false
 			},
 			colorBlindFriendlyMode : null
 		};
@@ -115,6 +117,8 @@ class Options {
 	static resetIfEmpty (callback) {
 
 		chrome.storage.sync.get(null, function (existingSettings) {
+
+			existingSettings = existingSettings || [];
 
 			var defaults = Options.defaults();
 			for (let key in defaults) {

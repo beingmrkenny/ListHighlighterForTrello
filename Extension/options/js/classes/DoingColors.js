@@ -35,8 +35,6 @@ class DoingColors {
 				? 'photo'
 				: body.style.backgroundColor;
 
-		console.log(background);
-
 		switch (background) {
 			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
 			case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
@@ -48,6 +46,7 @@ class DoingColors {
 			case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
 			case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
 			case 'photo'			 : trelloBg = 'photo'; break;
+			default                  : trelloBg = 'blue';
 		}
 		return trelloBg;
 	}

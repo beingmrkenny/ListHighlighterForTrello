@@ -4,3 +4,4 @@ config/options.inc
 Extension/options/index.html
 .gitconfig
 /Images
+sh/chrome.scpt

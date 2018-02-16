@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>List Highlighter for Trello Settings</title>
 	<link rel="stylesheet" href="/css/options.css">
+	<link rel="icon" href="/img/buttonIcon.png">
 </head>
 
 <body class="preload">
@@ -90,26 +91,37 @@
 
 		<h2>More features</h2>
 
-		<h3>
-			Cards
-		</h3>
-
 		<div class="multiple-standard-options">
 
-			<ul class="standard-options">
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
-					<label for="EnableHeaderCards">
-						Header cards
-					</label>
-				</li>
-				<li class="standard-option-widget">
-					<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
-					<label for="EnableSeparatorCards">
-						Separator cards
-					</label>
-				</li>
-			</ul>
+			<div class="standard-options">
+				<h3>Cards</h3>
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="EnableHeaderCards" name="EnableHeaderCards">
+						<label for="EnableHeaderCards">
+							Header cards
+						</label>
+					</li>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="EnableSeparatorCards" name="EnableSeparatorCards">
+						<label for="EnableSeparatorCards">
+							Separator cards
+						</label>
+					</li>
+				</ul>
+			</div>
+
+			<div class="standard-options">
+				<h3>Lists</h3>
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input option-control" id="EnableWIP" name="EnableWIP">
+						<label for="EnableWIP">
+							Limits &amp; Card count
+						</label>
+					</li>
+				</ul>
+			</div>
 
 		</div>
 
@@ -119,36 +131,36 @@
 
 			<h4>Header cards</h4>
 			<label for="HeaderCardsExtraSpace" class="fine-tuning-label">
-				<input type="checkbox" class="option-control options-input" id="HeaderCardsExtraSpace" name="HeaderCardsExtraSpace">
+				<input type="checkbox" class="options-input" id="HeaderCardsExtraSpace" name="HeaderCardsExtraSpace">
 				Add extra space above header cards
 			</label>
 			<p>Header cards are styled to look just like Trello list headers. To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd>), just make sure you leave a space after the hash, or two or more dashes (<kbd class="tag">--</kbd>) or forward slashes (<kbd class="tag">//</kbd>). Symbols at the beginning and end of the title will be stripped.</p>
 
 			<h4>Separator cards</h4>
 			<label for="SeparatorCardsVisibleLine" class="fine-tuning-label">
-				<input type="checkbox" class="option-control options-input" id="SeparatorCardsVisibleLine" name="SeparatorCardsVisibleLine">
+				<input type="checkbox" class="options-input" id="SeparatorCardsVisibleLine" name="SeparatorCardsVisibleLine">
 				Show separators as a visible line
 			</label>
 			<p>Separator cards create a gap between cards. Badges are hidden on separator cards, but you can still use stickers. To make a separator card, type two or more line symbols in a row, and no other text. Line symbols are dashes (<kbd class="tag">--</kbd>), equals signs (<kbd class="tag">==</kbd>) or underscores (<kbd class="tag">__</kbd>):</p>
 
+			<h4>List limits and card counting</h4>
+
+			<p>Add a limit to a list by putting the number in square brackets (<kbd class="tag">[3]</kbd>) in the list title. E.g., “<kbd>Doing&nbsp;[3]</kbd>”. To add a simple card count on a list without applying a limit, tag it <kbd class="tag">#count</kbd>.</p>
+
+			<label for="CountAllCards" class="fine-tuning-label">
+				<input type="checkbox" class="options-input" id="CountAllCards" name="CountAllCards">
+				Count cards on all lists by default<br>
+				<small>When this is enabled, cards will be counted on lists without needing the <kbd>#count</kbd> tag</small>
+			</label>
+
+			<label for="EnablePointsOnCards" class="fine-tuning-label">
+				<input type="checkbox" class="options-input" id="EnablePointsOnCards" name="EnablePointsOnCards">
+				Enable manual points on cards<br>
+
+				<small>When enabled, you can change how much a card is worth by adding a number in square brackets to the card text (you can also specify zero).</small>
+			</label>
+
 		</details>
-
-		{* <h3>Work in progress</h3>
-
-		<ul class="color-tile-bar standard-bar">
-			<li>
-				<input type="checkbox" class="options-input color-tile-input" id="EnableWIP" name="EnableWIP">
-				<label for="EnableWIP" class="color-tile-label standard-input">
-					Enable WIP
-				</label>
-			</li>
-		</ul>
-
-		<details>
-
-			<summary>More information</summary>
-
-		</details> *}
 
 	</section>
 
@@ -176,30 +188,9 @@
 		<button type="button" class="custom-color-picker-button recent-color-button" data-color="" style=""></button>
 	</template>
 
-	<template id="ColorPicker">
-		<color-picker hidden>
-			<component-picker class="sv-picker">
-				<range-display class="sv-range"></range-display>
-				<position-indicator class="sv-indicator"></position-indicator>
-			</component-picker>
-			<component-picker class="hue-picker">
-				<range-display class="hue-range"></range-display>
-				<position-indicator class="hue-indicator"></position-indicator>
-			</component-picker>
-			<div class="custom-color-picker-button-container">
-				{foreach from=$defaultTiles item=tile}
-					{if $tile.colorName != 'custom'}
-						<button type="button" class="custom-color-picker-button" data-color="{$tile.color}" style="background-color: {$tile.color};"></button>
-					{/if}
-				{/foreach}
-			</div>
-			<input type="text" id="ColorHex" pattern="{literal}^#?[a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?${/literal}">
-			<hr class="spacer">
-			<button type="button" id="CancelColor">Cancel</button>
-			<button type="button" class="mod-primary" id="SaveColor">Save</button>
-		</color-picker>
-	</template>
+	{include file="colorPicker.tpl" defaultTiles=$defaultTiles}
 
+	<script type="text/javascript" src="/js/functions.js"></script>
 	<script type="text/javascript" src="/options/js/third/colorpicker.js"></script>
 	<script type="text/javascript" src="/js/classes/Color.js"></script>
 	<script type="text/javascript" src="/js/classes/Options.js"></script>
@@ -207,10 +198,9 @@
 	<script type="text/javascript" src="/options/js/classes/Dummy.js"></script>
 	<script type="text/javascript" src="/options/js/classes/DefaultColorBar.js"></script>
 	<script type="text/javascript" src="/options/js/classes/DoingColors.js"></script>
-	<script type="text/javascript" src="/js/functions.js"></script>
 
 	<script type="text/javascript" src="/options/js/colorPickerSetup.js"></script>
-	<script type="text/javascript" src="/options/js/options.js"></script>
+	<script type="text/javascript" src="/options/js/optionsPage.js"></script>
 
 </body>
 </html>

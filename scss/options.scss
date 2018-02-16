@@ -1,15 +1,16 @@
-@import 'fonts.scss';
-@import 'colors.scss';
+@import "fonts.scss";
+@import "colors.scss";
 
 @mixin full-width($width, $backgroundColor: white) {
 	width: $width;
+
 	background: $backgroundColor;
-	border-left: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
 	border-right: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
+	border-left: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
 }
 
 @mixin transition ($property...) {
-	transition-duration: .25s;
+	transition-duration: 0.25s;
 	transition-property: $property;
 }
 
@@ -18,7 +19,7 @@ body {
 	margin: 70px auto 20px;
 
 	line-height: 1.6em;
-	font-family: 'Helvetica Neue', 'Helvetica', Arial sans-serif;
+	font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 	font-size: 16px;
 	color: $bodyTextColor;
 }
@@ -28,7 +29,6 @@ body.preload * {
 }
 
 #MainHeader {
-
 	h1 {
 		line-height: 37px;
 	}
@@ -37,7 +37,8 @@ body.preload * {
 		margin-top: 60px;
 	}
 
-	img, svg {
+	img,
+	svg {
 		float: left;
 	}
 
@@ -51,7 +52,6 @@ body.preload * {
 		margin-top: -6px;
 		margin-right: 14px;
 	}
-
 }
 
 details h4 {
@@ -67,17 +67,20 @@ details h4 {
 	.ignore,
 	.low {
 		padding: 5px 15px;
+
 		border-radius: 3px;
 	}
 }
 
 footer {
-	color: gray;
 	margin-top: 150px;
 	margin-bottom: 10px;
-	font-size: 14px;
+
+	font-size: .875rem;
+	color: gray;
 	p {
 		margin: 15px 0;
+
 		line-height: 1.3;
 	}
 }
@@ -101,26 +104,27 @@ footer {
 }
 
 .high {
-	background: var(--high-pri);
 	color: var(--high-pri-text);
+	background: var(--high-pri);
 }
 
 .normal {
-	background: $listBG;
 	color: $normalTextColor;
+	background: $listBG;
 }
 
 .low {
-	background: transparentize($listBG, .5);
-	color: transparentize(#444, .6);
+	color: transparentize(#444444, 0.6);
+	background: transparentize($listBG, 0.5);
 }
 
 .ignore,
 .done {
-	opacity: .5;
-	background: transparentize($listBG, .7);
+	opacity: 0.5;
+
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
 	color: $ignoreTextColor;
-	text-shadow: 1px 1px 0 rgba(255, 255, 255, .2);
+	background: transparentize($listBG, 0.7);
 }
 
 .done {
@@ -128,10 +132,10 @@ footer {
 	text-shadow: 1px 1px 0 white;
 }
 
-@import 'options/color-picker';
-@import 'options/dummy-board';
-@import 'options/color-tiles';
-@import 'options/standard-option-widget';
+@import "options/color-picker";
+@import "options/dummy-board";
+@import "options/color-tiles";
+@import "options/standard-option-widget";
 
-@import 'elements.scss';
-@import 'forms.scss';
+@import "elements.scss";
+@import "forms.scss";

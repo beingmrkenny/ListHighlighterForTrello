@@ -1,23 +1,17 @@
-# Development notes
+# README
+
+Some compilation needs to run before the dev code will work in the browser. CSS is compiled from Sass; and the options page is generated from the smarty template
 
 ## Setup
 
-I work on macOS, so you may have to tweak these setup instructions as appropriate.
+### 1. Install the following software
 
-1. Create config directory and files and setup your .gitignore file (see below)
-2. Install dev dependencies, if not already installed:
-	- sass (<http://sass-lang.com/>)
-	- PHP and Smarty (<http://www.smarty.net/docs/en/installing.smarty.basic.tpl>)
-	- (optional) fswatch (<https://github.com/emcrisostomo/fswatch>)
-	- (optional) ruby with the `terminal-notifier` gem installed
+- sass (<http://sass-lang.com/>)
+- PHP with Smarty (<http://www.smarty.net/docs/en/installing.smarty.basic.tpl>)
+- (optional) fswatch (<https://github.com/emcrisostomo/fswatch>)
+- (optional) ruby with the `terminal-notifier` gem installed
 
-## Config and `.gitignore`
-
-### Config
-
-The `config` directory in the root of the repo is required for developement. Please see inside the directory for more details
-
-### `.gitignore`
+### 2. Setup your .gitignore file
 
 Your `.gitignore` file should look like this:
 
@@ -26,55 +20,57 @@ Your `.gitignore` file should look like this:
 	*.css
 	Extension/options/index.html
 
-## JavaScript (very brief intro)
+### 3. Setup config
 
-The first script the browser hits is `js/init.js`. This sets up the messenger between contexts and triggers the mutation observers that watch the page for changes. `js/classes/System.js` is basically a container for the methods which set up the mutation observers.
+The config directory should contain two files (contents below):
 
-## Scss
+- bash.sh
+- options.inc
 
-All CSS is written in Scss which is then compiled. The compiled CSS is not checked into the repo.
+#### `bash.sh`
 
-## Options page HTML
+	listHighlighterDir='/Path/to/ListHighlighterForTrello';
+	refreshOnWatch=false;
+	openOptionsOnRefresh=false;
 
-The options page HTML is generated from a Smarty template. To change the HTML, update `options.tpl` in the `php` directory, then run `php -f generateOptions.php`.
+- The `listHighlighterDir` variable should be the full path to where you have the List Highlighter repo checked out
 
-## BASH
+- The `refreshOnWatch` variable is boolean (determines whether to refresh Chrome on every update).
 
-BASH scripts have been included in the `sh` directory to help with Scss compilation. To use them, include `listhighlighter.sh` in your bash profile.
+#### `options.inc`
 
-You will need to create a `config.sh` file in the `sh` directory.
+	<?php
+	$smartyClass = '/Path/to/Smarty.class.php';
 
-There are five commands:
+- `$smartyClass` is the full path to your Smarty installation
 
-### `lhcompile`
 
-- the three CSS compilation commands are triggered
-- the options page HTML is generated
+## Development notes
 
-### `lhwatch`
 
-Sets up a file monitor on the List Highlighter repo to run `lhcompile` automatically. This requires `fswatch` to be installed on your system. See "Watch" below for more details.
+### How the JavaScript works (brief intro)
 
-### `lhcss`
+The first script the browser hits is js/init.js. This sets up the messenger between contexts and triggers the mutation observers that watch the page for changes. js/classes/System.js is basically a container for the methods which set up the mutation observers.
 
-Compiles the injected CSS which styles the actual Trello page.
+### Compile commands
 
-### `lhpcss`
+BASH scripts have been written in the sh directory to help with compilation. To use them, include listhighlighter.sh in your bash profile.
 
-Compiles the CSS used on the popup.
+- `lhcompile` — compiles all the CSS and generates the options page
+- `lhwatch` — runs `lhcompile` automatically every time you change a file. Requires fswatch to be installed on your system. See "Watch" below for more details.
 
-### `lhocss`
+### git branching
 
-Compiles the CSS used on the options page.
+- `master` is a standard master branch. A single commit should represent one complete feature or bug fix
+- During development of a new version, a working branch named VersionX.X.X is created — branch off that to create a new feature or bug fix
+- Before merging a feature branch back into the version branch, all commits should be squashed into one
+- Make commit messages as descriptive yet concise as possible
 
-All three CSS commands can take a `watch` option, which triggers sass's watch option.
 
 ## Watch
 
-**Please note:** this command is currently broken :D (Runs too many times each cycle.)
+The command `lhwatch`, an [fswatch](https://github.com/emcrisostomo/fswatch) monitor is set up on the List Highlighter repo. Every time a file changes, `lhcompile` is run. This is useful during developement since you can work on the files and forget about all the compilation stuff.
 
-If you run the command `lhwatch`, an [fswatch](https://github.com/emcrisostomo/fswatch) monitor is set up on the List Highlighter repo. Every time a file changes, `lhcompile` is run. This is useful during developement since you can work on the files and forget about all the compilation stuff.
-
-If you use Google Chrome on macOS, you can also get `lhwatch` to reloads all dev mode extensions (requires the [Extensions Reloader](https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension) and refresh any tabs containing a Trello web page. This is controlled via the `refreshOnWatch` variable in `bash.sh`.
+If you use Google Chrome on macOS, you can also get `lhwatch` to reload all dev mode extensions (requires the [Extensions Reloader](https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension) and refresh any tabs containing a Trello web page. This is controlled via the `refreshOnWatch` variable in `bash.sh`.
 
 Please note you may need to run `chmod +x watchhandler.sh` to get this to work.

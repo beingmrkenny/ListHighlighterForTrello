@@ -1,29 +1,25 @@
 class Color {
 
-	// FIXME these non-static methods, why do they take string as an argument, should be using this.string, or be static
+    // red, green and blue are stored internally as a number in the range 0 - 255
+    // alpha is stored internally as a number in the range 0 - 1
 
 	constructor (string) {
 		if (typeof string == 'string') {
-			this.fromString(string);
-		}
-	}
-
-	fromString(string) {
-		switch(true) {
-			case Color.isRGB(string) :
-				this.fromRGB(string);
-				break;
-			case Color.isHSL(string) :
-				this.fromHSL(string);
-				break;
-			case Color.isHex(string) :
-				this.fromHex(string);
-				break;
+			switch(true) {
+				case Color.isRGB(string) :
+					this.fromRGB(string);
+					break;
+				case Color.isHSL(string) :
+					this.fromHSL(string);
+					break;
+				case Color.isHex(string) :
+					this.fromHex(string);
+					break;
+			}
 		}
 	}
 
 	static isRGB(string) {
-		// return /rgb/i.test(string);
 		string = string.toLowerCase().trim();
 		return string.startsWith('rgb');
 	}
@@ -31,25 +27,35 @@ class Color {
 	static isHSL(string) {
 		string = string.toLowerCase().trim();
 		return string.startsWith('hsl');
-		// return /hsl\((\d+), *(\d+)%? *, (\d+)%?\)$/i.test(string);
 	}
 
 	static isHex(string) {
-		return /^#?([a-f\d]{3})([a-f\d]{3})?$/i.test(string);
+		return /^#?(?:[a-f\d]{3}|[a-f\d]{4}|[a-f\d]{6}|[a-f\d]{8})$/i.test(string);
 	}
 
 	fromRGB() {
 
-		if (arguments.length === 1) {
+		if (arguments.length === 1 && typeof arguments[1] == 'string') {
 
-			let matches = arguments[0].match(/rgba? *\( *(\d+), *(\d+), *(\d+)(?: *, *0?\.\d+)? *\)/i);
+			let matches = arguments[0].match(/rgba? *\( *([\d\.]+%?),? *([\d\.]+%?),? *([\d\.]+%?)(?: *[,/]? *([\d\.]+%?))? *\)/i);
 
-			this.red   = parseInt(matches[1]);
-			this.green = parseInt(matches[2]);
-			this.blue  = parseInt(matches[3]);
+			this.red = (matches[1].endsWith('%'))
+				? Math.round((parseInt(matches[1]) / 100) * 255)
+				: parseInt(matches[1]);
+
+			this.green = (matches[2].endsWith('%'))
+				? Math.round((parseInt(matches[2]) / 100) * 255)
+				: parseInt(matches[2]);
+
+			this.blue = (matches[3].endsWith('%'))
+				? Math.round((parseInt(matches[3]) / 100) * 255)
+				: parseInt(matches[3]);
 
 			if (matches[4]) {
-				this.alpha = parseInt(matches[4]);
+
+				this.alpha = (matches[4].endsWith('%'))
+					? Math.round((parseInt(matches[4]) / 100))
+					: parseInt(matches[4]);
 			}
 
 		} else {
@@ -58,113 +64,155 @@ class Color {
 			this.green = arguments[1];
 			this.blue  = arguments[2];
 
-			if (matches[4]) {
-				this.alpha = parseInt(matches[4]);
+			if (arguments[4]) {
+				let a = parseInt(arguments[4]);
+				this.alpha = (a > 1) ? a / 100 : a;
 			}
 
 		}
 
 	}
 
+	getHSLFromArguments () {
+
+		var h, s, l, a = 1;
+
+		if (arguments.length === 1 && typeof arguments[0] == 'string') {
+
+			let matches = arguments[0].match(/hsla? *\(([\d\.]+(?:deg|rad|grad|turn)?) *,? *([\d\.]+%) *,? *([\d\.]+%) *[,\/]? *([\d\.]+%?)?\)*/i);
+
+			let hueAngle = parseInt(matches[1]);
+
+			switch (true) {
+
+				case matches[1].endsWith('rad'):
+					h = (hueAngle * 180 / Math.PI) / 360;
+					break;
+
+				case matches[1].endsWith('grad'):
+					h = hueAngle / 400;
+					break;
+
+				case matches[1].endsWith('turn'):
+                    h = hueAngle;
+					break;
+
+				case matches[1].endsWith('deg'):
+				default:
+					h = hueAngle / 360;
+					break;
+
+			}
+
+			s = parseInt(matches[2]) / 100;
+			l = parseInt(matches[3]) / 100;
+
+		} else {
+
+			h = arguments[0] / 360;
+
+			s = (arguments[1] > 1)
+				? arguments[1] / 100
+				: arguments[1];
+
+			l = (arguments[2] > 1)
+				? arguments[2] / 100
+				: arguments[2];
+
+			if (typeof arguments[3] == 'number') {
+				a = (arguments[3] > 1)
+					? arguments[3] / 100
+					: arguments[3];
+			}
+
+		}
+
+		return [h, s, l, a];
+
+	}
+
+	// based on https://gist.github.com/mjackson/5311256
 	fromHSL() {
 
-		var h, s, l,
-			r, g, b, m, c, x;
+		var h, s, l, a, r, g, b;
 
-		if (arguments.length === 1) {
+		[h, s, l, a] = this.getHSLFromArguments.apply(null, arguments);
 
-			let matches = arguments[0].match(/hsl\((\d+), *(\d+)%? *, (\d+)%?\)$/i);
+		if (s == 0) {
 
-			h = parseInt(matches[1]);
-			s = parseInt(matches[2]);
-			l = parseInt(matches[3]);
+			r = g = b = l; // achromatic
+
+		} else if (l == 1) {
+
+			r = g = b = 1; // white
 
 		} else {
 
-			h = arguments[0];
-			s = arguments[1];
-			l = arguments[2];
+			function hue2rgb(p, q, t) {
+				if (t < 0) t += 1;
+				if (t > 1) t -= 1;
+				if (t < 1/6) return p + (q - p) * 6 * t;
+				if (t < 1/2) return q;
+				if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+				return p;
+			}
 
+			let q = (l < 0.5)
+				? l * (1 + s)
+				: l + s - l * s;
+
+			let p = 2 * l - q;
+
+			r = hue2rgb(p, q, h + 1/3);
+			g = hue2rgb(p, q, h);
+			b = hue2rgb(p, q, h - 1/3);
 		}
 
-		if (!isFinite(h)) h = 0;
-		if (!isFinite(s)) s = 0;
-		if (!isFinite(l)) l = 0;
+		this.red   = Math.round( r * 255 );
+		this.green = Math.round( g * 255 );
+		this.blue  = Math.round( b * 255 );
 
-		h /= 60;
-		if (h < 0) h = 6 - (-h % 6);
-		h %= 6;
-
-		s = Math.max(0, Math.min(1, s / 100));
-		l = Math.max(0, Math.min(1, l / 100));
-
-		c = (1 - Math.abs((2 * l) - 1)) * s;
-		x = c * (1 - Math.abs((h % 2) - 1));
-
-		if (h < 1) {
-			r = c;
-			g = x;
-			b = 0;
-		} else if (h < 2) {
-			r = x;
-			g = c;
-			b = 0;
-		} else if (h < 3) {
-			r = 0;
-			g = c;
-			b = x;
-		} else if (h < 4) {
-			r = 0;
-			g = x;
-			b = c;
-		} else if (h < 5) {
-			r = x;
-			g = 0;
-			b = c;
-		} else {
-			r = c;
-			g = 0;
-			b = x;
+		if (a < 1) {
+			this.alpha = a;
 		}
-
-		m = l - c / 2;
-
-		this.red   = Math.round( (r + m) * 255 );
-		this.green = Math.round( (g + m) * 255 );
-		this.blue  = Math.round( (b + m) * 255 );
 
 	}
 
 	fromHex(string) {
 
-		var result = /^#?([a-f\d]{3})([a-f\d]{3})?$/i.exec(string);
+		var hex = /#?([a-f\d]*)/i.exec(string)[1],
+			len = hex.length || 0;
 
-		if (result) {
-
-			let matches;
-
-			if (string.length == 6 || string.length == 7) {
-				matches = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(string);
-			} else if (string.length == 3 || string.length == 4) {
-				matches = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(string);
+		if (len == 3 || len == 4) {
+			let arr = hex.split();
+			hex = '';
+			for (let i = 0, x = arr.length; i<x; i++) {
+				hex += `${arr[i]}${arr[i]}`;
 			}
+		}
 
+		let matches = /([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?/i.exec(hex);
+
+		if (matches) {
 			this.red   = parseInt(matches[1], 16);
 			this.green = parseInt(matches[2], 16);
 			this.blue  = parseInt(matches[3], 16);
+			if (matches[4]) {
+				this.alpha = parseInt(matches[4], 16) / 255;
+			}
 		}
 
 	}
 
 	toRGB() {
+		var a = (typeof this.alpha == 'number' && (this.alpha >= 0 && this.alpha <= 1)) ? this.alpha : 1;
+		if (a < 1) {
+			return `rgba(${this.red}, ${this.green}, ${this.blue}, ${a})`;
+		}
 		return `rgb(${this.red}, ${this.green}, ${this.blue})`;
 	}
 
-	toRGBA(alpha) {
-		alpha = (typeof alpha == 'number' && (alpha >= 0 && alpha <= 1)) ? alpha : 1;
-		return `rgba(${this.red}, ${this.green}, ${this.blue}, ${alpha})`;
-	}
-
+    // based on https://gist.github.com/mjackson/5311256
 	toHSL() {
 
 		var r = this.red / 255,
@@ -172,7 +220,8 @@ class Color {
 			b = this.blue / 255,
 			max = Math.max(r, g, b),
 			min = Math.min(r, g, b),
-			h, s, l = (max + min) / 2;
+			h, s, l = (max + min) / 2,
+			a = (typeof this.alpha == 'number' && (this.alpha >= 0 && this.alpha <= 1)) ? this.alpha : 1;
 
 		if (max == min) {
 			h = s = 0; // achromatic
@@ -191,6 +240,10 @@ class Color {
 		this.saturation = ((s*100+0.5)|0);
 		this.lightness = ((l*100+0.5)|0);
 
+		if (a < 1) {
+			return `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${a})`;
+		}
+
 		return `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`;
 	}
 
@@ -207,10 +260,17 @@ class Color {
 	}
 
 	toHex() {
+
 		var r = this.componentToHex(this.red),
 			g = this.componentToHex(this.green),
-			b = this.componentToHex(this.blue);
-		return `#${r}${g}${b}`;
+			b = this.componentToHex(this.blue),
+			a = '';
+
+		if (typeof this.alpha == 'string') {
+			a = this.componentToHex(this.alpha);
+		}
+
+		return `#${r}${g}${b}${a}`;
 	}
 
 	componentToHex(c) {
@@ -219,10 +279,10 @@ class Color {
 	}
 
 	isLight() {
-		var a = 1 - (
+		var threshold = 1 - (
 				(0.2 * this.red) + (0.5 * this.green) + (0.114 * this.blue)
 			) / 255;
-		return a < 0.5;
+		return threshold < 0.5;
 	}
 
 	getRandomHSL() {
@@ -235,8 +295,7 @@ class Color {
 	}
 
 	static isLight (color) {
-		var colour = new Color();
-		colour.fromString(color);
+		var colour = new Color(color);
 		return colour.isLight();
 	}
 

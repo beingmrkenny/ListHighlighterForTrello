@@ -20,12 +20,14 @@ function setupColorPicker (colorTileLabel) {
 	colorPicker.hidden = false;
 	colorTilebar.appendChild(colorPicker);
 
+	ColorPickerInitialise();
+
 	cp = ColorPicker (
-		document.querySelector('.hue-range'),
-		document.querySelector('.sv-range'),
+		$('.hue-range'),
+		$('.sv-range'),
 		function(hex, hsv, rgb, pickerCoordinate, sliderCoordinate) {
-			var hue = document.querySelector('.hue-indicator'),
-				sv = document.querySelector('.sv-indicator');
+			var hue = $('.hue-indicator'),
+				sv = $('.sv-indicator');
 			ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
 			sv.style.backgroundColor = hex;
 			$id('ColorHex').value = hex;
@@ -44,7 +46,6 @@ function setupColorPicker (colorTileLabel) {
 		var trelloBg = (isDefaultColorBar) ? 'default' : $id('DummyBoard').dataset.trelloBg,
 			hex = input.dataset.value;
 		saveCustomColor(trelloBg, hex);
-		saveRecentColor(hex);
 		Dummy.activateTrelloBgButtonIndicator(trelloBg, hex);
 		if (isDefaultColorBar) {
 			setTodoListColorForPage(hex);
@@ -69,8 +70,8 @@ function setupColorPicker (colorTileLabel) {
 	displayRecentColors();
 
 	var customColorPickers = $$('.custom-color-picker-button');
-	for (let i = customColorPickers.length-1; i>-1; i--) {
-		recentButtonSetupClick(customColorPickers[i]);
+	for (let picker of customColorPickers) {
+		recentButtonSetupClick(picker);
 	}
 
 }
@@ -105,13 +106,12 @@ function actuallyDisplayRecentColors (recentColors) {
 
 	var existing = $$('.recent-color-button');
 	if (existing) {
-		for (let i = existing.length-1; i>-1; i--) {
-			existing[i].remove();
+		for (let button of existing) {
+			button.remove();
 		}
 	}
 
-	for (let i = recentColors.length-1; i>-1; i--) {
-		let hex = recentColors[i];
+	for (let hex of recentColors) {
 		let button = getTemplate('CustomColorPickerButton');
 		button.dataset.color = hex;
 		button.style.backgroundColor = hex;

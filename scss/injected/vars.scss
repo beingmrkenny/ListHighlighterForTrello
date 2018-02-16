@@ -46,16 +46,19 @@
 }
 
 .bmko_normal-list,
-#classic-body.bmko_do-not-dim-lists .bmko_low-list {
+#classic-body.bmko_do-not-dim-lists .bmko_untagged-list {
 	--list-bg:                         #{$listBG};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};
 
 	--list-button-bg:                  #{#D6DADC};
 	--list-button-color:               #{#8c8c8c};
+
+	--card-cover-opacity:			   #{1};
 }
 
-#classic-body:not(.bmko_do-not-dim-lists) .bmko_low-list {
+#classic-body:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
+.bmko_low-list {
 	--list-bg:                         #{rgba($listBG, 0.5)};
 	--header-color:                    #{$normalTextColor};
 	--editing-color:                   #{$normalTextColor};
@@ -74,6 +77,8 @@
 	--card-button-color:               #{transparentize($ignoreTextColor, .1)};
 
 	--opacity:                         #{.6};
+
+	--card-cover-opacity:			   #{.4};
 }
 
 .bmko_ignore-list,
