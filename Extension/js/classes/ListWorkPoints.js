@@ -188,7 +188,9 @@ class ListWorkPoints {
 					card.updatePointsBadge(cardPoints);
 				}
 			} else {
-				card.showPointsTag();
+				if (cardElement.querySelector('bmko_hide')) {
+					card.showPointsTag();
+				}
 				card.updatePointsBadge(null);
 			}
 		}
