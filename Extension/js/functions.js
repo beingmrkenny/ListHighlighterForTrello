@@ -2,12 +2,12 @@ function $id (id) {
 	return document.getElementById(id);
 }
 
-function $(query) {
-	return document.querySelector(query);
+function $(query, context = document) {
+	return context.querySelector(query);
 }
 
-function $$(query) {
-	return document.querySelectorAll(query);
+function $$(query, context = document) {
+	return context.querySelectorAll(query);
 }
 
 function observe(params) {

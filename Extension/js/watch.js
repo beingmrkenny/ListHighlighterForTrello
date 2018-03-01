@@ -41,7 +41,7 @@ function getWatcher(key, targets) {
 			options : {childList: true, subtree: false}
 		},
 
-		// FIXME this accumulates too easily
+		// REVIEW this accumulates too easily
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
 			observer : new MutationObserver(Card.processListCardTitle),
@@ -68,7 +68,7 @@ function watch (watcherKey, targets) {
 }
 
 function executeWatcher (target, watcher) {
-	// FIXME workaround till I can work out how not to apply this multiple times in a better way
+	// REVIEW workaround till I can work out how not to apply this multiple times in a better way
 	if (!target.dataset.bmkoWatched) {
 		target.dataset.bmkoWatched = 'yes';
 		watcher.observer.observe(target, watcher.options);

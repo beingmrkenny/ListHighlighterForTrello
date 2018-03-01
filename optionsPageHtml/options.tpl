@@ -115,7 +115,7 @@
 				<h3>Lists</h3>
 				<ul>
 					<li class="standard-option-widget">
-						<input type="checkbox" class="options-input option-control" id="EnableWIP" name="EnableWIP">
+						<input type="checkbox" class="options-input" id="EnableWIP" name="EnableWIP">
 						<label for="EnableWIP">
 							Limits &amp; Card count
 						</label>
@@ -125,7 +125,8 @@
 
 		</div>
 
-		<details>
+		<!-- FIXME dev code -->
+		<details open>
 
 			<summary data-contents="Fine Tuning, Information">More</summary>
 
@@ -157,7 +158,14 @@
 				<input type="checkbox" class="options-input" id="EnablePointsOnCards" name="EnablePointsOnCards">
 				Enable manual points on cards<br>
 
-				<small>When enabled, you can change how much a card is worth by adding a number in square brackets to the card text (you can also specify zero).</small>
+				<small>When enabled, you can change how much a card is worth by adding a number in square brackets to the card text (you can also specify zero). Other extensions for Trello can sometimes prevent this option from working.</small>
+			</label>
+
+			<label for="HideManualCardPoints" class="sub-setting fine-tuning-label">
+				<input type="checkbox" class="options-input" id="HideManualCardPoints" name="HideManualCardPoints">
+				Hide points in card text<br>
+				<small>If this box and the one above are checked, manual card points will be hidden.<br>
+					<strong>⚠️Note:</strong> this feature can interfere with other extensions for Trello that read or change card text, and vice versa. Disabling it should remove the conflict.</small>
 			</label>
 
 		</details>

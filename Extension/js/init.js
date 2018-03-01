@@ -48,12 +48,10 @@ chrome.runtime.onMessage.addListener (
 				});
 				break;
 
-			case 'options.EnablePointsOnCards' :
-				Options.load('options', function () {
-					ListWorkPoints.handlePointsOnCards();
-				});
 			case 'options.EnableWIP' :
 			case 'options.CountAllCards' :
+			case 'options.EnablePointsOnCards' :
+			case 'options.HideManualCardPoints' :
 				Options.load('options', function (options) {
 					ListWorkPoints.updateLists();
 					HeaderTagging.toggleTags (options.EnableWIP);
@@ -61,7 +59,9 @@ chrome.runtime.onMessage.addListener (
 				});
 				break;
 		}
+
 	}
+
 );
 
 window.addEventListener('load', System.setup);

@@ -97,7 +97,7 @@ function ColorPickerInitialise () {
 		this.pickerElement = pickerElement;
 		this.slideElement = slideElement;
 
-		// FIXME refactor to avoid global variables
+		// REVIEW refactor to avoid global variables
 		// namely ctx and box
 		// Here to end of the function
 

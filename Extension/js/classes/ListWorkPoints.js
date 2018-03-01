@@ -3,7 +3,10 @@ class ListWorkPoints {
 
 	constructor (list) {
 		this.list = list; // NOTE this is .list
-		this.cardSelector = '.list-card:not(.bmko_header-card-applied):not(.placeholder):not(.js-composer)';
+	}
+
+	static getCardSelector () {
+		return '.list-card:not(.bmko_header-card-applied):not(.placeholder):not(.js-composer)';
 	}
 
 	static toggleWIP () {
@@ -19,7 +22,24 @@ class ListWorkPoints {
 
 	static updateLists (lists) {
 
-		ListWorkPoints.handlePointsOnCards();
+		for (let cardElement of $$(ListWorkPoints.getCardSelector())) {
+			let card = new Card(cardElement);
+			if (GLOBAL.EnableWIP
+				&& GLOBAL.EnablePointsOnCards
+				&& GLOBAL.HideManualCardPoints
+				&& !card.isHeader()
+				&& !card.isRule()
+			) {
+				let cardPoints = ListWorkPoints.getCardPoints(cardElement);
+				if (typeof cardPoints == 'number') {
+					card.hidePointsTag(cardPoints.toString());
+					card.updatePointsBadge(cardPoints);
+				}
+			} else {
+				card.showPointsTag();
+				card.updatePointsBadge(null);
+			}
+		}
 
 		if (!lists) {
 			lists = document.querySelectorAll('.list');
@@ -38,7 +58,7 @@ class ListWorkPoints {
 		var cardTitle = card.querySelector('.list-card-title');
 		if (cardTitle) {
 			let title = cardTitle.textContent || '',
-				matches = title.match(/\[([0-9]+)\]/);
+				matches = title.match(/\[(\d+)\]/);
 			if (matches && matches[1]) {
 				let count = parseInt(matches[1]);
 				return count;
@@ -143,7 +163,7 @@ class ListWorkPoints {
 
 	getCardCount() {
 
-		let cards = this.list.querySelectorAll(this.cardSelector),
+		let cards = this.list.querySelectorAll(ListWorkPoints.getCardSelector()),
 			cardCount = 0;
 
 		if (GLOBAL.EnablePointsOnCards) {
@@ -167,34 +187,14 @@ class ListWorkPoints {
 			notice.remove();
 		}
 		this.removeCardBadges();
-		for (let cardElement of $$(this.cardSelector, this.list)) {
-			let card = new Card(cardElement);
-			card.showPointsTag();
-			card.updatePointsBadge(null);
+		for (let cardElement of $$(ListWorkPoints.getCardSelector(), this.list)) {
+			if (cardElement.querySelector('.bmko_hide')) {
+				let card = new Card(cardElement);
+				card.showPointsTag();
+			}
 		}
 		this.list.classList.remove('bmko_list-full', 'bmko_list-over', 'bmko_list-has-limit');
 		this.list.querySelector('.list-header-target').removeEventListener('click', ListWorkPoints.editLimit);
-	}
-
-	static handlePointsOnCards () {
-
-		// FIXME be nice to have this enormous selector available in one place
-		for (let cardElement of $$('.list-card:not(.bmko_header-card-applied):not(.placeholder):not(.js-composer)')) {
-			let card = new Card(cardElement);
-			if (GLOBAL.EnablePointsOnCards && !card.isHeader() && !card.isRule()) {
-				let cardPoints = ListWorkPoints.getCardPoints(cardElement);
-				if (typeof cardPoints == 'number') {
-					card.hidePointsTag(cardPoints.toString());
-					card.updatePointsBadge(cardPoints);
-				}
-			} else {
-				if (cardElement.querySelector('bmko_hide')) {
-					card.showPointsTag();
-				}
-				card.updatePointsBadge(null);
-			}
-		}
-
 	}
 
 	removeCardBadges () {

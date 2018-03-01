@@ -42,7 +42,8 @@ class Options {
 				SeparatorCardsVisibleLine   : false,
 				EnableWIP                   : false,
 				CountAllCards				: false,
-				EnablePointsOnCards			: false
+				EnablePointsOnCards			: false,
+				HideManualCardPoints		: false,
 			},
 			colorBlindFriendlyMode : null
 		};
@@ -107,9 +108,18 @@ class Options {
 		obj[props[i]] = value;
 	}
 
+	// FIXME make this take loads
 	static save (path, value, callback) {
 		Options.load(null, function (saveObject) {
 			Options.createSaveObject(saveObject, path, value);
+			// FIXME is this necessary??
+			for (let key in saveObject) {
+				if (key == 'options') {
+					for (let name in saveObject[key]) {
+						GLOBAL[name] = saveObject[key][name];
+					}
+				}
+			}
 			chrome.storage.sync.set(saveObject, callback);
 		});
 	}
@@ -134,7 +144,7 @@ class Options {
 			}
 
 			if (typeof callback == 'function') {
-				callback();
+				callback(existingSettings);
 			}
 
 		});

@@ -29,7 +29,7 @@ class Tile {
 		}
 	}
 
-	// FIXME select doesn't communicate what this method does
+	// REVIEW select doesn't communicate what this method does
  	static select (defaultBar, colorName) {
 		var parent = (defaultBar)
 			? $id('DefaultColorBar')

@@ -1,20 +1,18 @@
 class System {
 
 	static setup() {
-		Options.resetIfEmpty(function() {
-			Options.load('options', function(options) {
-				System.headerCardsSetup();
-				System.detectAndSaveColorBlindFriendlyMode();
-				Options.load('colors', function(colors) {
-					DoingColors.highPriColorStyles();
-					keepTrying(ListHighlighter.highlight, 5, 700);
-					keepCounting(ListWorkPoints.toggleWIP, '.list-card:not(.bmko_header-card-applied)');
-					watch('title');
-					watch('board');
-					watch('listTitle');
-					watch('body');
-					System.toggleToolbarButton();
-				});
+		Options.resetIfEmpty(function(options) {
+			System.headerCardsSetup();
+			System.detectAndSaveColorBlindFriendlyMode();
+			Options.load('colors', function(colors) {
+				DoingColors.highPriColorStyles();
+				keepTrying(ListHighlighter.highlight, 5, 700);
+				keepCounting(ListWorkPoints.toggleWIP, '.list-card:not(.bmko_header-card-applied)');
+				watch('title');
+				watch('board');
+				watch('listTitle');
+				watch('body');
+				System.toggleToolbarButton();
 			});
 		});
 	}

@@ -138,86 +138,93 @@ Options.resetIfEmpty(function () {
 
 	Options.load('options', function (options) {
 
+		for (let name in options) {
+			let input, value = options[name], id = name;
+			if (typeof value != 'boolean') {
+				id = name + value;
+				value = true;
+			}
+			input = $id(id);
+			if (input) {
+				input.checked = value;
+			}
+		}
+
 		var optionsControls = {
 			HighlightTags : {
-				disableInputs : ['HideHashtags'],
+				disableInputs : [ 'HideHashtags' ],
 				textSwitcher : {
 					linkedInput: 'HideHashtags',
-					targets : ['HideHashtagsSwitcher']
+					targets : [ 'HideHashtagsSwitcher' ]
 				}
 			},
 			HideHashtags : {
 				textSwitcher : {
 					linkedInput: 'HighlightTags',
-					targets : ['HideHashtagsSwitcher']
+					targets : [ 'HideHashtagsSwitcher' ]
 				}
 			},
 			HighlightTitles : {
-				disableInputs : ['MatchTitleSubstrings']
+				disableInputs : [ 'MatchTitleSubstrings' ]
 			},
 			MatchTitleSubstrings : {
 				textSwitcher : {
-					targets: ['HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher']
+					targets: [ 'HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher' ]
 				}
 			},
 			EnableWIP : {
-				disableInputs : ['CountAllCards', 'EnablePointsOnCards']
+				disableInputs : [ 'CountAllCards', 'EnablePointsOnCards', 'HideManualCardPoints' ],
+				uncheckInputs : [ 'CountAllCards', 'EnablePointsOnCards', 'HideManualCardPoints' ]
+			},
+			EnablePointsOnCards : {
+				disableInputs : [ 'HideManualCardPoints' ],
+				uncheckInputs : [ 'HideManualCardPoints' ]
 			}
 		};
 
-		var optionControlInputs = document.querySelectorAll('.option-control');
-		for (let input of optionControlInputs) {
+		for (let inputId in optionsControls) {
+
+			let input = $id(inputId);
 
 			input.addEventListener('change', function() {
 
 				let input = this,
 					config = optionsControls[this.id];
 
-				if (config && config.disableInputs) {
-					let disableInputs = config.disableInputs;
-					for (let disableInput of disableInputs) {
-						console.log($id(disableInput));
-						let label = document.querySelector(`[for="${disableInput}"]`);
-						console.log(`[for="${disableInputs}"]`);
-						$id(disableInput).disabled = (!input.checked);
-						label.classList.toggle('disabled', (!input.checked));
-					}
-				}
+				if (config) {
 
-				if (config && config.textSwitcher) {
-					let on = input.checked;
-					if (config.textSwitcher.linkedInput) {
-						on = (on && $id(config.textSwitcher.linkedInput).checked);
+					if (input.checked == false && config.uncheckInputs) {
+						for (let uncheckInputId of config.uncheckInputs) {
+							$id(uncheckInputId).checked = false;
+						}
 					}
-					for (let target of config.textSwitcher.targets) {
-						let switcher = $id(target);
-						switcher.textContent = (on)
-							? switcher.dataset.on
-							: switcher.dataset.off;
+
+					if (config.disableInputs) {
+						for (let disableInput of config.disableInputs) {
+							$id(disableInput).disabled = !input.checked;
+							document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', !input.checked);
+						}
 					}
+
+					if (config.textSwitcher) {
+						let on = input.checked;
+						if (config.textSwitcher.linkedInput) {
+							on = (on && $id(config.textSwitcher.linkedInput).checked);
+						}
+						for (let target of config.textSwitcher.targets) {
+							let switcher = $id(target);
+							switcher.textContent = switcher.dataset[ ( on ? 'on' : 'off' ) ];
+						}
+					}
+
 				}
 
 			});
 
 		}
 
-		for (let name in options) {
-			let input, value = options[name];
-			if (typeof value == 'boolean') {
-				input = $id(name);
-				if (input) {
-					input.checked = value;
-				}
-
-			} else {
-				input = $id(name+value);
-				if (input) {
-					input.checked = true;
-				}
-			}
-			if (input) {
-				input.dispatchEvent(new Event('change'));
-			}
+		for (let input of $$('input')) {
+			input.dispatchEvent(new Event('change'));
 		}
 
 		var optionInputs = document.querySelectorAll('.options-input');
@@ -228,9 +235,37 @@ Options.resetIfEmpty(function () {
 					value = (input.type == 'radio')
 						? document.querySelector(`input[name="${input.name}"]:checked`).value
 						: input.checked;
-				Options.save(`options.${name}`, value, function () {
-					sendMessage(`options.${name}`);
-				});
+
+				// FIXME make the sendMessage thing more generic
+
+				if (name == 'EnableWIP' && value == false) {
+
+					Options.save('options.EnablePointsOnCards', false, function () {
+						Options.save('options.HideManualCardPoints', false, function () {
+							Options.save('options.CountAllCards', false, function () {
+								Options.save('options.EnableWIP', false, function () {
+									sendMessage('options.EnableWIP');
+								});
+							});
+						});
+					});
+
+				} else if (name == 'EnablePointsOnCards' && value == false) {
+
+					Options.save('options.EnablePointsOnCards', false, function () {
+						Options.save('options.HideManualCardPoints', false, function () {
+							sendMessage('options.EnablePointsOnCards');
+						});
+					});
+
+				} else {
+
+					Options.save(`options.${name}`, value, function () {
+						sendMessage(`options.${name}`);
+					});
+
+				}
+
 			});
 		}
 

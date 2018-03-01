@@ -10,8 +10,8 @@
 		background: transparentize(#EDEFF0, .8);
 
 		.list-card-details {
-			background-color: transparent !important; // FIXME Get rid of this !important
-			background: transparent !important; // FIXME Get rid of this !important
+			background-color: transparent !important; // REVIEW Get rid of this !important
+			background: transparent !important; // REVIEW Get rid of this !important
 		}
 
 		h3 {
@@ -129,7 +129,7 @@
 	}
 
 	.list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
-		// --card-bg: transparent !important; // FIXME get rid of this important
+		// --card-bg: transparent !important; // REVIEW get rid of this important
 		// background: var(--card-bg);
 		background: transparent !important;
 	}
@@ -146,7 +146,7 @@
 	}
 
 	.bmko_header-card-applied.active-card {
-		background-color: hsla(0, 0, 100%, 0.3) !important; // FIXME get rid of this important
+		background-color: hsla(0, 0, 100%, 0.3) !important; // REVIEW get rid of this important
 	}
 }
 

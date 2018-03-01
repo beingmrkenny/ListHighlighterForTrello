@@ -30,8 +30,10 @@ on run argv
 			end repeat
 
 			if item 1 of argv is "true" then
+				set extKey to item 2 of argv
+				set optionsPage to "chrome-extension://" & extKey & "/options/index.html"
 				make new window
-				open location "chrome-extension://nijokjiipcgekddiibeaokmcbejhajlp/options/index.html"
+				open location optionsPage
 			end if
 
 		end if
