@@ -38,14 +38,14 @@ function flash (element) {
 	);
 }
 
-Options.prototype.dump = function (asString = false) {
+Options.dump = function (asString = false) {
 	chrome.storage.sync.get(null, function (existingSettings) {
 		var dump = (asString) ? JSON.stringify(existingSettings) : existingSettings
 		console.log(dump);
 	});
 }
 
-Options.prototype.createRemoveObject = function (obj, path) {
+Options.createRemoveObject = function (obj, path) {
 	var props = path.split("."), prop, i, x = props.length - 1;
 	for(i = 0; i < x; i++) {
 		prop = props[i];
@@ -57,13 +57,22 @@ Options.prototype.createRemoveObject = function (obj, path) {
 	delete obj[props[i]];
 }
 
-Options.prototype.remove = function (path) {
+Options.remove = function (path) {
 	Options.load(null, function (allOptions) {
 		Options.createRemoveObject(allOptions, path);
 		chrome.storage.sync.set(saveObject);
 	});
 }
 
-Options.prototype.clear = function () {
+Options.clear = function () {
 	chrome.storage.sync.clear();
+}
+
+Options.reset = function () {
+	var defaults = Options.defaults();
+	for (let key in defaults) {
+		chrome.storage.sync.set({
+			[key] : defaults[key]
+		});
+	}
 }

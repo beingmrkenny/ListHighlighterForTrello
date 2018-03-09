@@ -3,7 +3,7 @@ source $DIR/../config/bash.sh;
 
 lhwatch () {
 	lhgo;
-	fswatch -0xv -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
+	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
 }
 
 lhgo () {
@@ -13,7 +13,7 @@ lhgo () {
 lhrelease () {
 
 	# Prepare the stuff for release
-	lhcompile;
+	lhcompile release;
 	find "$DIR/../Extension/" -type f -name .DS_Store -exec rm {} \;
 
 	# Copy extension to temp and duplicate it
@@ -44,13 +44,19 @@ lhrelease () {
 }
 
 lhcompile () {
+
+	local release='';
+	if [[ -n $1 ]]; then
+		release='release';
+	fi
+
 	lhcss;
 	lhpcss;
 	lhocss;
 
 	osacompile -o $DIR/chrome.scpt $DIR/chrome.applescript
 
-	php -f $DIR/../optionsPageHtml/generateOptions.php;
+	php -f $DIR/../optionsPageHtml/generateOptions.php $release;
 }
 
 lhcss () {

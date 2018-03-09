@@ -125,8 +125,7 @@
 
 		</div>
 
-		<!-- FIXME dev code -->
-		<details open>
+		<details>
 
 			<summary data-contents="Fine Tuning, Information">More</summary>
 
@@ -207,7 +206,13 @@
 	<script type="text/javascript" src="/options/js/classes/DefaultColorBar.js"></script>
 	<script type="text/javascript" src="/options/js/classes/DoingColors.js"></script>
 
+	{if $debug}
+		<script type="text/javascript" src="/js/debug.js"></script>
+	{/if}
+
 	<script type="text/javascript" src="/options/js/colorPickerSetup.js"></script>
+	<script type="text/javascript" src="/options/js/data.js"></script>
+	<script type="text/javascript" src="/options/js/dummyController.js"></script>
 	<script type="text/javascript" src="/options/js/optionsPage.js"></script>
 
 </body>

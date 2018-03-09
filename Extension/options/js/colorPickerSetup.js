@@ -83,12 +83,13 @@ function recentButtonSetupClick(button) {
 }
 
 function saveRecentColor(hex) {
-	Options.load('recentColors', function (recentColors) {
+	Options.load('recentColors', function (results) {
+		var recentColors = results.recentColors;
 		while (recentColors.length > 9) {
 			recentColors.shift();
 		}
 		recentColors.push(hex);
-		Options.save('recentColors', recentColors);
+		Options.save({ 'recentColors' : recentColors});
 	});
 }
 
@@ -100,9 +101,7 @@ function displayRecentColors (recentColors) {
 	}
 }
 
-function actuallyDisplayRecentColors (recentColors) {
-
-	var container = $('.custom-color-picker-button-container');
+function actuallyDisplayRecentColors (results) {
 
 	var existing = $$('.recent-color-button');
 	if (existing) {
@@ -111,7 +110,8 @@ function actuallyDisplayRecentColors (recentColors) {
 		}
 	}
 
-	for (let hex of recentColors) {
+	var container = $('.custom-color-picker-button-container');
+	for (let hex of results.recentColors) {
 		let button = getTemplate('CustomColorPickerButton');
 		button.dataset.color = hex;
 		button.style.backgroundColor = hex;

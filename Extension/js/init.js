@@ -22,7 +22,7 @@ chrome.runtime.onMessage.addListener (
 				break;
 
 			case 'colorChange' :
-				Options.load('colors', function () {
+				Options.loadColors(function (colors) {
 					DoingColors.highPriColorStyles();
 				});
 				break;
@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener (
 			case 'options.HighlightTags' :
 			case 'options.HighlightTitles' :
 			case 'options.MatchTitleSubstrings' :
-				Options.load('options', function (options) {
+				Options.loadOptions(function (options) {
 					ListHighlighter.highlight();
 					HeaderTagging.toggleTags (options.HideHashtags);
 				});
@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener (
 			case 'options.EnableSeparatorCards' :
 			case 'options.HeaderCardsExtraSpace' :
 			case 'options.SeparatorCardsVisibleLine' :
-				Options.load('options', function () {
+				Options.loadOptions(function () {
 					System.headerCardsSetup();
 					Card.processCards(document.querySelectorAll('.list-card'));
 					ListWorkPoints.updateLists();
@@ -52,7 +52,7 @@ chrome.runtime.onMessage.addListener (
 			case 'options.CountAllCards' :
 			case 'options.EnablePointsOnCards' :
 			case 'options.HideManualCardPoints' :
-				Options.load('options', function (options) {
+				Options.loadOptions(function (options) {
 					ListWorkPoints.updateLists();
 					HeaderTagging.toggleTags (options.EnableWIP);
 					ListHighlighter.highlight();

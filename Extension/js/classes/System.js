@@ -1,19 +1,18 @@
 class System {
 
 	static setup() {
-		Options.resetIfEmpty(function(options) {
+		Options.initialise(function(results) {
 			System.headerCardsSetup();
 			System.detectAndSaveColorBlindFriendlyMode();
-			Options.load('colors', function(colors) {
-				DoingColors.highPriColorStyles();
-				keepTrying(ListHighlighter.highlight, 5, 700);
-				keepCounting(ListWorkPoints.toggleWIP, '.list-card:not(.bmko_header-card-applied)');
-				watch('title');
-				watch('board');
-				watch('listTitle');
-				watch('body');
-				System.toggleToolbarButton();
-			});
+			DoingColors.init(Options.processColors(results));
+			DoingColors.highPriColorStyles();
+			keepTrying(ListHighlighter.highlight, 5, 700);
+			keepCounting(ListWorkPoints.toggleWIP, '.list-card:not(.bmko_header-card-applied)');
+			watch('title');
+			watch('board');
+			watch('listTitle');
+			watch('body');
+			System.toggleToolbarButton();
 		});
 	}
 
@@ -54,10 +53,7 @@ class System {
 
 	static detectAndSaveColorBlindFriendlyMode(passedMode) {
 		var body = getTrelloBody();
-		Options.save(
-			'colorBlindFriendlyMode',
-			passedMode || body.classList.contains('body-color-blind-mode-enabled')
-		);
+		Options.save({ colorBlindFriendlyMode : passedMode || body.classList.contains('body-color-blind-mode-enabled') });
 	}
 
 	// QUESTION Does it need a desetup method to get all observers and get rid of them

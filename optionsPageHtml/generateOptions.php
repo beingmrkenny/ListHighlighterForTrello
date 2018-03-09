@@ -63,6 +63,8 @@ foreach ($colors as $colorName => $color) {
 
 $smarty->assign('defaultTiles', $defaultTiles);
 $smarty->assign('dummyTiles', $dummyTiles);
+$smarty->assign('debug', (empty($argv[1])));
+
 $fileContents = $smarty->fetch($lhDir.'/optionsPageHtml/options.tpl');
 $file = $lhDir.'/Extension/options/index.html';
 
