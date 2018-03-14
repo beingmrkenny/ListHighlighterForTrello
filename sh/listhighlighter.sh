@@ -12,35 +12,28 @@ lhgo () {
 
 lhrelease () {
 
+	cd $listHighlighterDir;
+
 	# Prepare the stuff for release
 	lhcompile release;
 	find "$DIR/../Extension/" -type f -name .DS_Store -exec rm {} \;
 
 	# Copy extension to temp and duplicate it
-	if [[ -d /tmp/ListHighlighter ]];        then rm -r /tmp/ListHighlighter;        fi
-	if [[ -d /tmp/ListHighlighterFirefox ]]; then rm -r /tmp/ListHighlighterFirefox; fi
+	if [[ -d /tmp/ListHighlighter ]]; then rm -r /tmp/ListHighlighter; fi
 	cp -r $DIR/../Extension /tmp/ListHighlighter;
 	if [[ -f /tmp/ListHighlighter/js/debug.js ]]; then rm /tmp/ListHighlighter/js/debug.js; fi
-	cp -r /tmp/ListHighlighter /tmp/ListHighlighterFirefox;
-	rm /tmp/ListHighlighter/firefoxApplications.json;
 
-	# Process the manifest for firefox
 	php -f $DIR/processManifest.php;
-	rm /tmp/ListHighlighterFirefox/firefoxApplications.json;
 
-	# Make the zips
-	if [[ -f ~/Desktop/ListHighlighter.zip ]];        then rm ~/Desktop/ListHighlighter.zip;        fi
-	if [[ -f ~/Desktop/ListHighlighterFirefox.zip ]]; then rm ~/Desktop/ListHighlighterFirefox.zip; fi
+	# Make the zip
+	if [[ -f ~/Desktop/ListHighlighter.zip ]]; then rm ~/Desktop/ListHighlighter.zip; fi
 	cd /tmp/ListHighlighter/
 	zip -r ~/Desktop/ListHighlighter.zip ./
-	cd /tmp/ListHighlighterFirefox/
-	zip -r ~/Desktop/ListHighlighterFirefox.zip ./
 
-	# Check the zips for dirty horrible hidden files
+	# Display zip contents so you can check for hidden files
 	unzip -vl ~/Desktop/ListHighlighter.zip
-	unzip -vl ~/Desktop/ListHighlighterFirefox.zip
-	# zip -d ~/Desktop/ListHighlighter.zip __MACOSX/\*
-	# zip -d ~/Desktop/ListHighlighterFirefox.zip __MACOSX/\*
+
+	cd $listHighlighterDir;
 }
 
 lhcompile () {
