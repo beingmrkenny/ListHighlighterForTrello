@@ -15,17 +15,21 @@ Some compilation needs to run before the dev code will work in the browser. CSS 
 
 Your `.gitignore` file should look like this:
 
-	config/bash.sh
-	config/options.inc
+	z_build/config/bash.sh
+	z_build/config/options.inc
 	*.css
 	Extension/options/index.html
+	.gitconfig
+	/Images
+	sh/chrome.scpt
 
 ### 3. Setup config
 
-The config directory should contain two files (contents below):
+The z_build/config directory should contain two files (contents below):
 
 - bash.sh
 - options.inc
+- README.md
 
 #### `bash.sh`
 

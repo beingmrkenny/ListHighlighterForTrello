@@ -3,11 +3,7 @@ source $DIR/../config/bash.sh;
 
 lhwatch () {
 	lhgo;
-	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $DIR/watchhandler.sh {};
-}
-
-lhgo () {
-	$DIR/watchhandler.sh;
+	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $listHighlighterDir/z_build/sh/watchhandler.sh {};
 }
 
 lhrelease () {
@@ -23,7 +19,7 @@ lhrelease () {
 	cp -r $DIR/../Extension /tmp/ListHighlighter;
 	if [[ -f /tmp/ListHighlighter/js/debug.js ]]; then rm /tmp/ListHighlighter/js/debug.js; fi
 
-	php -f $DIR/processManifest.php;
+	php -f $listHighlighterDir/z_build/sh/processManifest.php;
 
 	# Make the zip
 	if [[ -f ~/Desktop/ListHighlighter.zip ]]; then rm ~/Desktop/ListHighlighter.zip; fi
@@ -38,6 +34,8 @@ lhrelease () {
 
 lhcompile () {
 
+	cd $listHighlighterDir;
+
 	local release='';
 	if [[ -n $1 ]]; then
 		release='release';
@@ -47,9 +45,9 @@ lhcompile () {
 	lhpcss;
 	lhocss;
 
-	osacompile -o $DIR/chrome.scpt $DIR/chrome.applescript
+	osacompile -o $listHighlighterDir/z_build/sh/chrome.scpt $listHighlighterDir/z_build/sh/chrome.applescript
 
-	php -f $DIR/../optionsPageHtml/generateOptions.php $release;
+	php -f $listHighlighterDir/optionsPageHtml/generateOptions.php $release;
 }
 
 lhcss () {

@@ -1,5 +1,5 @@
-config/bash.sh
-config/options.inc
+z_build/config/bash.sh
+z_build/config/options.inc
 *.css
 Extension/options/index.html
 .gitconfig
