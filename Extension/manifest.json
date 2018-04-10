@@ -27,7 +27,7 @@
 	"options_page" : "options/index.html",
 
 	"permissions" : [
-		"storage", "tabs", "*://trello.com/*"
+		"storage"
 	],
 
 	"content_scripts": [

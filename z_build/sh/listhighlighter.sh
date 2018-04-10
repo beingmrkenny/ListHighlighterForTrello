@@ -2,7 +2,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 source $DIR/../config/bash.sh;
 
 lhwatch () {
-	lhgo;
+	cd $listHighlighterDir;
 	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $listHighlighterDir/z_build/sh/watchhandler.sh {};
 }
 
@@ -12,11 +12,11 @@ lhrelease () {
 
 	# Prepare the stuff for release
 	lhcompile release;
-	find "$DIR/../Extension/" -type f -name .DS_Store -exec rm {} \;
+	find "$listHighlighterDir/Extension/" -type f -name .DS_Store -exec rm {} \;
 
 	# Copy extension to temp and duplicate it
 	if [[ -d /tmp/ListHighlighter ]]; then rm -r /tmp/ListHighlighter; fi
-	cp -r $DIR/../Extension /tmp/ListHighlighter;
+	cp -r $listHighlighterDir/Extension /tmp/ListHighlighter;
 	if [[ -f /tmp/ListHighlighter/js/debug.js ]]; then rm /tmp/ListHighlighter/js/debug.js; fi
 
 	php -f $listHighlighterDir/z_build/sh/processManifest.php;
