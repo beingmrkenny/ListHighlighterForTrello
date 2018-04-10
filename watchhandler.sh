@@ -1,6 +1,5 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
-source $DIR/../config/bash.sh;
 source $DIR/listhighlighter.sh;
 
 lhcompile;

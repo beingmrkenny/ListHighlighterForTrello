@@ -1,6 +1,4 @@
-bash.sh
-options.inc
 *.css
 Extension/options/index.html
-/Images
 chrome.scpt
+config.json

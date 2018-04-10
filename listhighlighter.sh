@@ -1,9 +1,14 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-source $DIR/../config/bash.sh;
+
+listHighlighterDir=$(jq -r .listHighlighterDir $DIR/config.json);
+refreshOnWatch=$(jq -r .refreshOnWatch $DIR/config.json);
+openOptionsOnRefresh=$(jq -r .openOptionsOnRefresh $DIR/config.json);
+extensionKey=$(jq -r .extensionKey $DIR/config.json);
+scssCompressionStyle=$(jq -r .scssCompressionStyle $DIR/config.json);
 
 lhwatch () {
 	cd $listHighlighterDir;
-	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $listHighlighterDir/z_build/sh/watchhandler.sh {};
+	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $listHighlighterDir/watchhandler.sh {};
 }
 
 lhrelease () {
@@ -19,7 +24,7 @@ lhrelease () {
 	cp -r $listHighlighterDir/Extension /tmp/ListHighlighter;
 	if [[ -f /tmp/ListHighlighter/js/debug.js ]]; then rm /tmp/ListHighlighter/js/debug.js; fi
 
-	php -f $listHighlighterDir/z_build/sh/processManifest.php;
+	php -f $listHighlighterDir/processManifest.php;
 
 	# Make the zip
 	if [[ -f ~/Desktop/ListHighlighter.zip ]]; then rm ~/Desktop/ListHighlighter.zip; fi
@@ -45,7 +50,7 @@ lhcompile () {
 	lhpcss;
 	lhocss;
 
-	osacompile -o $listHighlighterDir/z_build/sh/chrome.scpt $listHighlighterDir/z_build/sh/chrome.applescript
+	osacompile -o $listHighlighterDir/chrome.scpt $listHighlighterDir/chrome.applescript
 
 	php -f $listHighlighterDir/optionsPageHtml/generateOptions.php $release;
 }
@@ -63,7 +68,7 @@ lhcss () {
 	local input="$listHighlighterDir"/scss/injected/init.scss;
 	local output="$listHighlighterDir"/Extension/css/style.css;
 	local loadPath="$listHighlighterDir"/scss/injected;
-	sass $watch "$input:$output" --sourcemap=none --style=compressed --load-path="$loadPath" --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --sourcemap=none --style=$scssCompressionStyle --load-path="$loadPath" --cache=/tmp/sass-cache
 }
 
 lhpcss () {
@@ -78,7 +83,7 @@ lhpcss () {
 
 	local input="$listHighlighterDir"/scss/popup.scss;
 	local output="$listHighlighterDir"/Extension/css/popup.css;
-	sass $watch "$input:$output" --sourcemap=none --style=compressed --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --sourcemap=none --style=$scssCompressionStyle --cache=/tmp/sass-cache
 }
 
 lhocss () {
@@ -93,5 +98,5 @@ lhocss () {
 
 	local input="$listHighlighterDir"/scss/options.scss;
 	local output="$listHighlighterDir"/Extension/css/options.css;
-	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --sourcemap=none --style=compressed --cache=/tmp/sass-cache
+	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --sourcemap=none --style=$scssCompressionStyle --cache=/tmp/sass-cache
 }

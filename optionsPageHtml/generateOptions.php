@@ -7,8 +7,8 @@ if (!ini_get('date.timezone')) {
 
 $lhDir = __DIR__ . '/..';
 
-require $lhDir.'/z_build/config/options.inc';
-require $smartyClass;
+$settings = json_decode(file_get_contents("$lhDir/config.json"), true);
+require $settings['smartyClass'];
 require 'Color.php';
 
 $smarty = new Smarty();

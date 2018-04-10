@@ -8,6 +8,7 @@ Some compilation needs to run before the dev code will work in the browser. CSS 
 
 - sass (<http://sass-lang.com/>)
 - PHP with Smarty (<http://www.smarty.net/docs/en/installing.smarty.basic.tpl>)
+- jq (<https://stedolan.github.io/jq/download/>)
 - (optional) fswatch (<https://github.com/emcrisostomo/fswatch>)
 - (optional) ruby with the `terminal-notifier` gem installed
 
@@ -15,42 +16,38 @@ Some compilation needs to run before the dev code will work in the browser. CSS 
 
 Your `.gitignore` file should look like this:
 
-	z_build/config/bash.sh
-	z_build/config/options.inc
-	*.css
+	chrome.scpt
+	\*.css
 	Extension/options/index.html
 	.gitconfig
 	/Images
-	sh/chrome.scpt
 
 ### 3. Setup config
 
-The z_build/config directory should contain two files (contents below):
+The root directory of this repo needs a config file (config.json) with the following contents:
 
-- bash.sh
-- options.inc
-- README.md
+	{
+		"listHighlighterDir" : "/Path/to/ListHighlighterForTrello",
+		"smartyClass" : "/Path/to/Smarty.class.php",
+		"refreshOnWatch" : false,
+		"openOptionsOnRefresh" : false,
+		"extensionKey" : "abcdefghijklmnopqrstuvwxyzabcdef",
+		"scssCompressionStyle" : "compressed"
+	}
 
-#### `bash.sh`
+- The `listHighlighterDir` variable (string) should be the full path to where you have the List Highlighter repo checked out
 
-	listHighlighterDir='/Path/to/ListHighlighterForTrello';
-	refreshOnWatch=false;
-	openOptionsOnRefresh=false;
+- The `smartyClass` variable (string) is the full path to the Smarty PHP class
 
-- The `listHighlighterDir` variable should be the full path to where you have the List Highlighter repo checked out
+- The `refreshOnWatch` variable (boolean) determines whether to refresh Chrome on every file change.
 
-- The `refreshOnWatch` variable is boolean (determines whether to refresh Chrome on every update).
+- The `openOptionsOnRefresh` variable (boolean) determines whether to open the options page on every file change.
 
-#### `options.inc`
+- The `extensionKey` variable (string) is the ID Chrome assigns to the extension. It is 32 characters long and is displayed on the extensions page if you have developer mode enabled.
 
-	<?php
-	$smartyClass = '/Path/to/Smarty.class.php';
-
-- `$smartyClass` is the full path to your Smarty installation
-
+- The `scssCompressionStyle` variable (string) is how much to compress the CSS files: 'compressed' is the default for production, 'expanded' is more useful for debugging.
 
 ## Development notes
-
 
 ### How the JavaScript works (brief intro)
 
