@@ -31,6 +31,8 @@ chrome.runtime.onMessage.addListener (
 			case 'options.HighlightTags' :
 			case 'options.HighlightTitles' :
 			case 'options.MatchTitleSubstrings' :
+			case 'options.DimUntaggedHigh' :
+			case 'options.DimUntaggedNormal' :
 				Options.loadOptions(function (options) {
 					ListHighlighter.highlight();
 					HeaderTagging.toggleTags (options.HideHashtags);

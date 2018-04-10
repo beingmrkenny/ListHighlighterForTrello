@@ -8,7 +8,7 @@ if (!notificationContainer) {
 	notificationContainer.classList.add('app-alert-item', 'mod-confirm');
 
 	let message = document.createElement('p');
-	message.textContent = 'List Highlighter has been installed or updated. Please refresh the page when ready.';
+	message.textContent = 'List Highlighter has been installed or updated. Please refresh the page when you’re ready.';
 
 	let refreshButton = document.createElement('span');
 	refreshButton.classList.add('app-alert-item-button');

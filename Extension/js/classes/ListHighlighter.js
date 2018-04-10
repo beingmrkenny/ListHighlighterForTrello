@@ -108,8 +108,8 @@ class ListHighlighter {
 		}
 
 		if (
-			document.querySelectorAll('.bmko_normal-list').length > 0 ||
-			document.querySelectorAll('.bmko_high-list').length > 0
+			(GLOBAL.DimUntaggedNormal && document.querySelectorAll('.bmko_normal-list').length > 0) ||
+			(GLOBAL.DimUntaggedHigh && document.querySelectorAll('.bmko_high-list').length > 0)
 		) {
 			body.classList.remove('bmko_do-not-dim-lists');
 		} else {

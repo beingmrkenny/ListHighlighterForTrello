@@ -1,7 +1,6 @@
-z_build/config/bash.sh
-z_build/config/options.inc
+bash.sh
+options.inc
 *.css
 Extension/options/index.html
-.gitconfig
 /Images
-sh/chrome.scpt
+chrome.scpt

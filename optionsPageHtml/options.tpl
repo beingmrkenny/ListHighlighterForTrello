@@ -50,7 +50,7 @@
 
 	<section>
 
-		<h2>Highlight Colour</h2>
+		<h2>Highlight colour</h2>
 
 		<ul class="color-tile-bar" id="DefaultColorBar" data-default="true">
 			{foreach from=$defaultTiles item=tile}
@@ -84,6 +84,42 @@
 			{include file="./dummyBoard.tpl"}
 
 		</details>
+
+	</section>
+
+	<section>
+
+		<h2>Dimming untagged lists</h2>
+
+		<p>By popular demand, untagged lists are now no longer automatically dimmed when there’s a high priority list on the board. Automatic dimming still happens on boards with a normal priority list, in order to create contrast. You can change both settings below.</p>
+
+		<div class="dim-untagged-container">
+			<div class="standard-options">
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="DimUntaggedHigh" name="DimUntaggedHigh">
+						<label for="DimUntaggedHigh">
+							High
+						</label>
+					</li>
+				</ul>
+			</div>
+			<p>Dim untagged lists on boards with high priority lists.<br>Default: off</p>
+		</div>
+
+		<div class="dim-untagged-container">
+			<div class="standard-options">
+				<ul>
+					<li class="standard-option-widget">
+						<input type="checkbox" class="options-input" id="DimUntaggedNormal" name="DimUntaggedNormal">
+						<label for="DimUntaggedNormal">
+							Normal
+						</label>
+					</li>
+				</ul>
+			</div>
+			<p>Dim untagged lists on boards with normal priority lists.<br>Default: on</p>
+		</div>
 
 	</section>
 

@@ -54,6 +54,10 @@ body.preload * {
 	}
 }
 
+th, td {
+	width: 50%;
+}
+
 details h4 {
 	margin-top: 40px;
 }
@@ -130,6 +134,18 @@ footer {
 .done {
 	text-decoration: line-through;
 	text-shadow: 1px 1px 0 white;
+}
+
+.dim-untagged-container {
+	display: flex;
+	margin-bottom: 10px;
+	align-items: center;
+	.standard-options ul {
+		margin-right: 15px;
+	}
+	p {
+		margin: 0;
+	}
 }
 
 @import "options/color-picker";

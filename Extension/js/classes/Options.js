@@ -111,6 +111,8 @@ class Options {
 			'options.CountAllCards':             false,
 			'options.EnablePointsOnCards':       false,
 			'options.HideManualCardPoints':      false,
+			'options.DimUntaggedHigh':           false,
+			'options.DimUntaggedNormal':         true,
 
 			'recentColors':                      [],
 			'colorBlindFriendlyMode':            null
