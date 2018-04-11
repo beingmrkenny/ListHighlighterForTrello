@@ -63,7 +63,7 @@ class System {
 			mode = passedMode;
 		}
 		if (typeof mode == 'boolean') {
-			Options.save('colorBlindFriendlyMode', mode);
+			Options.save({'colorBlindFriendlyMode': mode});
 		}
 	}
 
