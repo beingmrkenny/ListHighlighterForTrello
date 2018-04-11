@@ -8,7 +8,7 @@ scssCompressionStyle=$(jq -r .scssCompressionStyle $DIR/config.json);
 
 lhwatch () {
 	cd $listHighlighterDir;
-	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\/sh\/' | xargs -0 -n1 -I {} $listHighlighterDir/watchhandler.sh {};
+	fswatch -0xvo -l 1 "$listHighlighterDir" -e '\/css\/' -e '\/Extension\/options\/index\.html' -e '\.git' -e '\.scpt' -e '\.sh' | xargs -0 -n1 -I {} $listHighlighterDir/watchhandler.sh {};
 }
 
 lhrelease () {
