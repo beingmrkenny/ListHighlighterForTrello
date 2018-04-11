@@ -29,26 +29,27 @@ class DoingColors {
 	}
 
 	static getTrelloBg () {
-		var trelloBg,
-			body = getTrelloBody(),
-			background = (body.classList.contains('body-custom-board-background'))
-				? 'photo'
-				: body.style.backgroundColor;
-
-		switch (background) {
-			case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
-			case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
-			case 'rgb(81, 152, 57)'  : trelloBg = 'green'; break;
-			case 'rgb(176, 70, 50)'  : trelloBg = 'red'; break;
-			case 'rgb(137, 96, 158)' : trelloBg = 'purple'; break;
-			case 'rgb(205, 90, 145)' : trelloBg = 'pink'; break;
-			case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
-			case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
-			case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
-			case 'photo'			 : trelloBg = 'photo'; break;
-			default                  : trelloBg = 'blue';
+		var body = getTrelloBody();
+		if (body) {
+			let trelloBg,
+				background = (body.classList.contains('body-custom-board-background'))
+					? 'photo'
+					: body.style.backgroundColor;
+			switch (background) {
+				case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
+				case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
+				case 'rgb(81, 152, 57)'  : trelloBg = 'green'; break;
+				case 'rgb(176, 70, 50)'  : trelloBg = 'red'; break;
+				case 'rgb(137, 96, 158)' : trelloBg = 'purple'; break;
+				case 'rgb(205, 90, 145)' : trelloBg = 'pink'; break;
+				case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
+				case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
+				case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
+				case 'photo'			 : trelloBg = 'photo'; break;
+				default                  : trelloBg = 'blue';
+			}
+			return trelloBg;
 		}
-		return trelloBg;
 	}
 
 	static trelloBgHasDoingColor (trelloBg) {
@@ -120,47 +121,52 @@ class DoingColors {
 
 	static highPriColorStyles () {
 
-		var color = new Color(),
-			newColor = new Color(),
-			body = getTrelloBody(),
-			highPri, contrastColor, css, existingStyle;
+		var body = getTrelloBody();
 
-		DoingColors.init(GLOBAL.colors);
+		if (body) {
 
-		highPri = (body.classList.contains('body-custom-board-background'))
-			? DoingColors.getHexForTrelloBg('photo')
-			: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
+			let color = new Color(),
+				newColor = new Color(),
+				highPri, contrastColor, css, existingStyle;
 
-		if (typeof highPri == 'undefined') {
-			throw new Error('no high pri color');
-		}
+			DoingColors.init(GLOBAL.colors);
 
-		color.fromHex(highPri);
-		color.toHSL();
+			highPri = (body.classList.contains('body-custom-board-background'))
+				? DoingColors.getHexForTrelloBg('photo')
+				: DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg());
 
-		newColor.fromHSL(
-			color.getHue(),
-			color.getSaturation() * 0.7,
-			45
-		);
+			if (typeof highPri == 'undefined') {
+				throw new Error('no high pri color');
+			}
 
-		contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+			color.fromHex(highPri);
+			color.toHSL();
 
-		css = `.bmko_high-list {
-			--high-pri: ${highPri};
-			--high-pri-border: ${newColor.toHex()};
-			--high-pri-text: ${contrastColor};
-		}`;
+			newColor.fromHSL(
+				color.getHue(),
+				color.getSaturation() * 0.7,
+				45
+			);
 
-		existingStyle = $id('HighPriColorCSS');
-		if (existingStyle) {
-			existingStyle.textContent = css;
-		} else {
-			let style = document.createElement('style');
-			style.setAttribute('type', 'text/css');
-			style.setAttribute('id', 'HighPriColorCSS');
-			style.textContent = css;
-			document.head.appendChild(style);
+			contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+
+			css = `.bmko_high-list {
+				--high-pri: ${highPri};
+				--high-pri-border: ${newColor.toHex()};
+				--high-pri-text: ${contrastColor};
+			}`;
+
+			existingStyle = $id('HighPriColorCSS');
+			if (existingStyle) {
+				existingStyle.textContent = css;
+			} else {
+				let style = document.createElement('style');
+				style.setAttribute('type', 'text/css');
+				style.setAttribute('id', 'HighPriColorCSS');
+				style.textContent = css;
+				document.head.appendChild(style);
+			}
+
 		}
 
 	}

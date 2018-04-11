@@ -18,7 +18,7 @@ class System {
 
 	static headerCardsSetup() {
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards || GLOBAL.EnableWIP) {
-			let body = getTrelloBody();
+
 
 			keepCounting(
 				function() {
@@ -31,7 +31,8 @@ class System {
 				'.list-card', 5, 250
 			);
 
-			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
+			let body = getTrelloBody();
+			if (body && (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards)) {
 				body.classList.toggle('bmko_header-cards-extra-space', (GLOBAL.HeaderCardsExtraSpace));
 				body.classList.toggle('bmko_separator-cards-visible-line', (GLOBAL.SeparatorCardsVisibleLine));
 			}
@@ -40,9 +41,9 @@ class System {
 	}
 
 	static toggleToolbarButton() {
-		if (document && document.body) {
-			var body = getTrelloBody();
-			var toggle = body.classList.contains('bmko_list-highlighter-toggled-off');
+		var body = getTrelloBody();
+		if (body) {
+			let toggle = body.classList.contains('bmko_list-highlighter-toggled-off');
 			if (typeof toggle == 'boolean') {
 				chrome.runtime.sendMessage({
 					toggledOff: toggle
@@ -52,8 +53,18 @@ class System {
 	}
 
 	static detectAndSaveColorBlindFriendlyMode(passedMode) {
-		var body = getTrelloBody();
-		Options.save({ colorBlindFriendlyMode : passedMode || body.classList.contains('body-color-blind-mode-enabled') });
+		var mode;
+		if (typeof passedMode == 'undefined') {
+			let body = getTrelloBody();
+			if (body) {
+				mode = body.classList.contains('body-color-blind-mode-enabled')
+			}
+		} else {
+			mode = passedMode;
+		}
+		if (typeof mode == 'boolean') {
+			Options.save('colorBlindFriendlyMode', mode);
+		}
 	}
 
 	// QUESTION Does it need a desetup method to get all observers and get rid of them

@@ -63,13 +63,15 @@ class ListHighlighter {
 
 	static toggleHighlight (highlight) {
 		if (typeof highlight === 'boolean') {
-			if (highlight) {
-				ListHighlighter.highlight('override');
-			} else {
-				ListHighlighter.dehighlight('override');
-			}
 			let body = getTrelloBody();
-			body.classList.toggle('bmko_list-highlighter-toggled-off', !highlight);
+			if (body) {
+				if (highlight) {
+					ListHighlighter.highlight('override');
+				} else {
+					ListHighlighter.dehighlight('override');
+				}
+				body.classList.toggle('bmko_list-highlighter-toggled-off', !highlight);
+			}
 		}
 	}
 
@@ -77,7 +79,7 @@ class ListHighlighter {
 
 		var body = getTrelloBody();
 
-		if (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+		if (!body || (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined')) {
 			return;
 		}
 
@@ -122,7 +124,7 @@ class ListHighlighter {
 
 		var body = getTrelloBody();
 
-		if (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined') {
+		if (!body || (body.classList.contains('bmko_list-highlighter-toggled-off') && typeof override === 'undefined')) {
 			return;
 		}
 

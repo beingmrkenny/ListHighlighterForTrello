@@ -4,26 +4,36 @@ class TrelloPage {
 
 	static isBoard() {
 		var body = getTrelloBody();
-		return body.classList.contains('body-board-view');
+		if (body) {
+			return body.classList.contains('body-board-view');
+		} else {
+			return false;
+		}
 	}
 
 	static isCustomBackground() {
 		var body = getTrelloBody();
-		return body.classList.contains('body-custom-board-background');
+		if (body) {
+			return body.classList.contains('body-custom-board-background');
+		}
 	}
 
 	static getBoardBackground () {
-		var body = getTrelloBody(),
-			color = body.style.backgroundColor;
-		if (typeof color != 'string') {
-			color = null;
+		var body = getTrelloBody();
+		if (body) {
+			let color = body.style.backgroundColor;
+			if (typeof color != 'string') {
+				color = null;
+			}
+			return color;
 		}
-		return color;
 	}
 
 	static isHighlighted () {
 		var body = getTrelloBody();
-		return body.classList.contains('bmko_list-highlighter-applied');
+		if (body) {
+			return body.classList.contains('bmko_list-highlighter-applied');
+		}
 	}
 
 	static getDetails () {

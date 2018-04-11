@@ -314,7 +314,13 @@ class ListWorkPoints {
 
 	toggleWouldBeOverWhileDragging (draggedCard) {
 
-		if (this.isOriginalList() || draggedCard.classList.contains('bmko_header-card-applied')) {
+		var draggedCardPoints = null;
+
+		if (GLOBAL.EnablePointsOnCards) {
+			draggedCardPoints = ListWorkPoints.getCardPoints(draggedCard);
+		}
+
+		if (this.isOriginalList() || draggedCard.classList.contains('bmko_header-card-applied') || draggedCardPoints === 0) {
 
 			this.list.classList.remove('bmko_list-would-be-over');
 

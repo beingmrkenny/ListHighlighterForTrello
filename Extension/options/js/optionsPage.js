@@ -32,6 +32,7 @@ function connectInputsToEachOther () {
 	var optionsControls = {
 		HighlightTags : {
 			disableInputs : [ 'HideHashtags' ],
+			uncheckInputs : [ 'HideHashtags' ],
 			textSwitcher : {
 				linkedInput: 'HideHashtags',
 				targets : [ 'HideHashtagsSwitcher' ]
