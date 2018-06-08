@@ -1,21 +1,44 @@
-
 .dummy-board-color-tile-bar {
-
-	margin-top: 20px;
-	padding: 10px;
+	padding: 4px 10px 10px;
 
 	border-radius: 5px 5px 0 0;
+
+	p {
+		color: white;
+		margin: 0 0 3px;
+
+		.mod-light-background & {
+			color: black;
+		}
+
+		[data-trello-bg="photo"] & {
+			color: white;
+			text-shadow: 0 0 5px black;
+		}
+
+	}
 
 	.color-tile-bar {
 		margin-bottom: 0;
 		min-height: 73px;
 
 		label {
-			width: 50px;
-			height: 50px;
+			width: 56px;
+			height: 56px;
+
+			transition: width .25s, height .25s;
+
+			&.default {
+				background: var(--high-pri);
+			}
+
+			[data-trello-bg='default'] & {
+				width: 62px;
+				height: 62px;
+			}
 
 			&:hover {
-				height: 55px;
+				height: 66px;
 			}
 
 			font-size: 13px;
@@ -40,6 +63,7 @@
 				font-size: 21px;
 			}
 
+			&.default::before,
 			&.custom::before {
 				top: -5px;
 			}

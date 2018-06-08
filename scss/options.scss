@@ -1,13 +1,7 @@
 @import "fonts.scss";
 @import "colors.scss";
 
-@mixin full-width($width, $backgroundColor: white) {
-	width: $width;
-
-	background: $backgroundColor;
-	border-right: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
-	border-left: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
-}
+@import "options-page/layout.scss";
 
 @mixin transition ($property...) {
 	transition-duration: 0.25s;
@@ -15,21 +9,18 @@
 }
 
 body {
-	width: 700px;
-	margin: 70px auto 20px;
-
 	line-height: 1.6em;
 	font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 	font-size: 16px;
 	color: $bodyTextColor;
 }
 
-body.preload * {
-	transition: none !important;
-}
-
 #MainHeader {
+	border-bottom: 1px solid #d6dadc;
+
 	h1 {
+		margin: 0;
+
 		line-height: 37px;
 	}
 
@@ -54,47 +45,17 @@ body.preload * {
 	}
 }
 
-th, td {
-	width: 50%;
-}
+.tags-and-titles {
+	margin-top: 0;
+	th,
+	td {
+		width: 50%;
+	}
 
-details h4 {
-	margin-top: 40px;
-}
-
-.examples {
-	display: flex;
-	justify-content: space-between;
-	.high,
-	.normal,
-	.done,
-	.ignore,
-	.low {
-		padding: 5px 15px;
-
-		border-radius: 3px;
+	th {
+		padding-top: 40px;
 	}
 }
-
-footer {
-	margin-top: 150px;
-	margin-bottom: 10px;
-
-	font-size: .875rem;
-	color: gray;
-	p {
-		margin: 15px 0;
-
-		line-height: 1.3;
-	}
-}
-
-.disabled,
-.disabled small {
-	color: rgb(187, 187, 187);
-}
-
-// STYILNG
 
 .high,
 .normal,
@@ -136,22 +97,174 @@ footer {
 	text-shadow: 1px 1px 0 white;
 }
 
-.dim-untagged-container {
+nav {
 	display: flex;
-	margin-bottom: 10px;
-	align-items: center;
-	.standard-options ul {
-		margin-right: 15px;
-	}
-	p {
+
+	ul,
+	li {
 		margin: 0;
+		padding: 0;
+
+		list-style: none;
+	}
+
+	ul {
+		display: flex;
+		justify-content: center;
+		min-width: 100%;
+		height: 38px;
+	}
+
+	li {
+		display: inline-block;
+		margin: 2px 2px 0;
+
+		background-color: #d6dadc;
+		border: 1px solid #d6dadc;
+		border-bottom: 0;
+		border-radius: 3px 3px 0 0;
+
+		cursor: pointer;
+
+		&.active {
+			margin-bottom: -1px;
+			padding-bottom: 9px;
+
+			background-color: #ffffff;
+			border-color: #d6dadc;
+
+			cursor: default;
+
+			&:hover {
+				background-color: #ffffff;
+				border-color: #d6dadc;
+			}
+		}
+
+		&:hover {
+			background: #b6bbbf;
+			border-color: #b6bbbf;
+		}
+
+		a {
+			display: inline-block;
+			padding: 8px 20px;
+
+			line-height: 18px;
+			font-size: 14px;
+			font-weight: 700;
+
+			&:link,
+			&:visited,
+			&:hover,
+			&:active {
+				text-decoration: none;
+				color: #444444;
+			}
+		}
+
 	}
 }
 
-@import "options/color-picker";
-@import "options/dummy-board";
-@import "options/color-tiles";
-@import "options/standard-option-widget";
+main {
+	section {
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
+
+footer {
+	font-size: 0.875rem;
+	text-align: center;
+	color: gray;
+	p {
+		margin: 15px 0;
+
+		line-height: 1.3;
+	}
+}
+
+// #Rules {
+// 	h3 {
+// 		margin-top: 0;
+//
+// 		font-size: 1rem;
+// 	}
+//
+// 	.option-group h3 {
+// 		margin-top: 30px;
+// 	}
+//
+// 	p {
+// 		margin-top: 0;
+// 		margin-bottom: 5px;
+// 		&.small {
+// 			width: 150px;
+// 			margin-top: 20px;
+//
+// 			line-height: 1.3;
+// 			font-size: 0.9rem;
+// 			white-space: normal;
+// 		}
+// 	}
+//
+// 	ul,
+// 	li {
+// 		margin: 0;
+// 		padding: 0;
+//
+// 		list-style: none;
+// 	}
+//
+// 	tr td:first-child {
+// 		position: relative;
+// 	}
+//
+// 	.option-group {
+// 		width: 265px;
+// 	}
+//
+// 	.sub-option {
+// 		display: none;
+// 		margin: 10px 0 10px 20px;
+// 	}
+//
+// 	.option-group.open .sub-option {
+// 		display: block;
+// 	}
+//
+// 	input[type=range] {
+// 		margin-top: 7px;
+// 	}
+//
+// 	textarea {
+// 		border-radius: 3px;
+// 	}
+//
+// 	.options-treatments {
+// 		width: 420px;
+// 	}
+//
+// 	.options-on-off {
+// 		display: flex;
+// 		flex-direction: column;
+// 		align-items: center;
+// 		label {
+// 			margin-right: 0;
+// 		}
+// 	}
+// }
+
+@import "options-page/color-picker";
+@import "options-page/dummy-board";
+@import "options-page/color-tiles";
+@import "options-page/option-widgets";
 
 @import "elements.scss";
 @import "forms.scss";
+
+body.preload * {
+	transition: none !important;
+}

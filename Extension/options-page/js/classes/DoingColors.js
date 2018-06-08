@@ -200,6 +200,11 @@ class DoingColors {
 			document.head.appendChild(style);
 		}
 
+		$('#DefaultDummyTile label').classList.toggle(
+			'mod-light-background',
+			color.isLight(highPri)
+		);
+
 	}
 
 }

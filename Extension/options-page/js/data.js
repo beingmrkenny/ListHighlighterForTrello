@@ -1,6 +1,9 @@
 
 
 function saveColor (trelloBg, colorName) {
+	if (trelloBg == 'default' && colorName == 'default') {
+		throw new Error('Attempting to save "default" as default.');
+	}
 	currentDoingColors[ trelloBg ] = colorName;
 	Options.save(
 		{

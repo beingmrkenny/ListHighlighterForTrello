@@ -1,12 +1,12 @@
 class Options {
 
 	static load (optionKey, callback) {
-	    if (typeof callback !== 'function') {
-	        throw new Error('Callback must be supplied');
-	    }
-	    chrome.storage.sync.get(optionKey, function (results) {
+		if (typeof callback !== 'function') {
+			throw new Error('Callback must be supplied');
+		}
+		chrome.storage.sync.get(optionKey, function (results) {
 			callback(results);
-	    });
+		});
 	}
 
 	static save (object, callback = function(){}) {
@@ -99,20 +99,23 @@ class Options {
 			'colors.custom.gray':                null,
 			'colors.custom.photo':               null,
 
-			'options.EnableHeaderCards':         false,
-			'options.EnableSeparatorCards':      false,
-			'options.HideHashtags':              true,
 			'options.HighlightTags':             true,
+			'options.HideHashtags':              true,
 			'options.HighlightTitles':           true,
 			'options.MatchTitleSubstrings':      false,
-			'options.HeaderCardsExtraSpace':     false,
-			'options.SeparatorCardsVisibleLine': false,
+
+			'options.DimUntaggedHigh':           false,
+			'options.DimUntaggedNormal':         true,
+
 			'options.EnableWIP':                 false,
 			'options.CountAllCards':             false,
 			'options.EnablePointsOnCards':       false,
 			'options.HideManualCardPoints':      false,
-			'options.DimUntaggedHigh':           false,
-			'options.DimUntaggedNormal':         true,
+
+			'options.EnableHeaderCards':         false,
+			'options.HeaderCardsExtraSpace':     false,
+			'options.EnableSeparatorCards':      false,
+			'options.SeparatorCardsVisibleLine': false,
 
 			'recentColors':                      [],
 			'colorBlindFriendlyMode':            null

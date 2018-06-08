@@ -19,7 +19,6 @@ class System {
 	static headerCardsSetup() {
 		if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards || GLOBAL.EnableWIP) {
 
-
 			keepCounting(
 				function() {
 					watch('list');
@@ -57,7 +56,7 @@ class System {
 		if (typeof passedMode == 'undefined') {
 			let body = getTrelloBody();
 			if (body) {
-				mode = body.classList.contains('body-color-blind-mode-enabled')
+				mode = body.classList.contains('body-color-blind-mode-enabled');
 			}
 		} else {
 			mode = passedMode;

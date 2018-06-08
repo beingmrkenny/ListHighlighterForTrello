@@ -4,7 +4,7 @@
 
 	"name": "List Highlighter for Trello",
 	"description": "Highlights todo, doing and done lists.",
-	"version": "3.3.1",
+	"version": "3.4",
 
 	"author": "Mark Kenny",
 	"homepage_url": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
@@ -24,7 +24,7 @@
 		"default_icon" : "img/buttonIcon.png"
 	},
 
-	"options_page" : "options/index.html",
+	"options_page" : "options-page/index.html",
 
 	"permissions" : [
 		"storage"
@@ -43,7 +43,7 @@
 				"js/classes/ListWorkPoints.js",
 				"js/classes/Card.js",
 				"js/classes/Options.js",
-				"options/js/classes/DoingColors.js",
+				"options-page/js/classes/DoingColors.js",
 				"js/debug.js",
 
 				"js/watch.js",

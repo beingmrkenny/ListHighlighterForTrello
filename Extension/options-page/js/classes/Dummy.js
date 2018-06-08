@@ -8,14 +8,6 @@ class Dummy {
 		Tile.setCustomTileColorByHex($('[for="Dummy-ColorTile-custom"]'), hex);
 	}
 
-	static setDefaultTileColorByName (colorName) {
-		Tile.setColorByName ($id('Dummy-ColorTile-default'), colorName);
-	}
-
-	static setDefaultTileColorByHex (colorHex) {
-		Tile.setColorByHex ($id('Dummy-ColorTile-default'), colorHex);
-	}
-
 	static setListColorName (colorName) {
 		$id('DummyBoard').dataset.listColorName = colorName;
 	}
@@ -33,28 +25,54 @@ class Dummy {
 	}
 
 	static selectTile (colorName) {
-		Tile.select(false, colorName);
+		Tile.select(colorName);
 	}
 
 	static changeBackgroundColor (trelloBg) {
+
 		var dummyBoard = $id('DummyBoard'),
-			colorName;
+			color = new Color(),
+			listColorName;
 
 		dummyBoard.dataset.trelloBg = trelloBg;
 
 		if (DoingColors.trelloBgHasDoingColor(trelloBg)) {
-			colorName = DoingColors.getColorNameForTrelloBg(trelloBg);
+			listColorName = DoingColors.getColorNameForTrelloBg(trelloBg);
 		} else {
-			colorName = 'default';
+			listColorName = 'default';
 		}
 
-		if (colorName == 'custom') {
+		dummyBoard.dataset.listColorName = listColorName;
+
+		if (listColorName == 'custom') {
 			Dummy.setDoingListColorByHex(DoingColors.getCustomHexForTrelloBg(trelloBg));
 		} else {
-			Dummy.setDoingListColorByName(colorName);
+			Dummy.setDoingListColorByName(listColorName);
 		}
 
-		Dummy.selectTile(colorName);
+		let label = $('.dummy-board-color-tile-bar p');
+
+		switch (trelloBg) {
+			case 'default':
+				label.textContent = `Choose the default highlight colour:`;
+				$id('DummyBoard').classList.toggle(
+					'mod-light-background',
+					Color.isLight( DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg()) )
+				);
+				break;
+			case 'photo':
+				label.textContent = `Choose the highlight colour for boards with a photo background:`;
+				break;
+			default:
+				let a = (trelloBg == 'orange') ? 'an' : 'a';
+				label.textContent = `Choose the highlight colour for boards with ${a} ${trelloBg} background:`;
+				$id('DummyBoard').classList.toggle(
+					'mod-light-background',
+					Color.isLight( DoingColors.getHexFromName(trelloBg) )
+				);
+		}
+
+		Dummy.selectTile(listColorName);
 	}
 
 	static activateTrelloBgButtonIndicator(trelloBg, color) {

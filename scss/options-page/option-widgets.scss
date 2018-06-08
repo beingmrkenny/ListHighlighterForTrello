@@ -2,14 +2,26 @@
 	display: flex;
 }
 
-.standard-options ul {
+.standard-options {
 	display: flex;
-	margin: 0 40px 0 0;
-	padding: 0;
+	margin: 40px 0;
+	align-items: flex-start;
+
+	p:first-of-type {
+		font-size: inherit;
+		color: inherit;
+		margin-top: 0;
+	}
+	p {
+		font-size: smaller;
+		color: gray;
+		margin: .25em 0;
+	}
 }
 
-.standard-option-widget {
+option-widget {
 	display: block;
+	margin-right: 20px;
 
 	input {
 		display: none;
@@ -23,7 +35,7 @@
 		width: 80px;
 		margin-right: 10px;
 		padding: 5px;
-		padding-top: 40px;
+		padding-top: 33px;
 
 		line-height: 1;
 		text-align: center;
@@ -40,7 +52,7 @@
 			top: 10px;
 			left: 50%;
 			display: inline-block;
-			content: 'OFF';
+			content: "OFF";
 			width: 40px;
 			height: 18px;
 			margin-left: -27px;
@@ -52,14 +64,14 @@
 			background: gray;
 			border-radius: 10px;
 
-			transition: background .25s;
+			transition: background 0.25s;
 		}
 
 		&::after {
 			top: 12px;
 			left: 50%;
 			display: inline-block;
-			content: ' ';
+			content: " ";
 			width: 14px;
 			height: 14px;
 			margin-left: -25px;
@@ -67,7 +79,7 @@
 			background: white;
 			border-radius: 10px;
 
-			transition: margin-left .25s;
+			transition: margin-left 0.25s;
 		}
 	}
 
@@ -75,7 +87,7 @@
 		color: white;
 		background: $blueTrello;
 		&::before {
-			content: 'ON';
+			content: "ON";
 
 			text-align: left;
 			background: #64bb02;
@@ -84,4 +96,40 @@
 			margin-left: 9px;
 		}
 	}
+
+	input:disabled + label {
+		opacity: .3;
+	}
+}
+
+rules-option {
+	display: block;
+	//
+	// input {
+	// 	// display: none;
+	// }
+	//
+	// label {
+	// 	padding-right: 8px;
+	// 	line-height: 26px;
+	// 	border-radius: 3px;
+	// 	height: 27px;
+	// 	&:before {
+	//
+	// 		content: ' ';
+	// 	    display: inline-block;
+	// 	    width: 30px;
+	// 	    text-align: center;
+	//
+	// 	}
+	// }
+	//
+	// label:hover,
+	// input:checked + label {
+	// 	background: #eeeeee;
+	// }
+	//
+	// input:checked + label::before {
+	// 	@include trellicons('\e910');
+	// }
 }

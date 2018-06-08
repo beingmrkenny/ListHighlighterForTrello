@@ -8,7 +8,6 @@ function setupColorPicker (colorTileLabel) {
 		left = boundingRect.left + window.scrollX + colorTileLabel.offsetWidth + 10;
 
 	var existing = $('color-picker'),
-		isDefaultColorBar = j(input.dataset.default),
 		previousColor = input.dataset.value,
 		colorPicker = getTemplate('ColorPicker'),
 		colorTilebar = input.closest('.color-tile-bar');
@@ -31,23 +30,23 @@ function setupColorPicker (colorTileLabel) {
 			ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
 			sv.style.backgroundColor = hex;
 			$id('ColorHex').value = hex;
-			changeAllTheColors (hex, isDefaultColorBar)
+			changeAllTheColors (hex);
 		}
 	);
 
 	cp.setHex(input.dataset.value);
 
 	$id('CancelColor').addEventListener('click', function () {
-		changeAllTheColors (previousColor, isDefaultColorBar)
+		changeAllTheColors (previousColor);
 		$('color-picker').remove();
 	});
 
 	$id('SaveColor').addEventListener('click', function () {
-		var trelloBg = (isDefaultColorBar) ? 'default' : $id('DummyBoard').dataset.trelloBg,
+		var trelloBg = $id('DummyBoard').dataset.trelloBg,
 			hex = input.dataset.value;
 		saveCustomColor(trelloBg, hex);
 		Dummy.activateTrelloBgButtonIndicator(trelloBg, hex);
-		if (isDefaultColorBar) {
+		if (trelloBg == 'default') {
 			setTodoListColorForPage(hex);
 		}
 		$('color-picker').remove();
@@ -85,11 +84,16 @@ function recentButtonSetupClick(button) {
 function saveRecentColor(hex) {
 	Options.load('recentColors', function (results) {
 		var recentColors = results.recentColors;
-		while (recentColors.length > 9) {
-			recentColors.shift();
+		if (!recentColors) {
+			recentColors = [];
 		}
-		recentColors.push(hex);
-		Options.save({ 'recentColors' : recentColors});
+		if (recentColors.indexOf(hex) == -1) {
+			while (recentColors.length > 9) {
+				recentColors.shift();
+			}
+			recentColors.push(hex);
+			Options.save({ 'recentColors' : recentColors});
+		}
 	});
 }
 
@@ -103,6 +107,11 @@ function displayRecentColors (recentColors) {
 
 function actuallyDisplayRecentColors (results) {
 
+	var recentColors = results.recentColors;
+	if (!recentColors) {
+		recentColors = [];
+	}
+
 	var existing = $$('.recent-color-button');
 	if (existing) {
 		for (let button of existing) {
@@ -111,7 +120,7 @@ function actuallyDisplayRecentColors (results) {
 	}
 
 	var container = $('.custom-color-picker-button-container');
-	for (let hex of results.recentColors) {
+	for (let hex of recentColors) {
 		let button = getTemplate('CustomColorPickerButton');
 		button.dataset.color = hex;
 		button.style.backgroundColor = hex;
@@ -121,18 +130,14 @@ function actuallyDisplayRecentColors (results) {
 
 }
 
-function changeAllTheColors (hex, isDefaultColorBar) {
+function changeAllTheColors (hex) {
 	var listColorName = $id('DummyBoard').dataset.listColorName;
-	if (isDefaultColorBar) {
-		DefaultColorBar.setCustomTileColorByHex(hex);
-		Dummy.setDefaultTileColorByHex (hex);
-		if (listColorName == 'default') {
-			Dummy.setDoingListColorByHex (hex);
-		}
-	} else {
-		Dummy.setCustomTileColorByHex(hex);
-		if (listColorName == 'custom') {
-			Dummy.setDoingListColorByHex (hex);
-		}
+
+	Dummy.setCustomTileColorByHex(hex);
+
+	if ($id('DummyBoard').dataset.trelloBg == 'default' && listColorName == 'default') {
+		Dummy.setDoingListColorByHex (hex);
+	} else if (listColorName == 'custom') {
+		Dummy.setDoingListColorByHex (hex);
 	}
 }

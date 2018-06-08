@@ -1,5 +1,16 @@
 var GLOBAL = {};
 
+var lis = $$('nav li');
+var panes = $$('section');
+
+listen(document, 'DOMContentLoaded', () => {
+	highlightPanel(window.location.hash);
+});
+
+listen(window, 'hashchange', () => {
+	highlightPanel(window.location.hash);
+});
+
 Options.initialise(function (results) {
 	document.body.classList.toggle('color-blind-friendly-mode', (results.colorBlindFriendlyMode));
 	GLOBAL.colors = Options.processColors(results);
@@ -11,6 +22,32 @@ Options.initialise(function (results) {
 	connectInputsToEachOther();
 	saveOptionsOnChange();
 });
+
+function highlightPanel (hashtag) {
+
+	let link, pane, li;
+
+	if (hashtag) {
+		link = $(`a[href="${hashtag}"]`);
+		pane = $(hashtag);
+	} else {
+		link = $('nav li a');
+		pane = $('section');
+	}
+
+	li = link.closest('li');
+
+	for (let item of lis) {
+		item.classList.remove('active');
+	}
+	li.classList.add('active');
+
+	for (let pane of panes) {
+		pane.classList.remove('active');
+	}
+	pane.classList.add('active');
+
+}
 
 function setValuesOnInputs (results) {
 	var options = Options.processOptions(results);
@@ -29,42 +66,56 @@ function setValuesOnInputs (results) {
 
 function connectInputsToEachOther () {
 
+	for (let textSwitcher of $$('text-switcher')) {
+		listen($id(textSwitcher.dataset.listen), 'change', function () {
+			let switcher = $(`[data-listen="${this.id}"]`);
+			switcher.textContent = switcher.dataset[ ( this.checked ? 'on' : 'off' ) ];
+		});
+	}
+
 	var optionsControls = {
 		HighlightTags : {
 			disableInputs : [ 'HideHashtags' ],
 			uncheckInputs : [ 'HideHashtags' ],
-			textSwitcher : {
-				linkedInput: 'HideHashtags',
-				targets : [ 'HideHashtagsSwitcher' ]
-			}
-		},
-		HideHashtags : {
-			textSwitcher : {
-				linkedInput: 'HighlightTags',
-				targets : [ 'HideHashtagsSwitcher' ]
-			}
 		},
 		HighlightTitles : {
 			disableInputs : [ 'MatchTitleSubstrings' ]
 		},
-		MatchTitleSubstrings : {
-			textSwitcher : {
-				targets: [ 'HighlightTitlesSwitcher', 'MatchTitleSubstringsSwitcher' ]
-			}
-		},
 		EnableWIP : {
-			disableInputs : [ 'CountAllCards', 'EnablePointsOnCards', 'HideManualCardPoints' ],
-			uncheckInputs : [ 'CountAllCards', 'EnablePointsOnCards', 'HideManualCardPoints' ]
+			disableInputs : [ 'CountAllCards', 'EnablePointsOnCards' ],
+			uncheckInputs : [ 'CountAllCards', 'EnablePointsOnCards' ]
 		},
 		EnablePointsOnCards : {
 			disableInputs : [ 'HideManualCardPoints' ],
 			uncheckInputs : [ 'HideManualCardPoints' ]
+		},
+		EnableHeaderCards : {
+			disableInputs : [ 'HeaderCardsExtraSpace' ],
+		},
+		EnableSeparatorCards : {
+			disableInputs : [ 'SeparatorCardsVisibleLine' ],
 		}
 	};
 
 	for (let inputId in optionsControls) {
 
 		let input = $id(inputId);
+
+		observe(input, { attributes: true, attributeOldValue: true }, function (mutationRecord) {
+			if (mutationRecord && mutationRecord.attributeName == 'disabled') {
+				let config = optionsControls[mutationRecord.target.id];
+				let disabled = true;
+				if (mutationRecord.oldValue === '' && !mutation.target.checked) {
+					disabled = false;
+				}
+				if (config.disableInputs) {
+					for (let disableInput of config.disableInputs) {
+						$id(disableInput).disabled = disabled;
+						document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', disabled);
+					}
+				}
+			}
+		});
 
 		input.addEventListener('change', function() {
 
@@ -86,17 +137,6 @@ function connectInputsToEachOther () {
 					}
 				}
 
-				if (config.textSwitcher) {
-					let on = input.checked;
-					if (config.textSwitcher.linkedInput) {
-						on = (on && $id(config.textSwitcher.linkedInput).checked);
-					}
-					for (let target of config.textSwitcher.targets) {
-						let switcher = $id(target);
-						switcher.textContent = switcher.dataset[ ( on ? 'on' : 'off' ) ];
-					}
-				}
-
 			}
 
 		});
@@ -109,9 +149,11 @@ function connectInputsToEachOther () {
 
 }
 
+// listens to change event to trigger shit
+// observe change to disable attributess
+
 function saveOptionsOnChange () {
-	var optionInputs = document.querySelectorAll('.options-input');
-	for (let optionInput of optionInputs) {
+	for (let optionInput of $$('.options-input')) {
 		optionInput.addEventListener('change', function () {
 			let input = this,
 				name = input.name,
@@ -159,8 +201,40 @@ function saveOptionsOnChange () {
 			}
 
 		});
+
 	}
+
 }
+
+var excludes = $$('[data-exclude]');
+listen(excludes, 'change', function () {
+	if (this.checked) {
+		for (let exclude of excludes) {
+			if (exclude != this) {
+				exclude.checked = false;
+				exclude.dispatchEvent(new Event('change'));
+			}
+		}
+	}
+});
+
+// for (let sub of $$('.sub-option')) {
+// 	let input = sub.closest('.option-group').querySelector('input');
+// 	input.addEventListener('change', (e) => {
+// 		let input = this;
+// 		let sub = input.closest('.option-group').querySelector('.sub-option');
+// 		if (input.checked) {
+// 			sub.style.display = 'block';
+// 		} else {
+// 			sub.style.display = 'none';
+// 		}
+// 	}, sub);
+// 	if (input.checked) {
+// 		sub.style.display = 'block';
+// 	} else {
+// 		sub.style.display = 'none';
+// 	}
+// }
 
 function setTodoListColorForPage (color) {
 	var hex = (Color.isHex(color))

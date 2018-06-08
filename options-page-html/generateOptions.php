@@ -11,8 +11,16 @@ $settings = json_decode(file_get_contents("$lhDir/config.json"), true);
 require $settings['smartyClass'];
 require 'Color.php';
 
+function getInputName($name, $number) {
+	return "{$name}_{$number}";
+};
+
+function getInputId($name, $value) {
+	return "{$name}_{$value}";
+}
+
 $smarty = new Smarty();
-$smarty->setTemplateDir('./optionsPageHtml');
+$smarty->setTemplateDir('./options-page-html');
 $smarty->setCompileDir('/tmp/templates_c');
 $smarty->setCacheDir('/tmp/smarty_cache');
 
@@ -64,8 +72,7 @@ foreach ($colors as $colorName => $color) {
 $smarty->assign('defaultTiles', $defaultTiles);
 $smarty->assign('dummyTiles', $dummyTiles);
 $smarty->assign('debug', (empty($argv[1])));
-
-$fileContents = $smarty->fetch($lhDir.'/optionsPageHtml/options.tpl');
-$file = $lhDir.'/Extension/options/index.html';
+$fileContents = $smarty->fetch($lhDir.'/options-page-html/Options.tpl');
+$file = $lhDir.'/Extension/options-page/index.html';
 
 file_put_contents($file, $fileContents);

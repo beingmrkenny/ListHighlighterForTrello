@@ -10,25 +10,63 @@ function $$(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
-function observe(params) {
+function listen (els, ev, callback) {
 
-	var observer = new MutationObserver(function (node) { params.callback(node, observer); });
-
-	if (!params.targets && params.target) {
-		params.targets = params.target;
+	if (els instanceof HTMLElement || els == document || els == window) {
+		els = [els];
 	}
 
-	if (params.targets instanceof NodeList || Array.isArray(params.targets)) {
+	if (els instanceof NodeList || Array.isArray(els)) {
+		for (let el of els) {
+			el.addEventListener(ev, callback);
+		}
+	}
 
-		for (let target of params.targets) {
-			observer.observe(target, params.options);
+}
+
+function observe() {
+
+	var targets, callback, options = {
+		childList: false,
+		attributes: false,
+		characterData: false,
+		subtree: false,
+		attributeOldValue: false,
+		characterDataOldValue: false
+	};
+
+	for (let arg of arguments) {
+
+		let isFunction = (typeof arg == 'function');
+		let isArrayIsh = (arg instanceof NodeList || Array.isArray(arg));
+		let isHTMLElement = (arg instanceof HTMLElement);
+
+		if (isFunction) {
+			callback = arg;
+		} else if (isArrayIsh) {
+			targets = arg;
+		} else if (isHTMLElement) {
+			targets = [arg];
+		} else if (!isFunction && !isArrayIsh && !isHTMLElement) {
+			for (let key in arg) {
+				options[key] = arg[key];
+			}
 		}
 
-	} else if (params.targets instanceof HTMLElement) {
-
-		observer.observe(params.targets, params.options);
-
 	}
+
+	var observer = new MutationObserver(function (nodes) {
+		if (nodes.length == 1) {
+			nodes = nodes[0];
+		}
+		callback(nodes, observer);
+	});
+
+	for (var i = targets.length - 1; i > -1; i--) {
+		observer.observe(targets[i], options);
+	}
+
+	return observer;
 
 }
 
