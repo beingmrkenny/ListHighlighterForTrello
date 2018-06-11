@@ -23,7 +23,6 @@
 
 .bmko_list-limit-notice {
 	display: flex;
-	opacity: var(--opacity);
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	margin: 10px -26px 6px -2px;
@@ -31,6 +30,7 @@
 
 	font-size: 14px;
 	font-weight: bold;
+	// FIXME this is only needed on high pri
 	color: var(--header-color);
 	border-radius: 4px;
 
@@ -38,6 +38,7 @@
 
 	pointer-events: none;
 
+	// FIXME this is only needed on high pri
 	-webkit-text-fill-color: var(--header-color);
 
 	.is-subscribe-shown & {
@@ -77,6 +78,7 @@
 			margin-left: 10px;
 
 			font-weight: bold;
+			// FIXME this is only needed on high pri
 			color: var(--list-color);
 			content: "over";
 		}

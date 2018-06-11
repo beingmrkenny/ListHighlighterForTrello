@@ -1,7 +1,4 @@
-
 @import "../colors";
-@import "vars";
-@import "mixins";
 
 .bmko_hide {
 	display: none;
@@ -19,166 +16,76 @@
 		transparent
 	);
 	background-size: 2pc 2pc;
-
-	.open-card-composer {
-		opacity: 1;
-	}
-
-	.mod-list-name,
-	.open-card-composer {
-		text-shadow: 0 0 6px black;
-	}
 }
 
 .bmko_list-highlighter-applied .list {
-	color: var(--list-color);
-	background: var(--list-bg);
 
 	transition: background 0.25s;
 
-	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
-		background: var(--scrollbar-track-color);
+	&.bmko_trash-list .list-cards {
+		text-decoration: line-through;
 	}
-	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
-		background: var(--scrollbar-thumb-color);
-	}
+}
 
-	.list-header,
-	.list-cards,
-	.open-card-composer {
-		opacity: var(--opacity);
-	}
+.list.bmko_high-list {
 
-	// ellipsis button, add card button
-
-	.open-card-composer,
-	.list-header-extras-menu {
-		color: var(--list-button-color);
-		.icon-sm {
-			color: var(--list-button-color);
-		}
-		&:hover {
-			background: var(--list-button-bg);
-		}
-	}
+	color: var(--high-pri-text);
+	background: var(--high-pri);
 
 	// list header
-
 	.list-header-num-cards,
 	.mod-list-name,
 	.mod-list-name:disabled {
-		color: var(--header-color);
-
-		-webkit-text-fill-color: var(--header-color);
+		color: var(--high-pri-text);
+		-webkit-text-fill-color: var(--high-pri-text);
 	}
 
-	.mod-list-name.is-editing {
-		color: var(--editing-color);
-
-		-webkit-text-fill-color: var(--editing-color);
+	.is-editing {
+		color: $trelloListHeaderColor;
+		-webkit-text-fill-color: $trelloListHeaderColor;
 	}
 
-	// Cards
+	// ellipsis button, add card button
+	.open-card-composer,
+	.list-header-extras-menu {
+		&:hover {
+			background: rgba(black, .1);
+		}
+		color: var(--high-pri-text);
+		.icon-sm {
+			color: var(--high-pri-text);
+		}
+	}
 
 	.list-card {
 		&:not(.placeholder) {
-			&.is-stickered .list-card-details {
-				background: transparent;
-			}
-
-			&.active-card {
-				background: var(--active-card-bg);
-				border-bottom-color: var(--active-card-border-bottom-color);
-				a,
-				textarea {
-					color: var(--active-card-color);
-				}
-			}
-
-			&:not(.active-card) {
-				color: var(--card-color);
-				background: var(--card-bg);
-				border-bottom-color: var(--card-border-bottom-color);
-				.list-card-title {
-					color: var(--card-color);
-				}
-				a,
-				textarea {
-					color: var(--card-color);
-				}
-			}
+			border-bottom-color: var(--high-pri-border);
 		}
-
 		&.placeholder {
-			background: var(--list-button-bg);
 			border-bottom-color: transparent;
+			background: rgba(black, .1);
 		}
 	}
 
-	// Pencil button
+}
 
-	.active-card .list-card-operation {
-		color: var(--card-button-color);
-		background: transparent;
-		&:hover {
-			color: var(--card-color);
-			background: var(--card-button-bg);
-		}
-	}
+.bmko_normal-list,
+#classic-body.bmko_do-not-dim-lists .bmko_untagged-list {
+	opacity: 1;
+}
 
-	// card footer buttons
+#classic-body:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
+.bmko_low-list {
+	opacity: .45;
+}
 
-	.icon-lg {
-		&.dark-hover,
-		&.dark-background-hover {
-			opacity: 0.7;
+.bmko_ignore-list,
+.bmko_trash-list {
+	opacity: .25;
+}
 
-			color: var(--card-button-color);
-			&:hover {
-				opacity: 1;
-
-				background: var(--card-button-bg);
-			}
-		}
-	}
-
-	// List type-specific styles
-
-	&.bmko_high-list .member {
-		color: var(--header-color);
-		background: transparent;
-	}
-
-	&.bmko_high-list .member-initials {
-		opacity: 0.9;
-		box-sizing: border-box;
-
-		border: 1px solid var(--header-color);
-		border-radius: 3px;
-	}
-
-	&.bmko_high-list .active-card .list-card-operation {
-		color: var(--pencil-button-color);
-		&:hover {
-			background: var(--pencil-button-bg);
-		}
-	}
-
-	&.bmko_ignore-list,
-	&.bmko_trash-list {
-		@include ignore();
-	}
-
-	&.bmko_trash-list .list-cards {
-		text-decoration: line-through;
-		.confirm {
-			opacity: 0.5;
-		}
-	}
-
-	&.bmko_low-list {
-		@include low();
-	}
+.bmko_list-highlighter-applied .list.bmko_trash-list .list-cards {
+	text-decoration: line-through;
 }
 
 @import "workPoints";
