@@ -104,6 +104,7 @@ class Options {
 			'options.HighlightTitles':           true,
 			'options.MatchTitleSubstrings':      false,
 
+			'options.UndimOnHover':              true,
 			'options.DimUntaggedHigh':           false,
 			'options.DimUntaggedNormal':         true,
 

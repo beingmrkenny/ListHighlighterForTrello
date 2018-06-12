@@ -5,7 +5,11 @@ function getListTitle (element) {
 			: element.closest('.list');
 		if (list) {
 			return list.querySelector('.list-header-name').value;
+		} else {
+			return 'No title';
 		}
+	} else {
+		return 'No title';
 	}
 }
 

@@ -13,7 +13,15 @@ class System {
 			watch('listTitle');
 			watch('body');
 			System.toggleToolbarButton();
+			System.undimOnHoverSetup();
 		});
+	}
+
+	static undimOnHoverSetup () {
+		let body = getTrelloBody();
+		if (body) {
+			body.classList.toggle('bmko_undim-on-hover', GLOBAL.UndimOnHover);
+		}
 	}
 
 	static headerCardsSetup() {
@@ -129,7 +137,26 @@ class System {
 					&& newCard instanceof HTMLElement
 					&& newCard.classList.contains('active-card')
 				),
-				allLists;
+				allLists,
+				draggedCard,
+				placeholder;
+
+			if (GLOBAL.EnableWIP || GLOBAL.UndimOnHover) {
+				draggedCard = document.body.querySelector('body > .list-card');
+				placeholder = $('.placeholder');
+			}
+
+			if (GLOBAL.UndimOnHover) {
+				if (draggedCard) {
+					for (let list of document.querySelectorAll('.bmko_contains-placeholder')) {
+						list.classList.remove('bmko_contains-placeholder');
+					}
+				}
+				let list = placeholder.closest('.list');
+				if (list) {
+					list.classList.add('bmko_contains-placeholder');
+				}
+			}
 
 			if (isAddedCard) {
 				Card.processCards(newCard);
@@ -147,8 +174,6 @@ class System {
 				if (listCards.parentNode && isAddedCard) {
 					ListWorkPoints.updateLists();
 				}
-
-				let draggedCard = document.body.querySelector('body > .list-card');
 
 				// QUESTION need this?
 				if (draggedCard && draggedCard.classList.contains('bmko_header-card-applied')) {

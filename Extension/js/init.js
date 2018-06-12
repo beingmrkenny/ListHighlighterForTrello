@@ -33,9 +33,11 @@ chrome.runtime.onMessage.addListener (
 			case 'options.MatchTitleSubstrings' :
 			case 'options.DimUntaggedHigh' :
 			case 'options.DimUntaggedNormal' :
+			case 'options.UndimOnHover' :
 				Options.loadOptions(function (options) {
 					ListHighlighter.highlight();
 					HeaderTagging.toggleTags (options.HideHashtags);
+					System.undimOnHoverSetup();
 				});
 				break;
 

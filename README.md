@@ -18,7 +18,7 @@ Your `.gitignore` file should look like this:
 
 	chrome.scpt
 	\*.css
-	Extension/options/index.html
+	Extension/options-page/index.html
 	.gitconfig
 	/Images
 

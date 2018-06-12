@@ -31,7 +31,7 @@ on run argv
 
 			if item 1 of argv is "true" then
 				set extKey to item 2 of argv
-				set optionsPage to "chrome-extension://" & extKey & "/options/index.html"
+				set optionsPage to "chrome-extension://" & extKey & "/options-page/index.html"
 				make new window
 				open location optionsPage
 			end if

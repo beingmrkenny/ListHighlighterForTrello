@@ -6,21 +6,20 @@
 
 #classic-body.body-color-blind-mode-enabled .bmko_high-list {
 	background-image: linear-gradient(
-		to bottom right,
-		rgba(255,255,255,.5) 25%,
-		transparent 25%,
-		transparent 50%,
-		rgba(255,255,255,.5) 50%,
-		rgba(255,255,255,.5) 75%,
-		transparent 75%,
-		transparent
+	to bottom right,
+	rgba(255,255,255,0.5) 25%,
+	transparent 25%,
+	transparent 50%,
+	rgba(255,255,255,0.5) 50%,
+	rgba(255,255,255,0.5) 75%,
+	transparent 75%,
+	transparent
 	);
 	background-size: 2pc 2pc;
 }
 
 .bmko_list-highlighter-applied .list {
-
-	transition: background 0.25s;
+	transition: background 0.25s, opacity 0.25s;
 
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
@@ -28,7 +27,6 @@
 }
 
 .list.bmko_high-list {
-
 	color: var(--high-pri-text);
 	background: var(--high-pri);
 
@@ -37,21 +35,23 @@
 	.mod-list-name,
 	.mod-list-name:disabled {
 		color: var(--high-pri-text);
+
 		-webkit-text-fill-color: var(--high-pri-text);
 	}
 
 	.is-editing {
 		color: $trelloListHeaderColor;
+
 		-webkit-text-fill-color: $trelloListHeaderColor;
 	}
 
 	// ellipsis button, add card button
 	.open-card-composer,
 	.list-header-extras-menu {
-		&:hover {
-			background: rgba(black, .1);
-		}
 		color: var(--high-pri-text);
+		&:hover {
+			background: rgba(black, 0.1);
+		}
 		.icon-sm {
 			color: var(--high-pri-text);
 		}
@@ -62,11 +62,10 @@
 			border-bottom-color: var(--high-pri-border);
 		}
 		&.placeholder {
+			background: rgba(black, 0.1);
 			border-bottom-color: transparent;
-			background: rgba(black, .1);
 		}
 	}
-
 }
 
 .bmko_normal-list,
@@ -76,12 +75,24 @@
 
 #classic-body:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 .bmko_low-list {
-	opacity: .45;
+	opacity: 0.45;
 }
 
 .bmko_ignore-list,
 .bmko_trash-list {
-	opacity: .25;
+	opacity: 0.25;
+}
+
+#classic-body.bmko_undim-on-hover {
+	&:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
+	.bmko_low-list,
+	.bmko_ignore-list,
+	.bmko_trash-list {
+		&.bmko_contains-placeholder,
+		&:hover {
+			opacity: 1;
+		}
+	}
 }
 
 .bmko_list-highlighter-applied .list.bmko_trash-list .list-cards {
