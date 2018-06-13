@@ -45,7 +45,6 @@ function flash (element) {
 Options.dump = function (asString = false) {
 	chrome.storage.sync.get(null, function (existingSettings) {
 		var dump = (asString) ? JSON.stringify(existingSettings) : existingSettings
-		console.log(dump);
 	});
 }
 

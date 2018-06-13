@@ -6,6 +6,7 @@
 	<title>List Highlighter for Trello Settings</title>
 	<link rel="stylesheet" href="/css/options.css">
 	<link rel="icon" href="/img/buttonIcon.png">
+	<meta name="google" content="notranslate">
 </head>
 
 <body class="preload">

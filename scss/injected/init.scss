@@ -19,7 +19,7 @@
 }
 
 .bmko_list-highlighter-applied .list {
-	transition: background 0.25s, opacity 0.25s;
+	transition: background 0.15s, opacity 0.15s, filter .15s;
 
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
@@ -75,12 +75,13 @@
 
 #classic-body:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 .bmko_low-list {
-	opacity: 0.45;
+	opacity: var(--low-priority-opacity);
 }
 
 .bmko_ignore-list,
 .bmko_trash-list {
-	opacity: 0.25;
+	opacity: var(--done-opacity);
+	filter: grayscale(100%);
 }
 
 #classic-body.bmko_undim-on-hover {
@@ -91,6 +92,7 @@
 		&.bmko_contains-placeholder,
 		&:hover {
 			opacity: 1;
+			filter: grayscale(0%);
 		}
 	}
 }

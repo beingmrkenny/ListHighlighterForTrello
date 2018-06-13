@@ -13,14 +13,30 @@ class System {
 			watch('listTitle');
 			watch('body');
 			System.toggleToolbarButton();
-			System.undimOnHoverSetup();
+			System.dimmingSetup();
 		});
 	}
 
-	static undimOnHoverSetup () {
+	static dimmingSetup () {
 		let body = getTrelloBody();
 		if (body) {
 			body.classList.toggle('bmko_undim-on-hover', GLOBAL.UndimOnHover);
+		}
+
+		var css = `body {
+			--low-priority-opacity: ${GLOBAL.DimmingLow};
+			--done-opacity: ${GLOBAL.DimmingDone};
+		}`;
+
+		var existingStyle = $id('BMKODimmingCSS');
+		if (existingStyle) {
+			existingStyle.textContent = css;
+		} else {
+			let style = document.createElement('style');
+			style.setAttribute('type', 'text/css');
+			style.setAttribute('id', 'BMKODimmingCSS');
+			style.textContent = css;
+			document.head.appendChild(style);
 		}
 	}
 

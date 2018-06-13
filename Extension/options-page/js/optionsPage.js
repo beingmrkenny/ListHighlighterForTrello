@@ -11,17 +11,53 @@ listen(window, 'hashchange', () => {
 	highlightPanel(window.location.hash);
 });
 
+var opacityRanges = document.querySelectorAll('.opacity-range');
+listen(opacityRanges, 'input', function () {
+	$(`[data-value-label-for="${this.name}"]`).textContent = Math.round(this.value * 100) + '%';
+	$id(this.name + 'Example').style.opacity = this.value;
+	// switch (this.name) {
+	// 	case 'low':
+	// 		$id('DimmingLowExample').style.opacity = this.value;
+	// 		break;
+	// 	case 'done':
+	// 		$id('DimmingDoneExample').style.opacity = this.value;
+	// 		break;
+	// }
+});
+
+// listen(opacityRanges, 'change', function () {
+// 	switch (this.name) {
+// 		case 'low':
+// 			Options.save({ 'options.DimmingLow' : this.value });
+// 			break;
+// 		case 'done':
+// 			Options.save({ 'options.DimmingDone' : this.value });
+// 			break;
+// 	}
+// });
+
 Options.initialise(function (results) {
 	document.body.classList.toggle('color-blind-friendly-mode', (results.colorBlindFriendlyMode));
 	GLOBAL.colors = Options.processColors(results);
 	setupDummy();
-	setTimeout(function () {
-		document.body.classList.remove('preload');
-	}, 0);
 	setValuesOnInputs(results);
 	connectInputsToEachOther();
 	saveOptionsOnChange();
+	setupDimmingExample();
+	setTimeout(function () {
+		document.body.classList.remove('preload');
+	}, 0);
 });
+
+function setupDimmingExample () {
+	$id('DimmingLowExample').style.opacity = GLOBAL.DimmingLow;
+	$id('DimmingLow').value = GLOBAL.DimmingLow;
+	$('[data-value-label-for="DimmingLow"]').textContent = Math.round(GLOBAL.DimmingLow * 100) + '%';
+
+	$id('DimmingDoneExample').style.opacity = GLOBAL.DimmingDone;
+	$id('DimmingDone').value = GLOBAL.DimmingDone;
+	$('[data-value-label-for="DimmingDone"]').textContent = Math.round(GLOBAL.DimmingDone * 100) + '%';
+}
 
 function highlightPanel (hashtag) {
 
@@ -141,10 +177,8 @@ function connectInputsToEachOther () {
 
 		});
 
-	}
-
-	for (let input of $$('input')) {
 		input.dispatchEvent(new Event('change'));
+
 	}
 
 }
@@ -157,9 +191,18 @@ function saveOptionsOnChange () {
 		optionInput.addEventListener('change', function () {
 			let input = this,
 				name = input.name,
-				value = (input.type == 'radio')
-					? document.querySelector(`input[name="${input.name}"]:checked`).value
-					: input.checked;
+				value;
+
+			switch (input.type) {
+				case 'radio' :
+					value = document.querySelector(`input[name="${input.name}"]:checked`).value;
+					break;
+				case 'checkbox' :
+					value = input.checked;
+					break;
+				default :
+					value = input.value;
+			}
 
 			if (name == 'EnableWIP' && value == false) {
 

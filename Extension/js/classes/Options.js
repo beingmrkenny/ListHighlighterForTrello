@@ -107,6 +107,8 @@ class Options {
 			'options.UndimOnHover':              true,
 			'options.DimUntaggedHigh':           false,
 			'options.DimUntaggedNormal':         true,
+			'options.DimmingLow':                "0.45",
+			'options.DimmingDone':               "0.25",
 
 			'options.EnableWIP':                 false,
 			'options.CountAllCards':             false,

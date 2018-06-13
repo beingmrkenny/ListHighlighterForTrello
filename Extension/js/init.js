@@ -34,10 +34,12 @@ chrome.runtime.onMessage.addListener (
 			case 'options.DimUntaggedHigh' :
 			case 'options.DimUntaggedNormal' :
 			case 'options.UndimOnHover' :
+			case 'options.DimmingLow' :
+			case 'options.DimmingDone' :
 				Options.loadOptions(function (options) {
 					ListHighlighter.highlight();
 					HeaderTagging.toggleTags (options.HideHashtags);
-					System.undimOnHoverSetup();
+					System.dimmingSetup();
 				});
 				break;
 

@@ -156,13 +156,13 @@ class DoingColors {
 				--high-pri-text: ${contrastColor};
 			}`;
 
-			existingStyle = $id('HighPriColorCSS');
+			existingStyle = $id('BMKOHighPriColorCSS');
 			if (existingStyle) {
 				existingStyle.textContent = css;
 			} else {
 				let style = document.createElement('style');
 				style.setAttribute('type', 'text/css');
-				style.setAttribute('id', 'HighPriColorCSS');
+				style.setAttribute('id', 'BMKOHighPriColorCSS');
 				style.textContent = css;
 				document.head.appendChild(style);
 			}
