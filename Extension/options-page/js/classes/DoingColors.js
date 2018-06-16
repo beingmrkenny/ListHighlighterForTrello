@@ -127,7 +127,7 @@ class DoingColors {
 
 			let color = new Color(),
 				newColor = new Color(),
-				highPri, contrastColor, css, existingStyle;
+				highPri, contrastColor, css, existingStyle, highlightColor;
 
 			DoingColors.init(GLOBAL.colors);
 
@@ -149,6 +149,12 @@ class DoingColors {
 			);
 
 			contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
+			highlightColor = (color.isLight()) ? 'bmko_light-highlight-color' : 'bmko_dark-highlight-color';
+
+			if (body) {
+				body.classList.remove('bmko_light-highlight-color', 'bmko_dark-highlight-color');
+				body.classList.add(highlightColor);
+			}
 
 			css = `.bmko_high-list {
 				--high-pri: ${highPri};

@@ -65,7 +65,8 @@ class Dummy {
 				break;
 			default:
 				let a = (trelloBg == 'orange') ? 'an' : 'a';
-				label.textContent = `Choose the highlight colour for boards with ${a} ${trelloBg} background:`;
+				let color = (trelloBg == 'gray') ? 'grey' : trelloBg;
+				label.textContent = `Choose the highlight colour for boards with ${a} ${color} background:`;
 				$id('DummyBoard').classList.toggle(
 					'mod-light-background',
 					Color.isLight( DoingColors.getHexFromName(trelloBg) )

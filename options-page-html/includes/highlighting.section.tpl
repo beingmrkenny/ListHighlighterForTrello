@@ -141,6 +141,8 @@
 
 	<h2>More options</h2>
 
+	<p>These options let you control exactly how List Highlighter handles list titles.</p>
+
 	<div class="standard-options">
 		<option-widget>
 			<input type="checkbox" class="options-input" id="HighlightTags" name="HighlightTags">

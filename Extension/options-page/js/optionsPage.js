@@ -15,26 +15,7 @@ var opacityRanges = document.querySelectorAll('.opacity-range');
 listen(opacityRanges, 'input', function () {
 	$(`[data-value-label-for="${this.name}"]`).textContent = Math.round(this.value * 100) + '%';
 	$id(this.name + 'Example').style.opacity = this.value;
-	// switch (this.name) {
-	// 	case 'low':
-	// 		$id('DimmingLowExample').style.opacity = this.value;
-	// 		break;
-	// 	case 'done':
-	// 		$id('DimmingDoneExample').style.opacity = this.value;
-	// 		break;
-	// }
 });
-
-// listen(opacityRanges, 'change', function () {
-// 	switch (this.name) {
-// 		case 'low':
-// 			Options.save({ 'options.DimmingLow' : this.value });
-// 			break;
-// 		case 'done':
-// 			Options.save({ 'options.DimmingDone' : this.value });
-// 			break;
-// 	}
-// });
 
 Options.initialise(function (results) {
 	document.body.classList.toggle('color-blind-friendly-mode', (results.colorBlindFriendlyMode));
@@ -183,9 +164,6 @@ function connectInputsToEachOther () {
 
 }
 
-// listens to change event to trigger shit
-// observe change to disable attributess
-
 function saveOptionsOnChange () {
 	for (let optionInput of $$('.options-input')) {
 		optionInput.addEventListener('change', function () {
@@ -260,24 +238,6 @@ listen(excludes, 'change', function () {
 		}
 	}
 });
-
-// for (let sub of $$('.sub-option')) {
-// 	let input = sub.closest('.option-group').querySelector('input');
-// 	input.addEventListener('change', (e) => {
-// 		let input = this;
-// 		let sub = input.closest('.option-group').querySelector('.sub-option');
-// 		if (input.checked) {
-// 			sub.style.display = 'block';
-// 		} else {
-// 			sub.style.display = 'none';
-// 		}
-// 	}, sub);
-// 	if (input.checked) {
-// 		sub.style.display = 'block';
-// 	} else {
-// 		sub.style.display = 'none';
-// 	}
-// }
 
 function setTodoListColorForPage (color) {
 	var hex = (Color.isHex(color))

@@ -101,35 +101,3 @@ option-widget {
 		opacity: .3;
 	}
 }
-
-rules-option {
-	display: block;
-	//
-	// input {
-	// 	// display: none;
-	// }
-	//
-	// label {
-	// 	padding-right: 8px;
-	// 	line-height: 26px;
-	// 	border-radius: 3px;
-	// 	height: 27px;
-	// 	&:before {
-	//
-	// 		content: ' ';
-	// 	    display: inline-block;
-	// 	    width: 30px;
-	// 	    text-align: center;
-	//
-	// 	}
-	// }
-	//
-	// label:hover,
-	// input:checked + label {
-	// 	background: #eeeeee;
-	// }
-	//
-	// input:checked + label::before {
-	// 	@include trellicons('\e910');
-	// }
-}

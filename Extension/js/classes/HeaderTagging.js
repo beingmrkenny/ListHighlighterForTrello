@@ -90,7 +90,7 @@ class HeaderTagging {
 			textarea = arguments[0].target;
 		}
 
-		var newValue = textarea.previousElementSibling.textContent;
+		var newValue = textarea.parentNode.querySelector('h2').textContent;
 		textarea.value = newValue;
 		textarea.style.height = HeaderTagging.getNewHeight(textarea, newValue);
 

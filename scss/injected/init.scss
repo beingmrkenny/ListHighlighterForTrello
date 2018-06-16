@@ -16,14 +16,35 @@
 	transparent
 	);
 	background-size: 2pc 2pc;
+	.list-header-name,
+	.list-header-extras,
+	.bmko_list-limit-notice,
+	.open-card-composer,
+	.bmko_header-card h3 {
+		text-shadow: 0 0 2px black;
+	}
+}
+
+#classic-body.body-color-blind-mode-enabled.bmko_light-highlight-color .bmko_high-list {
+	.list-header-name,
+	.list-header-extras,
+	.bmko_list-limit-notice,
+	.open-card-composer,
+	.bmko_header-card h3 {
+		text-shadow: none;
+	}
 }
 
 .bmko_list-highlighter-applied .list {
-	transition: background 0.15s, opacity 0.15s, filter .15s;
+	transition: background 0.15s, opacity 0.05s 0.3s, filter 0.05s 0.3s;
 
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
 	}
+}
+
+.bmko_card-is-dragging.bmko_list-highlighter-applied .list {
+	transition: background 0.15s, opacity 0.05s, filter 0.05s;
 }
 
 .list.bmko_high-list {
@@ -33,7 +54,8 @@
 	// list header
 	.list-header-num-cards,
 	.mod-list-name,
-	.mod-list-name:disabled {
+	.mod-list-name:disabled,
+	.icon-lg {
 		color: var(--high-pri-text);
 
 		-webkit-text-fill-color: var(--high-pri-text);
@@ -47,7 +69,8 @@
 
 	// ellipsis button, add card button
 	.open-card-composer,
-	.list-header-extras-menu {
+	.list-header-extras-menu,
+	.cc-controls .icon-overflow-menu-horizontal {
 		color: var(--high-pri-text);
 		&:hover {
 			background: rgba(black, 0.1);
@@ -81,6 +104,7 @@
 .bmko_ignore-list,
 .bmko_trash-list {
 	opacity: var(--done-opacity);
+
 	filter: grayscale(100%);
 }
 
@@ -92,6 +116,7 @@
 		&.bmko_contains-placeholder,
 		&:hover {
 			opacity: 1;
+
 			filter: grayscale(0%);
 		}
 	}

@@ -160,6 +160,12 @@ class System {
 			if (GLOBAL.EnableWIP || GLOBAL.UndimOnHover) {
 				draggedCard = document.body.querySelector('body > .list-card');
 				placeholder = $('.placeholder');
+				if (draggedCard) {
+					let body = getTrelloBody();
+					if (body) {
+						body.classList.add('bmko_card-is-dragging');
+					}
+				}
 			}
 
 			if (GLOBAL.UndimOnHover) {
@@ -172,6 +178,21 @@ class System {
 				if (list) {
 					list.classList.add('bmko_contains-placeholder');
 				}
+
+				// card just been dropped
+				if (typeof mutationRecords[0].removedNodes[0] == 'undefined' && !draggedCard) {
+
+					let body = getTrelloBody();
+					if (body) {
+						body.classList.remove('bmko_card-is-dragging');
+					}
+
+					for (let list of document.querySelectorAll('.bmko_contains-placeholder')) {
+						list.classList.remove('bmko_contains-placeholder');
+					}
+
+				}
+
 			}
 
 			if (isAddedCard) {
@@ -222,6 +243,11 @@ class System {
 						for (let list of allLists) {
 							let lwp = new ListWorkPoints(list);
 							lwp.toggleOriginalList(false);
+						}
+
+						let body = getTrelloBody();
+						if (body) {
+							body.classList.remove('bmko_card-is-dragging');
 						}
 
 					} else if (!$('[data-bmko-original-list]')) {
