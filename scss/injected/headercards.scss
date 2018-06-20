@@ -31,10 +31,6 @@
 
 .bmko_header-card {
 
-	.bmko_high-list & .expanded-list-card-operation span {
-		background-color: var(--high-pri-text);
-	}
-
 	.expanded-list-card-operation {
 		background-color: transparent;
 		height: 14px;
@@ -44,7 +40,7 @@
 			margin-left: 2px;
 			&::before {
 				position: relative;
-				top: -1px;
+				top: -2px;
 			}
 		}
 	}

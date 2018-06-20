@@ -51,6 +51,13 @@
 	color: var(--high-pri-text);
 	background: var(--high-pri);
 
+	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
+		background: rgba(black, 0.1);
+	}
+	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(black, 0.17);
+	}
+
 	// list header
 	.list-header-num-cards,
 	.mod-list-name,
@@ -68,25 +75,38 @@
 	}
 
 	// ellipsis button, add card button
+	.bmko_header-card .expanded-list-card-operation span,
+	.bmko_header-card .expanded-list-card-operation .icon-sm,
 	.open-card-composer,
 	.list-header-extras-menu,
 	.cc-controls .icon-overflow-menu-horizontal {
 		color: var(--high-pri-text);
 		&:hover {
-			background: rgba(black, 0.1);
+			background-color: rgba(black, 0.1);
+			color: var(--high-pri-text);
 		}
 		.icon-sm {
 			color: var(--high-pri-text);
 		}
 	}
 
+	.bmko_header-card .expanded-list-card-operation .icon-sm {
+		opacity: .8;
+	}
+
 	.list-card {
-		&:not(.placeholder) {
+		&:not(.placeholder):not(.bmko_header-card-applied) {
 			border-bottom-color: var(--high-pri-border);
+			box-shadow: 0 1px 0 var(--high-pri-border);
+		}
+		&.bmko_header-card-applied {
+			border-bottom-color: transparent;
+			box-shadow: none;
 		}
 		&.placeholder {
 			background: rgba(black, 0.1);
 			border-bottom-color: transparent;
+			box-shadow: none;
 		}
 	}
 }

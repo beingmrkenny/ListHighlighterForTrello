@@ -145,7 +145,7 @@ class DoingColors {
 			newColor.fromHSL(
 				color.getHue(),
 				color.getSaturation() * 0.7,
-				45
+				49
 			);
 
 			contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
