@@ -128,12 +128,12 @@ button,
 		display: inline-block;
 		width: 20px;
 		height: 20px;
-		border: 1px solid rgba(255, 255, 255, 0.28);
 		border-radius: 2px;
 		vertical-align: middle;
 	}
 
 	&.on::before {
+		border: 1px solid rgba(255, 255, 255, 0.28);
 		background: url('/img/256.svg') no-repeat;
 	}
 }

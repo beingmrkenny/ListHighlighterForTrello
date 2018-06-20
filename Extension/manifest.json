@@ -11,7 +11,7 @@
 
 	"web_accessible_resources" : [
 		"img/buttonIcon.png",
-		"img/buttonIconDehighlighted.png"
+		"img/buttonIconOff.png"
 	],
 
 	"background" : {

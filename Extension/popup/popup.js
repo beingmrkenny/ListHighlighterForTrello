@@ -91,7 +91,7 @@ function toggleHighlight(highlightStatus) {
 	if (highlightStatus) {
 		chrome.browserAction.setIcon({path: '/img/buttonIcon.png'});
 	} else {
-		chrome.browserAction.setIcon({path: '/img/buttonIconDehighlighted.png'});
+		chrome.browserAction.setIcon({path: '/img/buttonIconOff.png'});
 	}
 
 	toggleHighlightButton(highlightStatus);
