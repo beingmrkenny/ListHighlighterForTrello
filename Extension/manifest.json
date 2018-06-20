@@ -24,7 +24,9 @@
 		"default_icon" : "img/buttonIcon.png"
 	},
 
-	"options_page" : "options-page/index.html",
+	"options_ui" : {
+		"page" : "options-page/index.html"
+	},
 
 	"permissions" : [
 		"storage"

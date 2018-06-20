@@ -49,6 +49,19 @@ The root directory of this repo needs a config file (config.json) with the follo
 
 ## Development notes
 
+### Firefox addon ID
+
+Reference: https://bugzil.la/1323228
+
+To make the web extension between-page messaging system work in Firefox (used mainly to communicate changes in options), you must add a fictional addon ID to manifest.json, using the below as a template. This must only be used during development, and may cause issues in other browsers.
+
+	"applications": {
+	  "gecko": {
+	    "id": "addon@example.com",
+	    "strict_min_version": "42.0"
+	  }
+	}
+
 ### How the JavaScript works (brief intro)
 
 The first script the browser hits is js/init.js. This sets up the messenger between contexts and triggers the mutation observers that watch the page for changes. js/classes/System.js is basically a container for the methods which set up the mutation observers.
@@ -66,7 +79,6 @@ BASH scripts have been written in the sh directory to help with compilation. To 
 - During development of a new version, a working branch named VersionX.X.X is created — branch off that to create a new feature or bug fix
 - Before merging a feature branch back into the version branch, all commits should be squashed into one
 - Make commit messages as descriptive yet concise as possible
-
 
 ## Watch
 
