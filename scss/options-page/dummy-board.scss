@@ -3,27 +3,28 @@
 }
 
 #DummyBoard {
-
 	border-radius: 5px;
+
 	@include transition(background);
 
 	#DummyBoardSVG {
-		border-radius: 0 0 3px 5px;
 		margin-bottom: -7px;
+
+		border-radius: 0 0 3px 5px;
 	}
 
-	&[data-trello-bg='default']	{ background: $bodyTextColor; }
-	&[data-trello-bg='red']		{ background: $redTrello; }
-	&[data-trello-bg='orange']	{ background: $orangeTrello; }
-	&[data-trello-bg='lime'] 	{ background: $limeTrello; }
-	&[data-trello-bg='green']	{ background: $greenTrello; }
-	&[data-trello-bg='sky']		{ background: $skyTrello; }
-	&[data-trello-bg='blue']	{ background: $blueTrello; }
-	&[data-trello-bg='purple']	{ background: $purpleTrello; }
-	&[data-trello-bg='pink']	{ background: $pinkTrello; }
-	&[data-trello-bg='gray']	{ background: $grayTrello; }
-	&[data-trello-bg='photo']	{
-		background: url('/img/dummyBackgroundPhoto.jpg');
+	&[data-trello-bg="default"] { background: $bodyTextColor; }
+	&[data-trello-bg="red"] { background: $redTrello; }
+	&[data-trello-bg="orange"] { background: $orangeTrello; }
+	&[data-trello-bg="lime"] { background: $limeTrello; }
+	&[data-trello-bg="green"] { background: $greenTrello; }
+	&[data-trello-bg="sky"] { background: $skyTrello; }
+	&[data-trello-bg="blue"] { background: $blueTrello; }
+	&[data-trello-bg="purple"] { background: $purpleTrello; }
+	&[data-trello-bg="pink"] { background: $pinkTrello; }
+	&[data-trello-bg="gray"] { background: $grayTrello; }
+	&[data-trello-bg="photo"] {
+		background: url("/img/dummyBackgroundPhoto.jpg");
 		background-size: cover;
 	}
 
@@ -33,15 +34,17 @@
 
 	#DefaultDummyTile label {
 		overflow: hidden;
-		transition: width .5s, height .25s, opacity .5s;
+
+		transition: width 0.5s, height 0.25s, opacity 0.5s;
 	}
 
-	&[data-trello-bg='default'] #DefaultDummyTile label {
+	&[data-trello-bg="default"] #DefaultDummyTile label {
 		width: 0;
+
 		opacity: 0;
 	}
 
-	&[data-trello-bg='default'] #DefaultDummyTile + hr {
+	&[data-trello-bg="default"] #DefaultDummyTile + hr {
 		display: none;
 	}
 
@@ -55,29 +58,31 @@
 
 	.normal-list {
 		.list {
-			fill: rgba(226, 228, 230, .498039);
+			fill: rgba(226, 228, 230, 0.498039);
 		}
 		.card {
-			fill: rgba(255, 255, 255, .2);
+			fill: rgba(255, 255, 255, 0.2);
 		}
 	}
 
 	.doing-list .list {
 		fill: $red;
+
 		@include transition(fill);
 	}
 
 	.done-list {
 		.list {
-			fill: rgba(226, 228, 230, .0666667);
+			fill: rgba(226, 228, 230, 0.0666667);
 		}
 		.card {
-			fill: rgba(255, 255, 255, .0588235);
+			fill: rgba(255, 255, 255, 0.0588235);
 		}
 	}
 
 	#BackgroundColorsHeaderAll {
 		fill: #acacac;
+
 		pointer-events: none;
 	}
 
@@ -86,54 +91,59 @@
 	}
 
 	.trello-bg-color-selected {
-		stroke-width: 3px;
 		fill: #d8d8d8;
+		stroke-width: 3px;
 	}
 
 	.trello-bg-color-indicator {
 		fill: none;
+
 		@include transition(fill);
 		&[data-trello-bg="default"] {
 			fill: var(--high-pri);
 		}
 	}
 
-	&[data-trello-bg="default"] 	[data-trello-bg="default"] 	{ stroke: $bodyTextColor; }
-	&[data-trello-bg="blue"] 		[data-trello-bg="blue"] 	{ stroke: $blueTrello; }
-	&[data-trello-bg="orange"] 		[data-trello-bg="orange"] 	{ stroke: $orangeTrello; }
-	&[data-trello-bg="green"] 		[data-trello-bg="green"] 	{ stroke: $greenTrello; }
-	&[data-trello-bg="red"] 		[data-trello-bg="red"] 		{ stroke: $redTrello; }
-	&[data-trello-bg="purple"] 		[data-trello-bg="purple"] 	{ stroke: $purpleTrello; }
-	&[data-trello-bg="pink"] 		[data-trello-bg="pink"] 	{ stroke: $pinkTrello; }
-	&[data-trello-bg="lime"] 		[data-trello-bg="lime"] 	{ stroke: $limeTrello; }
-	&[data-trello-bg="sky"] 		[data-trello-bg="sky"] 		{ stroke: $skyTrello; }
-	&[data-trello-bg="gray"] 		[data-trello-bg="gray"] 	{ stroke: $grayTrello; }
-	&[data-trello-bg="photo"] 		.trello-bg-color-selected[data-trello-bg="photo"] 	{ stroke: #4f6b0e; }
+	&[data-trello-bg="default"] 	[data-trello-bg="default"] { stroke: $bodyTextColor; }
+	&[data-trello-bg="blue"] 		[data-trello-bg="blue"] { stroke: $blueTrello; }
+	&[data-trello-bg="orange"] 		[data-trello-bg="orange"] { stroke: $orangeTrello; }
+	&[data-trello-bg="green"] 		[data-trello-bg="green"] { stroke: $greenTrello; }
+	&[data-trello-bg="red"] 		[data-trello-bg="red"] { stroke: $redTrello; }
+	&[data-trello-bg="purple"] 		[data-trello-bg="purple"] { stroke: $purpleTrello; }
+	&[data-trello-bg="pink"] 		[data-trello-bg="pink"] { stroke: $pinkTrello; }
+	&[data-trello-bg="lime"] 		[data-trello-bg="lime"] { stroke: $limeTrello; }
+	&[data-trello-bg="sky"] 		[data-trello-bg="sky"] { stroke: $skyTrello; }
+	&[data-trello-bg="gray"] 		[data-trello-bg="gray"] { stroke: $grayTrello; }
+	&[data-trello-bg="photo"] 		.trello-bg-color-selected[data-trello-bg="photo"] { stroke: #4f6b0e; }
 
-	.trello-bg-color-button[data-trello-bg="default"] 	{ fill: $bodyTextColor; }
-	.trello-bg-color-button[data-trello-bg="blue"] 		{ fill: $blueTrello; }
-	.trello-bg-color-button[data-trello-bg="orange"] 	{ fill: $orangeTrello; }
-	.trello-bg-color-button[data-trello-bg="green"] 	{ fill: $greenTrello; }
-	.trello-bg-color-button[data-trello-bg="red"] 		{ fill: $redTrello; }
-	.trello-bg-color-button[data-trello-bg="purple"] 	{ fill: $purpleTrello; }
-	.trello-bg-color-button[data-trello-bg="pink"] 		{ fill: $pinkTrello; }
-	.trello-bg-color-button[data-trello-bg="lime"] 		{ fill: $limeTrello; }
-	.trello-bg-color-button[data-trello-bg="sky"] 		{ fill: $skyTrello; }
-	.trello-bg-color-button[data-trello-bg="gray"] 		{ fill: $grayTrello; }
-	.trello-bg-color-button[data-trello-bg="photo"] 	{ fill: url(#Beach); }
+	.trello-bg-color-button[data-trello-bg="default"] { fill: $bodyTextColor; }
+	.trello-bg-color-button[data-trello-bg="blue"] { fill: $blueTrello; }
+	.trello-bg-color-button[data-trello-bg="orange"] { fill: $orangeTrello; }
+	.trello-bg-color-button[data-trello-bg="green"] { fill: $greenTrello; }
+	.trello-bg-color-button[data-trello-bg="red"] { fill: $redTrello; }
+	.trello-bg-color-button[data-trello-bg="purple"] { fill: $purpleTrello; }
+	.trello-bg-color-button[data-trello-bg="pink"] { fill: $pinkTrello; }
+	.trello-bg-color-button[data-trello-bg="lime"] { fill: $limeTrello; }
+	.trello-bg-color-button[data-trello-bg="sky"] { fill: $skyTrello; }
+	.trello-bg-color-button[data-trello-bg="gray"] { fill: $grayTrello; }
+	.trello-bg-color-button[data-trello-bg="photo"] { fill: url(#Beach); }
 
 	#DefaultDummyTile + hr {
-		display: block;
-		opacity: .3;
-		content: ' ';
-		width: 5px;
-		height: 5px;
-		margin: 23px 5px;
+	display: block;
 
-		background: white;
-		border: 0;
-		border-radius: 10px;
-	}
+	width: 5px;
+	height: 5px;
+	margin: 23px 5px;
+
+	content: " ";
+
+	background: white;
+	border: 0;
+	border-radius: 10px;
+
+	opacity: 0.3;
+}
+
 
 	&.mod-light-background #DefaultDummyTile + hr {
 		background: black;
@@ -143,7 +153,6 @@
 		background: white;
 		box-shadow: 0 0 5px black;
 	}
-
 }
 
 .color-blind-friendly-mask {

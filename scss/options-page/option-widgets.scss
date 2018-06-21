@@ -4,23 +4,29 @@
 
 .standard-options {
 	display: flex;
-	margin: 40px 0;
 	align-items: flex-start;
 
+	margin: 40px 0;
+
 	p:first-of-type {
-		font-size: inherit;
-		color: inherit;
 		margin-top: 0;
+
+		color: inherit;
+
+		font-size: inherit;
 	}
 	p {
-		font-size: smaller;
+		margin: 0.25em 0;
+
 		color: gray;
-		margin: .25em 0;
+
+		font-size: smaller;
 	}
 }
 
 option-widget {
 	display: block;
+
 	margin-right: 20px;
 
 	input {
@@ -28,20 +34,22 @@ option-widget {
 	}
 
 	label {
-		position: relative;
 		display: flex;
+		position: relative;
 		flex-direction: column;
 		align-items: center;
+
 		width: 80px;
 		margin-right: 10px;
 		padding: 5px;
 		padding-top: 33px;
 
-		line-height: 1;
-		text-align: center;
 		color: #4e4e4e;
 		background: #afafaf;
 		border-radius: 3px;
+
+		line-height: 1;
+		text-align: center;
 
 		&::before,
 		&::after {
@@ -49,32 +57,37 @@ option-widget {
 		}
 
 		&::before {
+			display: inline-block;
 			top: 10px;
 			left: 50%;
-			display: inline-block;
-			content: "OFF";
+
 			width: 40px;
 			height: 18px;
 			margin-left: -27px;
 			padding: 0 6px;
 
-			line-height: 19px;
-			font-size: 13px;
-			text-align: right;
+			content: "OFF";
+
 			background: gray;
 			border-radius: 10px;
+
+			line-height: 19px;
+			text-align: right;
+			font-size: 13px;
 
 			transition: background 0.25s;
 		}
 
 		&::after {
+			display: inline-block;
 			top: 12px;
 			left: 50%;
-			display: inline-block;
-			content: " ";
+
 			width: 14px;
 			height: 14px;
 			margin-left: -25px;
+
+			content: " ";
 
 			background: white;
 			border-radius: 10px;
@@ -89,8 +102,9 @@ option-widget {
 		&::before {
 			content: "ON";
 
-			text-align: left;
 			background: #64bb02;
+
+			text-align: left;
 		}
 		&::after {
 			margin-left: 9px;
@@ -98,6 +112,6 @@ option-widget {
 	}
 
 	input:disabled + label {
-		opacity: .3;
+		opacity: 0.3;
 	}
 }

@@ -4,8 +4,9 @@
 	border-radius: 5px 5px 0 0;
 
 	p {
-		color: white;
 		margin: 0 0 3px;
+
+		color: white;
 
 		.mod-light-background & {
 			color: black;
@@ -13,26 +14,28 @@
 
 		[data-trello-bg="photo"] & {
 			color: white;
+
 			text-shadow: 0 0 5px black;
 		}
-
 	}
 
 	.color-tile-bar {
-		margin-bottom: 0;
 		min-height: 73px;
+		margin-bottom: 0;
 
 		label {
 			width: 56px;
 			height: 56px;
 
-			transition: width .25s, height .25s;
+			font-size: 13px;
+
+			transition: width 0.25s, height 0.25s;
 
 			&.default {
 				background: var(--high-pri);
 			}
 
-			[data-trello-bg='default'] & {
+			[data-trello-bg="default"] & {
 				width: 62px;
 				height: 62px;
 			}
@@ -40,18 +43,16 @@
 			&:hover {
 				height: 66px;
 			}
-
-			font-size: 13px;
 		}
 
 		.edit-link {
 			height: 16px;
-			font-size: 11px;
 			margin-left: -4px;
+
+			font-size: 11px;
 		}
 
 		input:checked + label {
-
 			height: 73px;
 
 			&::before {
@@ -72,8 +73,8 @@
 }
 
 .color-tile-bar {
-	position: relative;
 	display: flex;
+	position: relative;
 	justify-content: space-between;
 
 	width: 100%;
@@ -91,40 +92,65 @@
 	label {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end;
 		align-items: center;
+		justify-content: flex-end;
+
 		width: 60px;
 		height: 60px;
 
-		text-align: center;
 		color: white;
 		border-radius: 3px;
 
-		@include transition(height, color, background-color);
+		text-align: center;
 
 		cursor: pointer;
 		user-select: none;
+
+		@include transition(height, color, background-color);
 
 		&:hover {
 			height: 65px;
 		}
 
 		&::before {
-			@include transition(color);
 			color: white;
+
+			@include transition(color);
 		}
 
-		&.red		{ background-color: $red; }
-		&.orange	{ background-color: $orange; }
-		&.yellow	{ background-color: $yellow; }
-		&.green		{ background-color: $green; }
-		&.cyan		{ background-color: $cyan; }
-		&.blue		{ background-color: $blue; }
-		&.indigo	{ background-color: $indigo; }
-		&.violet	{ background-color: $violet; }
-		&.pink		{ background-color: $pink; }
-		&.black		{ background-color: $black; }
-		&.custom	{ background-color: $listBG; }
+		&.red {
+			background-color: $red;
+		}
+		&.orange {
+			background-color: $orange;
+		}
+		&.yellow {
+			background-color: $yellow;
+		}
+		&.green {
+			background-color: $green;
+		}
+		&.cyan {
+			background-color: $cyan;
+		}
+		&.blue {
+			background-color: $blue;
+		}
+		&.indigo {
+			background-color: $indigo;
+		}
+		&.violet {
+			background-color: $violet;
+		}
+		&.pink {
+			background-color: $pink;
+		}
+		&.black {
+			background-color: $black;
+		}
+		&.custom {
+			background-color: $listBG;
+		}
 
 		&.mod-light-background {
 			color: black;
@@ -132,40 +158,46 @@
 				color: black;
 			}
 		}
-
 	}
 
 	.edit-link {
 		display: none;
+
 		height: 19px;
-		font-size: 12px;
-		color: inherit;
 		margin-left: -5px;
+
+		color: inherit;
+
+		font-size: 12px;
 		&::before {
-			@include trellicons("\e91D");
 			margin-right: 1px;
+
 			vertical-align: bottom;
+
+			@include trellicons("\e91D");
 		}
 		&:hover {
-			text-decoration: none;
 			color: white;
+
+			text-decoration: none;
 		}
 	}
 
 	input:checked + label {
-
 		height: 83px;
 
 		&::before {
 			position: relative;
 			top: -20px;
+
 			width: 26px;
 			height: 20px;
 
-			font-size: 26px;
 			border-radius: 3px;
 
-			@include trellicons('\e910');
+			font-size: 26px;
+
+			@include trellicons("\e910");
 		}
 
 		&.custom::before {

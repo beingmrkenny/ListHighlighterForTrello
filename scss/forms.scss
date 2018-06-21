@@ -1,19 +1,21 @@
-@import 'colors';
+@import "colors";
 
 button {
 	display: inline-block;
 	align-self: flex-end;
-	box-sizing: border-box;
-	padding: 7px 20px;
 
-	font: bold 14px/22px 'Helvetica Neue',Arial,Helvetica,sans-serif;
-	text-align: center;
+	padding: 7px 20px;
+	box-sizing: border-box;
+
 	color: $trelloListHeaderColor;
-	background: linear-gradient(to bottom,#d6dadc 0,#cdd2d4 100%);
+	background: linear-gradient(to bottom, #d6dadc 0, #cdd2d4 100%);
 	background-color: $listBG;
 	border: none;
 	border-radius: 3px;
 	box-shadow: 0 1px 0 #959da1;
+
+	text-align: center;
+	font: bold 14px/22px "Helvetica Neue", Arial, Helvetica, sans-serif;
 
 	cursor: pointer;
 	user-select: none;
@@ -23,50 +25,51 @@ button {
 		background: linear-gradient(to bottom,#61bd4f 0,#5aac44 100%);
 		box-shadow: 0 1px 0 #3f6f21;
 	}
-
 }
 
 input[type="text"] {
 	display: block;
+	-webkit-appearance: none;
+
 	width: 80px;
 	min-height: 2pc;
-	box-sizing: border-box;
 	margin-bottom: 9pt;
 	padding: 7px;
+	box-sizing: border-box;
 
-	font: 14px/18px 'Helvetica Neue',Arial,Helvetica,sans-serif;
-	text-transform: uppercase;
 	color: $trelloListHeaderColor;
 	border: 1px solid #cdd2d4;
 	border-radius: 3px;
 
-	-webkit-appearance: none;
+	font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+	text-transform: uppercase;
 }
 
 label {
-
-	user-select: none;
 	cursor: pointer;
+	user-select: none;
 
 	&.disabled {
 		cursor: text;
 	}
-
 }
 
 range-input {
-
 	display: block;
+
 	margin-left: 30px;
 
 	input {
 		width: 100%;
+
 		cursor: pointer;
 	}
 
 	label {
 		display: block;
+
 		width: 100%;
+
 		text-align: justify;
 		text-align-last: justify;
 	}

@@ -1,15 +1,17 @@
 color-picker {
+	display: flex;
 	position: absolute;
 	top: 0;
 	left: calc(100% + 10px);
-	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+
 	width: 200px;
 	padding: 15px;
 
 	background-color: #f5f5f5;
 	border-radius: 5px;
+
 	filter: drop-shadow(0 0 4px #c5c5c5);
 
 	&[hidden] {
@@ -17,26 +19,31 @@ color-picker {
 	}
 
 	&::before {
+		display: inline-block;
 		position: absolute;
 		z-index: -1;
 		top: 25px;
 		left: -7px;
-		display: inline-block;
-		content: ' ';
+
 		width: 15px;
 		height: 15px;
-		transform: rotate(45deg);
+
+		content: " ";
 
 		background-color: #f5f5f5;
+
+		transform: rotate(45deg);
 	}
 
 	* {
 		display: block;
+
 		box-sizing: border-box;
 	}
 
 	component-picker {
 		position: relative;
+
 		margin-bottom: 15px;
 	}
 
@@ -70,6 +77,7 @@ color-picker {
 		position: absolute;
 		top: 0;
 		left: 0;
+
 		width: 20px;
 		height: 20px;
 
@@ -88,6 +96,7 @@ color-picker {
 
 	hr {
 		visibility: hidden;
+
 		width: 100%;
 		margin: 0;
 	}
@@ -101,18 +110,21 @@ color-picker {
 }
 
 .custom-color-picker-button-container {
+	flex-wrap: wrap;
+
 	width: 100%;
 	margin-bottom: 15px;
-	flex-wrap: wrap;
 }
 
 .custom-color-picker-button {
-	float: left;
 	display: inline-block;
-	margin: 0 2px 2px 0;
+	float: left;
+
 	width: 18px;
 	height: 18px;
+	margin: 0 2px 2px 0;
 	padding: 0;
+
 	background-image: none;
 	border: 0;
 	box-shadow: none;

@@ -10,33 +10,37 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
+
 	min-height: 100vh;
 	margin: 0;
 }
 
 #MainHeader {
 	div {
-		@include full-width(800px, #edeff0);
 		padding-top: 30px;
+
+		@include full-width(800px, #edeff0);
 	}
 	nav {
 		clear: both;
+
 		margin-top: 30px;
 	}
 }
 
 main {
 	display: flex;
-	flex-direction: column;
 	flex: 1;
+	flex-direction: column;
+
 	padding: 20px 0;
 
 	@include full-width(800px);
 }
 
 footer {
-	margin-top: 50px;
 	height: 70px;
+	margin-top: 50px;
 
 	@include full-width(800px);
 }

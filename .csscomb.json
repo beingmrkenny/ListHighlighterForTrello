@@ -1,12 +1,17 @@
 {
+	"exclude": [
+		".git/**",
+		"node_modules/**",
+		"bower_components/**"
+	],
 
 	"remove-empty-rulesets": true,
 	"always-semicolon": true,
 	"color-case": "lower",
 	"block-indent": "\t",
-	"color-shorthand": false,
+	"color-shorthand": true,
 	"element-case": "lower",
-	"eof-newline": false,
+	"eof-newline": true,
 	"leading-zero": true,
 	"quotes": "double",
 	"space-before-colon": "",
@@ -25,39 +30,40 @@
 
 	"sort-order": [
 		[
+			"display",
+			"visibility",
+			"-webkit-appearance",
+
 			"position",
 			"z-index",
 			"top",
-			"right",
 			"bottom",
 			"left",
+			"right",
 
-			"display",
-			"visibility",
-			"opacity",
-			"content",
-			"float",
-			"clear",
-
-			"flex-direction",
-			"flex-wrap",
-			"flex-flow",
-			"justify-content",
-			"align-items",
-			"align-content",
-
-			"order",
+			"flex",
 			"flex-grow",
 			"flex-shrink",
 			"flex-basis",
-			"flex",
+			"flex-flow",
+			"flex-direction",
+			"flex-wrap",
+			"flex-align",
+			"order",
 			"align-self",
+			"align-items",
+			"justify-content",
 
+			"float",
+			"clear"
+		],
+
+		[
 			"width",
-			"min-width",
-			"max-width",
 			"height",
+			"min-width",
 			"min-height",
+			"max-width",
 			"max-height",
 
 			"overflow",
@@ -66,11 +72,6 @@
 			"clip",
 			"zoom",
 
-			"transform",
-
-			"transform-origin",
-
-			"box-sizing",
 			"margin",
 			"margin-top",
 			"margin-right",
@@ -82,67 +83,33 @@
 			"padding-bottom",
 			"padding-left",
 
+			"-webkit-box-sizing",
+			"-moz-box-sizing",
+			"box-sizing"
+		],
+
+		[
+			"list-style",
+			"list-style-position",
+			"list-style-type",
+			"list-style-image",
 			"table-layout",
 			"empty-cells",
 			"caption-side",
 			"border-spacing",
 			"border-collapse"
 		],
-		[
 
+		[
+			"content",
 			"quotes",
 			"counter-reset",
-			"counter-increment",
+			"counter-increment"
+		],
 
-			"list-style",
-			"list-style-position",
-			"list-style-type",
-			"list-style-image",
-
-			"hyphens",
-
-			"line-height",
-			"font",
-			"font-family",
-			"font-size",
-			"font-weight",
-			"font-style",
-			"font-variant",
-			"font-size-adjust",
-			"font-stretch",
-			"font-effect",
-			"font-emphasize",
-			"font-emphasize-position",
-			"font-emphasize-style",
-			"font-smooth",
-
-			"vertical-align",
-			"text-align",
-			"text-align-last",
-
-			"text-decoration",
-			"text-emphasis",
-			"text-emphasis-color",
-			"text-emphasis-style",
-			"text-emphasis-position",
-			"text-indent",
-			"text-justify",
-			"text-outline",
-			"text-transform",
-			"text-wrap",
-			"text-overflow",
-			"text-overflow-ellipsis",
-			"text-overflow-mode",
-			"text-shadow",
-
-			"word-wrap",
-			"word-break",
-			"word-spacing",
-			"letter-spacing",
-			"white-space",
-			"tab-size",
-
+		[
 			"color",
+			"-webkit-text-fill-color",
 
 			"background",
 			"background-color",
@@ -194,32 +161,87 @@
 			"outline-color",
 			"outline-offset",
 
-			"box-decoration-break",
 			"box-shadow",
-			"filter"
-
+			"box-decoration-break"
 		],
+
 		[
-			"transition",
-			"transition-delay",
-			"transition-timing-function",
-			"transition-duration",
-			"transition-property",
-
-			"animation",
-			"animation-name",
-			"animation-duration",
-			"animation-play-state",
-			"animation-timing-function",
-			"animation-delay",
-			"animation-iteration-count",
-			"animation-direction",
-			"animation-fill-mode"
+			"fill",
+			"stroke",
+			"stroke-width"
 		],
+
+		[
+			"line-height",
+			"vertical-align",
+			"text-align",
+
+			"white-space",
+			"-ms-word-wrap",
+			"word-wrap",
+			"-ms-word-break",
+			"word-break",
+			"word-spacing",
+
+			"font",
+			"font-family",
+			"font-size",
+			"font-weight",
+			"font-style",
+			"font-variant",
+			"font-size-adjust",
+			"font-stretch",
+			"font-effect",
+			"font-emphasize",
+			"font-emphasize-position",
+			"font-emphasize-style",
+			"font-smooth",
+
+			"-webkit-text-align-last",
+			"-moz-text-align-last",
+			"-ms-text-align-last",
+			"text-align-last",
+
+			"text-decoration",
+			"text-emphasis",
+			"text-emphasis-color",
+			"text-emphasis-style",
+			"text-emphasis-position",
+			"text-indent",
+			"-ms-text-justify",
+			"text-justify",
+			"text-outline",
+			"text-transform",
+			"text-wrap",
+			"-ms-text-overflow",
+			"text-overflow",
+			"text-overflow-ellipsis",
+			"text-overflow-mode",
+
+			"letter-spacing",
+
+			"-moz-tab-size",
+			"-o-tab-size",
+			"tab-size",
+
+			"-webkit-hyphens",
+			"-moz-hyphens",
+			"hyphens",
+
+			"text-shadow"
+
+		],
+
 		[
 			"resize",
 			"cursor",
 			"pointer-events",
+			"-webkit-touch-callout",
+			"-webkit-tap-highlight-color",
+			"-webkit-user-select",
+			"-khtml-user-select",
+			"-moz-user-select",
+			"-ms-user-select",
 			"user-select",
 			"nav-index",
 			"nav-up",
@@ -227,10 +249,97 @@
 			"nav-down",
 			"nav-left"
 		],
+
 		[
+			"opacity",
+
+			"-webkit-filter",
+			"-moz-filter",
+			"-ms-filter",
+			"-o-filter",
+			"filter",
+
+			"-webkit-transition",
+			"-moz-transition",
+			"-o-transition",
+			"transition",
+
+			"-webkit-transition-delay",
+			"-moz-transition-delay",
+			"-o-transition-delay",
+			"transition-delay",
+
+			"-webkit-transition-timing-function",
+			"-moz-transition-timing-function",
+			"-o-transition-timing-function",
+			"transition-timing-function",
+
+			"-webkit-transition-duration",
+			"-moz-transition-duration",
+			"-o-transition-duration",
+			"transition-duration",
+
+			"-webkit-transition-property",
+			"-moz-transition-property",
+			"-o-transition-property",
+			"transition-property",
+
+			"-webkit-transform",
+			"-moz-transform",
+			"-ms-transform",
+			"transform",
+
+			"-webkit-transform-origin",
+			"-moz-transform-origin",
+			"-ms-transform-origin",
+			"transform-origin",
+
+			"-webkit-animation",
+			"-moz-animation",
+			"-o-animation",
+			"animation",
+
+			"-webkit-animation-name",
+			"-moz-animation-name",
+			"-o-animation-name",
+			"animation-name",
+
+			"-webkit-animation-duration",
+			"-moz-animation-duration",
+			"-o-animation-duration",
+			"animation-duration",
+
+			"-webkit-animation-play-state",
+			"-moz-animation-play-state",
+			"-o-animation-play-state",
+			"animation-play-state",
+
+			"-webkit-animation-timing-function",
+			"-moz-animation-timing-function",
+			"-o-animation-timing-function",
+			"animation-timing-function",
+
+			"-webkit-animation-delay",
+			"-moz-animation-delay",
+			"-o-animation-delay",
+			"animation-delay",
+
+			"-webkit-animation-iteration-count",
+			"-moz-animation-iteration-count",
+			"-o-animation-iteration-count",
+			"animation-iteration-count",
+
+			"-webkit-animation-direction",
+			"-moz-animation-direction",
+			"-o-animation-direction",
+			"animation-direction",
+
 			"filter:progid:DXImageTransform.Microsoft.Alpha(Opacity",
 			"filter:progid:DXImageTransform.Microsoft.AlphaImageLoader",
-			"filter:progid:DXImageTransform.Microsoft.gradient"
+			"filter:progid:DXImageTransform.Microsoft.gradient",
+			"-ms-filter:\\'progid:DXImageTransform.Microsoft.gradient",
+			"-ms-filter:\\'progid:DXImageTransform.Microsoft.Alpha",
+			"-ms-interpolation-mode"
 		]
 	]
 }

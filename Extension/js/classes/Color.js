@@ -1,7 +1,7 @@
 class Color {
 
-    // red, green and blue are stored internally as a number in the range 0 - 255
-    // alpha is stored internally as a number in the range 0 - 1
+	// red, green and blue are stored internally as a number in the range 0 - 255
+	// alpha is stored internally as a number in the range 0 - 1
 
 	constructor (string) {
 		if (typeof string == 'string') {
@@ -94,7 +94,7 @@ class Color {
 					break;
 
 				case matches[1].endsWith('turn'):
-                    h = hueAngle;
+					h = hueAngle;
 					break;
 
 				case matches[1].endsWith('deg'):
@@ -212,7 +212,7 @@ class Color {
 		return `rgb(${this.red}, ${this.green}, ${this.blue})`;
 	}
 
-    // based on https://gist.github.com/mjackson/5311256
+	// based on https://gist.github.com/mjackson/5311256
 	toHSL() {
 
 		var r = this.red / 255,

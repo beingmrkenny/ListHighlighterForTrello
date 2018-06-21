@@ -9,10 +9,11 @@
 }
 
 body {
+	color: $bodyTextColor;
+
 	line-height: 1.6em;
 	font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 	font-size: 16px;
-	color: $bodyTextColor;
 }
 
 #MainHeader {
@@ -48,9 +49,10 @@ body {
 .dimming-input-block {
 	display: flex;
 	justify-content: space-between;
+
 	width: 99%;
-	box-sizing: content-box;
 	padding: 0 5px;
+	box-sizing: content-box;
 
 	color: white;
 
@@ -68,14 +70,16 @@ body {
 }
 
 #DimmingExampleBoard {
+	margin: 0 -10px;
+	padding: 10px;
+
 	background: $blueTrello;
 	border-radius: 5px;
-	padding: 10px;
-	margin: 0 -10px;
 
 	.dimming-example-lists {
 		display: flex;
 		align-items: flex-start;
+
 		margin: 5px 2.5px 0;
 
 		font-size: 14px;
@@ -93,21 +97,23 @@ body {
 		height: 20px;
 		margin: 8px 10px;
 
+		color: #333;
+
 		line-height: 18px;
 		font-weight: 700;
-		color: #333333;
 	}
 
 	.dimming-example-list-card {
-		box-sizing: content-box;
 		margin: 0 8px 6px;
 		padding: 6px 8px;
+		box-sizing: content-box;
+
+		color: #444;
+		background: white;
+		border-bottom: 1px solid #ccc;
+		border-radius: 3px;
 
 		line-height: 18px;
-		color: #444444;
-		background: white;
-		border-bottom: 1px solid #cccccc;
-		border-radius: 3px;
 	}
 
 	.dimming-example-add-card {
@@ -115,8 +121,9 @@ body {
 		margin: 0;
 		padding: 8px 10px;
 
-		line-height: 18px;
 		color: #8c8c8c;
+
+		line-height: 18px;
 	}
 }
 
@@ -154,17 +161,18 @@ body {
 }
 
 .low {
-	color: transparentize(#444444, 0.6);
+	color: transparentize(#444, 0.6);
 	background: transparentize($listBG, 0.5);
 }
 
 .ignore,
 .done {
-	opacity: 0.5;
-
-	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
 	color: $ignoreTextColor;
 	background: transparentize($listBG, 0.7);
+
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+
+	opacity: 0.5;
 }
 
 .done {
@@ -186,12 +194,14 @@ nav {
 	ul {
 		display: flex;
 		justify-content: center;
-		min-width: 100%;
+
 		height: 38px;
+		min-width: 100%;
 	}
 
 	li {
 		display: inline-block;
+
 		margin: 2px 2px 0;
 
 		background-color: #d6dadc;
@@ -205,13 +215,13 @@ nav {
 			margin-bottom: -1px;
 			padding-bottom: 9px;
 
-			background-color: #ffffff;
+			background-color: #fff;
 			border-color: #d6dadc;
 
 			cursor: default;
 
 			&:hover {
-				background-color: #ffffff;
+				background-color: #fff;
 				border-color: #d6dadc;
 			}
 		}
@@ -223,6 +233,7 @@ nav {
 
 		a {
 			display: inline-block;
+
 			padding: 8px 20px;
 
 			line-height: 18px;
@@ -233,8 +244,9 @@ nav {
 			&:visited,
 			&:hover,
 			&:active {
+				color: #444;
+
 				text-decoration: none;
-				color: #444444;
 			}
 		}
 	}
@@ -250,9 +262,10 @@ main {
 }
 
 footer {
-	font-size: 0.875rem;
-	text-align: center;
 	color: gray;
+
+	text-align: center;
+	font-size: 0.875rem;
 	p {
 		margin: 15px 0;
 

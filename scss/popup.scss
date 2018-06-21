@@ -1,12 +1,12 @@
-@import 'fonts';
-@import 'colors';
+@import "fonts";
+@import "colors";
 
 body {
 	margin: 0;
 
-	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
-
 	background: white;
+
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 
 	&.trello-page {
 		width: 250px;
@@ -17,9 +17,9 @@ body {
 	margin: 10px;
 	padding: 10px 20px 20px;
 
-	border-radius: 4px;
 	color: $trelloListHeaderColor;
 	background: #edeff0;
+	border-radius: 4px;
 
 	&.dark-background {
 		color: white;
@@ -54,12 +54,13 @@ p {
 button,
 .button,
 #HighlightIndicator {
-	font: 14px 'Helvetica Neue',Arial,Helvetica,sans-serif;
+	color: $trelloListHeaderColor;
+
+	font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
 	font-weight: 700;
 	text-decoration: none;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: $trelloListHeaderColor;
 }
 
 .dark-background #HighlightIndicator {
@@ -70,26 +71,26 @@ button,
 .button {
 	position: relative;
 
-	line-height: 18px;
-	box-sizing: border-box;
 	height: 34px;
 	overflow: hidden;
 	margin-top: 6px;
 	padding: 7px;
+	box-sizing: border-box;
 
-	cursor: pointer;
-
+	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
 	border: 1px solid $listBG;
 	border-bottom-color: #cdd2d4;
 	border-radius: 3px;
-	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
 
+	line-height: 18px;
+
+	cursor: pointer;
 	user-select: none;
 
 	&:hover {
-		border-color: #298fca #298fca #026aa7;
 		color: #fff;
 		background: #298fca;
+		border-color: #298fca #298fca #026aa7;
 	}
 
 	& img {
@@ -102,12 +103,14 @@ button,
 	}
 
 	& .gear::before {
-		content: '\e926';
-		font-family: trellicons;
-		font-size: 16px;
 		position: absolute;
 		top: 7px;
 		left: 10px;
+
+		content: "\e926";
+
+		font-family: trellicons;
+		font-size: 16px;
 	}
 
 	&:hover .gear::before {
@@ -120,20 +123,23 @@ button,
 }
 
 #HighlightIndicator {
-
 	&::before {
-		margin-right: 6px;
-		background: url('/img/256off.svg') no-repeat;
-		content: ' ';
 		display: inline-block;
+
 		width: 20px;
 		height: 20px;
+		margin-right: 6px;
+
+		content: " ";
+
+		background: url("/img/256off.svg") no-repeat;
 		border-radius: 2px;
+
 		vertical-align: middle;
 	}
 
 	&.on::before {
+		background: url("/img/256.svg") no-repeat;
 		border: 1px solid rgba(255, 255, 255, 0.28);
-		background: url('/img/256.svg') no-repeat;
 	}
 }
