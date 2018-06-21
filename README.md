@@ -56,10 +56,10 @@ Reference: https://bugzil.la/1323228
 To make the web extension between-page messaging system work in Firefox (used mainly to communicate changes in options), you must add a fictional addon ID to manifest.json, using the below as a template. This must only be used during development, and may cause issues in other browsers.
 
 	"applications": {
-	  "gecko": {
-	    "id": "addon@example.com",
-	    "strict_min_version": "42.0"
-	  }
+		"gecko": {
+			"id": "addon@example.com",
+			"strict_min_version": "42.0"
+		}
 	}
 
 ### How the JavaScript works (brief intro)

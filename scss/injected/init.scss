@@ -36,7 +36,10 @@
 }
 
 .bmko_list-highlighter-applied .list {
-	transition: background 0.15s, opacity 0.05s 0.3s, filter 0.05s 0.3s;
+	transition: background .15s, opacity .05s .3s;
+	* {
+		transition: filter .05s .3s;
+	}
 
 	&.bmko_trash-list .list-cards {
 		text-decoration: line-through;
@@ -44,7 +47,10 @@
 }
 
 .bmko_card-is-dragging.bmko_list-highlighter-applied .list {
-	transition: background 0.15s, opacity 0.05s, filter 0.05s;
+	transition: background .15s, opacity .05s;
+	* {
+		transition: filter .05s;
+	}
 }
 
 .list.bmko_high-list {
@@ -111,12 +117,24 @@
 	}
 }
 
+.list-card {
+	&.bmko_header-card-applied {
+		border-bottom-color: transparent;
+		box-shadow: none;
+	}
+	&.placeholder {
+		background: rgba(black, .1);
+		border-bottom-color: transparent;
+		box-shadow: none;
+	}
+}
+
 .bmko_normal-list,
 #classic-body.bmko_do-not-dim-lists .bmko_untagged-list {
 	opacity: 1;
 }
 
-#classic-body:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
+#classic-body.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 .bmko_low-list {
 	opacity: var(--low-priority-opacity);
 }
@@ -124,11 +142,12 @@
 .bmko_ignore-list,
 .bmko_trash-list {
 	opacity: var(--done-opacity);
-
-	filter: grayscale(100%);
+	* {
+		filter: grayscale(100%);
+	}
 }
 
-#classic-body.bmko_undim-on-hover {
+#classic-body.bmko_list-highlighter-applied.bmko_undim-on-hover {
 	&:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 	.bmko_low-list,
 	.bmko_ignore-list,
@@ -136,8 +155,9 @@
 		&.bmko_contains-placeholder,
 		&:hover {
 			opacity: 1;
-
-			filter: grayscale(0%);
+			* {
+				filter: grayscale(0%);
+			}
 		}
 	}
 }
