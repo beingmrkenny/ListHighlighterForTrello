@@ -1,6 +1,6 @@
 <section id="Dimming">
 
-	<h2>Un-dim dimmed lists on hover</h2>
+	<h2>Un-dim dimmed lists on mouse over</h2>
 
 	<div class="standard-options">
 		<option-widget>
@@ -10,7 +10,7 @@
 			</label>
 		</option-widget>
 		<div>
-			<p>Make dimmed lists easier to read by un-dimming them when you mouse over them</p>
+			<p>Make dimmed lists easier to read by un-dimming them when you move the mouse cursor over them</p>
 			<p>Default: on</p>
 		</div>
 	</div>
@@ -28,6 +28,7 @@
 		</option-widget>
 		<div>
 			<p>Dim untagged lists on boards with normal priority lists (recommended)</p>
+			<p>If this is disabled, there will be no difference between “normal” priority lists and untagged lists.</p>
 			<p>Default: on</p>
 		</div>
 	</div>
@@ -47,7 +48,7 @@
 
 	<h2>Custom dimming</h2>
 
-	<p>Here you can change how much dimming List Highlighter applies to lists. The default for low priority lists is 45%, while the default for done/ignore/trash lists is 25%.</p>
+	<p>Here you can change how dim lists get. The default for low priority lists is 45%; the default for done/ignore/trash lists is 25%.</p>
 
 	<div id="DimmingExampleBoard">
 		<label for="DimmingLow" class="dimming-input-block">

@@ -1,43 +1,33 @@
 .list-card.bmko_header-card-applied {
-
 	background-color: transparent;
 	border-bottom: none;
+	box-shadow: none;
 
 	// Dragging
 	body > & {
-
-		background-color: transparentize(#EDEFF0, .8);
-		background: transparentize(#EDEFF0, .8);
+		background: transparentize(#edeff0, 0.8);
+		background-color: transparentize(#edeff0, 0.8);
 
 		.list-card-details {
-			background-color: transparent !important; // REVIEW Get rid of this !important
 			background: transparent !important; // REVIEW Get rid of this !important
+			background-color: transparent !important; // REVIEW Get rid of this !important
 		}
 
 		h3 {
 			color: $trelloListHeaderColor;
 		}
-
-	}
-
-}
-
-.bmko_high-list .active-card.list-card.bmko_header-card-applied .list-card-operation {
-	color: $trelloListHeaderColor;
-	&:hover {
-		background: transparentize(#EDEFF0, .7);
 	}
 }
 
 .bmko_header-card {
-
 	.expanded-list-card-operation {
-		background-color: transparent;
 		height: 14px;
+
+		background-color: transparent;
 		span {
 			height: 14px;
-			padding: 0 4px;
 			margin-left: 2px;
+			padding: 0 4px;
 			&::before {
 				position: relative;
 				top: -2px;
@@ -50,33 +40,32 @@
 	}
 
 	.list-card-details {
-		padding: 0 6px 0 3px;
 		display: flex;
 		flex-direction: column;
+
+		padding: 0 6px 0 3px;
 	}
 
 	.list-card-labels {
-		margin-bottom: 0;
 		order: 1;
+
+		margin-bottom: 0;
 	}
 
 	h3 {
-		margin: 0 0 1px 0;
-		font-weight: 700;
-		font-size: 14px;
 		order: 2;
-	}
 
-	// FIXME is this needed?
-	.bmko_list-highlighter-toggled-off & h3 {
-		// color: $trelloListHeaderColor;
-		// -webkit-text-fill-color: $trelloListHeaderColor;
+		margin: 0 0 1px 0;
+
+		font-size: 14px;
+		font-weight: 700;
 	}
 
 	.badges {
-		padding-left: 0;
-		margin-left: -4px;
 		order: 3;
+
+		margin-left: -4px;
+		padding-left: 0;
 	}
 
 	.list-card-title {
@@ -88,15 +77,14 @@
 	}
 
 	.list-card-operation {
-		padding: 0 4px 0;
 		height: 16px;
+		padding: 0 4px 0;
+
 		line-height: 18px;
 	}
-
 }
 
 .list-card.bmko_horizontal-rule-card {
-
 	padding: 0;
 
 	.bmko_header-cards-extra-space & {
@@ -104,48 +92,79 @@
 	}
 
 	.bmko_separator-cards-visible-line & {
-		padding: 11px 0;
 		min-height: 0;
+		padding: 11px 0;
 	}
 
 	.bmko_header-cards-extra-space.bmko_separator-cards-visible-line & {
 		padding: 16px 0;
 	}
 
-	.list-card-cover, .list-card-details, span, p {
+	.list-card-cover,
+	.list-card-details,
+	span,
+	p {
 		display: none;
 	}
 
 	&.is-stickered {
+		padding-bottom: 50px;
 		.list-card-operation {
 			display: inline-block;
 		}
-		padding-bottom: 50px;
 	}
-
 }
 
 .bmko_list-highlighter-applied .list {
-
 	.list-card.bmko_header-card-applied:not(.placeholder):not(.active-card) {
 		background: transparent !important;
 	}
+}
 
+.bmko_horizontal-rule-card {
+	hr {
+		margin: 0;
+
+		color: transparent;
+		background: transparent;
+	}
+	.bmko_separator-cards-visible-line & hr {
+		color: $trelloListHeaderColor;
+		background: $trelloListHeaderColor;
+
+		opacity: 0.4;
+	}
 }
 
 .bmko_high-list {
-
 	.bmko_header-card-applied.active-card {
 		background-color: hsla(0, 0, 100%, 0.3) !important; // REVIEW get rid of this important
+	}
+	.bmko_header-card {
+		.badge-icon,
+		.badge-text {
+			color: var(--high-pri-text);
+		}
+		.badge {
+			background: transparent;
+		}
+		.badge.is-due-soon,
+		.badge.is-due-past {
+			border: 1px solid var(--high-pri-text);
+		}
+	}
+	.bmko_separator-cards-visible-line & hr {
+		color: var(--high-pri-text);
+		background: var(--high-pri-text);
+
+		opacity: 0.4;
 	}
 }
 
 .bmko_low-list {
-
 	.bmko_horizontal-rule-card:hover {
 		background-color: hsla(0, 0, 100%, 0.05);
 	}
-
 }
 
 .list.bmko_high-list .bmko_header-card h3 {
@@ -159,18 +178,5 @@
 		&:hover {
 			background-color: hsla(0, 0, 100%, 0.1);
 		}
-	}
-}
-
-.bmko_horizontal-rule-card {
-	hr {
-		background: transparent;
-		color: transparent;
-		margin: 0;
-	}
-	.bmko_separator-cards-visible-line & hr {
-		background: $trelloListHeaderColor;
-		color: $trelloListHeaderColor;
-		opacity: .4;
 	}
 }

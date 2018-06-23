@@ -2,7 +2,7 @@
 
 	<h2>Highlight colour</h2>
 
-	<p>You can change the default highlight colour that’s used on all boards. You can also choose different highlight colours for each of the background types Trello provides. Choose one of the 10 preset colours or pick any colour you like with the custom tile.</p>
+	<p>You can change the default highlight colour that’s used on all boards. Choose one of the 10 preset colours or pick any colour you like with the custom tile. You can also choose different highlight colours for each of the background types Trello provides.</p>
 
 	<div id="DummyBoard" data-trello-bg="default" data-list-color-name="default">
 
@@ -141,7 +141,7 @@
 
 	<h2>More options</h2>
 
-	<p>These options let you control exactly how List Highlighter handles list titles.</p>
+	<p>These options let you control more precisely how List Highlighter handles list titles.</p>
 
 	<div class="standard-options">
 		<option-widget>
@@ -198,10 +198,8 @@
 		<div>
 			<p>Match partial title text</p>
 			<p>
-				Highlight lists if the title contains one of the keywords.<br>
-				“<strong>To do</strong>” will always be matched<br>
-				Currently,
-				“<strong>Things to do</strong>” <text-switcher data-listen="MatchTitleSubstrings" data-off="will not" data-on="will also">will not</text-switcher> be matched
+				Highlight lists if the title only <em>contains</em> one of the keywords. “<strong>To do</strong>” will always be matched.<br>
+				Currently: “<strong>Things to do</strong>” <text-switcher data-listen="MatchTitleSubstrings" data-off="will not" data-on="will also">will not</text-switcher> be matched.
 			</p>
 			<p>Default: off</p>
 		</div>

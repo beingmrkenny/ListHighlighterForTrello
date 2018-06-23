@@ -84,10 +84,13 @@ function setValuesOnInputs (results) {
 function connectInputsToEachOther () {
 
 	for (let textSwitcher of $$('text-switcher')) {
-		listen($id(textSwitcher.dataset.listen), 'change', function () {
-			let switcher = $(`[data-listen="${this.id}"]`);
-			switcher.textContent = switcher.dataset[ ( this.checked ? 'on' : 'off' ) ];
+		let subject = $id(textSwitcher.dataset.listen);
+		listen(subject, 'change', function () {
+			for (let switcher of $$(`[data-listen="${this.id}"]`)) {
+				switcher.textContent = switcher.dataset[ ( this.checked ? 'on' : 'off' ) ];
+			}
 		});
+		subject.dispatchEvent(new Event('change'));
 	}
 
 	var optionsControls = {

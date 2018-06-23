@@ -4,6 +4,8 @@
 	display: none;
 }
 
+// Colour blind friendly mode
+
 #classic-body.body-color-blind-mode-enabled .bmko_high-list {
 	background-image: linear-gradient(
 	to bottom right,
@@ -25,7 +27,7 @@
 	}
 }
 
-#classic-body.body-color-blind-mode-enabled.bmko_light-highlight-color .bmko_high-list {
+#classic-body.body-color-blind-mode-enabled.bmko_dark-highlight-color .bmko_high-list {
 	.list-header-name,
 	.list-header-extras,
 	.bmko_list-limit-notice,
@@ -35,97 +37,21 @@
 	}
 }
 
-.bmko_list-highlighter-applied .list {
-	transition: background .15s, opacity .05s .3s;
-	* {
-		transition: filter .05s .3s;
-	}
+// Opacity and transitions
 
-	&.bmko_trash-list .list-cards {
-		text-decoration: line-through;
+.bmko_list-highlighter-applied .list {
+	transition: background 0.15s, opacity 0.05s 0.15s;
+	> div,
+	> a {
+		transition: filter 0.05s 0.15s;
 	}
 }
 
 .bmko_card-is-dragging.bmko_list-highlighter-applied .list {
-	transition: background .15s, opacity .05s;
-	* {
-		transition: filter .05s;
-	}
-}
-
-.list.bmko_high-list {
-	color: var(--high-pri-text);
-	background: var(--high-pri);
-
-	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
-		background: rgba(black, 0.1);
-	}
-	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
-		background: rgba(black, 0.17);
-	}
-
-	// list header
-	.list-header-num-cards,
-	.mod-list-name,
-	.mod-list-name:disabled,
-	.icon-lg {
-		color: var(--high-pri-text);
-
-		-webkit-text-fill-color: var(--high-pri-text);
-	}
-
-	.is-editing {
-		color: $trelloListHeaderColor;
-
-		-webkit-text-fill-color: $trelloListHeaderColor;
-	}
-
-	// ellipsis button, add card button
-	.bmko_header-card .expanded-list-card-operation span,
-	.bmko_header-card .expanded-list-card-operation .icon-sm,
-	.open-card-composer,
-	.list-header-extras-menu,
-	.cc-controls .icon-overflow-menu-horizontal {
-		color: var(--high-pri-text);
-		&:hover {
-			background-color: rgba(black, 0.1);
-			color: var(--high-pri-text);
-		}
-		.icon-sm {
-			color: var(--high-pri-text);
-		}
-	}
-
-	.bmko_header-card .expanded-list-card-operation .icon-sm {
-		opacity: .8;
-	}
-
-	.list-card {
-		&:not(.placeholder):not(.bmko_header-card-applied) {
-			border-bottom-color: var(--high-pri-border);
-			box-shadow: 0 1px 0 var(--high-pri-border);
-		}
-		&.bmko_header-card-applied {
-			border-bottom-color: transparent;
-			box-shadow: none;
-		}
-		&.placeholder {
-			background: rgba(black, 0.1);
-			border-bottom-color: transparent;
-			box-shadow: none;
-		}
-	}
-}
-
-.list-card {
-	&.bmko_header-card-applied {
-		border-bottom-color: transparent;
-		box-shadow: none;
-	}
-	&.placeholder {
-		background: rgba(black, .1);
-		border-bottom-color: transparent;
-		box-shadow: none;
+	transition: background 0.15s, opacity 0.05s;
+	> div,
+	> a {
+		transition: filter 0.05s;
 	}
 }
 
@@ -142,7 +68,8 @@
 .bmko_ignore-list,
 .bmko_trash-list {
 	opacity: var(--done-opacity);
-	* {
+	> div,
+	> a {
 		filter: grayscale(100%);
 	}
 }
@@ -155,15 +82,87 @@
 		&.bmko_contains-placeholder,
 		&:hover {
 			opacity: 1;
-			* {
+			> div,
+			> a {
 				filter: grayscale(0%);
 			}
 		}
 	}
 }
 
-.bmko_list-highlighter-applied .list.bmko_trash-list .list-cards {
+.list.bmko_trash-list .list-cards {
 	text-decoration: line-through;
+}
+
+// High priority list stylings
+
+.list.bmko_high-list {
+	color: var(--high-pri-text);
+	background: var(--high-pri);
+
+	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
+		background: rgba(black, 0.1);
+	}
+
+	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(black, 0.17);
+	}
+
+	// card styles
+	.list-card {
+		&:not(.placeholder):not(.bmko_header-card-applied) {
+			border-bottom-color: var(--high-pri-border);
+			box-shadow: 0 1px 0 var(--high-pri-border);
+		}
+		&.placeholder {
+			background: rgba(black, 0.1);
+			border-bottom-color: transparent;
+			box-shadow: none;
+		}
+	}
+
+	// list header
+	.list-header-num-cards,
+	.mod-list-name,
+	.mod-list-name:disabled,
+	.icon-lg {
+		color: var(--high-pri-text);
+		-webkit-text-fill-color: var(--high-pri-text);
+	}
+	.is-editing {
+		color: $trelloListHeaderColor;
+		-webkit-text-fill-color: $trelloListHeaderColor;
+	}
+
+	// list buttons
+	.list-header-extras-menu,
+	.open-card-composer,
+	.cc-controls .icon-overflow-menu-horizontal {
+		color: var(--high-pri-text);
+		&:hover {
+			background-color: rgba(black, 0.1);
+		}
+		.icon-sm {
+			color: var(--high-pri-text);
+		}
+	}
+
+	// card buttons
+	.bmko_header-card .expanded-list-card-operation {
+		span,
+		.icon-sm {
+			color: var(--high-pri-text);
+			&:hover {
+				background-color: rgba(black, 0.1);
+			}
+		}
+		span .icon-sm {
+			color: var(--high-pri-text);
+		}
+		.icon-sm {
+			opacity: 0.8;
+		}
+	}
 }
 
 @import "workPoints";

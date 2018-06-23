@@ -11,7 +11,8 @@
 
 	"web_accessible_resources" : [
 		"img/buttonIcon.png",
-		"img/buttonIconOff.png"
+		"img/buttonIconOff.png",
+		"img/expand.svg"
 	],
 
 	"background" : {

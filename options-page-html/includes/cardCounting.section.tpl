@@ -4,9 +4,9 @@
 
 	<p>Limiting the number of cards a list can contain can help you plan your workload and focus on current tasks.</p>
 
-	<p>You can add a limit to a list by putting a number in square brackets in the list title, e.g., “<kbd>Doing&nbsp;[3]</kbd>”. To add a simple card count to a list without applying a limit, tag it <kbd class="tag">#count</kbd>.</p>
+	<p>You can add a limit to a list by putting a number in square brackets in the list title, e.g., “<kbd>Doing&nbsp;[3]</kbd>”. When cards are added that take the list over that limit, a notice will be displayed at the top of the list.</p>
 
-	<p>This functionality is switched off by default.</p>
+	<p>To add a simple card count to a list without applying a limit, tag it with <kbd class="tag">#count</kbd>.</p>
 
 	<div class="standard-options">
 		<option-widget>
@@ -46,7 +46,7 @@
 		</option-widget>
 		<div>
 			<p>Enable manual points on cards</p>
-			<p>When enabled, you can change how much a card is worth by adding a number in square brackets to the card text (you can also specify zero). Other extensions for Trello can sometimes prevent this option from working.</p>
+			<p>When enabled, you can change how much a card is worth by adding a number in square brackets to the card text. You can also specify zero if you don’t want a card to be counted. Header and Separator cards are not counted. Other extensions for Trello can sometimes prevent this option from working.</p>
 			<p>Default: off</p>
 		</div>
 	</div>
