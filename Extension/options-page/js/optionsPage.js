@@ -125,7 +125,7 @@ function connectInputsToEachOther () {
 			if (mutationRecord && mutationRecord.attributeName == 'disabled') {
 				let config = optionsControls[mutationRecord.target.id];
 				let disabled = true;
-				if (mutationRecord.oldValue === '' && !mutation.target.checked) {
+				if (mutationRecord.oldValue === '' && !mutationRecord.target.checked) {
 					disabled = false;
 				}
 				if (config.disableInputs) {
@@ -139,12 +139,11 @@ function connectInputsToEachOther () {
 
 		input.addEventListener('change', function() {
 
-			let input = this,
-				config = optionsControls[this.id];
+			let config = optionsControls[this.id];
 
 			if (config) {
 
-				if (input.checked == false && config.uncheckInputs) {
+				if (this.checked == false && config.uncheckInputs) {
 					for (let uncheckInputId of config.uncheckInputs) {
 						$id(uncheckInputId).checked = false;
 					}
@@ -152,8 +151,8 @@ function connectInputsToEachOther () {
 
 				if (config.disableInputs) {
 					for (let disableInput of config.disableInputs) {
-						$id(disableInput).disabled = !input.checked;
-						document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', !input.checked);
+						$id(disableInput).disabled = !this.checked;
+						document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', !this.checked);
 					}
 				}
 
@@ -161,7 +160,9 @@ function connectInputsToEachOther () {
 
 		});
 
-		input.dispatchEvent(new Event('change'));
+		setTimeout(function () {
+			input.dispatchEvent(new Event('change'));
+		}, 0);
 
 	}
 
