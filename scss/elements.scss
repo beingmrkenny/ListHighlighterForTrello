@@ -114,3 +114,50 @@ kbd {
 		font-style: normal;
 	}
 }
+
+input[type=range] {
+	-webkit-appearance: none;
+
+	background: transparent;
+}
+
+@mixin thumb {
+	display: inline-block;
+	-webkit-appearance: none;
+	position: relative;
+	top: -5px;
+
+	width: 14px;
+	height: 14px;
+
+	content: " ";
+
+	background: white;
+	border: 0;
+	border-radius: 10px;
+
+	cursor: pointer;
+}
+
+@mixin track {
+	height: 4px;
+
+	background: rgba(black, 0.3);
+	border-radius: 4px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	@include thumb;
+}
+
+input[type=range]::-moz-range-thumb {
+	@include thumb;
+}
+
+input[type=range]::-moz-range-track {
+	@include track;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	@include track;
+}

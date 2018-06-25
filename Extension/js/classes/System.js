@@ -1,6 +1,6 @@
 class System {
 
-	static setup() {
+	static setup () {
 		Options.initialise(function(results) {
 			System.headerCardsSetup();
 			System.detectAndSaveColorBlindFriendlyMode();
@@ -14,7 +14,44 @@ class System {
 			watch('body');
 			System.toggleToolbarButton();
 			System.dimmingSetup();
+			System.keydownUndimSetup();
 		});
+	}
+
+	static keydownUndimSetup () {
+		if (GLOBAL.UndimOnHover) {
+			document.body.addEventListener('keydown', (e) => {
+				setTimeout(function () {
+					if (window.location.pathname.startsWith('/b/')) {
+						if (e.key == 'ArrowLeft' || e.key == 'ArrowRight' || e.key == 'ArrowUp' || e.key == 'ArrowDown') {
+							let active = $('.active-card'),
+								body = getTrelloBody();
+							if (body) {
+								body.classList.add('bmko_card-is-dragging');
+							}
+							if (active) {
+								let list = active.closest('.list');
+								for (let activeList of $$('.bmko_undimmed-list')) {
+									activeList.classList.remove('bmko_undimmed-list');
+								}
+								list.classList.add('bmko_undimmed-list');
+								if (window.BMKO_undimTimerId) {
+									clearInterval(window.BMKO_undimTimerId);
+								}
+								window.BMKO_undimTimerId = setTimeout(function () {
+									for (let activeList of $$('.bmko_undimmed-list')) {
+										activeList.classList.remove('bmko_undimmed-list');
+									}
+									if (body) {
+										body.classList.remove('bmko_card-is-dragging');
+									}
+								}, 5000);
+							}
+						}
+					}
+				}, 0);
+			});
+		}
 	}
 
 	static dimmingSetup () {
@@ -170,13 +207,13 @@ class System {
 
 			if (GLOBAL.UndimOnHover) {
 				if (draggedCard) {
-					for (let list of document.querySelectorAll('.bmko_contains-placeholder')) {
-						list.classList.remove('bmko_contains-placeholder');
+					for (let list of document.querySelectorAll('.bmko_undimmed-list')) {
+						list.classList.remove('bmko_undimmed-list');
 					}
 				}
 				let list = placeholder.closest('.list');
 				if (list) {
-					list.classList.add('bmko_contains-placeholder');
+					list.classList.add('bmko_undimmed-list');
 				}
 
 				// card just been dropped
@@ -187,8 +224,8 @@ class System {
 						body.classList.remove('bmko_card-is-dragging');
 					}
 
-					for (let list of document.querySelectorAll('.bmko_contains-placeholder')) {
-						list.classList.remove('bmko_contains-placeholder');
+					for (let list of document.querySelectorAll('.bmko_undimmed-list')) {
+						list.classList.remove('bmko_undimmed-list');
 					}
 
 				}

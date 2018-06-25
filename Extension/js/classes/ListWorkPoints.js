@@ -222,8 +222,9 @@ class ListWorkPoints {
 				over = cardCount - listLimit;
 			}
 
-			var cards = (cardCount == 1) ? 'card' : 'cards',
-				cardCountString = `${cardCount} ${cards}`;
+			var name = (GLOBAL.EnablePointsOnCards) ? 'point' : 'card',
+				s = (cardCount == 1) ? '' : 's',
+				cardCountString = `${cardCount} ${name}${s}`;
 
 			if (listLimit === '#count' || (GLOBAL.CountAllCards && typeof listLimit == 'undefined')) {
 

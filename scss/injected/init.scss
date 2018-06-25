@@ -79,7 +79,7 @@
 	.bmko_low-list,
 	.bmko_ignore-list,
 	.bmko_trash-list {
-		&.bmko_contains-placeholder,
+		&.bmko_undimmed-list,
 		&:hover {
 			opacity: 1;
 			> div,

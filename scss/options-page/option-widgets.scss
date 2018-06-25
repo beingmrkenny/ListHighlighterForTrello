@@ -8,6 +8,16 @@
 
 	margin: 40px 0;
 
+	div {
+		padding-left: 20px;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.disabled + div {
+		cursor: default;
+	}
+
 	p:first-of-type {
 		margin-top: 0;
 
@@ -26,8 +36,6 @@
 
 option-widget {
 	display: block;
-
-	margin-right: 20px;
 
 	input {
 		display: none;

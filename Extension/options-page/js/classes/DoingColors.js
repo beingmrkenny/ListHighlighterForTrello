@@ -151,23 +151,22 @@ class DoingColors {
 			contrastColor = (color.isLight()) ? '#292929' : '#ffffff';
 			highlightColor = (color.isLight()) ? 'bmko_dark-highlight-color' : 'bmko_light-highlight-color';
 
-			if (body) {
-				body.classList.remove('bmko_light-highlight-color', 'bmko_dark-highlight-color');
-				body.classList.add(highlightColor);
-			}
-
-			let expandURL = chrome.extension.getURL("img/expand.svg");
-
 			css = `.bmko_high-list {
 				--high-pri: ${highPri};
 				--high-pri-border: ${newColor.toHex()};
 				--high-pri-text: ${contrastColor};
-			}
+			}`;
 
-			.bmko_light-highlight-color .bmko_header-card .expanded-list-card-operation .icon-expand {
-				background-image: url("${expandURL}");
+			if (body) {
+				body.classList.remove('bmko_light-highlight-color', 'bmko_dark-highlight-color');
+				body.classList.add(highlightColor);
+				if (highlightColor == 'bmko_light-highlight-color') {
+					let expandURL = chrome.extension.getURL("img/expand.svg");
+					css += `.bmko_light-highlight-color .bmko_high-list .bmko_header-card .expanded-list-card-operation .icon-expand {
+						background-image: url("${expandURL}");
+					}`;
+				}
 			}
-			`;
 
 			existingStyle = $id('BMKOHighPriColorCSS');
 			if (existingStyle) {

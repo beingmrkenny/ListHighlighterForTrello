@@ -11,6 +11,14 @@ listen(window, 'hashchange', () => {
 	highlightPanel(window.location.hash);
 });
 
+listen($$('.standard-options div'), 'click', function () {
+	let input = this.previousElementSibling.querySelector('input');
+	if (!input.disabled) {
+		input.checked = !input.checked;
+		input.dispatchEvent(new Event('change'));
+	}
+});
+
 var opacityRanges = document.querySelectorAll('.opacity-range');
 listen(opacityRanges, 'input', function () {
 	$(`[data-value-label-for="${this.name}"]`).textContent = Math.round(this.value * 100) + '%';
@@ -129,35 +137,23 @@ function connectInputsToEachOther () {
 					disabled = false;
 				}
 				if (config.disableInputs) {
-					for (let disableInput of config.disableInputs) {
-						$id(disableInput).disabled = disabled;
-						document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', disabled);
-					}
+					disableInputs (config.disableInputs, disabled)
 				}
 			}
 		});
 
 		input.addEventListener('change', function() {
-
 			let config = optionsControls[this.id];
-
 			if (config) {
-
 				if (this.checked == false && config.uncheckInputs) {
 					for (let uncheckInputId of config.uncheckInputs) {
 						$id(uncheckInputId).checked = false;
 					}
 				}
-
 				if (config.disableInputs) {
-					for (let disableInput of config.disableInputs) {
-						$id(disableInput).disabled = !this.checked;
-						document.querySelector(`[for="${disableInput}"]`).classList.toggle('disabled', !this.checked);
-					}
+					disableInputs (config.disableInputs, !this.checked);
 				}
-
 			}
-
 		});
 
 		setTimeout(function () {
@@ -166,6 +162,18 @@ function connectInputsToEachOther () {
 
 	}
 
+}
+
+function disableInputs (disableInputs, status) {
+	for (let disableInput of disableInputs) {
+		$id(disableInput).disabled = status;
+		let label = document.querySelector(`[for="${disableInput}"]`),
+			widget = label.closest('option-widget');
+		label.classList.toggle('disabled', status);
+		if (widget) {
+			widget.classList.toggle('disabled', status);
+		}
+	}
 }
 
 function saveOptionsOnChange () {
