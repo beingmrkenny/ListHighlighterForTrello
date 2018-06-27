@@ -1,9 +1,14 @@
 @mixin full-width($width, $backgroundColor: white) {
 	width: $width;
+	margin-right: auto;
+	margin-left: auto;
 
 	background: $backgroundColor;
-	border-right: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
-	border-left: calc( (100vw - #{$width}) / 2 ) solid $backgroundColor;
+	@media (max-width: 800px) {
+		width: $width - 40px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
 }
 
 body {
@@ -11,7 +16,6 @@ body {
 	flex-direction: column;
 	align-items: stretch;
 
-	min-height: 100vh;
 	margin: 0;
 }
 

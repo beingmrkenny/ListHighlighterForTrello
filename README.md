@@ -32,7 +32,7 @@ The root directory of this repo needs a config file (config.json) with the follo
 		"refreshOnWatch" : false,
 		"openOptionsOnRefresh" : false,
 		"extensionKey" : "abcdefghijklmnopqrstuvwxyzabcdef",
-		"scssCompressionStyle" : "compressed"
+		"scssCompressionStyle" : "expanded"
 	}
 
 - The `listHighlighterDir` variable (string) should be the full path to where you have the List Highlighter repo checked out
