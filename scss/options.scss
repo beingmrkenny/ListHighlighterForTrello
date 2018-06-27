@@ -9,8 +9,8 @@
 }
 
 body {
-	background: white;
 	color: $bodyTextColor;
+	background: white;
 
 	line-height: 1.6em;
 	font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
@@ -18,8 +18,8 @@ body {
 }
 
 #MainHeader {
-	border-bottom: 1px solid #d6dadc;
 	background: #edeff0;
+	border-bottom: 1px solid #d6dadc;
 
 	h1 {
 		margin: 0;
@@ -129,6 +129,14 @@ body {
 	}
 }
 
+#DimmingLowExample {
+	opacity: var(--low-priority-opacity);
+}
+
+#DimmingDoneExample {
+	opacity: var(--done-opacity);
+}
+
 .tags-and-titles {
 	margin-top: 0;
 	th,
@@ -157,29 +165,25 @@ body {
 	background: var(--high-pri);
 }
 
-.normal {
+.normal,
+.low,
+.ignore,
+.done {
 	color: $normalTextColor;
 	background: $listBG;
 }
 
 .low {
-	color: transparentize(#444, 0.6);
-	background: transparentize($listBG, 0.5);
+	opacity: var(--low-priority-opacity);
 }
 
 .ignore,
 .done {
-	color: $ignoreTextColor;
-	background: transparentize($listBG, 0.7);
-
-	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
-
-	opacity: 0.5;
+	opacity: var(--done-opacity);
 }
 
 .done {
 	text-decoration: line-through;
-	text-shadow: 1px 1px 0 white;
 }
 
 nav {

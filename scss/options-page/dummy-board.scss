@@ -58,11 +58,12 @@
 
 	.normal-list {
 		.list {
-			fill: rgba(226, 228, 230, 0.498039);
+			fill: rgb(226, 228, 230);
 		}
 		.card {
-			fill: rgba(255, 255, 255, 0.2);
+			fill: rgb(255, 255, 255);
 		}
+		opacity: var(--low-priority-opacity);
 	}
 
 	.doing-list .list {
@@ -73,11 +74,12 @@
 
 	.done-list {
 		.list {
-			fill: rgba(226, 228, 230, 0.0666667);
+			fill: rgb(226, 228, 230);
 		}
 		.card {
-			fill: rgba(255, 255, 255, 0.0588235);
+			fill: rgb(255, 255, 255);
 		}
+		opacity: var(--done-opacity);
 	}
 
 	#BackgroundColorsHeaderAll {

@@ -26,8 +26,7 @@
 	},
 
 	"options_ui" : {
-		"page" : "options-page/index.html",
-		"browser_style" : false
+		"page" : "options-page/index.html"
 	},
 
 	"permissions" : [

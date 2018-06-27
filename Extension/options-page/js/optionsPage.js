@@ -28,6 +28,7 @@ listen(opacityRanges, 'input', function () {
 Options.initialise(function (results) {
 	document.body.classList.toggle('color-blind-friendly-mode', (results.colorBlindFriendlyMode));
 	GLOBAL.colors = Options.processColors(results);
+	DoingColors.setupDimmingCSS();
 	setupDummy();
 	setValuesOnInputs(results);
 	connectInputsToEachOther();
@@ -39,13 +40,13 @@ Options.initialise(function (results) {
 });
 
 function setupDimmingExample () {
-	$id('DimmingLowExample').style.opacity = GLOBAL.DimmingLow;
 	$id('DimmingLow').value = GLOBAL.DimmingLow;
 	$('[data-value-label-for="DimmingLow"]').textContent = Math.round(GLOBAL.DimmingLow * 100) + '%';
 
-	$id('DimmingDoneExample').style.opacity = GLOBAL.DimmingDone;
 	$id('DimmingDone').value = GLOBAL.DimmingDone;
 	$('[data-value-label-for="DimmingDone"]').textContent = Math.round(GLOBAL.DimmingDone * 100) + '%';
+
+	DoingColors.setupDimmingCSS();
 }
 
 function highlightPanel (hashtag) {
@@ -228,6 +229,9 @@ function saveOptionsOnChange () {
 					},
 					function () {
 						sendMessage(`options.${name}`);
+						if (name == 'DimmingLow' || name == 'DimmingDone') {
+							DoingColors.setupDimmingCSS();
+						}
 					}
 				);
 

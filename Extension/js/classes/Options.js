@@ -11,6 +11,10 @@ class Options {
 
 	static save (object, callback = function(){}) {
 		chrome.storage.sync.set(object, callback);
+		for (let key in object) {
+			let name = key.replace(/^options\./, '');
+			GLOBAL[name] = object[key];
+		}
 	}
 
 	static initialise (callback = null) {
