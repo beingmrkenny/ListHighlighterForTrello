@@ -30,16 +30,11 @@
 
 	font-size: 14px;
 	font-weight: bold;
-	// FIXME this is only needed on high pri
-	color: var(--header-color);
 	border-radius: 4px;
 
 	transition: padding 0.25s;
 
 	pointer-events: none;
-
-	// FIXME this is only needed on high pri
-	-webkit-text-fill-color: var(--header-color);
 
 	.is-subscribe-shown & {
 		margin-right: -51px;
@@ -78,11 +73,13 @@
 			margin-left: 10px;
 
 			font-weight: bold;
-			// FIXME this is only needed on high pri
-			color: var(--list-color);
 			content: "over";
 		}
 	}
+}
+
+.bmko_high-list.bmko_list-would-be-over:not([data-bmko-original-list]) .placeholder:not(.bmko_header-card-placeholder) {
+	color: var(--high-pri-text);
 }
 
 .bmko_ignore-list,

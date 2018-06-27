@@ -164,21 +164,21 @@ class ListWorkPoints {
 	getCardCount() {
 
 		let cards = this.list.querySelectorAll(ListWorkPoints.getCardSelector()),
-			cardCount = 0;
+			cardCount = cards.length,
+			points = null;
 
 		if (GLOBAL.EnablePointsOnCards) {
+			points = 0;
 			for (let card of cards) {
 				let cardPoints = ListWorkPoints.getCardPoints(card);
 				if (typeof cardPoints != 'number') {
 					cardPoints = 1;
 				}
-				cardCount += cardPoints;
+				points += cardPoints;
 			}
-		} else {
-			cardCount = cards.length;
 		}
 
-		return cardCount;
+		return {cardCount: cardCount, points: points};
 	}
 
 	removeAccoutrements () {
@@ -209,7 +209,10 @@ class ListWorkPoints {
 
 			var className, over, noticeText,
 				notice = this.list.querySelector('.bmko_list-limit-notice'),
-				listHeader = this.list.querySelector('.list-header');
+				listHeader = this.list.querySelector('.list-header'),
+				countOnList = (cardCount.points === null)
+					? cardCount.cardCount
+					: cardCount.points;
 
 			if (!notice) {
 				notice = document.createElement('div');
@@ -218,13 +221,13 @@ class ListWorkPoints {
 				listHeader.appendChild(notice);
 			}
 
-			if (typeof listLimit == 'number' && cardCount > listLimit) {
-				over = cardCount - listLimit;
+			if (typeof listLimit == 'number' && countOnList > listLimit) {
+				over = countOnList - listLimit;
 			}
 
-			var name = (GLOBAL.EnablePointsOnCards) ? 'point' : 'card',
-				s = (cardCount == 1) ? '' : 's',
-				cardCountString = `${cardCount} ${name}${s}`;
+			var name = (GLOBAL.EnablePointsOnCards && cardCount.points != cardCount.cardCount) ? 'point' : 'card',
+				s = (countOnList == 1) ? '' : 's',
+				cardCountString = `${countOnList} ${name}${s}`;
 
 			if (listLimit === '#count' || (GLOBAL.CountAllCards && typeof listLimit == 'undefined')) {
 
@@ -236,11 +239,11 @@ class ListWorkPoints {
 				noticeText = `${cardCountString} / ${listLimit}`;
 				notice.classList.remove('card-count-only');
 
-				if (cardCount > listLimit) {
+				if (countOnList > listLimit) {
 					className = 'bmko_list-over';
-				} else if (cardCount == listLimit) {
+				} else if (countOnList == listLimit) {
 					className = 'bmko_list-full';
-				} else if (cardCount < listLimit) {
+				} else if (countOnList < listLimit) {
 					className = 'bmko_list-under';
 				}
 
@@ -327,14 +330,20 @@ class ListWorkPoints {
 
 		} else {
 
-			let limit = this.getLimitFromTitle();
-			let cardPoints = ListWorkPoints.getCardPoints(draggedCard);
+			let limit = this.getLimitFromTitle(),
+				cardPoints = ListWorkPoints.getCardPoints(draggedCard),
+				cardCount = this.getCardCount(),
+				countOnList = (cardCount.points === null)
+					? cardCount.cardCount
+					: cardCount.points;
+
 			if (typeof cardPoints != 'number') {
 				cardPoints = 1;
 			}
+
 			this.list.classList.toggle(
 				'bmko_list-would-be-over',
-				(typeof limit != 'undefined' && (cardPoints + this.getCardCount()) > limit)
+				(typeof limit != 'undefined' && (cardPoints + countOnList) > limit)
 			);
 
 		}
