@@ -60,7 +60,7 @@ During development, to make the web extension between-page messaging system work
 			"id": "addon@example.com",
 			"strict_min_version": "42.0"
 		}
-	}
+	},
 
 ### How the JavaScript works (brief intro)
 
