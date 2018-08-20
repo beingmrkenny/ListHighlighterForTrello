@@ -48,7 +48,7 @@
 
 	<h2>Custom dimming</h2>
 
-	<p>Here you can change how dim lists get. The default for low priority lists is 45%; the default for done/ignore/trash lists is 25%.</p>
+	<p>Lists are dimmed by making them more transparent. Here you can change how much transparency is applied to lists. This ranges from 0% (completely invisible) to 100% (completely opaque: no dimming). The default for low priority lists is 45%; the default for done/ignore/trash lists is 25%.</p>
 
 	<div id="DimmingExampleBoard">
 		<label for="DimmingLow" class="dimming-input-block">
