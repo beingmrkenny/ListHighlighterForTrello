@@ -53,7 +53,7 @@ The root directory of this repo needs a config file (config.json) with the follo
 
 Reference: https://bugzil.la/1323228
 
-To make the web extension between-page messaging system work in Firefox (used mainly to communicate changes in options), you must add a fictional addon ID to manifest.json, using the below as a template. This must only be used during development, and may cause issues in other browsers.
+During development, to make the web extension between-page messaging system work in Firefox (e.g. to communicate changes in options to the Trello boards), you must add a fictional addon ID to manifest.json. Below is a template. This goes in the top level of the manifest JSON object. This must only be used during development, and may cause issues in other browsers.
 
 	"applications": {
 		"gecko": {

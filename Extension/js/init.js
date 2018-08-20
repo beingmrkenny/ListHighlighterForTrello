@@ -39,7 +39,7 @@ chrome.runtime.onMessage.addListener (
 				Options.loadOptions(function (options) {
 					ListHighlighter.highlight();
 					HeaderTagging.toggleTags (options.HideHashtags);
-					System.setupDimmingCSS();
+					DoingColors.setupDimmingCSS();
 					System.keydownUndimSetup();
 				});
 				break;
