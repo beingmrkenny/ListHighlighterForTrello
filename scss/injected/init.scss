@@ -74,6 +74,14 @@
 	}
 }
 
+.bmko_temporarily-undimmed-list {
+	opacity: 1;
+	> div,
+	> a {
+		filter: grayscale(0%);
+	}
+}
+
 #classic-body.bmko_list-highlighter-applied.bmko_undim-on-hover {
 	&:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 	.bmko_low-list,

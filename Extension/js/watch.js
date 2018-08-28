@@ -41,6 +41,18 @@ function getWatcher(key, targets) {
 			options : {childList: true, subtree: false}
 		},
 
+		cardComposer : {
+			targets : document.querySelectorAll('.open-card-composer'),
+			observer : new MutationObserver(function (mutationRecords) {
+				var cardComposer = mutationRecords[0].target;
+				cardComposer.closest('.list').classList.toggle(
+					'bmko_temporarily-undimmed-list',
+					cardComposer.classList.contains('hide')
+				);
+			}),
+			options : {attributes: true}
+		},
+
 		// REVIEW this accumulates too easily
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
