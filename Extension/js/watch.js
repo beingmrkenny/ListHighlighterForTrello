@@ -53,6 +53,32 @@ function getWatcher(key, targets) {
 			options : {attributes: true}
 		},
 
+		popOver : {
+			targets : document.querySelectorAll('.pop-over'),
+			options : {attributes: true},
+			observer : new MutationObserver(function (mutationRecords) {
+				var popOver = mutationRecords[0].target;
+				if (ovalue(popOver.querySelector('.pop-over-header-title'), 'textContent') == 'List Actions') {
+					let left = ovalue(popOver, 'style', 'left');
+					if (left) {
+						// FIXME the y value aint right for smaller screens - need to check that,
+						// or count what's there and calculate it from that
+						let elements = document.elementsFromPoint(parseInt(left), 150);
+						for (let el of elements) {
+							if (el.classList.contains('list')) {
+								el.classList.add('bmko_temporarily-undimmed-list');
+								break;
+							}
+						}
+					}
+				} else {
+					for (let el of $$('bmko_temporarily-undimmed-list')) {
+						el.classList.remove('bmko_temporarily-undimmed-list');
+					}
+				}
+			})
+		},
+
 		// REVIEW this accumulates too easily
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
@@ -65,6 +91,12 @@ function getWatcher(key, targets) {
 	return watchers[key];
 }
 
+function watchForListActions () {
+	watch('cardComposer');
+	watch('popOver');
+}
+
+// FIXME is targets ever used?
 function watch (watcherKey, targets) {
 
 	var watcher = getWatcher(watcherKey, targets);

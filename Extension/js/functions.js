@@ -125,6 +125,21 @@ function keepCounting(callback, countQuery, limit, interval, oldCount) {
 
 }
 
+function ovalue(obj) {
+	var base = obj;
+	if (typeof base == 'object' && base !== null) {
+		for (var i=1, x=arguments.length; i<x; i++) {
+			if (typeof base[arguments[i]] == 'object' && base[arguments[i]] !== null) {
+				base = base[arguments[i]];
+			} else {
+				base = base[arguments[i--]];
+				break;
+			}
+		}
+	}
+	return base;
+}
+
 function getTemplate (id) {
 	var templateContent = document.importNode($id(id).content, true);
 	return templateContent.firstElementChild;

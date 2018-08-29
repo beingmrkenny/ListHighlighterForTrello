@@ -11,7 +11,7 @@ class System {
 			watch('title');
 			watch('board');
 			watch('listTitle');
-			watch('cardComposer');
+			watchForListActions();
 			watch('body');
 			System.toggleToolbarButton();
 			DoingColors.setupDimmingCSS();
@@ -140,7 +140,7 @@ class System {
 	static processPageOnTitleChange() {
 		watch('board');
 		watch('listTitle');
-		watch('cardComposer');
+		watchForListActions();
 		DoingColors.highPriColorStyles();
 		ListHighlighter.highlight();
 		System.headerCardsSetup();
@@ -153,7 +153,7 @@ class System {
 		if (newList && newList.classList.contains('list-wrapper')) {
 			ListHighlighter.highlight();
 			watch('listTitle');
-			watch('cardComposer');
+			watchForListActions();
 			if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards || GLOBAL.EnableWIP) {
 				watch('list', newList.querySelector('.list-cards'));
 			}
