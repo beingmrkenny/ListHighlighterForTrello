@@ -59,23 +59,36 @@ function getWatcher(key, targets) {
 			observer : new MutationObserver(function (mutationRecords) {
 				var popOver = mutationRecords[0].target;
 				if (ovalue(popOver.querySelector('.pop-over-header-title'), 'textContent') == 'List Actions') {
-					let left = ovalue(popOver, 'style', 'left');
-					if (left) {
-						// FIXME the y value aint right for smaller screens - need to check that,
-						// or count what's there and calculate it from that
-						let elements = document.elementsFromPoint(parseInt(left), 150);
-						for (let el of elements) {
-							if (el.classList.contains('list')) {
-								el.classList.add('bmko_temporarily-undimmed-list');
-								break;
-							}
+					findElementByLeftPosition (ovalue(popOver, 'style', 'left'), 'list', (element) => {
+						element.classList.add('bmko_temporarily-undimmed-list');
+					});
+				} else {
+					removeClasses('bmko_temporarily-undimmed-list');
+				}
+			})
+		},
+
+		forQuickCardEditor : {
+			targets : $id('classic'),
+			options : { childList: true },
+			observer : new MutationObserver(function (mutationRecords) {
+
+				for (let mutation of mutationRecords) {
+					for (let added of mutation.addedNodes) {
+						if (added.classList.contains('quick-card-editor')) {
+							let left = ovalue(added.querySelector('.quick-card-editor-card'), 'style', 'left');
+							findElementByLeftPosition (left, 'list', (element) => {
+								element.classList.add('bmko_temporarily-undimmed-list');
+							});
 						}
 					}
-				} else {
-					for (let el of $$('bmko_temporarily-undimmed-list')) {
-						el.classList.remove('bmko_temporarily-undimmed-list');
+					for (let removed of mutation.removedNodes) {
+						if (removed.classList.contains('quick-card-editor')) {
+							removeClasses('bmko_temporarily-undimmed-list');
+						}
 					}
 				}
+
 			})
 		},
 
@@ -94,6 +107,7 @@ function getWatcher(key, targets) {
 function watchForListActions () {
 	watch('cardComposer');
 	watch('popOver');
+	watch('forQuickCardEditor');
 }
 
 // FIXME is targets ever used?

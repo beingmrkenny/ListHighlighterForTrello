@@ -10,6 +10,41 @@ function $$(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
+function removeClasses(classname) {
+	for (let el of $$(`.${classname}`)) {
+		el.classList.remove(classname);
+	}
+}
+
+function findElementByLeftPosition (left, classname, callback) {
+
+	left = parseInt(left);
+
+	if (left) {
+
+		let desiredElement,
+			elements,
+			top = 100;
+
+		for (let i = 3; i > 0 && desiredElement == null; i--) {
+			top += 50;
+			for (let el of document.elementsFromPoint(left, top)) {
+				if (el.classList.contains(classname)) {
+					desiredElement = el;
+					break;
+				}
+			}
+		}
+
+		if (desiredElement) {
+			callback(desiredElement);
+		}
+
+	}
+
+}
+
+// REVIEW: is this needed?
 function listen (els, ev, callback) {
 
 	if (els instanceof HTMLElement || els == document || els == window) {
