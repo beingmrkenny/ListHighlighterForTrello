@@ -13,6 +13,7 @@ class System {
 			watch('listTitle');
 			watchForListActions();
 			watch('body');
+			watch('boardWrapper');
 			System.toggleToolbarButton();
 			DoingColors.setupDimmingCSS();
 			System.keydownUndimSetup();

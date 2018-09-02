@@ -21,6 +21,17 @@ function getWatcher(key, targets) {
 			options : {childList: true, subtree: false}
 		},
 
+		// If re-opening a closed board
+		boardWrapper : {
+			targets : document.querySelector('.board-wrapper'),
+			observer: new MutationObserver(function () {
+				if (!$('.board-wrapper .big-message.quiet')) {
+					System.setup();
+				}
+			}),
+			options : {childList: true}
+		},
+
 		// multiple times because it goes on every card on a list
 		list : {
 			targets : targets || document.querySelectorAll('.list-cards'),
