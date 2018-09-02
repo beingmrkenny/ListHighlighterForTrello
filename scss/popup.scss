@@ -56,11 +56,11 @@ button,
 #HighlightIndicator {
 	color: $trelloListHeaderColor;
 
+	white-space: nowrap;
 	font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
 	font-weight: 700;
 	text-decoration: none;
 	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 .dark-background #HighlightIndicator {
@@ -93,28 +93,22 @@ button,
 		border-color: #298fca #298fca #026aa7;
 	}
 
-	& img {
-		position: absolute;
-		top: 6px;
-		left: 6px;
-
-		width: 20px;
-		height: 20px;
-	}
-
 	& .gear::before {
+		display: block;
 		position: absolute;
 		top: 7px;
 		left: 10px;
 
-		content: "\e926";
+		width: 18px;
+		height: 18px;
 
-		font-family: trellicons;
-		font-size: 16px;
+		content: " ";
+
+		background: url("/img/cog.svg") no-repeat;
 	}
 
 	&:hover .gear::before {
-		color: white;
+		background: url("/img/cog-white.svg") no-repeat;
 	}
 }
 

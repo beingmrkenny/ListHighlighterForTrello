@@ -87,3 +87,8 @@ The command `lhwatch`, an [fswatch](https://github.com/emcrisostomo/fswatch) mon
 If you use Google Chrome on macOS, you can also get `lhwatch` to reload all dev mode extensions (requires the [Extensions Reloader](https://chrome.google.com/webstore/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension) and refresh any tabs containing a Trello web page. This is controlled via the `refreshOnWatch` variable in `bash.sh`.
 
 Please note you may need to run `chmod +x watchhandler.sh` to get this to work.
+
+## Oddments
+
+- Extension Files in Chrome are accessible via URLs like chrome-extension://<extensionID>/<pathToFile>.
+- E.g. The popup page is at chrome-extension://<extensionID>/popup/popup.html
