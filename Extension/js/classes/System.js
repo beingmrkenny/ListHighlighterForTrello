@@ -20,8 +20,15 @@ class System {
 		});
 	}
 
+	static runSetupIfBoardNotClosed () {
+		if (!$('.board-wrapper .big-message.quiet')) {
+			System.setup();
+		}
+	}
+
 	static keydownUndimSetup () {
 		if (GLOBAL.UndimOnHover) {
+			// FIXME Does this get applied lots of different times, and therefore accumulate?
 			document.body.addEventListener('keydown', (e) => {
 				setTimeout(function () {
 					if (window.location.pathname.startsWith('/b/')) {
@@ -149,7 +156,7 @@ class System {
 	}
 
 	// board
-	static checkForNewLists(mutationRecords) {
+	static handleNewLists(mutationRecords) {
 		var newList = mutationRecords[0].addedNodes[0];
 		if (newList && newList.classList.contains('list-wrapper')) {
 			ListHighlighter.highlight();
@@ -162,7 +169,7 @@ class System {
 	}
 
 	// list - observes .list-cards
-	static checkForNewCards(mutationRecords) {
+	static handleNewCards(mutationRecords) {
 		if (mutationRecords[0] && mutationRecords[0] instanceof MutationRecord) {
 
 			var listCards = mutationRecords[0].target,
@@ -281,5 +288,52 @@ class System {
 		}
 	}
 
+	static handleListTitleChange (mutationRecords) {
+		var listTitle = mutationRecords[0].target;
+		ListHighlighter.highlight();
+		if (listTitle && listTitle.parentNode) {
+			let listWorkPoints = new ListWorkPoints(listTitle.closest('.list'));
+			listWorkPoints.update();
+		}
+	}
+
+	static handleCardComposer (mutationRecords) {
+		var cardComposer = mutationRecords[0].target;
+		cardComposer.closest('.list').classList.toggle(
+			'bmko_temporarily-undimmed-list',
+			cardComposer.classList.contains('hide')
+		);
+	}
+
+	static handleListActionPopOver (mutationRecords) {
+		var popOver = mutationRecords[0].target;
+		if (ovalue(popOver.querySelector('.pop-over-header-title'), 'textContent') == 'List Actions') {
+			findElementByLeftPosition (ovalue(popOver, 'style', 'left'), 'list', (element) => {
+				element.classList.add('bmko_temporarily-undimmed-list');
+			});
+		} else {
+			removeClasses('bmko_temporarily-undimmed-list');
+		}
+	}
+
+	static handleQCE (mutationRecords) {
+
+		for (let mutation of mutationRecords) {
+			for (let added of mutation.addedNodes) {
+				if (added.classList.contains('quick-card-editor')) {
+					let left = ovalue(added.querySelector('.quick-card-editor-card'), 'style', 'left');
+					findElementByLeftPosition (left, 'list', (element) => {
+						element.classList.add('bmko_temporarily-undimmed-list');
+					});
+				}
+			}
+			for (let removed of mutation.removedNodes) {
+				if (removed.classList.contains('quick-card-editor')) {
+					removeClasses('bmko_temporarily-undimmed-list');
+				}
+			}
+		}
+
+	}
 
 }

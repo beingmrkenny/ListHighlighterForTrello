@@ -17,90 +17,46 @@ function getWatcher(key, targets) {
 		// Watch board for changes to lists
 		board : {
 			targets : document.getElementById('board'),
-			observer: new MutationObserver(System.checkForNewLists),
+			observer: new MutationObserver(System.handleNewLists),
 			options : {childList: true, subtree: false}
 		},
 
 		// If re-opening a closed board
 		boardWrapper : {
 			targets : document.querySelector('.board-wrapper'),
-			observer: new MutationObserver(function () {
-				if (!$('.board-wrapper .big-message.quiet')) {
-					System.setup();
-				}
-			}),
+			observer: new MutationObserver(System.runSetupIfBoardNotClosed),
 			options : {childList: true}
 		},
 
 		// multiple times because it goes on every card on a list
 		list : {
 			targets : targets || document.querySelectorAll('.list-cards'),
-			observer: new MutationObserver(System.checkForNewCards),
+			observer: new MutationObserver(System.handleNewCards),
 			options : {childList: true, subtree: false}
 		},
 
 		listTitle : {
 			targets : document.querySelectorAll('.list-header h2'),
-			observer : new MutationObserver(function (mutationRecords) {
-				var listTitle = mutationRecords[0].target;
-				ListHighlighter.highlight();
-				if (listTitle && listTitle.parentNode) {
-					let listWorkPoints = new ListWorkPoints(listTitle.closest('.list'));
-					listWorkPoints.update();
-				}
-			}),
+			observer : new MutationObserver(System.handleListTitleChange),
 			options : {childList: true, subtree: false}
 		},
 
 		cardComposer : {
 			targets : document.querySelectorAll('.open-card-composer'),
-			observer : new MutationObserver(function (mutationRecords) {
-				var cardComposer = mutationRecords[0].target;
-				cardComposer.closest('.list').classList.toggle(
-					'bmko_temporarily-undimmed-list',
-					cardComposer.classList.contains('hide')
-				);
-			}),
+			observer : new MutationObserver(System.handleCardComposer),
 			options : {attributes: true}
 		},
 
 		popOver : {
 			targets : document.querySelectorAll('.pop-over'),
 			options : {attributes: true},
-			observer : new MutationObserver(function (mutationRecords) {
-				var popOver = mutationRecords[0].target;
-				if (ovalue(popOver.querySelector('.pop-over-header-title'), 'textContent') == 'List Actions') {
-					findElementByLeftPosition (ovalue(popOver, 'style', 'left'), 'list', (element) => {
-						element.classList.add('bmko_temporarily-undimmed-list');
-					});
-				} else {
-					removeClasses('bmko_temporarily-undimmed-list');
-				}
-			})
+			observer : new MutationObserver(System.handleListActionPopOver)
 		},
 
 		forQuickCardEditor : {
 			targets : $id('classic'),
 			options : { childList: true },
-			observer : new MutationObserver(function (mutationRecords) {
-
-				for (let mutation of mutationRecords) {
-					for (let added of mutation.addedNodes) {
-						if (added.classList.contains('quick-card-editor')) {
-							let left = ovalue(added.querySelector('.quick-card-editor-card'), 'style', 'left');
-							findElementByLeftPosition (left, 'list', (element) => {
-								element.classList.add('bmko_temporarily-undimmed-list');
-							});
-						}
-					}
-					for (let removed of mutation.removedNodes) {
-						if (removed.classList.contains('quick-card-editor')) {
-							removeClasses('bmko_temporarily-undimmed-list');
-						}
-					}
-				}
-
-			})
+			observer : new MutationObserver(System.handleQCE)
 		},
 
 		// REVIEW this accumulates too easily
