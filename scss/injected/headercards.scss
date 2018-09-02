@@ -20,6 +20,7 @@
 }
 
 .bmko_header-card {
+
 	.expanded-list-card-operation {
 		height: 14px;
 
@@ -37,6 +38,14 @@
 
 	.bmko_header-cards-extra-space & {
 		margin-top: 20px;
+	}
+
+	.bmko_header-cards-extra-space .bmko_horizontal-rule-card + & {
+		margin-top: 10px;
+	}
+
+	.bmko_header-cards-extra-space .bmko_header-card + .bmko_horizontal-rule-card + & {
+		margin-top: -2px;
 	}
 
 	.list-card-details {
