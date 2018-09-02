@@ -1,10 +1,10 @@
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+LHDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
-listHighlighterDir=$(jq -r .listHighlighterDir $DIR/config.json);
-refreshOnWatch=$(jq -r .refreshOnWatch $DIR/config.json);
-openOptionsOnRefresh=$(jq -r .openOptionsOnRefresh $DIR/config.json);
-extensionKey=$(jq -r .extensionKey $DIR/config.json);
-scssCompressionStyle=$(jq -r .scssCompressionStyle $DIR/config.json);
+listHighlighterDir=$(jq -r .listHighlighterDir $LHDIR/config.json);
+refreshOnWatch=$(jq -r .refreshOnWatch $LHDIR/config.json);
+openOptionsOnRefresh=$(jq -r .openOptionsOnRefresh $LHDIR/config.json);
+extensionKey=$(jq -r .extensionKey $LHDIR/config.json);
+scssCompressionStyle=$(jq -r .scssCompressionStyle $LHDIR/config.json);
 
 lhwatch () {
 	cd $listHighlighterDir;
@@ -53,6 +53,13 @@ lhcompile () {
 	osacompile -o $listHighlighterDir/chrome.scpt $listHighlighterDir/chrome.applescript
 
 	php -f $listHighlighterDir/options-page-html/generateOptions.php $release;
+
+	command -v osascript >/dev/null 2>&1;
+	if [[ "$?" == 0 && $refreshOnWatch == true ]]; then
+		# To get chrome to refresh automatically via macOS's AppleScript
+		osascript $LHDIR/chrome.scpt $openOptionsOnRefresh $extensionKey;
+	fi
+
 }
 
 lhcss () {
