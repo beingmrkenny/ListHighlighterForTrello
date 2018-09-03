@@ -168,7 +168,7 @@ class DoingColors {
 				}
 			}
 
-			existingStyle = $id('BMKOHighPriColorCSS');
+			existingStyle = qid('BMKOHighPriColorCSS');
 			if (existingStyle) {
 				existingStyle.textContent = css;
 			} else {
@@ -201,7 +201,7 @@ class DoingColors {
 			--high-pri-text: ${contrastColor};
 		}`;
 
-		existingStyle = $id('HighPriColorCSS');
+		existingStyle = qid('HighPriColorCSS');
 		if (existingStyle) {
 			existingStyle.textContent = css;
 		} else {
@@ -212,7 +212,7 @@ class DoingColors {
 			document.head.appendChild(style);
 		}
 
-		$('#DefaultDummyTile label').classList.toggle(
+		q('#DefaultDummyTile label').classList.toggle(
 			'mod-light-background',
 			color.isLight(highPri)
 		);
@@ -231,7 +231,7 @@ class DoingColors {
 			--done-opacity: ${GLOBAL.DimmingDone};
 		}`;
 
-		var existingStyle = $id('BMKODimmingCSS');
+		var existingStyle = qid('BMKODimmingCSS');
 		if (existingStyle) {
 			existingStyle.textContent = css;
 		} else {

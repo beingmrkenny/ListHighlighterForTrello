@@ -22,7 +22,7 @@ class System {
 	}
 
 	static runSetupIfBoardNotClosed () {
-		if (!$('.board-wrapper .big-message.quiet')) {
+		if (!q('.board-wrapper .big-message.quiet')) {
 			System.setup();
 		}
 	}
@@ -34,14 +34,14 @@ class System {
 				setTimeout(function () {
 					if (window.location.pathname.startsWith('/b/')) {
 						if (e.key == 'ArrowLeft' || e.key == 'ArrowRight' || e.key == 'ArrowUp' || e.key == 'ArrowDown') {
-							let active = $('.active-card'),
+							let active = q('.active-card'),
 								body = getTrelloBody();
 							if (body) {
 								body.classList.add('bmko_card-is-dragging');
 							}
 							if (active) {
 								let list = active.closest('.list');
-								for (let activeList of $$('.bmko_undimmed-list')) {
+								for (let activeList of qq('.bmko_undimmed-list')) {
 									activeList.classList.remove('bmko_undimmed-list');
 								}
 								list.classList.add('bmko_undimmed-list');
@@ -49,7 +49,7 @@ class System {
 									clearInterval(window.BMKO_undimTimerId);
 								}
 								window.BMKO_undimTimerId = setTimeout(function () {
-									for (let activeList of $$('.bmko_undimmed-list')) {
+									for (let activeList of qq('.bmko_undimmed-list')) {
 										activeList.classList.remove('bmko_undimmed-list');
 									}
 									if (body) {
@@ -185,7 +185,7 @@ class System {
 
 			if (GLOBAL.EnableWIP || GLOBAL.UndimOnHover) {
 				draggedCard = document.body.querySelector('body > .list-card');
-				placeholder = $('.placeholder');
+				placeholder = q('.placeholder');
 				if (draggedCard) {
 					let body = getTrelloBody();
 					if (body) {
@@ -242,7 +242,7 @@ class System {
 
 				// QUESTION need this?
 				if (draggedCard && draggedCard.classList.contains('bmko_header-card-applied')) {
-					$('.placeholder').classList.add('bmko_header-card-placeholder');
+					q('.placeholder').classList.add('bmko_header-card-placeholder');
 					for (let list of allLists) {
 						let lwp = new ListWorkPoints(list);
 					}
@@ -278,7 +278,7 @@ class System {
 							body.classList.remove('bmko_card-is-dragging');
 						}
 
-					} else if (!$('[data-bmko-original-list]')) {
+					} else if (!q('[data-bmko-original-list]')) {
 
 						// Card picked up
 						let lwp = new ListWorkPoints(listCards.closest('.list'));

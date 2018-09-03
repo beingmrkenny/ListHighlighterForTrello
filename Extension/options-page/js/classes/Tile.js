@@ -31,7 +31,7 @@ class Tile {
 
 	// REVIEW select doesn't communicate what this method does
  	static select (colorName) {
-		var appropriateColorInput = $id('DummyBoard').querySelector(`[value="${colorName}"]`);
+		var appropriateColorInput = qid('DummyBoard').querySelector(`[value="${colorName}"]`);
 		if (appropriateColorInput && !appropriateColorInput.checked) {
 			appropriateColorInput.checked = true;
 		}

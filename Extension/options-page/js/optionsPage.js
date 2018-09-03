@@ -1,7 +1,7 @@
 var GLOBAL = {};
 
-var lis = $$('nav li');
-var panes = $$('section');
+var lis = qq('nav li');
+var panes = qq('section');
 
 listen(document, 'DOMContentLoaded', () => {
 	highlightPanel(window.location.hash);
@@ -11,7 +11,7 @@ listen(window, 'hashchange', () => {
 	highlightPanel(window.location.hash);
 });
 
-listen($$('.standard-options div'), 'click', function () {
+listen(qq('.standard-options div'), 'click', function () {
 	let input = this.previousElementSibling.querySelector('input');
 	if (!input.disabled) {
 		input.checked = !input.checked;
@@ -21,8 +21,8 @@ listen($$('.standard-options div'), 'click', function () {
 
 var opacityRanges = document.querySelectorAll('.opacity-range');
 listen(opacityRanges, 'input', function () {
-	$(`[data-value-label-for="${this.name}"]`).textContent = Math.round(this.value * 100) + '%';
-	$id(this.name + 'Example').style.opacity = this.value;
+	q(`[data-value-label-for="${this.name}"]`).textContent = Math.round(this.value * 100) + '%';
+	qid(this.name + 'Example').style.opacity = this.value;
 });
 
 Options.initialise(function (results) {
@@ -40,11 +40,11 @@ Options.initialise(function (results) {
 });
 
 function setupDimmingExample () {
-	$id('DimmingLow').value = GLOBAL.DimmingLow;
-	$('[data-value-label-for="DimmingLow"]').textContent = Math.round(GLOBAL.DimmingLow * 100) + '%';
+	qid('DimmingLow').value = GLOBAL.DimmingLow;
+	q('[data-value-label-for="DimmingLow"]').textContent = Math.round(GLOBAL.DimmingLow * 100) + '%';
 
-	$id('DimmingDone').value = GLOBAL.DimmingDone;
-	$('[data-value-label-for="DimmingDone"]').textContent = Math.round(GLOBAL.DimmingDone * 100) + '%';
+	qid('DimmingDone').value = GLOBAL.DimmingDone;
+	q('[data-value-label-for="DimmingDone"]').textContent = Math.round(GLOBAL.DimmingDone * 100) + '%';
 
 	DoingColors.setupDimmingCSS();
 }
@@ -54,11 +54,11 @@ function highlightPanel (hashtag) {
 	let link, pane, li;
 
 	if (hashtag) {
-		link = $(`a[href="${hashtag}"]`);
-		pane = $(hashtag);
+		link = q(`a[href="${hashtag}"]`);
+		pane = q(hashtag);
 	} else {
-		link = $('nav li a');
-		pane = $('section');
+		link = q('nav li a');
+		pane = q('section');
 	}
 
 	li = link.closest('li');
@@ -83,7 +83,7 @@ function setValuesOnInputs (results) {
 			id = name + value;
 			value = true;
 		}
-		input = $id(id);
+		input = qid(id);
 		if (input) {
 			input.checked = value;
 		}
@@ -92,10 +92,10 @@ function setValuesOnInputs (results) {
 
 function connectInputsToEachOther () {
 
-	for (let textSwitcher of $$('text-switcher')) {
-		let subject = $id(textSwitcher.dataset.listen);
+	for (let textSwitcher of qq('text-switcher')) {
+		let subject = qid(textSwitcher.dataset.listen);
 		listen(subject, 'change', function () {
-			for (let switcher of $$(`[data-listen="${this.id}"]`)) {
+			for (let switcher of qq(`[data-listen="${this.id}"]`)) {
 				switcher.textContent = switcher.dataset[ ( this.checked ? 'on' : 'off' ) ];
 			}
 		});
@@ -128,7 +128,7 @@ function connectInputsToEachOther () {
 
 	for (let inputId in optionsControls) {
 
-		let input = $id(inputId);
+		let input = qid(inputId);
 
 		observe(input, { attributes: true, attributeOldValue: true }, function (mutationRecord) {
 			if (mutationRecord && mutationRecord.attributeName == 'disabled') {
@@ -148,7 +148,7 @@ function connectInputsToEachOther () {
 			if (config) {
 				if (this.checked == false && config.uncheckInputs) {
 					for (let uncheckInputId of config.uncheckInputs) {
-						$id(uncheckInputId).checked = false;
+						qid(uncheckInputId).checked = false;
 					}
 				}
 				if (config.disableInputs) {
@@ -167,7 +167,7 @@ function connectInputsToEachOther () {
 
 function disableInputs (disableInputs, status) {
 	for (let disableInput of disableInputs) {
-		$id(disableInput).disabled = status;
+		qid(disableInput).disabled = status;
 		let label = document.querySelector(`[for="${disableInput}"]`),
 			widget = label.closest('option-widget');
 		label.classList.toggle('disabled', status);
@@ -178,7 +178,7 @@ function disableInputs (disableInputs, status) {
 }
 
 function saveOptionsOnChange () {
-	for (let optionInput of $$('.options-input')) {
+	for (let optionInput of qq('.options-input')) {
 		optionInput.addEventListener('change', function () {
 			let input = this,
 				name = input.name,
@@ -243,7 +243,7 @@ function saveOptionsOnChange () {
 
 }
 
-var excludes = $$('[data-exclude]');
+var excludes = qq('[data-exclude]');
 listen(excludes, 'change', function () {
 	if (this.checked) {
 		for (let exclude of excludes) {

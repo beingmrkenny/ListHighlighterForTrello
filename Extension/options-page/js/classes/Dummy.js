@@ -1,15 +1,15 @@
 class Dummy {
 
 	static setCustomTileColorByName (colorName) {
-		Tile.setColorByName ($id('Dummy-ColorTile-custom'), colorName);
+		Tile.setColorByName (qid('Dummy-ColorTile-custom'), colorName);
 	}
 
 	static setCustomTileColorByHex (hex) {
-		Tile.setCustomTileColorByHex($('[for="Dummy-ColorTile-custom"]'), hex);
+		Tile.setCustomTileColorByHex(q('[for="Dummy-ColorTile-custom"]'), hex);
 	}
 
 	static setListColorName (colorName) {
-		$id('DummyBoard').dataset.listColorName = colorName;
+		qid('DummyBoard').dataset.listColorName = colorName;
 	}
 
 	static setDoingListColorByName (colorName) {
@@ -30,7 +30,7 @@ class Dummy {
 
 	static changeBackgroundColor (trelloBg) {
 
-		var dummyBoard = $id('DummyBoard'),
+		var dummyBoard = qid('DummyBoard'),
 			color = new Color(),
 			listColorName;
 
@@ -50,12 +50,12 @@ class Dummy {
 			Dummy.setDoingListColorByName(listColorName);
 		}
 
-		let label = $('.dummy-board-color-tile-bar p');
+		let label = q('.dummy-board-color-tile-bar p');
 
 		switch (trelloBg) {
 			case 'default':
 				label.textContent = `Choose the default highlight colour:`;
-				$id('DummyBoard').classList.toggle(
+				qid('DummyBoard').classList.toggle(
 					'mod-light-background',
 					Color.isLight( DoingColors.getHexForTrelloBg(DoingColors.getTrelloBg()) )
 				);
@@ -67,7 +67,7 @@ class Dummy {
 				let a = (trelloBg == 'orange') ? 'an' : 'a';
 				let color = (trelloBg == 'gray') ? 'grey' : trelloBg;
 				label.textContent = `Choose the highlight colour for boards with ${a} ${color} background:`;
-				$id('DummyBoard').classList.toggle(
+				qid('DummyBoard').classList.toggle(
 					'mod-light-background',
 					Color.isLight( DoingColors.getHexFromName(trelloBg) )
 				);

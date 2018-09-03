@@ -1,17 +1,17 @@
-function $id (id) {
+function qid (id) {
 	return document.getElementById(id);
 }
 
-function $(query, context = document) {
+function q(query, context = document) {
 	return context.querySelector(query);
 }
 
-function $$(query, context = document) {
+function qq(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
 function removeClasses(classname, except = null) {
-	for (let el of $$(`.${classname}`)) {
+	for (let el of qq(`.${classname}`)) {
 		if (except !== null && el !== except) {
 			el.classList.remove(classname);
 		} else if (except === null) {
@@ -180,7 +180,7 @@ function ovalue(obj) {
 }
 
 function getTemplate (id) {
-	var templateContent = document.importNode($id(id).content, true);
+	var templateContent = document.importNode(qid(id).content, true);
 	return templateContent.firstElementChild;
 }
 

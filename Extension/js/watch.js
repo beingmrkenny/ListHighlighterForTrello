@@ -60,7 +60,7 @@ function getWatcher(key, targets) {
 		},
 
 		forQuickCardEditor : {
-			targets : $id('classic'),
+			targets : qid('classic'),
 			options : { childList: true },
 			observer : new MutationObserver(System.handleQCE)
 		},

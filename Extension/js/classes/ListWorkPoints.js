@@ -22,7 +22,7 @@ class ListWorkPoints {
 
 	static updateLists (lists) {
 
-		for (let cardElement of $$(ListWorkPoints.getCardSelector())) {
+		for (let cardElement of qq(ListWorkPoints.getCardSelector())) {
 			let card = new Card(cardElement);
 			if (GLOBAL.EnableWIP
 				&& GLOBAL.EnablePointsOnCards
@@ -187,7 +187,7 @@ class ListWorkPoints {
 			notice.remove();
 		}
 		this.removeCardBadges();
-		for (let cardElement of $$(ListWorkPoints.getCardSelector(), this.list)) {
+		for (let cardElement of qq(ListWorkPoints.getCardSelector(), this.list)) {
 			if (cardElement.querySelector('.bmko_hide')) {
 				let card = new Card(cardElement);
 				card.showPointsTag();

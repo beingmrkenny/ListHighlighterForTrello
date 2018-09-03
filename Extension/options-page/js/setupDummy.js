@@ -23,30 +23,30 @@ function setupDummy () {
 
 	for (let input of document.querySelectorAll('.color-tile-input')) {
 		input.addEventListener('change', function () {
-			let colorPicker = $('color-picker');
+			let colorPicker = q('color-picker');
 			if (colorPicker) {
 				colorPicker.remove();
 			}
 		});
 	}
 
-	if ($id('DummyBoard').dataset.trelloBg == 'default') {
-		$id('DefaultDummyTile').style.display = 'none';
+	if (qid('DummyBoard').dataset.trelloBg == 'default') {
+		qid('DefaultDummyTile').style.display = 'none';
 	}
 
-	let labelMcGee = $('#DefaultDummyTile label');
+	let labelMcGee = q('#DefaultDummyTile label');
 	listen (labelMcGee, 'transitionend', function () {
- 		$id('DefaultDummyTile').style.display = (getComputedStyle(labelMcGee).width == '0px') ? 'none' : null;
+ 		qid('DefaultDummyTile').style.display = (getComputedStyle(labelMcGee).width == '0px') ? 'none' : null;
 	});
 
 	for (let tile of document.querySelectorAll('.color-tile-label')) {
 		tile.addEventListener('click', function () {
 
 			var tile               = this,
-				input              = $id(tile.getAttribute('for')),
+				input              = qid(tile.getAttribute('for')),
 				colorName          = input.value,
-				listColorName      = $id('DummyBoard').dataset.listColorName,
-				trelloBg           = $id('DummyBoard').dataset.trelloBg,
+				listColorName      = qid('DummyBoard').dataset.listColorName,
+				trelloBg           = qid('DummyBoard').dataset.trelloBg,
 				customHex;
 
 			customHex = input.dataset.value;
@@ -58,7 +58,7 @@ function setupDummy () {
 				Dummy.setDoingListColorByName (colorName);
 			}
 
-			if ($id('DummyBoard').dataset.trelloBg == 'default') {
+			if (qid('DummyBoard').dataset.trelloBg == 'default') {
 				DoingColors.highPriColorStylesOptions (customHex);
 			} else {
 				Dummy.activateTrelloBgButtonIndicator(trelloBg, colorName);
@@ -73,7 +73,7 @@ function setupDummy () {
 		button.addEventListener('click', function () {
 			var trelloBg = this.dataset.trelloBg;
 			if (trelloBg != 'default') {
-				$id('DefaultDummyTile').style.display = null;
+				qid('DefaultDummyTile').style.display = null;
 			}
 			setTimeout(function () {
 				Dummy.changeBackgroundColor(trelloBg);

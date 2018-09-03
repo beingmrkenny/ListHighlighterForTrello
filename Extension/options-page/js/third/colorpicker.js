@@ -4,7 +4,7 @@
  */
 function ColorPickerInitialise () {
 
-	var picker = $id('Picker'), slide = $id('Slide'), hueOffset = 15;
+	var picker = qid('Picker'), slide = qid('Slide'), hueOffset = 15;
 
 	// Credits to http://www.raphaeljs.com
 	function hsv2rgb(hsv) {
