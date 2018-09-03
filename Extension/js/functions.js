@@ -10,9 +10,13 @@ function $$(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
-function removeClasses(classname) {
+function removeClasses(classname, except = null) {
 	for (let el of $$(`.${classname}`)) {
-		el.classList.remove(classname);
+		if (except !== null && el !== except) {
+			el.classList.remove(classname);
+		} else if (except === null) {
+			el.classList.remove(classname);
+		}
 	}
 }
 

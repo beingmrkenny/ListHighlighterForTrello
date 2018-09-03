@@ -14,6 +14,7 @@ class System {
 			watchForListActions();
 			watch('body');
 			watch('boardWrapper');
+			watch('cardsForDropHover');
 			System.toggleToolbarButton();
 			DoingColors.setupDimmingCSS();
 			System.keydownUndimSetup();
@@ -194,6 +195,7 @@ class System {
 			}
 
 			if (GLOBAL.UndimOnHover) {
+
 				if (draggedCard) {
 					for (let list of document.querySelectorAll('.bmko_undimmed-list')) {
 						list.classList.remove('bmko_undimmed-list');
@@ -223,6 +225,7 @@ class System {
 			if (isAddedCard) {
 				Card.processCards(newCard);
 				watch('listCardTitle', newCard.querySelector('.list-card-title'));
+				watch('cardsForDropHover', newCard);
 			} else {
 				// for dragging between lists
 				// QUESTION is this necessary?
@@ -294,6 +297,19 @@ class System {
 		if (listTitle && listTitle.parentNode) {
 			let listWorkPoints = new ListWorkPoints(listTitle.closest('.list'));
 			listWorkPoints.update();
+		}
+	}
+
+	static handleCardClassChange (mutationRecords) {
+		for (let mutation of mutationRecords) {
+			if (mutation.type == 'attributes' && mutation.attributeName == 'class') {
+				let list = mutation.target.closest('.list');
+				if (mutation.target.classList.contains('is-drophover') && !list.classList.contains('bmko_temporarily-undimmed-list')) {
+					list.classList.add('bmko_temporarily-undimmed-list');
+				} else if (mutation.oldValue.includes('is-drophover')) {
+					list.classList.remove('bmko_temporarily-undimmed-list');
+				}
+			}
 		}
 	}
 

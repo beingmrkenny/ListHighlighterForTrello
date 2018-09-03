@@ -74,7 +74,8 @@
 	}
 }
 
-.bmko_temporarily-undimmed-list {
+.bmko_temporarily-undimmed-list,
+#classic-body.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list.bmko_temporarily-undimmed-list {
 	opacity: 1;
 	> div,
 	> a {

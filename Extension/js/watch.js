@@ -5,20 +5,20 @@ function getWatcher(key, targets) {
 		body : {
 			targets: getTrelloBody(),
 			observer : new MutationObserver(System.handleBodyAttributeChanges),
-			options : {childList: false, subtree: false, attributes: true, attributeOldValue: true}
+			options : {attributes: true, attributeOldValue: true}
 		},
 
 		title : {
 			targets : document.querySelector('title'),
 			observer : new MutationObserver(System.processPageOnTitleChange),
-			options : {characterData: true, childList: true, subtree: false}
+			options : {characterData: true, childList: true}
 		},
 
 		// Watch board for changes to lists
 		board : {
 			targets : document.getElementById('board'),
 			observer: new MutationObserver(System.handleNewLists),
-			options : {childList: true, subtree: false}
+			options : {childList: true}
 		},
 
 		// If re-opening a closed board
@@ -32,13 +32,19 @@ function getWatcher(key, targets) {
 		list : {
 			targets : targets || document.querySelectorAll('.list-cards'),
 			observer: new MutationObserver(System.handleNewCards),
-			options : {childList: true, subtree: false}
+			options : {childList: true}
 		},
 
 		listTitle : {
 			targets : document.querySelectorAll('.list-header h2'),
 			observer : new MutationObserver(System.handleListTitleChange),
-			options : {childList: true, subtree: false}
+			options : {childList: true}
+		},
+
+		cardsForDropHover : {
+			targets : targets || document.querySelectorAll('.list-card'),
+			observer : new MutationObserver(System.handleCardClassChange),
+			options : {attributes: true, attributeOldValue: true}
 		},
 
 		cardComposer : {
@@ -63,7 +69,7 @@ function getWatcher(key, targets) {
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
 			observer : new MutationObserver(Card.processListCardTitle),
-			options : {characterData: true, childList: true, subtree: false}
+			options : {characterData: true, childList: true}
 		}
 
 	};
