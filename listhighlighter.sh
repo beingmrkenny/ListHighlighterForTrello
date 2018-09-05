@@ -4,7 +4,6 @@ listHighlighterDir=$(jq -r .listHighlighterDir $LHDIR/config.json);
 refreshOnWatch=$(jq -r .refreshOnWatch $LHDIR/config.json);
 openOptionsOnRefresh=$(jq -r .openOptionsOnRefresh $LHDIR/config.json);
 extensionKey=$(jq -r .extensionKey $LHDIR/config.json);
-scssCompressionStyle=$(jq -r .scssCompressionStyle $LHDIR/config.json);
 
 lhwatch () {
 	cd $listHighlighterDir;
@@ -30,6 +29,8 @@ lhrelease () {
 	if [[ -f ~/Desktop/ListHighlighter.zip ]]; then rm ~/Desktop/ListHighlighter.zip; fi
 	cd /tmp/ListHighlighter/
 	zip -r ~/Desktop/ListHighlighter.zip ./
+
+	zip -d ~/Desktop/ListHighlighter.zip __MACOSX/\*
 
 	# Display zip contents so you can check for hidden files
 	unzip -vl ~/Desktop/ListHighlighter.zip
@@ -75,7 +76,7 @@ lhcss () {
 	local input="$listHighlighterDir"/scss/injected/init.scss;
 	local output="$listHighlighterDir"/Extension/css/style.css;
 	local loadPath="$listHighlighterDir"/scss/injected;
-	sass $watch "$input:$output" --sourcemap=none --style=$scssCompressionStyle --load-path="$loadPath" --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --sourcemap=none --style=expanded --load-path="$loadPath" --cache=/tmp/sass-cache
 }
 
 lhpcss () {
@@ -90,7 +91,7 @@ lhpcss () {
 
 	local input="$listHighlighterDir"/scss/popup.scss;
 	local output="$listHighlighterDir"/Extension/css/popup.css;
-	sass $watch "$input:$output" --sourcemap=none --style=$scssCompressionStyle --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --sourcemap=none --style=expanded --cache=/tmp/sass-cache
 }
 
 lhocss () {
@@ -105,5 +106,5 @@ lhocss () {
 
 	local input="$listHighlighterDir"/scss/options.scss;
 	local output="$listHighlighterDir"/Extension/css/options.css;
-	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --sourcemap=none --style=$scssCompressionStyle --cache=/tmp/sass-cache
+	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --sourcemap=none --style=expanded --cache=/tmp/sass-cache
 }
