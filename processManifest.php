@@ -10,6 +10,10 @@ foreach ($manifest['content_scripts'][0]['js'] as $key => $value) {
 
 $manifest['content_scripts'][0]['js'] = array_values($manifest['content_scripts'][0]['js']);
 
+if ($manifest['applications']) {
+	unset($manifest['applications']);
+}
+
 file_put_contents(
 	'/tmp/ListHighlighter/manifest.json',
 	json_encode($manifest, JSON_PRETTY_PRINT)
