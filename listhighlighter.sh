@@ -63,6 +63,30 @@ lhcompile () {
 
 }
 
+lhsource () {
+
+	local source='/tmp/ListHighlighterForTrelloSource';
+
+	rm -r $source;
+	mkdir $source;
+
+	cd $listHighlighterDir;
+
+	cp -r $listHighlighterDir/Extension $source/Extension;
+	cp -r $listHighlighterDir/options-page-html $source/options-page-html;
+	cp -r $listHighlighterDir/scss $source/scss;
+
+	cp README.md $source;
+	cp processManifest.php $source;
+	cp *.sh $source;
+
+	cd $source;
+
+	zip -r ~/Desktop/ListHighlighterSource.zip ./;
+	zip -d ~/Desktop/ListHighlighterSource.zip __MACOSX/\*;
+
+}
+
 lhcss () {
 	local watch='';
 	if [[ "$1" == 'watch' ]]; then

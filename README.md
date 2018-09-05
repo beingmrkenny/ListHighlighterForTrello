@@ -1,25 +1,36 @@
 # README
 
-Some compilation needs to run before the dev code will work in the browser:
+List Highlighter for Trello is a web extension for use with Trello. For more information, including how to install the extension for your own use, see <https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello>.
 
-- CSS is compiled from Sass
-- the options page is generated from the smarty template
+This readme contains information for developers who want to contribute to List Highlighter's development, and for extension reviewers looking over the source code.
 
-There is no other compilation necessary: JS files are not compressed or obfuscated.
+Hopefully the code itself is easy enough to follow, but there is some compilation which needs to run before the dev code will work in the browser.
+
+- CSS is compiled from Sass files
+- the options page is generated from a smarty template
+
+There is no other compilation necessary. No JS files are compressed, obfuscated, concatenated, or otherwise processed.
 
 ## Setup (extension reviewers)
 
-If you are reviewing this extension, follow steps 1 and 3 below, omitting the optional steps. You can then generate the .zip file using `lhrelease` from the command line, which should appear at `~/Desktop/ListHighlighterForTrello.zip`.
+The included source .zip has all the extension code, plus the scripts required to assemble the extension for release. Files unnecessary to creating the compiled code have not been included, though these can be seen in the [git repo](https://github.com/beingmrkenny/ListHighlighterForTrello).
+
+You will need to follow steps 1 and 3 below, omitting the optional elements. You can then generate the .zip file using `lhrelease` from the command line, which should appear at `~/Desktop/ListHighlighterForTrello.zip`.
 
 ## Setup (developers)
 
 ### 1. Install the following software
 
+#### Required
+
 - sass (<http://sass-lang.com/>)
 - PHP with Smarty (<http://www.smarty.net/docs/en/installing.smarty.basic.tpl>)
 - jq (<https://stedolan.github.io/jq/download/>) — needed so that the bash scripts can read options from config.json (see below)
-- (optional) fswatch (<https://github.com/emcrisostomo/fswatch>)
-- (optional) ruby with the `terminal-notifier` gem installed
+
+#### Optional
+
+- fswatch (<https://github.com/emcrisostomo/fswatch>)
+- ruby with the `terminal-notifier` gem installed
 
 ### 2. Setup your .gitignore file
 
