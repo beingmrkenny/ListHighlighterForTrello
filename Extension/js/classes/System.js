@@ -72,7 +72,10 @@ class System {
 					watch('list');
 					if (GLOBAL.EnableHeaderCards || GLOBAL.EnableSeparatorCards) {
 						watch('listCardTitle');
-						Card.processCards(document.querySelectorAll('.list-card'));
+						// Card.processCards(document.querySelectorAll('.list-card'));
+						// FIXME: what's a better way to do this?
+						// QUESTION: maybe check .list-cards for changes?
+						setTimeout(() => Card.processCards(document.querySelectorAll('.list-card')), 1000);
 					}
 				},
 				'.list-card', 5, 250

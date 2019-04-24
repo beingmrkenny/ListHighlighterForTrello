@@ -189,5 +189,5 @@ function j (string) {
 }
 
 function getTrelloBody () {
-	return document.getElementById('classic-body');
+	return document.getElementById('trello-root');
 }

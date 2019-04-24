@@ -6,7 +6,7 @@
 
 // Colour blind friendly mode
 
-#classic-body.body-color-blind-mode-enabled .bmko_high-list {
+#trello-root.body-color-blind-mode-enabled .bmko_high-list {
 	background-image: linear-gradient(
 	to bottom right,
 	rgba(255,255,255,0.5) 25%,
@@ -27,7 +27,7 @@
 	}
 }
 
-#classic-body.body-color-blind-mode-enabled.bmko_dark-highlight-color .bmko_high-list {
+#trello-root.body-color-blind-mode-enabled.bmko_dark-highlight-color .bmko_high-list {
 	.list-header-name,
 	.list-header-extras,
 	.bmko_list-limit-notice,
@@ -56,11 +56,11 @@
 }
 
 .bmko_normal-list,
-#classic-body.bmko_do-not-dim-lists .bmko_untagged-list {
+#trello-root.bmko_do-not-dim-lists .bmko_untagged-list {
 	opacity: 1;
 }
 
-#classic-body.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
+#trello-root.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 .bmko_low-list {
 	opacity: var(--low-priority-opacity);
 }
@@ -75,7 +75,7 @@
 }
 
 .bmko_temporarily-undimmed-list,
-#classic-body.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list.bmko_temporarily-undimmed-list {
+#trello-root.bmko_list-highlighter-applied:not(.bmko_do-not-dim-lists) .bmko_untagged-list.bmko_temporarily-undimmed-list {
 	opacity: 1;
 	> div,
 	> a {
@@ -83,7 +83,7 @@
 	}
 }
 
-#classic-body.bmko_list-highlighter-applied.bmko_undim-on-hover {
+#trello-root.bmko_list-highlighter-applied.bmko_undim-on-hover {
 	&:not(.bmko_do-not-dim-lists) .bmko_untagged-list,
 	.bmko_low-list,
 	.bmko_ignore-list,
