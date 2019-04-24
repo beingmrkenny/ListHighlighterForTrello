@@ -100,7 +100,7 @@ lhcss () {
 	local input="$listHighlighterDir"/scss/injected/init.scss;
 	local output="$listHighlighterDir"/Extension/css/style.css;
 	local loadPath="$listHighlighterDir"/scss/injected;
-	sass $watch "$input:$output" --sourcemap=none --style=expanded --load-path="$loadPath" --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --no-source-map --style=expanded --load-path="$loadPath"
 }
 
 lhpcss () {
@@ -115,7 +115,7 @@ lhpcss () {
 
 	local input="$listHighlighterDir"/scss/popup.scss;
 	local output="$listHighlighterDir"/Extension/css/popup.css;
-	sass $watch "$input:$output" --sourcemap=none --style=expanded --cache=/tmp/sass-cache
+	sass $watch "$input:$output" --no-source-map --style=expanded
 }
 
 lhocss () {
@@ -130,5 +130,5 @@ lhocss () {
 
 	local input="$listHighlighterDir"/scss/options.scss;
 	local output="$listHighlighterDir"/Extension/css/options.css;
-	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --sourcemap=none --style=expanded --cache=/tmp/sass-cache
+	sass $watch "$input:$output" -I "$listHighlighterDir"/scss --no-source-map --style=expanded
 }
