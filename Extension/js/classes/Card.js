@@ -170,10 +170,11 @@ class Card {
 			let title = matches[1];
 			let h3 = this.card.querySelector('h3') || document.createElement('h3');
 			h3.textContent = title;
-			if (!this.card.querySelector('h3')) {
-				let listCardDetails = listCardTitle.parentNode;
-				listCardDetails.insertBefore(h3, listCardDetails.firstElementChild);
-			}
+			setTimeout(function (card, h3) {
+				if (!card.querySelector('h3')) {
+					card.querySelector('.list-card-details').prepend(h3);
+				}
+			}, 200, this.card, h3);
 		}
 	}
 
