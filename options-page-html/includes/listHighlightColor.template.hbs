@@ -1,0 +1,81 @@
+<template id="ListHighlightColorTemplate">
+
+	<h2>List highlight colour</h2>
+
+	<ul class="color-tile-bar" data-default="true">
+		{{#each colors}}
+			{{#if this.notBlank}}
+				<li>
+					<input type="radio" name="ColorTile" id="ColorTile-{{this.name}}" value="{{this.hex}}" class="js-check-changed">
+					<label for="ColorTile-{{this.name}}" class="fill-{{this.name}} {{this.lightClassName}}">
+						{{#if this.custom}}
+							<button type="button" class="color-tile-edit-color">Edit</button>
+						{{/if}}
+						{{this.name}}
+					</label>
+				</li>
+			{{/if}}
+		{{/each}}
+	</ul>
+
+	<label for="Opacity" class="opacity-input-label">
+		<span>Visibility</span>
+		<input type="range" name="Opacity" id="Opacity" min="0" max="1" step="0.01" class="js-check-changed">
+		<output name="opacity-value"></output>
+	</label>
+
+	<div class="dummy-board fill-trello-blue">
+
+		<div class="dummy-board_body">
+
+			<div class="dummy-board_list fill-normal">
+				<p class="dummy-board_list-header">Normal list</p>
+				<p class="dummy-board_card">Lorem ipsum dolor sit amet.</p>
+				<p class="dummy-board_card">Vivamus id ipsum faucibus, maximus tellus a, placerat urna consequat.</p>
+				<p class="dummy-board_card">Nunc vitae odio quis nunc.</p>
+				<p class="dummy-board_card">Etiam volutpat sapien at eleifend dignissim consectetur adipiscing elit.</p>
+				<p class="dummy-board_card">Phasellus placerat mauris quis mi ultricies efficitur.</p>
+				<p class="dummy-board_add-card">Add card&hellip;</p>
+			</div>
+
+			<div class="dummy-board_list dummy-board_demo-list fill-normal">
+				<p class="dummy-board_list-header">Highlighted list</p>
+				<p class="dummy-board_card">Sit amet sapien feugiat, vestibulum ipsum in, congue leo.</p>
+				<p class="dummy-board_card">Aliquam egestas orci at dui.</p>
+				<p class="dummy-board_card">Sed maximus massa sed augue condimentum blandit.</p>
+				<p class="dummy-board_card">Vivamus quis metus lacinia ante.</p>
+				<p class="dummy-board_card">Cras dapibus massa eu magna porta placerat.</p>
+				<p class="dummy-board_add-card">Add card&hellip;</p>
+			</div>
+
+			<div class="dummy-board_list fill-normal">
+				<p class="dummy-board_list-header">Another list</p>
+				<p class="dummy-board_card">Vivamus quis metus lacinia ante auctor malesuada eu quis metus.</p>
+				<p class="dummy-board_card">Duis sed neque sollicitudin, sagittis purus a, suscipit felis hendrerit.</p>
+				<p class="dummy-board_card">Nunc vitae odio quis nunc.</p>
+				<p class="dummy-board_card">Id massa dignissim, varius nisi nec, pharetra lorem.</p>
+				<p class="dummy-board_card">Pellentesque vel mi ut felis euismod.</p>
+				<p class="dummy-board_add-card">Add card&hellip;</p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<details class="highlight-color-exception-section" data-allow-new-exceptions='yes'>
+
+		<summary>Trello background exceptions</summary>
+
+		<p class="highlight-color-blurb">
+			Sometimes it’s good to have a different highlight colour for the different board background types Trello provides. For example, a red list on a red background might not stand out. You can add different highlight colours for different backgrounds here.
+		</p>
+
+		<p class="error" data-name="exceptions" data-value="invalid">Please make sure that all options below are valid.</p>
+
+		<ul class="highlight-color-exceptions"></ul>
+
+		<button type="button" id="AddNewException" class="appear-as-link">Add new exception</button>
+
+	</details>
+
+</template>

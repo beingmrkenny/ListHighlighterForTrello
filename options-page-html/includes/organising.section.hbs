@@ -1,0 +1,72 @@
+<section id="Organising">
+
+	<h2>Header cards</h2>
+
+	<p>Split up long lists with sub-headings.</p>
+
+	<p>Header cards look just like Trello list headers. Normal card features are supported on header cards.</p>
+
+	<p>To make a header card, start your card text with one or more hash symbols (<kbd class="tag">#</kbd> — make sure you leave a space after the hash); or two or more dashes (<kbd class="tag">--</kbd>); or forward slashes (<kbd class="tag">//</kbd>). Symbols at the beginning and end of the title will be stripped.</p>
+
+	<div class="standard-options">
+		<option-widget>
+			<input type="checkbox" class="options-input" id="OrganisingEnableHeaderCards" name="OrganisingEnableHeaderCards" data-dependents='["OrganisingHeaderCardsExtraSpace"]'>
+			<label for="OrganisingEnableHeaderCards">
+				Header cards
+			</label>
+		</option-widget>
+		<div>
+			<p>Enable header cards</p>
+			<p>Default: off</p>
+		</div>
+	</div>
+
+	<div class="standard-options">
+		<option-widget>
+			<input type="checkbox" class="options-input" id="OrganisingHeaderCardsExtraSpace" name="OrganisingHeaderCardsExtraSpace">
+			<label for="OrganisingHeaderCardsExtraSpace">
+				Extra space
+			</label>
+		</option-widget>
+		<div>
+			<p>Add extra space above header cards</p>
+			<p>A little extra space can make header cards stand out better</p>
+			<p>Default: on</p>
+		</div>
+	</div>
+
+	<h2>Separator cards</h2>
+
+	<p>Split up long lists with a gap between cards.
+
+	<p>Separator cards are essentially invisible cards: almost all card content is hidden, and the card is displayed as transparent gap instead of the white background. Stickers are not hidden, however.</p>
+
+	<p>To make a separator card, give it a title of two dashes (<kbd class="tag">--</kbd>) or underscore characters (<kbd class="tag">__</kbd>) — and then no other text (including whitespace characters). You can also use two or more equals signs (<kbd class="tag">==</kbd>). Trello also has its own separator card feature, which you can activate with three or more dashes or underscore characters. List Highlighter does not interfere with this feature.</p>
+
+	<div class="standard-options">
+		<option-widget>
+			<input type="checkbox" class="options-input" id="OrganisingEnableSeparatorCards" name="OrganisingEnableSeparatorCards" data-dependents='["OrganisingSeparatorCardsVisibleLine"]'>
+			<label for="OrganisingEnableSeparatorCards">
+				Separator cards
+			</label>
+		</option-widget>
+		<div>
+			<p>Enable separator cards</p>
+			<p>Default: off</p>
+		</div>
+	</div>
+
+	<div class="standard-options">
+		<option-widget>
+			<input type="checkbox" class="options-input" id="OrganisingSeparatorCardsVisibleLine" name="OrganisingSeparatorCardsVisibleLine">
+			<label for="OrganisingSeparatorCardsVisibleLine">
+				Horizontal rule
+			</label>
+		</option-widget>
+		<div>
+			<p>Show separators as a visible line</p>
+			<p>Default: off</p>
+		</div>
+	</div>
+
+</section>

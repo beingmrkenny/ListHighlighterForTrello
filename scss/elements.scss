@@ -1,23 +1,51 @@
 @import "colors.scss";
 
+:focus {
+	outline: none;
+}
+
 h2 {
 	clear: both;
 
-	margin-top: 90px;
+	padding-top: 90px;
+	margin-top: 0;
 }
 
 h3 {
-	margin-top: 30px;
+	padding-top: 30px;
+	margin-top: 0;
 }
 
 h4 {
-	margin: 20px 0;
+	padding: 20px 0;
 
 	font-size: 18px;
 }
 
 h5 {
+	padding: 0;
+}
+
+ul,
+ol,
+li {
 	margin: 0;
+	padding: 0;
+}
+
+dl {
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+dt {
+	margin-bottom: 10px;
+}
+
+dd {
+	margin-bottom: 20px;
+
+	color: $lighterTextColor;
 }
 
 table {
@@ -59,11 +87,58 @@ a[href^="mailto"] {
 	text-decoration: underline;
 }
 
+dialog {
+	all: unset;
+
+	z-index: 1000;
+}
+
+body > dialog[open] {
+	display: flex;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+
+	h2 {
+		margin: 0;
+		padding-top: 0;
+	}
+}
+
+dialog-contents {
+	display: block;
+
+	padding: 30px;
+
+	background-color: $dialogBG;
+	border: 0;
+	border-radius: 5px;
+
+	filter: drop-shadow(0 0 2px #444);
+
+	form {
+		display: flex;
+		flex-direction: column;
+
+		max-height: 90vh;
+		.form-dialog-body {
+			flex: 1;
+
+			overflow-y: scroll;
+		}
+	}
+}
+
 details {
 	margin-top: 20px;
+	margin-bottom: 40px;
 	padding: 10px;
 
-	background: #f5f5f5;
+	background: $dialogBG;
 	border-radius: 5px;
 
 	&[open] summary {
@@ -72,6 +147,10 @@ details {
 
 	h2:first-of-type {
 		margin-top: 60px;
+	}
+
+	p {
+		margin: 20px;
 	}
 }
 
@@ -115,49 +194,6 @@ kbd {
 	}
 }
 
-input[type=range] {
-	-webkit-appearance: none;
-
-	background: transparent;
-}
-
-@mixin thumb {
-	display: inline-block;
-	-webkit-appearance: none;
-	position: relative;
-	top: -5px;
-
-	width: 14px;
-	height: 14px;
-
-	content: " ";
-
-	background: white;
-	border: 0;
-	border-radius: 10px;
-
-	cursor: pointer;
-}
-
-@mixin track {
-	height: 4px;
-
-	background: rgba(black, 0.3);
-	border-radius: 4px;
-}
-
-input[type=range]::-webkit-slider-thumb {
-	@include thumb;
-}
-
-input[type=range]::-moz-range-thumb {
-	@include thumb;
-}
-
-input[type=range]::-moz-range-track {
-	@include track;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-	@include track;
+.invisible {
+	visibility: hidden;
 }

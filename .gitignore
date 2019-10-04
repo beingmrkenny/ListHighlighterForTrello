@@ -1,5 +1,11 @@
-*.css
-Extension/options-page/index.html
+Extension/css/options.css
+Extension/css/popup.css
+Extension/css/style.css
+*.map
+Extension/options-page/
 chrome.scpt
 config.json
 node_modules/
+/trash/
+Extension/manifest.json
+package-lock.json

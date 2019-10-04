@@ -1,0 +1,213 @@
+<template id="NewRuleTemplate">
+
+	<h2>Create New Rule</h2>
+
+	<p class="intro">You will be able to edit this, and specify more options, once the rule is created</p>
+
+	<fieldset name="name-group">
+		<h3>Name</h3>
+		<input type="text" name="name" size="60" autocomplete="off" class="js-check-changed">
+		<p class="error" data-name="name" data-value="empty">Please enter a name for this rule</p>
+		<p class="error" data-name="name" data-value="exists">This name is in use, please choose another</p>
+	</fieldset>
+
+	<p class="error" data-name="criteria" data-value="empty">Please fill out at least one of the two fields below:</p>
+
+	<fieldset name="title-is" class="these-ones-have-help-buttons">
+		<h3>List title is &hellip;</h3>
+		<button type="button" id="ListTitleIsHelper" class="helper">?</button>
+		<div class="form-field-note">
+			<p>This field is for <strong>whole</strong> titles.</p>
+			<p>E.g. if you enter “Team meeting agenda items”, this rule will match lists with that exact title.</p>
+			<p>Put each title on a new line.</p>
+		</div>
+		<textarea name="is" cols="60" rows="2" class="js-check-changed"></textarea>
+		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
+		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
+		<ul class="error" data-name="isAlreadyUsed"></ul>
+	</fieldset>
+
+	<fieldset name="title-contains" class="these-ones-have-help-buttons">
+		<h3>List title contains &hellip;</h3>
+		<button type="button" id="ListTitleContainsHelper" class="helper">?</button>
+		<div class="form-field-note">
+			<p>This field is for <strong>snippets</strong> of titles. You can put hashtags here.</p>
+			<p>E.g. if you enter “To do”, this rule will match lists with titles like “Things to do”, “To do list”, “What to do in Paris”, “Someone else is going to do these things”, etc.</p>
+			<p>Put each snippet on a new line.</p>
+		</div>
+		<textarea name="contains" cols="60" rows="2" class="js-check-changed"></textarea>
+		<p class="error" data-name="contains" data-value="exists">These snippets have been used in other rules:</p>
+		<ul class="error" data-name="containsAlreadyUsed"></ul>
+	</fieldset>
+
+	<p class="error" data-name="criteria" data-value="exists">These titles/snippets appear in both the is and contains fields:</p>
+	<ul class="error" data-name="criteriaAlreadyUsed"></ul>
+
+	<fieldset name="highlightColor-group">
+		<h3>Highlight colour</h3>
+		<color-select class="js-check-changed mod-inline" data-name="highlightColor" data-value="#e2e4e6">
+			{{#each colors}}
+				{{#if this.newRuleDialogColor }}
+					<button type="button" value="{{this.hex}}" title="{{this.name}}"
+						{{#if this.normal}}
+							data-selected
+						{{/if}}
+						class="fill-{{this.name}} {{this.lightClassName}}">{{this.name}} </button>
+				{{/if}}
+			{{/each}}
+		</color-select>
+	</fieldset>
+
+</template>
+
+<template id="ExceptionLiTemplate">
+	<li data-status="incomplete">
+		<div>
+			When the board background is
+			<color-select class="js-check-changed" data-name="ExceptionTrelloBGColor[]" data-type="trello-background" data-value="">
+				<ul>
+					{{#each trelloColors}}
+						<li>
+							<button type="button" value="{{this.name}}"
+								{{#if this.blank}}
+									data-selected
+								{{/if}}
+								class="fill-trello-{{this.name}} {{this.lightClassName}}"
+								>
+								{{#if this.blank}}
+									…
+								{{else if this.photo}}
+									a&nbsp;photo
+								{{else}}
+									{{this.name}}
+								{{/if}}</button>
+						</li>
+					{{/each}}
+				</ul>
+			</color-select>
+
+			the list highlight colour is
+			<color-select class="js-check-changed" data-name="ExceptionHighlightColor[]" data-type="highlight-color" data-value="">
+				<ul>
+					{{#each colors}}
+						<li>
+							<button type="button" value="{{this.hex}}"
+								{{#if this.blank}}
+									data-selected
+								{{/if}}
+								class="fill-{{this.name}} {{this.lightClassName}}">
+								{{#if this.blank}}
+									…
+								{{else if this.custom}}
+									a&nbsp;custom&nbsp;colour
+								{{else}}
+									{{this.name}}
+								{{/if}}</button>
+
+						</li>
+					{{/each}}
+				</ul>
+			</color-select>
+			<span class="color-select-edit-custom-color-button-container">(<button
+				type="button"
+				data-for="ExceptionHighlightColor[]"
+				class="color-select-edit-custom-color-button link-appearance">edit colour</button>)</span>
+			.
+			<button type="button" class="link-appearance highlight-exception-delete mod-delete">Delete</button>
+		</div>
+	</li>
+</template>
+
+<template id="RuleNameTemplate">
+	<h2>Name this rule</h2>
+	<p>Names must be unique</p>
+	<input type="text" name="name" size="30" autofocus>
+	<p class="error" data-name="name" data-value="empty">Please enter a name for this rule</p>
+	<p class="error" data-name="name" data-value="exists">This name is in use, please choose another</p>
+</template>
+
+<template id="TitleTextIsTemplate">
+	<fieldset class="these-ones-have-help-buttons">
+		<h2>When the list title is &hellip;</h2>
+		<button type="button" id="ListTitleIsHelper" class="helper">?</button>
+		<div class="form-field-note">
+			<p>This field is for <strong>whole</strong> titles.</p>
+			<p>E.g. if you enter “Team meeting agenda items”, this rule will match lists with that exact title.</p>
+			<p>Put each title on a new line.</p>
+		</div>
+		<textarea id="TitleTextIs" class="title-text-textarea js-check-changed" name="is" rows="5" autofocus></textarea>
+		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
+		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
+		<ul class="error" data-name="isAlreadyUsed"></ul>
+	</fieldset>
+</template>
+
+<template id="TitleTextContainsTemplate">
+	<fieldset class="these-ones-have-help-buttons">
+		<h2>When the list title contains &hellip;</h2>
+		<button type="button" id="ListTitleIsHelper" class="helper">?</button>
+		<div class="form-field-note">
+			<p>This field is for <strong>snippets</strong> of titles. You can put hashtags here.</p>
+			<p>E.g. if you enter “To do”, this rule will match lists with titles like “Things to do”, “To do list”, “What to do in Paris”, “Someone else is going to do these things”, etc.</p>
+			<p>Put each snippet on a new line.</p>
+		</div>
+		<textarea id="TitleTextContains" class="title-text-textarea js-check-changed" name="contains" rows="5" autofocus></textarea>
+		<p class="error" data-name="contains" data-value="exists">These snippets have been used in other rules:</p>
+		<ul class="error" data-name="containsAlreadyUsed"></ul>
+	</fieldset>
+</template>
+
+<template id="MoreOptionsTemplate">
+
+	<h2>More options</h2>
+
+	<label for="Strikethrough">
+		<h3>Strikethrough</h3>
+		<p>
+			<input type="checkbox" id="Strikethrough" name="strikethrough" class="js-check-changed"> Apply <s>strikethrough</s> to cards
+		</p>
+	</label>
+
+	<label for="Grayscale">
+		<h3>Greyscale</h3>
+		<p>
+			<input type="checkbox" id="Grayscale" name="grayscale" class="js-check-changed"> Turn colours on list to grey
+		</p>
+	</label>
+
+	<label for="UnmatchedLists">
+		<h3>Other lists</h3>
+		<p>
+			Apply a rule to other lists on the board which do not match any rules
+		</p>
+		<p>
+			<select id="UnmatchedLists" name="unmatchedLists" class="js-check-changed">
+				<option>(none)</option>
+			</select>
+		</p>
+	</label>
+
+</template>
+
+<template id="FormDialogTemplate">
+	<dialog-contents>
+		<form method="dialog">
+			<div class="form-dialog-body"></div>
+			<p class="form-dialog-buttons">
+				<button id="Cancel" type="button">Cancel</button>
+				<button id="OK" type="submit" class="mod-primary">Save</button>
+			</p>
+		</form>
+	</dialog-contents>
+</template>
+
+<template id="ColorTile">
+	<li>
+		<input type="radio" name="color" class="color-tile-input">
+		<label class="color-tile-label"></label>
+	</li>
+</template>
+
+<template id="ColorPickerButton">
+	<button type="button" class="custom-color-picker-button recent-color-button" value="" style=""></button>
+</template>

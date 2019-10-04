@@ -1,0 +1,129 @@
+color-select {
+	position: relative;
+
+	margin: 0;
+
+	ul {
+		display: inline-flex;
+
+		margin: 0;
+		padding: 0;
+
+		list-style: none;
+	}
+
+	li {
+		display: inline-flex;
+
+		margin: 0;
+		padding: 0;
+	}
+
+	li > button {
+		display: none;
+		align-self: baseline;
+
+		margin-bottom: 2px;
+		padding: 3px 7px 5px;
+
+		color: white;
+
+		&[data-selected] {
+			display: inline-block;
+		}
+		&:after {
+			content: "▾";
+
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+		&.mod-no-dropdown:after {
+			display: none;
+		}
+
+		&[disabled] {
+			color: #909090;
+			background: #dedede;
+			box-shadow: 0 1px 0 #909090;
+
+			cursor: default;
+		}
+	}
+
+	&.mod-inline {
+		display: flex;
+		position: static;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		button {
+			margin: 5px;
+			padding: 0 5px;
+			&[data-selected] {
+				padding: 2px 7px;
+			}
+		}
+	}
+
+	&[data-open] {
+		display: inline-block;
+		position: relative;
+		left: -4px;
+
+		ul {
+			display: inline-flex;
+			position: absolute;
+			z-index: 1;
+			flex-direction: column;
+
+			padding: 1px;
+
+			background: $dialogBG;
+			border-radius: 5px;
+
+			filter: drop-shadow(0 0 2px rgba(black, 0.2));
+		}
+
+		li > button {
+			display: inline-block;
+			position: relative;
+
+			margin: 2px 13px 2px 13px;
+
+			&.fill-trello-red,
+			&.fill-red {
+				margin-top: 13px;
+			}
+
+			&.fill-trello-photo,
+			&.fill-custom {
+				margin-bottom: 13px;
+			}
+
+			&[data-selected] {
+				padding-left: 30px;
+
+				background-image: url("/img/tick-white.svg");
+				background-repeat: no-repeat;
+				background-position: left 5px center;
+				&.fill-trello-photo {
+					background: url("/img/tick.svg") no-repeat left 5px center,
+					url("/img/dummyBackgroundPhoto.jpg") no-repeat;
+					background-size: auto, cover;
+				}
+			}
+
+			&.mod-light-background[data-selected] {
+				background-image: url("/img/tick.svg");
+			}
+
+			&:after {
+				display: none;
+			}
+		}
+
+		.fill-trello-blank,
+		.fill-blank {
+			display: none;
+		}
+	}
+}

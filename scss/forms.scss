@@ -4,45 +4,141 @@ button {
 	display: inline-block;
 	align-self: flex-end;
 
-	padding: 7px 20px;
+	padding: 6px 12px;
 	box-sizing: border-box;
 
 	color: $trelloListHeaderColor;
-	background: linear-gradient(to bottom, #d6dadc 0, #cdd2d4 100%);
-	background-color: $listBG;
+	background: #dfe3e6;
 	border: none;
 	border-radius: 3px;
-	box-shadow: 0 1px 0 #959da1;
+	box-shadow: 0 1px 0 0 #c2ccd1;
 
 	text-align: center;
-	font: bold 14px/22px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 14px;
 
 	cursor: pointer;
 	user-select: none;
 
 	&.mod-primary {
 		color: #fff;
-		background: linear-gradient(to bottom,#61bd4f 0,#5aac44 100%);
-		box-shadow: 0 1px 0 #3f6f21;
+		background: #5aac44;
+		box-shadow: 0 1px 0 0 #3f6f21;
+	}
+
+	&.mod-delete {
+		color: #fff;
+		background: #eb5a46;
+		border: none;
+		box-shadow: 0 1px 0 0 #b04632;
 	}
 }
 
-input[type="text"] {
+button.link-appearance {
+	all: unset;
+
+	color: $linkColor;
+
+	cursor: pointer;
+
+	&:hover,
+	&:active {
+		color: $hoverColor;
+
+		text-decoration: underline;
+	}
+
+	&.mod-delete:hover {
+		color: red;
+	}
+}
+
+textarea,
+input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="radio"]) {
 	display: block;
 	-webkit-appearance: none;
 
-	width: 80px;
-	min-height: 2pc;
-	margin-bottom: 9pt;
-	padding: 7px;
+	margin-bottom: 12px;
+	padding: 8px 12px;
 	box-sizing: border-box;
 
-	color: $trelloListHeaderColor;
-	border: 1px solid #cdd2d4;
+	color: #5e6c84;
+	background-color: #fafbfc;
+	border: none;
 	border-radius: 3px;
+	box-shadow: inset 0 0 0 2px #dfe1e6;
+	font-size: 14px;
 
-	font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
-	text-transform: uppercase;
+	line-height: 20px;
+
+	transition-timing-function: ease;
+	transition-duration: 85ms;
+	transition-property: background-color,border-color,box-shadow;
+
+	@include trelloBodyFont();
+
+	&:focus {
+		color: #172b4d;
+	}
+}
+
+input:not([type="file"]):not([type="range"]),
+textarea,
+button:not(.link-appearance) {
+	&:focus {
+		box-shadow: inset 0 0 0 2px $focusColor !important;
+	}
+}
+
+select {
+	font-size: 14px;
+}
+
+input[type="range"] {
+	-webkit-appearance: none;
+
+	background: transparent;
+}
+
+@mixin thumb {
+	display: inline-block;
+	-webkit-appearance: none;
+	position: relative;
+	top: -5px;
+
+	width: 14px;
+	height: 14px;
+
+	content: " ";
+
+	background: white;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0 0 3px rgba(black, 0.5);
+
+	cursor: pointer;
+}
+
+@mixin track {
+	height: 4px;
+
+	background: rgba(black, 0.3);
+	border-radius: 4px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	@include thumb;
+}
+
+input[type=range]::-moz-range-thumb {
+	@include thumb;
+}
+
+input[type=range]::-moz-range-track {
+	@include track;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	@include track;
 }
 
 label {
@@ -72,5 +168,15 @@ range-input {
 
 		text-align: justify;
 		text-align-last: justify;
+	}
+}
+
+.form-dialog-buttons {
+	display: flex;
+	justify-content: flex-end;
+
+	margin: 10px 0 0;
+	button {
+		margin-left: 10px;
 	}
 }

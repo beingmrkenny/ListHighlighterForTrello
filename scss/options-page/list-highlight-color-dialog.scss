@@ -1,0 +1,293 @@
+#ListHighlightColorDialog h2 {
+	margin: 10px 0 15px;
+}
+
+.color-tile-bar {
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+
+	min-height: 83px;
+	margin: 0 0 20px 0;
+	padding: 0;
+
+	list-style: none;
+
+	li {
+		margin: 0;
+		padding: 0;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-end;
+
+		width: 60px;
+		height: 60px;
+
+		border-radius: 3px;
+
+		text-align: center;
+
+		cursor: pointer;
+		user-select: none;
+
+		@include transition(height, color, background-color);
+
+		&:hover {
+			height: 65px;
+		}
+
+		&::before {
+			color: white;
+
+			@include transition(color);
+		}
+
+		&.mod-light-background {
+			color: $bodyTextColor;
+		}
+	}
+
+	.color-tile-edit-color {
+		display: none;
+
+		width: 100%;
+		height: 19px;
+		margin-left: -5px;
+		padding: 0;
+
+		color: inherit;
+		background: none;
+		box-shadow: none;
+
+		font-size: 12px;
+
+		&::before {
+			display: inline-block;
+
+			width: 10px;
+			height: 10px;
+			margin-right: 1px;
+
+			content: " ";
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.color-tile-edit-color::before {
+		background: url("/img/pencil-white.svg");
+		background-size: cover;
+	}
+
+	.color-tile-edit-color:hover {
+		text-decoration: underline;
+	}
+
+	.mod-light-background {
+		.color-tile-edit-color::before {
+			background: url("/img/pencil.svg");
+			background-size: cover;
+		}
+	}
+
+	input:checked + label {
+		height: 83px;
+
+		&::before {
+			position: relative;
+			top: -20px;
+
+			width: 26px;
+			height: 22px;
+
+			content: " ";
+
+			background: url("/img/tick-white.svg");
+			background-size: cover;
+			border-radius: 3px;
+
+			font-size: 26px;
+		}
+
+		&[for="ColorTile-custom"]::before {
+			top: -6px;
+		}
+
+		&.mod-light-background::before {
+			color: $bodyTextColor;
+			background: url("/img/tick.svg");
+			background-size: cover;
+		}
+
+		&.custom::before {
+			top: -10px;
+		}
+
+		.color-tile-edit-color {
+			display: inline;
+		}
+	}
+
+	input {
+		display: none;
+	}
+}
+
+.opacity-input-label {
+	display: flex;
+	justify-content: space-between;
+
+	padding: 0 5px;
+	box-sizing: content-box;
+
+	color: $bodyTextColor;
+
+	input {
+		width: 100%;
+		margin: 0 10px;
+	}
+}
+
+.dummy-board {
+	margin: 20px 0 0;
+	padding: 10px;
+
+	border-radius: 5px;
+
+	user-select: none;
+
+	transition: background 0.25s;
+
+	.dummy-board_body {
+		display: flex;
+	}
+
+	.dummy-board_list {
+		min-width: 270px;
+		max-width: 270px;
+
+		border-radius: 3px;
+
+		font-size: 14px;
+
+		&.dummy-board_demo-list {
+			margin: 0 10px;
+
+			transition: background 0.25s;
+
+			.dummy-board_list-header,
+			.dummy-board_add-card {
+				color: white;
+			}
+
+			&.mod-light-background {
+				.dummy-board_list-header,
+				.dummy-board_add-card {
+					color: $normalTextColor;
+				}
+			}
+
+			&.fill-normal {
+				.dummy-board_list-header {
+					color: #333;
+				}
+				.dummy-board_add-card {
+					color: #8c8c8c;
+				}
+			}
+		}
+
+		.dummy-board_list-header {
+			height: 20px;
+			margin: 8px 10px;
+
+			color: #333;
+
+			line-height: 18px;
+			font-weight: 700;
+		}
+
+		.dummy-board_card {
+			margin: 0 8px 6px;
+			padding: 6px 8px;
+			box-sizing: content-box;
+
+			color: #444;
+			background: white;
+			border-bottom: 1px solid #ccc;
+			border-radius: 3px;
+
+			line-height: 18px;
+		}
+
+		.dummy-board_add-card {
+			height: 18px;
+			margin: 0;
+			padding: 8px 10px;
+
+			color: #8c8c8c;
+
+			line-height: 18px;
+		}
+	}
+}
+
+.highlight-color-exception-section {
+	&[open] {
+		background: #ececec;
+	}
+
+	.highlight-color-blurb {
+		max-width: 800px;
+		margin-bottom: 0;
+
+		line-height: 1.5;
+	}
+
+	> ul {
+		margin-bottom: 20px;
+		padding-left: 30px;
+		> li {
+			margin-top: 5px;
+			padding-left: 0;
+
+			font-size: 15px;
+			&.mod-marked-for-deletion {
+				color: $gray;
+			}
+		}
+
+		div {
+			display: flex;
+		}
+	}
+
+	color-select {
+		margin: 0 5px;
+	}
+
+	.highlight-exception-delete {
+		align-self: baseline;
+
+		margin-right: 10px;
+		margin-left: auto;
+	}
+}
+
+.color-select-edit-custom-color-button-container {
+	display: none;
+}
+
+[name="ColorSelectEditCustom"] {
+	align-self: baseline;
+
+	padding: 1px 7px 2px;
+}
+
+@import "colorButtonsEtc";

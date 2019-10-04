@@ -54,6 +54,10 @@
 			"align-items",
 			"justify-content",
 
+			"grid-template-columns",
+			"grid-template-rows",
+			"gap",
+
 			"float",
 			"clear"
 		],

@@ -1,0 +1,212 @@
+.title-text-textarea {
+	width: calc( 100% - 4px );
+	margin: 0 2px 2px;
+	box-sizing: border-box;
+
+	resize: none;
+}
+
+#RuleNameDialog input {
+	margin: 0 2px 10px;
+}
+
+#MoreOptionsDialog {
+	dialog-contents {
+		width: 500px;
+	}
+	p {
+		color: $lighterTextColor;
+	}
+}
+
+#TitleTextIsDialog dialog-contents,
+#TitleTextContainsDialog dialog-contents {
+	width: 370px;
+}
+
+#MoreWIPOptions {
+	max-height: 1000px;
+	overflow: hidden;
+
+	transition: max-height 0.25s;
+	&.disabled {
+		max-height: 0;
+	}
+}
+
+.rule-related-dialog {
+	fieldset {
+		margin: 0;
+		padding: 0;
+
+		border: 0;
+	}
+
+	.these-ones-have-help-buttons {
+		h2,
+		h3 {
+			float: left;
+
+			margin-bottom: 16px;
+		}
+		button {
+			float: right;
+
+			width: 23px;
+			height: 23px;
+			margin: 0;
+			padding: 0;
+
+			color: $dialogBG;
+			background: #dfe1e6;
+			border: 2px solid;
+			border-radius: 20px;
+			box-shadow: none;
+		}
+	}
+
+	.form-field-note {
+		display: none;
+		clear: both;
+
+		margin-bottom: 10px;
+		padding: 0 10px;
+
+		color: $lighterTextColor;
+
+		p {
+			margin: 0 0 5px 0;
+		}
+	}
+
+	.error {
+		display: none;
+
+		margin: 12px 0 0 0;
+
+		color: $errorColor;
+
+		&[data-name="highlightColor"] {
+			margin-top: 4px;
+		}
+	}
+
+	ul.error {
+		margin: 0 0 0 30px;
+	}
+
+	.error.show {
+		display: block;
+	}
+
+	.hint {
+		display: none;
+
+		margin-top: 9px;
+		margin-left: 20px;
+
+		color: gray;
+
+		line-height: 1;
+		font-size: 13px;
+	}
+
+	.hint.show {
+		display: block;
+	}
+}
+
+#NewRuleDialog {
+	.form-dialog-body {
+		width: 339px;
+	}
+
+	h3 {
+		margin: 0 0 12px 0;
+
+		color: #172b4d;
+
+		line-height: 16px;
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: -0.003em;
+		[name="highlightColor-group"].has-error & {
+			margin-top: 0;
+		}
+	}
+
+	.helper {
+		margin: 30px 0 0 5px;
+
+		line-height: 1.3;
+	}
+
+	.intro {
+		margin: 10px 0;
+	}
+
+	fieldset {
+		margin-top: 16px;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	div {
+		clear: both;
+	}
+
+
+	color-select button {
+		width: 29px;
+		height: 28px;
+		overflow: hidden;
+		margin: 1px 2px 2px 0;
+		padding: 0;
+
+		line-height: 0;
+		text-indent: 100px;
+
+		&[data-selected] {
+			background-image: url("/img/tick-white.svg");
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+
+		&.mod-light-background[data-selected] {
+			background-image: url("/img/tick.svg");
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	.color-blind-friendly-mode & {
+		color-select {
+			margin: 0 auto 20px;
+			button {
+				width: auto;
+				padding: 0 9px;
+
+				text-indent: 0;
+				&[data-selected] {
+					padding-left: 25px;
+
+					background-position: left 5px center;
+				}
+			}
+		}
+	}
+
+	.form-dialog-buttons {
+		margin-top: 30px;
+	}
+}

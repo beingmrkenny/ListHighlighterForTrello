@@ -3,14 +3,19 @@
 	border-bottom: none;
 	box-shadow: none;
 
+	&.active-card {
+		background-color: hsla(0, 0, 100%, 0.3);
+	}
+
+
 	// Dragging
 	body > & {
 		background: transparentize(#edeff0, 0.8);
 		background-color: transparentize(#edeff0, 0.8);
 
 		.list-card-details {
-			background: transparent !important; // REVIEW Get rid of this !important
-			background-color: transparent !important; // REVIEW Get rid of this !important
+			background: transparent !important; // HACK Get rid of this !important
+			background-color: transparent !important; // HACK Get rid of this !important
 		}
 
 		h3 {
@@ -64,7 +69,7 @@
 	h3 {
 		order: 2;
 
-		margin: 0 0 1px 5px;
+		margin: 0 0 1px 1px;
 
 		font-size: 14px;
 		font-weight: 700;
@@ -100,12 +105,12 @@
 		padding: 13px 0 0;
 	}
 
-	.bmko_separator-cards-visible-line & {
+	.bmko_separator-cards-visible-line &:not(.is-stickered) {
 		min-height: 0;
 		padding: 11px 0;
 	}
 
-	.bmko_header-cards-extra-space.bmko_separator-cards-visible-line & {
+	.bmko_header-cards-extra-space.bmko_separator-cards-visible-line &:not(.is-stickered) {
 		padding: 16px 0;
 	}
 
@@ -117,9 +122,13 @@
 	}
 
 	&.is-stickered {
-		padding-bottom: 50px;
+		padding-top: 25px;
+		padding-bottom: 25px;
 		.list-card-operation {
 			display: inline-block;
+		}
+		hr {
+			display: none;
 		}
 	}
 }
@@ -145,47 +154,29 @@
 	}
 }
 
-.bmko_high-list {
-	.bmko_header-card-applied.active-card {
-		background-color: hsla(0, 0, 100%, 0.3) !important; // REVIEW get rid of this important
-	}
+.bmko_list_changed_background_color {
+
 	.bmko_header-card {
+		h3 {
+			color: var(--color);
+			-webkit-text-fill-color: var(--color);
+		}
 		.badge-icon,
 		.badge-text {
-			color: var(--high-pri-text);
+			color: var(--color);
 		}
 		.badge {
 			background: transparent;
 		}
 		.badge.is-due-soon,
 		.badge.is-due-past {
-			border: 1px solid var(--high-pri-text);
+			border: 1px solid var(--color);
 		}
 	}
 	.bmko_separator-cards-visible-line & hr {
-		color: var(--high-pri-text);
-		background: var(--high-pri-text);
+		color: var(--color);
+		background: var(--color);
 
 		opacity: 0.4;
-	}
-}
-
-.bmko_low-list {
-	.bmko_horizontal-rule-card:hover {
-		background-color: hsla(0, 0, 100%, 0.05);
-	}
-}
-
-.list.bmko_high-list .bmko_header-card h3 {
-	color: var(--high-pri-text);
-	-webkit-text-fill-color: var(--high-pri-text);
-}
-
-.bmko_ignore-list,
-.bmko_trash-list {
-	.bmko_horizontal-rule-card {
-		&:hover {
-			background-color: hsla(0, 0, 100%, 0.1);
-		}
 	}
 }

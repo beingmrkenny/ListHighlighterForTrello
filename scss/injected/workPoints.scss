@@ -20,26 +20,33 @@
 }
 
 .bmko_card-count-badge {
-	font-size: 12px;
+	display: inline-block;
+
+	padding: 2px 0;
+
+	color: #5e6c84;
+
 	word-spacing: -2px;
-	color: #838c91;
+	font-size: 12px;
 }
 
 .bmko_list-limit-notice {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
+
+	min-width: 100%;
 	margin: 10px 0 6px;
 	padding: 6px 0 6px 26px;
-	min-width: 100%;
+
+	border-radius: 4px;
 
 	font-size: 14px;
 	font-weight: bold;
-	border-radius: 4px;
-
-	transition: padding 0.25s;
 
 	pointer-events: none;
+
+	transition: padding 0.25s;
 
 	.is-subscribe-shown & {
 		margin-right: -51px;
@@ -56,14 +63,17 @@
 
 	.bmko_list-over & {
 		flex-direction: row;
+
 		padding: 6px 13px 6px 10px;
 
-		text-align: center;
 		border: 2px solid;
 		border-radius: 3px;
 
+		text-align: center;
+
 		animation-name: flash;
 		animation-duration: 1s;
+
 		animation-fill-mode: both;
 	}
 }
@@ -74,23 +84,11 @@
 		align-items: center;
 
 		&::before {
-			opacity: 0.6;
 			margin-left: 10px;
 
-			font-weight: bold;
 			content: "over";
+
+			font-weight: bold;
 		}
-	}
-}
-
-.bmko_high-list.bmko_list-would-be-over:not([data-bmko-original-list]) .placeholder:not(.bmko_header-card-placeholder) {
-	color: var(--high-pri-text);
-}
-
-.bmko_ignore-list,
-.bmko_trash-list {
-	.bmko_list-limit-notice:not(.card.count-only),
-	.placeholder:not(.bmko_header-card-placeholder)::before {
-		display: none !important;
 	}
 }

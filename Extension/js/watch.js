@@ -68,8 +68,9 @@ function getWatcher(key, targets) {
 		// REVIEW this accumulates too easily
 		listCardTitle : {
 			targets : targets || document.querySelectorAll('.list-card-title'),
-			observer : new MutationObserver(Card.processListCardTitle),
-			options : {characterData: true, childList: true}
+			observer : new MutationObserver(HeaderSeparatorCard.processListCardTitle),
+			// options : {characterData: true, childList: true, subtree: true} // NOTE: this was a previous attempt
+			options : {characterData: true, childList: true }
 		}
 
 	};
@@ -83,7 +84,6 @@ function watchForListActions () {
 	watch('forQuickCardEditor');
 }
 
-// FIXME is targets ever used?
 function watch (watcherKey, targets) {
 
 	var watcher = getWatcher(watcherKey, targets);

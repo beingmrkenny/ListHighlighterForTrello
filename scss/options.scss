@@ -1,7 +1,74 @@
-@import "fonts.scss";
 @import "colors.scss";
 
-@import "options-page/layout.scss";
+@mixin trelloBodyFont () {
+	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+@mixin full-width($backgroundColor: white) {
+	$width: 750px;
+	width: $width;
+	margin-right: auto;
+	margin-left: auto;
+
+	background: $backgroundColor;
+
+	@media (max-width: 800px) {
+		width: $width - 40px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	margin: 0;
+	&.no-scroll {
+		overflow: hidden;
+	}
+}
+
+#MainHeader {
+	div {
+		padding-top: 30px;
+
+		@include full-width(#edeff0);
+	}
+	nav {
+		clear: both;
+
+		margin-top: 30px;
+	}
+}
+
+main {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+
+	padding: 20px 0;
+
+	@include full-width();
+}
+
+main {
+	section {
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
+
+footer {
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+
+	@include full-width();
+}
 
 @mixin transition ($property...) {
 	transition-duration: 0.25s;
@@ -13,8 +80,8 @@ body {
 	background: white;
 
 	line-height: 1.6em;
-	font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-	font-size: 16px;
+	@include trelloBodyFont();
+	font-size: 14px;
 }
 
 #MainHeader {
@@ -31,159 +98,13 @@ body {
 		margin-top: 60px;
 	}
 
-	img,
-	svg {
-		float: left;
-	}
-
 	img {
+		float: left;
+
 		width: 40px;
-		margin-right: 20px;
+		height: 40px;
+		margin-right: 10px;
 	}
-
-	svg {
-		width: 52px;
-		margin-top: -6px;
-		margin-right: 14px;
-	}
-}
-
-.dimming-input-block {
-	display: flex;
-	justify-content: space-between;
-
-	width: 99%;
-	padding: 0 5px;
-	box-sizing: content-box;
-
-	color: white;
-
-	span:first-of-type {
-		width: 190px;
-	}
-	input {
-		width: 100%;
-	}
-	[data-value-label-for] {
-		width: 50px;
-
-		text-align: right;
-	}
-}
-
-#DimmingExampleBoard {
-	margin: 0 -10px;
-	padding: 10px;
-
-	background: $blueTrello;
-	border-radius: 5px;
-
-	.dimming-example-lists {
-		display: flex;
-		align-items: flex-start;
-
-		margin: 5px 2.5px 0;
-
-		font-size: 14px;
-	}
-
-	.dimming-example-list {
-		width: 270px;
-		margin: 5px 2.5px;
-
-		background: $listBG;
-		border-radius: 3px;
-	}
-
-	.dimming-example-list-header {
-		height: 20px;
-		margin: 8px 10px;
-
-		color: #333;
-
-		line-height: 18px;
-		font-weight: 700;
-	}
-
-	.dimming-example-list-card {
-		margin: 0 8px 6px;
-		padding: 6px 8px;
-		box-sizing: content-box;
-
-		color: #444;
-		background: white;
-		border-bottom: 1px solid #ccc;
-		border-radius: 3px;
-
-		line-height: 18px;
-	}
-
-	.dimming-example-add-card {
-		height: 18px;
-		margin: 0;
-		padding: 8px 10px;
-
-		color: #8c8c8c;
-
-		line-height: 18px;
-	}
-}
-
-#DimmingLowExample {
-	opacity: var(--low-priority-opacity);
-}
-
-#DimmingDoneExample {
-	opacity: var(--done-opacity);
-}
-
-.tags-and-titles {
-	margin-top: 0;
-	th,
-	td {
-		width: 50%;
-	}
-
-	th {
-		padding-top: 40px;
-	}
-}
-
-.high,
-.normal,
-.done,
-.ignore,
-.low {
-	margin-bottom: 5px;
-	padding: 5px 7px;
-
-	border-radius: 3px;
-}
-
-.high {
-	color: var(--high-pri-text);
-	background: var(--high-pri);
-}
-
-.normal,
-.low,
-.ignore,
-.done {
-	color: $normalTextColor;
-	background: $listBG;
-}
-
-.low {
-	opacity: var(--low-priority-opacity);
-}
-
-.ignore,
-.done {
-	opacity: var(--done-opacity);
-}
-
-.done {
-	text-decoration: line-through;
 }
 
 nav {
@@ -258,15 +179,6 @@ nav {
 	}
 }
 
-main {
-	section {
-		display: none;
-		&.active {
-			display: block;
-		}
-	}
-}
-
 footer {
 	color: gray;
 
@@ -280,9 +192,11 @@ footer {
 }
 
 @import "options-page/color-picker";
-@import "options-page/dummy-board";
-@import "options-page/color-tiles";
+@import "options-page/color-select";
+@import "options-page/highlighting-table";
+@import "options-page/list-highlight-color-dialog";
 @import "options-page/option-widgets";
+@import "options-page/template-tags";
 
 @import "elements.scss";
 @import "forms.scss";
@@ -291,4 +205,8 @@ body.preload *,
 body.preload *::before,
 body.preload *::after {
 	transition: none !important;
+}
+
+body.preload .disabled {
+	display: none;
 }

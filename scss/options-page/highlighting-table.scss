@@ -1,0 +1,382 @@
+#RulesTableHeader {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 30px;
+	h3 {
+		margin: 0;
+	}
+}
+
+.highlighting-table {
+	border-spacing: 0 3px;
+	border-collapse: separate;
+
+	&[data-rules-count="0"] thead {
+		display: none;
+	}
+
+	tbody:empty::after {
+		display: block;
+
+		content: "You don’t have any rules set up. Click “Add Rule” to get started.";
+
+		text-align: center;
+	}
+
+	th,
+	td {
+		padding-right: 0;
+	}
+
+	th {
+		text-align: center;
+	}
+
+	td {
+		padding: 10px 0;
+
+		vertical-align: middle;
+	}
+
+	.sortable-ghost {
+		// q::before,
+		// q::after,
+		.highlighting-title-text th,
+		.highlighting-title-text td {
+			color: $bodyTextColor;
+		}
+	}
+
+	.dragger-mcswagger {
+		width: 20px;
+
+		cursor: move;
+
+		span.grippy {
+			display: inline-block;
+
+			width: 10px;
+			height: 20px;
+			overflow: hidden;
+			margin-top: -0.7em;
+			padding: 3px 8px;
+
+			content: "....";
+
+			color: #d4d4d4;
+
+			line-height: 5px;
+			vertical-align: middle;
+			white-space: pre-line;
+			font-family: sans-serif;
+			font-size: 12px;
+			letter-spacing: 2px;
+			text-shadow: 1px 0 1px #585858;
+
+			&::after {
+				content: ".. .. .. ..";
+			}
+		}
+
+		&:hover {
+			filter: brightness(105%);
+		}
+	}
+
+	.disabled .dragger-mcswagger {
+		span.grippy {
+			color: #f3f3f3;
+
+			text-shadow: 1px 0 1px #8a8a8a;
+		}
+
+		&:hover {
+			filter: brightness(102%);
+		}
+	}
+
+	 > tbody > tr {
+		 > th,
+		 > td {
+			background: #c6c6c6;
+
+			transition: background 0.25s, color 0.25s;
+		}
+
+		 > td {
+			&:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+			&:last-child {
+				border-radius: 0 5px 5px 0;
+			}
+		}
+
+		&.focussed-rule > th,
+		&.focussed-rule > td,
+		&.sortable-ghost > th,
+		&.sortable-ghost > td {
+			color: #fff !important;
+			background: $focusColor;
+		}
+
+		&.sortable-ghost {
+			opacity: 0.5;
+		}
+
+		&.rule-updated {
+			& > th,
+			& > td {
+				animation: ruleTableTrFlash 0.5s ease-in;
+			}
+		}
+
+		&.disabled > th,
+		&.disabled > td {
+			color: $lighterTextColor;
+			background: #f5f5f5;
+			q {
+				color: $lighterTextColor;
+			}
+		}
+	}
+
+	.highlighting-enable-column {
+		width: 80px;
+		padding-right: 20px;
+		padding-left: 15px;
+
+		vertical-align: middle;
+		text-align: left;
+
+		strong {
+			margin-left: -2px;
+			padding: 2px 5px;
+		}
+
+		option-widget {
+			margin-top: 5px;
+		}
+	}
+
+	.highlighting-option-widget label {
+		width: 65px;
+		min-height: auto;
+		margin-right: 0;
+	}
+
+	.highlighting-title-text table,
+	.highlighting-title-text tr,
+	.highlighting-title-text td,
+	.highlighting-title-text th {
+		margin: 0;
+		padding: 0;
+
+		border-collapse: collapse;
+
+		border: 0;
+
+		vertical-align: bottom;
+	}
+
+	.highlighting-title-text {
+		td {
+			max-width: 350px;
+			overflow: hidden;
+			padding: 0 5px;
+
+			color: $lighterTextColor;
+
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		th {
+			width: 60px;
+			padding-right: 5px;
+
+			color: $lighterTextColor;
+
+			vertical-align: top;
+			text-align: right;
+			font-weight: normal;
+			&[colspan] {
+				text-align: left;
+			}
+		}
+	}
+
+	q {
+		color: $bodyTextColor;
+
+		font-weight: bold;
+		&::before,
+		&::after {
+			display: none;
+		}
+		// &::before {
+		// 	content: "“";
+		// }
+		// &::after {
+		// 	content: "”";
+		// }
+	}
+
+	.highlighting-title-text div,
+	.highlighting-style-column > div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.highlighting-style-column {
+		width: 160px;
+	}
+	.highlighting-more-options {
+		width: 140px;
+	}
+
+	color-chooser {
+		display: flex;
+		align-items: center;
+
+		margin: 3px;
+		padding: 3px;
+	}
+
+	color-indicator {
+		display: flex;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+
+		width: 50px;
+		height: 50px;
+		height: 50px;
+		padding: 2px;
+
+		content: " ";
+
+		color: white;
+		background-color: $listBG;
+		border: 2px solid white;
+		border-radius: 6px;
+
+		&.mod-light-background {
+			color: $bodyTextColor;
+		}
+		&.mod-has-exceptions::after {
+			position: absolute;
+			right: 5px;
+			align-self: flex-end;
+
+			content: "\002026";
+		}
+	}
+
+	.disabled color-chooser {
+		opacity: 0.2;
+	}
+
+	.highlighting-modal-trigger:hover q,
+	.highlighting-modal-trigger:hover {
+		color: $linkColor;
+
+		cursor: pointer;
+	}
+
+	td.highlighting-modal-trigger:empty:hover::before {
+		content: "click to add";
+		text-decoration: underline;
+	}
+
+	.highlighting-modal-trigger[data-key="name"]:hover,
+	.highlighting-modal-trigger:hover q {
+		text-decoration: underline;
+	}
+
+	color-chooser.highlighting-modal-trigger:hover {
+		background: $linkColor;
+		border-radius: 10px;
+		color-indicator {
+			opacity: 1 !important;
+		}
+	}
+
+	.highlighting-more-options {
+		&:hover {
+			text-decoration: none;
+		}
+		button {
+			color: $bodyTextColor;
+		}
+		div:hover button {
+			color: $linkColor;
+			text-decoration: underline;
+		}
+	}
+
+	.highlighting-more-options div {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+
+		width: 80px;
+		height: 56px;
+		margin-left: 5px;
+
+		.highlighting-more-options-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 18px;
+			height: 18px;
+			margin-right: 5px;
+
+			color: $lighterTextColor;
+			border: 1px solid;
+			border-radius: 3px;
+
+			line-height: 1;
+			font-weight: bold;
+
+			cursor: pointer;
+
+			opacity: 0.2;
+
+			&.enabled {
+				color: $bodyTextColor;
+
+				opacity: 1;
+			}
+		}
+	}
+
+	// oop
+	.disabled .highlighting-more-options div .highlighting-more-options-icon.enabled {
+		color: $lighterTextColor;
+	}
+
+	.highlighting-delete-column {
+		width: 60px;
+		padding-right: 20px;
+
+		text-align: right;
+	}
+}
+
+@keyframes ruleTableTrFlash {
+	from,
+	50%,
+	to {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0.5;
+	}
+}

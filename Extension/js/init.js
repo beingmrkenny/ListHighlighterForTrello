@@ -1,74 +1,62 @@
 'use strict';
 
-var GLOBAL = {};
+chrome.storage.onChanged.addListener( (changes, namespace) => {
 
-chrome.runtime.onMessage.addListener (
-	function(request, sender, sendResponse) {
-		switch (request.message) {
+	for (let key in changes) {
 
-			case 'hello':
-				sendResponse({
-					trello: true,
-					page: TrelloPage.getDetails()
-				});
+		Global.setItem(key, changes[key].newValue);
+
+		// if (window.location.pathname.startsWith('/c/')) { }
+		// if (window.location.pathname.startsWith('/b/')) { }
+		// let value = changes[key].newValue;
+
+		if (key.startsWith('rule-')) {
+			InsertedCSS.generateRules();
+			RulesMatcher.applyCorrectRuleToLists();
+		}
+
+		switch (key) {
+
+			case 'options-HighlightUndimOnHover' :
+				TrelloPage.toggleUndimOnHover();
+				System.keydownUndimSetup();
 				break;
 
-			case 'refresh':
-				location.reload();
+			case 'options-HighlightHideHashtags' :
+				HeaderTagging.toggleTags();
 				break;
 
-			case 'highlightToggle' :
-				ListHighlighter.toggleHighlight(request.highlightStatus);
+			case 'options-OrganisingEnableHeaderCards' :
+			case 'options-OrganisingEnableSeparatorCards' :
+			case 'options-OrganisingHeaderCardsExtraSpace' :
+			case 'options-OrganisingSeparatorCardsVisibleLine' :
+				System.headerCardsSetup();
+				HeaderSeparatorCard.processCards(document.querySelectorAll('.list-card'));
+				ListWorkPoints.updateLists();
 				break;
 
-			case 'colorChange' :
-				Options.loadColors(function (colors) {
-					DoingColors.highPriColorStyles();
-				});
-				break;
-
-			case 'options.HideHashtags' :
-			case 'options.HighlightTags' :
-			case 'options.HighlightTitles' :
-			case 'options.MatchTitleSubstrings' :
-			case 'options.DimUntaggedHigh' :
-			case 'options.DimUntaggedNormal' :
-			case 'options.UndimOnHover' :
-			case 'options.DimmingLow' :
-			case 'options.DimmingDone' :
-				Options.loadOptions(function (options) {
-					ListHighlighter.highlight();
-					HeaderTagging.toggleTags (options.HideHashtags);
-					DoingColors.setupDimmingCSS();
-					System.keydownUndimSetup();
-				});
-				break;
-
-			case 'options.EnableHeaderCards' :
-			case 'options.EnableSeparatorCards' :
-			case 'options.HeaderCardsExtraSpace' :
-			case 'options.SeparatorCardsVisibleLine' :
-				Options.loadOptions(function () {
-					System.headerCardsSetup();
-					Card.processCards(document.querySelectorAll('.list-card'));
-					ListWorkPoints.updateLists();
-				});
-				break;
-
-			case 'options.EnableWIP' :
-			case 'options.CountAllCards' :
-			case 'options.EnablePointsOnCards' :
-			case 'options.HideManualCardPoints' :
-				Options.loadOptions(function (options) {
-					ListWorkPoints.updateLists();
-					HeaderTagging.toggleTags (options.EnableWIP);
-					ListHighlighter.highlight();
-				});
+			case 'options-CountEnableWIP' :
+			case 'options-CountAllCards' :
+			case 'options-CountEnablePointsOnCards' :
+			case 'options-CountHideManualCardPoints' :
+				ListWorkPoints.updateLists();
+				HeaderTagging.toggleTags();
 				break;
 		}
 
 	}
 
+});
+
+chrome.runtime.onMessage.addListener (
+	function(request, sender, sendResponse) {
+		if (request.message == 'hello') {
+			sendResponse({ trello: true, page: TrelloPage.getDetails() });
+		}
+		if (request.message == 'highlightToggle') {
+			TrelloPage.toggleListHighlighting(request.highlightStatus);
+		}
+	}
 );
 
 window.addEventListener('load', System.setup);

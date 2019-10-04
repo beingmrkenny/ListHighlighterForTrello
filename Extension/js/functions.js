@@ -10,13 +10,9 @@ function qq(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
-function removeClasses(classname, except = null) {
+function removeClassesFromMatchingElements(classname) {
 	for (let el of qq(`.${classname}`)) {
-		if (except !== null && el !== except) {
-			el.classList.remove(classname);
-		} else if (except === null) {
-			el.classList.remove(classname);
-		}
+		el.classList.remove(classname);
 	}
 }
 
@@ -48,7 +44,92 @@ function findElementByLeftPosition (left, classname, callback) {
 
 }
 
-// REVIEW: is this needed?
+function createElement(string) {
+
+	if (typeof (string) != 'string') {
+		throw 'String must be passed to createElement';
+	}
+
+	string = string.trim();
+
+	var container,
+		tag = string.match(/<\s*([a-z0-9-]+)/i)[1];
+
+	switch (tag) {
+		case 'thead' :
+		case 'tbody' :
+			container = document.createElement('table');
+			break;
+		case 'tr' :
+			container = document.createElement('table');
+			break;
+		case 'td' :
+		case 'th' :
+			container = document.createElement('table');
+			container.appendChild(document.createElement('tr'));
+			break;
+		default :
+			container = document.createElement('div');
+	}
+
+	switch (tag) {
+
+		case 'tr':
+			container.innerHTML = string;
+			return container.firstElementChild.firstElementChild;
+			break;
+
+		case 'th':
+		case 'td':
+			container.firstElementChild.innerHTML = string;
+			return container.firstElementChild.firstElementChild;
+			break;
+
+		default:
+			container.innerHTML = string;
+			return container.firstElementChild;
+			break;
+	}
+
+}
+
+function removeElement (element) {
+
+	var styles = {
+		overflow : 'hidden',
+		margin   : '0',
+		padding  : '0',
+		opacity  : '0',
+		height   : '0'
+	};
+
+	var result;
+
+	if (element instanceof HTMLElement) {
+
+		element.style.height = element.offsetHeight + 'px';
+		element.style.width = element.offsetWidth + 'px';
+		element.style.transition = 'margin 85ms ease-in, padding 85ms ease-in, opacity 85ms ease-in, height 85ms ease-in';
+
+		element.addEventListener('transitionend', function (event) {
+			var element = this;
+			if (event.propertyName == 'height') {
+				element.remove();
+			}
+		});
+
+		window.setTimeout(function () {
+			for (let property in styles) {
+				element.style[property] = styles[property];
+			}
+		}, 10);
+
+	}
+
+	return result;
+
+}
+
 function listen (els, ev, callback) {
 
 	if (els instanceof HTMLElement || els == document || els == window) {
@@ -65,14 +146,16 @@ function listen (els, ev, callback) {
 
 function observe() {
 
-	var targets, callback, options = {
-		childList: false,
-		attributes: false,
-		characterData: false,
-		subtree: false,
-		attributeOldValue: false,
-		characterDataOldValue: false
-	};
+	var targets,
+		callback,
+		options = {
+			childList: false,
+			attributes: false,
+			characterData: false,
+			subtree: false,
+			attributeOldValue: false,
+			characterDataOldValue: false
+		};
 
 	for (let arg of arguments) {
 
@@ -94,20 +177,23 @@ function observe() {
 
 	}
 
-	var observer = new MutationObserver(function (nodes) {
-		if (nodes.length == 1) {
-			nodes = nodes[0];
-		}
-		callback(nodes, observer);
-	});
+	if (targets) {
 
-	for (var i = targets.length - 1; i > -1; i--) {
-		observer.observe(targets[i], options);
+		var observer = new MutationObserver(function (mutations) {
+			callback(mutations, observer);
+		});
+
+		for (let target of targets) {
+			if (target instanceof HTMLElement) {
+				observer.observe(target, options);
+			}
+		}
+
+		return observer;
 	}
 
-	return observer;
-
 }
+
 
 function keepTrying(callback, limit, interval) {
 
@@ -180,8 +266,15 @@ function ovalue(obj) {
 }
 
 function getTemplate (id) {
-	var templateContent = document.importNode(qid(id).content, true);
-	return templateContent.firstElementChild;
+	var template = qid(id);
+	if (template) {
+		let templateContent = document.importNode(qid(id).content, true);
+		if (templateContent.childElementCount == 1) {
+			return templateContent.firstElementChild;
+		} else if (templateContent.childElementCount > 1) {
+			return templateContent;
+		}
+	}
 }
 
 function j (string) {

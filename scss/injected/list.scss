@@ -1,0 +1,123 @@
+@import "../colors";
+
+.bmko_unmatched-list,
+.bmko_list_opacity_applied {
+	--opacity: 1;
+	opacity: var(--opacity);
+}
+
+.bmko_list_grayscale_applied {
+	> div,
+	> a {
+		filter: grayscale(100%);
+	}
+}
+
+.bmko_list_strikethrough_applied .list-cards {
+	text-decoration: line-through;
+}
+
+.bmko_unmatched-list.list,
+.bmko_list_changed_background_color.list {
+
+	--background-color: #{$listBG};
+	--color: #{$normalTextColor};
+	--border-color: #{$listCardBorderBottomColor};
+
+	color: var(--color);
+	background-color: var(--background-color);
+
+	.u-fancy-scrollbar::-webkit-scrollbar-track-piece {
+		background: rgba(black, 0.1);
+	}
+
+	.u-fancy-scrollbar::-webkit-scrollbar-thumb {
+		background: rgba(black, 0.17);
+	}
+
+	// card styles
+	.list-card {
+		&:not(.placeholder):not(.bmko_header-card-applied) {
+			border-bottom-color: var(--border-color);
+			box-shadow: 0 1px 0 var(--border-color);
+		}
+		&.placeholder {
+			background: rgba(black, 0.1);
+			border-bottom-color: transparent;
+			box-shadow: none;
+		}
+	}
+
+	// list header
+	.list-header-num-cards,
+	.mod-list-name,
+	.mod-list-name:disabled,
+	.icon-lg {
+		color: var(--color);
+		-webkit-text-fill-color: var(--color);
+	}
+	.is-editing {
+		color: $trelloListHeaderColor;
+		-webkit-text-fill-color: $trelloListHeaderColor;
+	}
+
+	&.bmko_list-would-be-over:not([data-bmko-original-list]) .placeholder:not(.bmko_header-card-placeholder) {
+		color: var(--color);
+	}
+
+	// list buttons
+	.list-header-extras-menu,
+	.open-card-composer,
+	.cc-controls .icon-overflow-menu-horizontal,
+	.card-templates-button-container a {
+		color: var(--color);
+		&:hover {
+			color: var(--color);
+			background-color: rgba(black, 0.1);
+		}
+		.icon-sm {
+			color: var(--color);
+		}
+	}
+
+	// card buttons
+	.bmko_header-card .expanded-list-card-operation {
+		span,
+		.icon-sm {
+			color: var(--color);
+			&:hover {
+				background-color: rgba(black, 0.1);
+			}
+		}
+		span .icon-sm {
+			color: var(--color);
+		}
+		.icon-sm {
+			opacity: 0.8;
+		}
+	}
+
+	.bmko_header-card:hover .list-card-operation {
+		background-color: rgba(#f4f5f7, 0.5) !important;
+	}
+
+	.bmko_header-card:hover .list-card-operation:hover {
+		background-color: #f4f5f7 !important;
+	}
+}
+
+// Colour blind friendly mode
+
+#trello-root.body-color-blind-mode-enabled .bmko_list_changed_background_color {
+	background-image: linear-gradient(
+		to bottom right,
+		rgba(255,255,255,0.5) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255,255,255,0.5) 50%,
+		rgba(255,255,255,0.5) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-size: 2pc 2pc;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>List Highlighter for Trello Settings</title>
+	<link rel="stylesheet" href="/css/options.css">
+	{{#if dialogPolyfill }}
+		<link rel="stylesheet" href="/css/dialog-polyfill.css">
+	{{/if}}
+	<link rel="icon" href="/img/buttonIcon.png">
+	<meta name="google" content="notranslate">
+</head>
+
+<body class="preload">
+
+	<header id="MainHeader">
+		<div>
+			<img src="/img/256.png" alt="" width="40" height="40">
+			<h1>List Highlighter for Trello — Settings</h1>
+			<p>Change list background colours, count cards, break up long lists</p>
+
+			<nav>
+				<ul>
+					<li><a href="#Highlighting">Highlighting</a></li>
+					<li><a href="#CardCounting">Card counting</a></li>
+					<li><a href="#Organising">Header and Separator Cards</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		{{> highlighting.section }}
+		{{> cardCounting.section }}
+		{{> organising.section }}
+	</main>
+
+	<footer>
+		For more information visit the
+		<a href="http://beingmrkenny.co.uk/web-extensions/list-highlighter-trello">List Highlighter for Trello</a>
+		homepage<br>
+		Beach photo by <a href="https://unsplash.com/photos/nFSw6m01-38?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Breno Machado</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+		&middot;
+		Color Picker based on <a href="https://github.com/DavidDurman/FlexiColorPicker">FlexiColorPicker by David Durman</a>
+		<br>
+		<a href=="http://www.jacklmoore.com/autosize/">Autosize</a> by <a href="http://www.jacklmoore.com/">Jack Moore</a>
+		&middot;
+		<a href="https://sortablejs.github.io/Sortable/">Sortable.js</a> by <a href="https://github.com/RubaXa">RubaXa</a> and <a href="https://github.com/SortableJS">SortableJS</a>
+	</footer>
+
+	<dialog></dialog>
+
+	{{> templateTags.template colors=colors }}
+	{{> listHighlightColor.template }}
+	{{> colorPicker.template colors=colors }}
+
+	{{!-- REVIEW these millions of js files is annoying to maintain - make it dynamic --}}
+
+	<script type="text/javascript" src="/js/functions.js"></script>
+
+	<script type="text/javascript" src="/js/classes/Global.js"></script>
+	<script type="text/javascript" src="/js/classes/DataStorage.js"></script>
+	<script type="text/javascript" src="/js/classes/StorageLegacy.js"></script>
+	<script type="text/javascript" src="/js/classes/Color.js"></script>
+	<script type="text/javascript" src="/js/classes/Options.js"></script>
+	<script type="text/javascript" src="/js/classes/Rule.js"></script>
+	<script type="text/javascript" src="/js/classes/Rules.js"></script>
+
+	<script type="text/javascript" src="/js/third/colorpicker.js"></script>
+	<script type="text/javascript" src="/js/third/Sortable.js"></script>
+	<script type="text/javascript" src="/js/third/autosize.js"></script>
+	{{#if dialogPolyfill }}
+		<script type="text/javascript" src="/js/third/dialog-polyfill.js"></script>
+	{{/if}}
+
+	<script type="text/javascript" src="/js/options-page/Dialogue.js"></script>
+	<script type="text/javascript" src="/js/options-page/ColorSelect.js"></script>
+	<script type="text/javascript" src="/js/options-page/LHCDColorSelect.js"></script>
+	<script type="text/javascript" src="/js/options-page/ListHighlightColorDialog.js"></script>
+	<script type="text/javascript" src="/js/options-page/ColorPickerWrapper.js"></script>
+	<script type="text/javascript" src="/js/options-page/RulesTable.js"></script>
+	<script type="text/javascript" src="/js/options-page/RulesTableTR.js"></script>
+	<script type="text/javascript" src="/js/options-page/OptionsPage.js"></script>
+
+	<script type="text/javascript" src="/js/optionsPageInit.js"></script>
+
+</body>
+</html>

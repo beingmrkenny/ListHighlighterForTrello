@@ -1,0 +1,33 @@
+{
+  "name": "listhighlighterfortrello",
+  "version": "1.0.0",
+  "description": "List Highlighter for Trello is a web extension for use with Trello. For more information, including how to install the extension for your own use, see <https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello>.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beingmrkenny/ListHighlighterForTrello.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/beingmrkenny/ListHighlighterForTrello/issues"
+  },
+  "homepage": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
+  "dependencies": {},
+  "devDependencies": {
+    "fs-extra": "",
+    "gulp": "",
+    "gulp-handlebars-all": "",
+    "gulp-json-editor": "",
+    "gulp-prompt": "",
+    "gulp-rename": "",
+    "gulp-sass": "",
+    "gulp-shell": "",
+    "gulp-zip": "",
+    "node-notify": "",
+    "node-sass": ""
+  }
+}
