@@ -2,8 +2,8 @@ class RulesMatcher {
 
 	constructor (rules) {
 		this.rules = rules;
-		this.titles = [];
-		this.substrings = [];
+		this.titles = {};
+		this.substrings = {};
 		for (var ruleId in this.rules) {
 			let rule = this.rules[ruleId];
 			if (rule.enabled) {
@@ -16,13 +16,15 @@ class RulesMatcher {
 
 	makeSubstringsList () {
 		for (var ruleId in this.rules) {
+			this.substrings[ruleId] = [];
 			let rule = this.rules[ruleId];
 			if (rule.enabled) {
+				let regexStrings = [];
 				for (let containSubstring of rule.contains) {
-					this.substrings.push({
-						regex : new RegExp('(?:^| )'+containSubstring.toLowerCase()+'\\b'),
-						ruleId : ruleId
-					});
+					if (!containSubstring.startsWith('#')) {
+						containSubstring = '\\b' + containSubstring;
+					}
+					this.substrings[ruleId].push(new RegExp(containSubstring.toLowerCase()+'\\b'));
 				}
 			}
 		}
@@ -40,9 +42,11 @@ class RulesMatcher {
 			return this.rules[ruleId];
 		} else {
 			this.makeSubstringsList();
-			for (let substring of this.substrings) {
-				if (substring.regex.test(listTitle)) {
-					return this.rules[substring.ruleId];
+			for (let ruleId in this.substrings) {
+				for (let regex of this.substrings[ruleId]) {
+					if (regex.test(listTitle)) {
+						return this.rules[ruleId];
+					}
 				}
 			}
 		}

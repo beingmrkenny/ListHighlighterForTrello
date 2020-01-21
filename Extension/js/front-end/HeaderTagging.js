@@ -12,21 +12,15 @@ class HeaderTagging {
 
 			if (textarea && textarea.tagName == 'TEXTAREA') {
 
-				let tagList = '(?:^|[^#])' + Rules.getHashtags().join('\\b|(?:^|[^#])') + '\\b',
+				let tagList = Rules.getHashtags().join('\\b|') + '\\b',
 					r;
 
 				if (hideTags && hideWipNumbers) {
-
 					r = `${tagList}|(?:\\[[0-9]+\\])`;
-
 				} else if (!hideTags && hideWipNumbers) {
-
 					r = `(?:\\[[0-9]+\\])`;
-
 				} else if (hideTags && !hideWipNumbers) {
-
 					r = `${tagList}`;
-
 				}
 
 				let regex = new RegExp(r, 'gi'),

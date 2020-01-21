@@ -170,6 +170,11 @@ function compileAppleScript () {
 }
 
 function copyManifest () {
+	return src('manifest.json')
+		.pipe(dest('Extension'));
+}
+
+function copyAndProcessManifestIfNecessary () {
 
 	if (process.argv[process.argv.length-1].includes('fx')) {
 
@@ -301,10 +306,10 @@ function releaseZip () {
 exports.html = compileOptionPage;
 exports.css = compileAllCSS;
 exports.applescript = compileAppleScript;
-exports.manifest = copyManifest;
+exports.manifest = copyAndProcessManifestIfNecessary;
 
-exports.default = series(compileOptionPage, compileAllCSS, copyManifest);
-exports.watch = series(compileOptionPage, compileAllCSS, copyManifest, lhwatch);
+exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary);
+exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, lhwatch);
 
 exports.refresh = refresh;
 
