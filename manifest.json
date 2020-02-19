@@ -4,7 +4,7 @@
 
 	"name": "List Highlighter for Trello",
 	"description": "Change list background colours, count cards, break up long lists",
-	"version": "4.0.1",
+	"version": "4.0.2",
 
 	"author": "Mark Kenny",
 	"homepage_url": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
@@ -26,7 +26,8 @@
 	},
 
 	"options_ui" : {
-		"page" : "options-page/index.html"
+		"page" : "options-page/index.html",
+		"open_in_tab" : true
 	},
 
 	"permissions" : [

@@ -27,6 +27,10 @@
 		width: 60px;
 		height: 60px;
 
+		@media (max-width: 800px) {
+			width: 50px;
+		}
+
 		border-radius: 3px;
 
 		text-align: center;
@@ -171,6 +175,11 @@
 	.dummy-board_list {
 		min-width: 270px;
 		max-width: 270px;
+
+		@media (max-width: 800px) {
+			min-width: 220px;
+			max-width: 220px;
+		}
 
 		border-radius: 3px;
 

@@ -43,6 +43,60 @@ body {
 	}
 }
 
+/*#NewTab {
+	display: block;
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	left: 50%;
+
+	padding: 3px 30px 3px 7px;
+
+	color: white;
+	background: $linkColor;
+	border-radius: 0 0 9px 9px;
+
+	pointer-events: none;
+
+	opacity: 0;
+	transition: visibility 0s, opacity 250ms;
+	transform: translate(-50%, 0);
+
+	&::after,
+	&::before {
+		position: absolute;
+		top: 7px;
+		right: 10px;
+
+		width: 5px;
+		height: 5px;
+
+		content: " ";
+
+		border: 2px solid white;
+	}
+
+	&::before {
+		top: 10px;
+		right: 13px;
+
+		width: 7px;
+		height: 7px;
+
+		border-width: 0 0 2px 2px;
+	}
+}
+
+@media (max-width: 800px) {
+	[data-current-panel="#Highlighting"] #NewTab {
+		visibility: visible;
+
+		pointer-events: auto;
+
+		opacity: 1;
+	}
+}*/
+
 main {
 	display: flex;
 	flex: 1;
@@ -80,8 +134,9 @@ body {
 	background: white;
 
 	line-height: 1.6em;
-	@include trelloBodyFont();
 	font-size: 14px;
+
+	@include trelloBodyFont();
 }
 
 #MainHeader {

@@ -40,6 +40,7 @@ class OptionsPage {
 		for (let pane of qq('section')) { pane.classList.remove('active'); }
 		li.classList.add('active');
 		pane.classList.add('active');
+		document.body.dataset.currentPanel = hashtag;
 	}
 
 	static setValuesOnInputs (results) {
