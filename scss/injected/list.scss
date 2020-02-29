@@ -1,8 +1,7 @@
 @import "../colors";
 
-.bmko_unmatched-list,
+.bmko_other_list_rules_applied .bmko_unmatched-list,
 .bmko_list_opacity_applied {
-	--opacity: 1;
 	opacity: var(--opacity);
 }
 
@@ -17,7 +16,7 @@
 	text-decoration: line-through;
 }
 
-.bmko_unmatched-list.list,
+.bmko_other_list_rules_applied .bmko_unmatched-list.list,
 .bmko_list_changed_background_color.list {
 
 	--background-color: #{$listBG};

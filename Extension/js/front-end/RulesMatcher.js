@@ -86,12 +86,18 @@ class RulesMatcher {
 	}
 
 	static applyCorrectRuleToLists () {
-		var ruleMatcher = new RulesMatcher(Global.getAllRules());
+		let ruleMatcher = new RulesMatcher(Global.getAllRules()),
+			boardHasOtherListRuleApplied = false;
 		for (let listHeader of qq('.list-header-name-assist')) {
-			RulesMatcher.apply(
-				ruleMatcher.getMatchingRule(listHeader.textContent),
-				listHeader.closest('.list')
-			);
+			let matchingRule = ruleMatcher.getMatchingRule(listHeader.textContent);
+			RulesMatcher.apply(matchingRule, listHeader.closest('.list'));
+			if (ovalue(matchingRule, 'options', 'unmatchedLists')) {
+				boardHasOtherListRuleApplied = true;
+			}
+		}
+		let trelloBody = getTrelloBody();
+		if (trelloBody) {
+			trelloBody.classList.toggle('bmko_other_list_rules_applied', boardHasOtherListRuleApplied);
 		}
 	}
 
