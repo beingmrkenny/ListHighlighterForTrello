@@ -3,7 +3,7 @@ class InsertedCSS {
 	static backgroundColor (rule, className) {
 		let cssRule = '',
 			selector = (className == 'bmko_unmatched-list')
-				? `.${className}.list`
+				? `.bmko_other_list_rules_applied .${className}.list`
 				: `.${className}.bmko_list_changed_background_color.list`;
 		if (rule.highlighting.color) {
 			let isLight = Color.isLight(rule.highlighting.color),
@@ -104,7 +104,7 @@ class InsertedCSS {
 			cssRules += InsertedCSS.backgroundColor(rules[id], className);
 			cssRules += InsertedCSS.exceptionBackgroundColor(rules[id], className);
 			cssRules += InsertedCSS.opacity(rules[id], className);
-			if (unmatchedListCSSRules == '' && rules[uid]) {
+			if (unmatchedListCSSRules == '' && ovalue(rules, uid, 'enabled') === true) {
 				className = 'bmko_unmatched-list';
 				unmatchedListCSSRules += InsertedCSS.backgroundColor(rules[uid], className);
 				unmatchedListCSSRules += InsertedCSS.exceptionBackgroundColor(rules[uid], className);
