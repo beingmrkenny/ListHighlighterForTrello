@@ -282,6 +282,10 @@ function releaseZip () {
 	const fs = require('fs-extra');
 	const zip = require('gulp-zip');
 
+	var zipFileName = (process.argv[process.argv.length-1].includes('fx'))
+		? 'ListHighlighter-Firefox.zip'
+		: 'ListHighlighter.zip';
+
 	// remove dot files - could make this remove .DS_Store
 	glob('Extension/**/.*', {}, function (er, files) {
 		for (let file of files) {
@@ -292,14 +296,14 @@ function releaseZip () {
 
 	try { fs.removeSync('/tmp/ListHighlighter') } catch (err) { console.log(err); }
 	fs.copySync('Extension', '/tmp/ListHighlighter');
-	try { fs.removeSync(process.env.HOME+'/Desktop/ListHighlighter.zip') } catch (err) { console.log(err); }
+	try { fs.removeSync(`${process.env.HOME}/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
 
 	console.log('Run these commands to check your zip for lice');
-	console.log('zip -d ~/Desktop/ListHighlighter.zip __MACOSX/\*');
-	console.log('unzip -vl ~/Desktop/ListHighlighter.zip');
+	console.log(`zip -d ~/Desktop/${zipFileName} __MACOSX/\*`);
+	console.log(`unzip -vl ~/Desktop/${zipFileName}`);
 
 	return src('/tmp/ListHighlighter/**/*')
-		.pipe(zip('ListHighlighter.zip'))
+		.pipe(zip(zipFileName))
 		.pipe(dest(process.env.HOME+'/Desktop'));
 }
 
