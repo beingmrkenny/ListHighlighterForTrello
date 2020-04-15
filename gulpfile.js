@@ -1,6 +1,14 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 const rename = require('gulp-rename');
 
+function done (cb) {
+	const notify = require('node-notify');
+	notify('Done');
+	if (typeof cb == 'function') {
+		cb();
+	}
+}
+
 function compileOptionPage () {
 
 	const Color = require(__dirname + '/Extension/js/classes/Color.js');
@@ -264,13 +272,12 @@ async function refresh () {
 }
 
 function watchCommand (options) {
-	const notify = require('node-notify');
 	const shell = require('gulp-shell');
 	watch(['scss/**/*.scss', 'options-page-html/**/*.hbs', 'Extension/js/**/*.js', 'manifest.json'], function() {
 		compileAllCSS();
 		compileOptionPage();
 		copyManifest();
-		notify('Done');
+		done();
 		return src('*.js', {read: false})
 			.pipe(shell([`osascript ${__dirname}/chrome.scpt ${(options.refreshTrello)} ${(options.refreshOptions)} ${options.chromeKey};`]));
 	});
@@ -318,7 +325,7 @@ exports.css = compileAllCSS;
 exports.applescript = compileAppleScript;
 exports.manifest = copyAndProcessManifestIfNecessary;
 
-exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary);
+exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, done);
 exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, lhwatch);
 
 exports.refresh = refresh;
