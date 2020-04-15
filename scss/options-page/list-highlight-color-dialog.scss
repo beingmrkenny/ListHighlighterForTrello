@@ -260,8 +260,8 @@
 	}
 
 	> ul {
-		margin-bottom: 20px;
-		padding-left: 30px;
+		margin: 20px 0 20px 20px;
+		padding-left: 20px;
 		> li {
 			margin-top: 5px;
 			padding-left: 0;
@@ -281,12 +281,20 @@
 		margin: 0 5px;
 	}
 
+	.highlight-exceptions-marked-for-deletion {
+		margin: 0;
+		float: right;
+	}
+
 	.highlight-exception-delete {
 		align-self: baseline;
 
 		margin-right: 10px;
 		margin-left: auto;
+
+		user-select: none;
 	}
+
 }
 
 .color-select-edit-custom-color-button-container {

@@ -31,6 +31,11 @@ button {
 		border: none;
 		box-shadow: 0 1px 0 0 #b04632;
 	}
+
+	&:disabled {
+		cursor: default;
+		color: $lighterTextColor;
+	}
 }
 
 button.link-appearance {

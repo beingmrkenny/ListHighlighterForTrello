@@ -197,3 +197,22 @@ kbd {
 .invisible {
 	visibility: hidden;
 }
+
+.flash {
+	animation-name: flash;
+	animation-duration: 750ms;
+	animation-fill-mode: both;
+}
+
+@keyframes flash {
+	from,
+	50%,
+	to {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
