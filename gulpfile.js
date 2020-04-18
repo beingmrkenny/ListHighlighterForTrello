@@ -15,6 +15,7 @@ function compileOptionPage () {
 
 	const Color = require(__dirname + '/Extension/js/classes/Color.js');
 	const hbsAll = require('gulp-handlebars-all');
+	const fs = require('fs-extra');
 
 	const trelloHexes = {
 		"blank"  : null,
@@ -117,6 +118,8 @@ function compileOptionPage () {
 		console.log('Including dialog polyfill for Firefox');
 		templateData.dialogPolyfill = true;
 	}
+
+	fs.unlinkSync('Extension/options-page/index.html');
 
 	return src('options-page-html/Options.hbs')
 		.pipe(hbsAll('html', {

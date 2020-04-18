@@ -178,6 +178,7 @@ class ColorSelect {
 
 	}
 
+	// FIXME: This close listener is being applied to the IS dialog cancel button — why?
 	static closeListener (event) {
 		var colorSelectParentSearch = event.target.closest('color-select');
 		if (!colorSelectParentSearch && event.target.tagName != 'BUTTON') {
