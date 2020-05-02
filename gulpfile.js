@@ -1,3 +1,5 @@
+const EXTENSION_NAME = 'ListHighlighter';
+
 const { src, dest, series, parallel, watch } = require('gulp');
 const rename = require('gulp-rename');
 
@@ -297,16 +299,17 @@ function releaseZip () {
 		}
 	});
 
-	try { fs.removeSync('/tmp/ListHighlighter') } catch (err) { console.log(err); }
-	fs.copySync('Extension', '/tmp/ListHighlighter');
+	try { fs.emptyDirSync(`/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
+	try { fs.copySync('Extension', `/tmp/${EXTENSION_NAME}`); }  catch (err) { console.log(err); }
+	try { fs.removeSync(process.env.HOME+`/Desktop/${EXTENSION_NAME}.zip`) } catch (err) { console.log(err); }
 
 	let zipFileName;
 
 	if (process.argv[process.argv.length-1].includes('fx')) {
-		zipFileName = 'ListHighlighter-Firefox.zip';
+		zipFileName = `${EXTENSION_NAME}-Firefox.zip`;
 	} else {
-		zipFileName = 'ListHighlighter.zip';
-		try { fs.removeSync('/tmp/ListHighlighter/js/third/dialog-polyfill.js') } catch (err) { console.log(err); }
+		zipFileName = `${EXTENSION_NAME}.zip`;
+		try { fs.removeSync(`/tmp/${EXTENSION_NAME}/js/third/dialog-polyfill.js`) } catch (err) { console.log(err); }
 	}
 
 	try { fs.removeSync(`${process.env.HOME}/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
@@ -315,7 +318,7 @@ function releaseZip () {
 	console.log(`zip -d ~/Desktop/${zipFileName} __MACOSX/\*`);
 	console.log(`unzip -vl ~/Desktop/${zipFileName}`);
 
-	return src('/tmp/ListHighlighter/**/*')
+	return src(`/tmp/${EXTENSION_NAME}/**/*`)
 		.pipe(zip(zipFileName))
 		.pipe(dest(process.env.HOME+'/Desktop'));
 }
