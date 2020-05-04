@@ -310,6 +310,7 @@ function releaseZip () {
 	} else {
 		zipFileName = `${EXTENSION_NAME}.zip`;
 		try { fs.removeSync(`/tmp/${EXTENSION_NAME}/js/third/dialog-polyfill.js`) } catch (err) { console.log(err); }
+		try { fs.removeSync(`/tmp/${EXTENSION_NAME}/css/dialog-polyfill.css`) } catch (err) { console.log(err); }
 	}
 
 	try { fs.removeSync(`${process.env.HOME}/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
