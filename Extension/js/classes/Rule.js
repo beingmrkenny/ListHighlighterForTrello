@@ -115,7 +115,12 @@ class Rule {
 
 	static checkIsContainsErrors (data) {
 
-		let errors = {};
+		let errors = {},
+			existingRule;
+
+		if (data.id) {
+			existingRule = new Rule(data.id);
+		}
 
 		if (
 			data.hasOwnProperty('is') &&
@@ -154,6 +159,7 @@ class Rule {
 		if (
 			data.hasOwnProperty('is') &&
 			!data.hasOwnProperty('contains') &&
+			(!ovalue(existingRule, 'contains', 'length')) &&
 			data.is.length == 0
 		) {
 			errors.is = 'empty';
@@ -162,6 +168,7 @@ class Rule {
 		if (
 			!data.hasOwnProperty('is') &&
 			data.hasOwnProperty('contains') &&
+			(!ovalue(existingRule, 'is', 'length')) &&
 			data.contains.length == 0
 		) {
 			errors.contains = 'empty';
@@ -260,7 +267,9 @@ class Rule {
 		for (let name in errors) {
 			let value = errors[name];
 			if (typeof value == 'string') {
-				q(`.error[data-name="${name}"][data-value="${value}"]`).classList.add('show');
+				for (let error of qq(`.error[data-name="${name}"][data-value="${value}"]`)) {
+					error.classList.add('show');
+				}
 			} else if (Array.isArray(value)) {
 				let errorMessage = q(`.error[data-name="${name}"]`);
 				errorMessage.classList.add('show');

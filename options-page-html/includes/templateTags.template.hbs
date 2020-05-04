@@ -11,8 +11,6 @@
 		<p class="error" data-name="name" data-value="exists">This name is in use, please choose another</p>
 	</fieldset>
 
-	<p class="error" data-name="criteria" data-value="empty">Please fill out at least one of the two fields below:</p>
-
 	<fieldset name="title-is" class="these-ones-have-help-buttons">
 		<h3>List title is &hellip;</h3>
 		<button type="button" id="ListTitleIsHelper" class="helper">?</button>
@@ -23,6 +21,7 @@
 		</div>
 		<textarea name="is" cols="60" rows="2" class="js-check-changed"></textarea>
 		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
+		<p class="error" data-name="criteria" data-value="empty">Please fill out this field or the one below.</p>
 		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
 		<ul class="error" data-name="isAlreadyUsed"></ul>
 	</fieldset>
@@ -36,6 +35,7 @@
 			<p>Put each snippet on a new line.</p>
 		</div>
 		<textarea name="contains" cols="60" rows="2" class="js-check-changed"></textarea>
+		<p class="error" data-name="criteria" data-value="empty">Please fill out this field or the one above.</p>
 		<p class="error" data-name="contains" data-value="exists">These snippets have been used in other rules:</p>
 		<ul class="error" data-name="containsAlreadyUsed"></ul>
 	</fieldset>
@@ -137,6 +137,7 @@
 		</div>
 		<textarea id="TitleTextIs" class="title-text-textarea js-check-changed" name="is" rows="5" autofocus></textarea>
 		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
+		<p class="error" data-name="is" data-value="empty">This field cannot be empty because this rule has nothing in the “contains” field</p>
 		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
 		<ul class="error" data-name="isAlreadyUsed"></ul>
 	</fieldset>
@@ -152,6 +153,7 @@
 			<p>Put each snippet on a new line.</p>
 		</div>
 		<textarea id="TitleTextContains" class="title-text-textarea js-check-changed" name="contains" rows="5" autofocus></textarea>
+		<p class="error" data-name="is" data-value="empty">This field cannot be empty because this rule has nothing in the “is” field</p>
 		<p class="error" data-name="contains" data-value="exists">These snippets have been used in other rules:</p>
 		<ul class="error" data-name="containsAlreadyUsed"></ul>
 	</fieldset>
