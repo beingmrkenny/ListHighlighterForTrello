@@ -70,13 +70,14 @@
 			"run_at": "document_end"
 		}
 	],
-
 	"icons": {
 		"16"  : "img/192.png",
-		"256" : "img/256.png",
+		"24"  : "img/192.png",
 		"32"  : "img/192.png",
 		"48"  : "img/192.png",
-		"64"  : "img/192.png"
+		"64"  : "img/192.png",
+		"128" : "img/192.png",
+		"256" : "img/256.png"
 	}
 
 }
