@@ -182,38 +182,68 @@ function compileAppleScript () {
 		.pipe(shell([`osacompile -o ${__dirname}/chrome.scpt ${__dirname}/chrome.applescript`]));
 }
 
-function copyManifest () {
-	return src('manifest.json')
-		.pipe(dest('Extension'));
-}
-
-function copyAndProcessManifestIfNecessary () {
-
+function doManifest (mode) {
 	if (process.argv[process.argv.length-1].includes('fx')) {
 
-		console.log('Including Firefox applications entry');
-
-		const jeditor = require("gulp-json-editor");
-
-		return src('manifest.json')
-			.pipe(jeditor({
+		let message = 'Including applications entry and SVG icons for Firefox',
+			entries = {
 				"applications": {
 					"gecko": {
 						"id": "ListHighlighter@example.com",
 						"strict_min_version": "42.0"
 					}
+				},
+				"icons": {
+					"16"  : "img/256.svg",
+					"24"  : "img/256.svg",
+					"32"  : "img/256.svg",
+					"48"  : "img/256.svg",
+					"64"  : "img/256.svg",
+					"96"  : "img/256.svg",
+					"128" : "img/256.svg",
+					"256" : "img/256.svg"
 				}
-			}))
+			};
+
+		if (mode == 'dev') {
+			message = 'Including SVG icons for Firefox';
+			entries = {
+				"icons": {
+					"16"  : "img/256.svg",
+					"24"  : "img/256.svg",
+					"32"  : "img/256.svg",
+					"48"  : "img/256.svg",
+					"64"  : "img/256.svg",
+					"96"  : "img/256.svg",
+					"128" : "img/256.svg",
+					"256" : "img/256.svg"
+				}
+			};
+		}
+
+		console.log(message);
+		const jeditor = require("gulp-json-editor");
+		return src('manifest.json')
+			.pipe(jeditor(entries))
 			.pipe(dest('Extension'));
 	} else {
 		return src('manifest.json')
 			.pipe(dest('Extension'));
 	}
+
+}
+
+function doManifestForRelease () {
+	return doManifest('release');
+}
+
+function doManifestForDev () {
+	return doManifest('dev');
 }
 
 function lhwatch () {
 	watch(['manifest.json'], function() {
-		copyManifest();
+		doManifestForRelease();
 	});
 	watch(['scss/**/*.scss'], function(cb) {
 		compileAllCSS(cb);
@@ -281,7 +311,7 @@ function watchCommand (options) {
 	watch(['scss/**/*.scss', 'options-page-html/**/*.hbs', 'Extension/js/**/*.js', 'manifest.json'], function() {
 		compileAllCSS();
 		compileOptionPage();
-		copyManifest();
+		doManifestForRelease();
 		done();
 		return src('*.js', {read: false})
 			.pipe(shell([`osascript ${__dirname}/chrome.scpt ${(options.refreshTrello)} ${(options.refreshOptions)} ${options.chromeKey};`]));
@@ -294,7 +324,7 @@ function releaseZip () {
 	const fs = require('fs-extra');
 	const zip = require('gulp-zip');
 
-	// remove dot files - could make this remove .DS_Store
+	// remove dot files - .DS_Store
 	glob('Extension/**/.*', {}, function (er, files) {
 		for (let file of files) {
 			console.log(`Removing: ${file}`);
@@ -330,11 +360,11 @@ function releaseZip () {
 exports.html = compileOptionPage;
 exports.css = compileAllCSS;
 exports.applescript = compileAppleScript;
-exports.manifest = copyAndProcessManifestIfNecessary;
+exports.manifest = doManifestForDev;
 
-exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, done);
-exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, lhwatch);
+exports.default = series(compileOptionPage, compileAllCSS, doManifestForDev, done);
+exports.watch = series(compileOptionPage, compileAllCSS, doManifestForDev, lhwatch);
 
 exports.refresh = refresh;
 
-exports.release = series(parallel(compileOptionPage, compileAllCSS, copyManifest), releaseZip);
+exports.release = series(parallel(compileOptionPage, compileAllCSS, doManifestForRelease), releaseZip);
