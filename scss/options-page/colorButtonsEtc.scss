@@ -1,4 +1,4 @@
-.fill-normal			{ color: white; background: $listBG; }
+.fill-normal			{ color: var(--list-fg); background: var(--list-bg); }
 .fill-red				{ color: white; background: $red; }
 .fill-orange			{ color: white; background: $orange; }
 .fill-yellow			{ color: white; background: $yellow; }
@@ -37,8 +37,12 @@
 	color: $bodyTextColor;
 }
 
+body {
+	--button-shadow: #{darken($originalListBG, 10%)};
+}
+
 button {
-	&.fill-normal			{ box-shadow: 0 1px 0 darken($listBG, 10%); }
+	&.fill-normal			{ box-shadow: 0 1px 0 var(--button-shadow); }
 	&.fill-red				{ box-shadow: 0 1px 0 darken($red, 10%); }
 	&.fill-orange			{ box-shadow: 0 1px 0 darken($orange, 10%); }
 	&.fill-yellow			{ box-shadow: 0 1px 0 darken($yellow, 10%); }
@@ -49,7 +53,7 @@ button {
 	&.fill-violet			{ box-shadow: 0 1px 0 darken($violet, 10%); }
 	&.fill-pink				{ box-shadow: 0 1px 0 darken($pink, 10%); }
 	&.fill-black			{ box-shadow: 0 1px 0 darken($black, 10%); }
-	&.fill-custom			{ box-shadow: 0 1px 0 darken($listBG, 10%); }
+	&.fill-custom			{ box-shadow: 0 1px 0 darken($originalListBG, 10%); }
 	&.fill-trello-red		{ box-shadow: 0 1px 0 darken($redTrello, 10%); }
 	&.fill-trello-orange	{ box-shadow: 0 1px 0 darken($orangeTrello, 10%); }
 	&.fill-trello-lime		{ box-shadow: 0 1px 0 darken($limeTrello, 10%); }

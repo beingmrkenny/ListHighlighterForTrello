@@ -19,8 +19,8 @@ class OptionsPage {
 	}
 
 	static checkInputOnClick () {
-		let input = this.previousElementSibling.querySelector('input');
-		if (!input.disabled) {
+		let input = this.parentNode.querySelector('input');
+		if (input && !input.disabled) {
 			input.checked = !input.checked;
 			// input.dispatchEvent(new Event('change'));
 		}

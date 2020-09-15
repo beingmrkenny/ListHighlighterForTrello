@@ -11,6 +11,7 @@
 .highlighting-table {
 	border-spacing: 0 3px;
 	border-collapse: separate;
+	margin-bottom: 0;
 
 	&[data-rules-count="0"] thead {
 		display: none;
@@ -42,8 +43,8 @@
 	.sortable-ghost {
 		// q::before,
 		// q::after,
-		.highlighting-title-text th,
-		.highlighting-title-text td {
+		.highlighting-is-contains th,
+		.highlighting-is-contains td {
 			color: $bodyTextColor;
 		}
 	}
@@ -167,9 +168,9 @@
 	}
 
 	.highlighting-title-text table,
-	.highlighting-title-text tr,
-	.highlighting-title-text td,
-	.highlighting-title-text th {
+	.highlighting-is-contains tr,
+	.highlighting-is-contains td,
+	.highlighting-is-contains th {
 		margin: 0;
 		padding: 0;
 
@@ -180,7 +181,7 @@
 		vertical-align: bottom;
 	}
 
-	.highlighting-title-text {
+	.highlighting-is-contains {
 		td {
 			max-width: 350px;
 			overflow: hidden;
@@ -237,42 +238,12 @@
 		width: 140px;
 	}
 
-	color-chooser {
-		display: flex;
-		align-items: center;
+	color-indicator.mod-has-exceptions::after {
+		position: absolute;
+		right: 5px;
+		align-self: flex-end;
 
-		margin: 3px;
-		padding: 3px;
-	}
-
-	color-indicator {
-		display: flex;
-		position: relative;
-		align-items: center;
-		justify-content: center;
-
-		width: 50px;
-		height: 50px;
-		height: 50px;
-		padding: 2px;
-
-		content: " ";
-
-		color: white;
-		background-color: $listBG;
-		border: 2px solid white;
-		border-radius: 6px;
-
-		&.mod-light-background {
-			color: $bodyTextColor;
-		}
-		&.mod-has-exceptions::after {
-			position: absolute;
-			right: 5px;
-			align-self: flex-end;
-
-			content: "\002026";
-		}
+		content: "\002026";
 	}
 
 	.disabled color-chooser {
@@ -294,6 +265,11 @@
 	.highlighting-modal-trigger[data-key="name"]:hover,
 	.highlighting-modal-trigger:hover q {
 		text-decoration: underline;
+	}
+
+	.highlighting-modal-trigger:hover .highlighting-more-options-icon {
+		box-shadow: 0 0 0 2px $linkColor;
+		border-color: $linkColor;
 	}
 
 	color-chooser.highlighting-modal-trigger:hover {

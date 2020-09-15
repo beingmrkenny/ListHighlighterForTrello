@@ -13,6 +13,10 @@ class Rules {
 		return rules;
 	}
 
+	static dump() {
+		console.table(Global.getAllRules());
+	}
+
 	static getHashtags () {
 		var hashtags = Global.getItem('options-CountEnableWIP') ? ['#count'] : [];
 		var rules = Global.getAllRules();

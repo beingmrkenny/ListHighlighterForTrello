@@ -3,6 +3,12 @@ const EXTENSION_NAME = 'ListHighlighter';
 const { src, dest, series, parallel, watch } = require('gulp');
 const rename = require('gulp-rename');
 
+let forFirefox = false;
+let lastItem = process.argv[process.argv.length-1];
+if (lastItem.includes('fx') || lastItem.includes('firefox')) {
+	forFirefox = true;
+}
+
 function done (cb) {
 	const notify = require('node-notify');
 	notify('Done');
@@ -16,6 +22,8 @@ function compileOptionPage () {
 	const Color = require(__dirname + '/Extension/js/classes/Color.js');
 	const hbsAll = require('gulp-handlebars-all');
 	const fs = require('fs-extra');
+
+	const OriginalListBG = Color.getOriginalListBG();
 
 	const trelloHexes = {
 		"blank"  : null,
@@ -43,7 +51,7 @@ function compileOptionPage () {
 		"violet"  : "#ba55e2",
 		"pink"    : "#ff80ce",
 		"black"   : "#000000",
-		"normal"  : "#e2e4e6",
+		"normal"  : OriginalListBG,
 		"custom"  : ""
 	};
 
@@ -59,29 +67,40 @@ function compileOptionPage () {
 
 	var trelloColors = [];
 	for (let name in trelloHexes) {
-		let color = new Color(trelloHexes[name]);
+		let isLight;
+		if (Color.isHex(trelloHexes[name])) {
+			isLight = Color.isLight(trelloHexes[name]);
+		}
 		trelloColors.push({
 			name: name,
 			hex: trelloHexes[name],
 			blank: (name == 'blank'),
 			photo: (name == 'photo'),
-			lightClassName: (color.isLight() || name == 'blank') ? 'mod-light-background' : ''
+			lightClassName: (name == 'blank' || isLight)
+				? 'mod-light-background'
+				: ''
 		});
 	}
 
 	var colors = [];
 	for (let name in hexes) {
-		let color = new Color(hexes[name]);
+		let isLight;
+		if (Color.isHex(hexes[name])) {
+			isLight = Color.isLight(hexes[name]);
+		}
 		colors.push({
 			name: name,
 			hex: hexes[name],
 			newRuleDialogColor: (name != 'custom' && name != 'blank'),
 			normal: (name == 'normal'),
+			notNormal: (name != 'normal'),
 			notBlank: (name != 'blank'),
 			blank: (name == 'blank'),
 			custom: (name == 'custom'),
 			photo: (name == 'photo'),
-			lightClassName: (color.isLight() || name == 'blank') ? 'mod-light-background' : ''
+			lightClassName: ((name == 'blank' || isLight) && name != 'normal')
+				? 'mod-light-background'
+				: ''
 		});
 	}
 
@@ -109,12 +128,13 @@ function compileOptionPage () {
 	];
 
 	var templateData = {
+		originalListBG: hexes.normal,
 		colors: colors,
 		trelloColors: trelloColors,
 		smallerTrelloButtons: smallerTrelloButtons
 	}
 
-	if (process.argv[process.argv.length-1].includes('fx')) {
+	if (forFirefox) {
 		console.log('Including dialog polyfill for Firefox');
 		templateData.dialogPolyfill = true;
 	}
@@ -134,9 +154,9 @@ function compileOptionPage () {
 function compileAllCSS (cb) {
 
 	compileCSS ({
-	   loadPath: 'scss/injected',
-	   input: 'scss/injected/init.scss',
-	   output: 'style.css'
+		loadPath: 'scss/injected',
+		input: 'scss/injected/init.scss',
+		output: 'style.css'
 	});
 
 	compileCSS ({
@@ -157,11 +177,14 @@ function compileAllCSS (cb) {
 }
 
 function compileCSS (parameters) {
+
+	const cmd = process.argv[2];
 	const sass = require('gulp-sass');
 	sass.compiler = require('node-sass');
+	const sourcemaps = require('gulp-sourcemaps');
 
 	var options = {
-		// sourcemap : true,
+		sourcemap : true,
 		outputStyle : 'expanded',
 		loadPath : parameters.loadPath,
 		cache : '/tmp/sass-cache'
@@ -169,10 +192,20 @@ function compileCSS (parameters) {
 	if (parameters.loadPath) {
 		options.loadPath = parameters.loadPath;
 	}
-	return src(parameters.input)
-	  .pipe(sass(options).on('error', sass.logError))
-	  .pipe(rename(parameters.output))
-	  .pipe(dest('Extension/css'));
+
+	if (cmd == 'release') {
+		return src(parameters.input)
+			.pipe(sass(options).on('error', sass.logError))
+			.pipe(rename(parameters.output))
+			.pipe(dest('Extension/css'));
+	} else {
+		return src(parameters.input)
+			.pipe(sourcemaps.init())
+			.pipe(sass(options).on('error', sass.logError))
+			.pipe(rename(parameters.output))
+			.pipe(sourcemaps.write('.'))
+			.pipe(dest('Extension/css'));
+	}
 }
 
 function compileAppleScript () {
@@ -189,7 +222,7 @@ function copyManifest () {
 
 function copyAndProcessManifestIfNecessary () {
 
-	if (process.argv[process.argv.length-1].includes('fx')) {
+	if (forFirefox) {
 
 		console.log('Including Firefox applications entry');
 
@@ -294,7 +327,6 @@ function releaseZip () {
 	const fs = require('fs-extra');
 	const zip = require('gulp-zip');
 
-	// remove dot files - could make this remove .DS_Store
 	glob('Extension/**/.*', {}, function (er, files) {
 		for (let file of files) {
 			console.log(`Removing: ${file}`);
@@ -303,12 +335,19 @@ function releaseZip () {
 	});
 
 	try { fs.emptyDirSync(`/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
-	try { fs.copySync('Extension', `/tmp/${EXTENSION_NAME}`); }  catch (err) { console.log(err); }
+	try { fs.copySync('Extension', `/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
 	try { fs.removeSync(process.env.HOME+`/Desktop/${EXTENSION_NAME}.zip`) } catch (err) { console.log(err); }
+
+	glob(`/tmp/${EXTENSION_NAME}/css/*.map`, {}, function (er, files) {
+		for (let file of files) {
+			console.log(`Removing: ${file}`);
+			fs.unlinkSync(file);
+		}
+	});
 
 	let zipFileName;
 
-	if (process.argv[process.argv.length-1].includes('fx')) {
+	if (forFirefox) {
 		zipFileName = `${EXTENSION_NAME}-Firefox.zip`;
 	} else {
 		zipFileName = `${EXTENSION_NAME}.zip`;

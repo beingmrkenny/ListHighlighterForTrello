@@ -19,8 +19,8 @@
 .bmko_other_list_rules_applied .bmko_unmatched-list.list,
 .bmko_list_changed_background_color.list {
 
-	--background-color: #{$listBG};
-	--color: #{$normalTextColor};
+	--background-color: var(--list-bg);
+	--color: var(--list-fg);
 	--border-color: #{$listCardBorderBottomColor};
 
 	color: var(--color);

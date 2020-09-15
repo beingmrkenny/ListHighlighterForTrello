@@ -10,6 +10,27 @@ function qq(query, context = document) {
 	return context.querySelectorAll(query);
 }
 
+function setBackgroundColor (element, bgColor) {
+	if (bgColor) {
+		element.style.backgroundColor = bgColor;
+	} else {
+		element.removeAttribute('style');
+	}
+	let fillClassName = ovalue(element.className.match(/(fill-[a-z]+)/), 0);
+	// NB is commenting this out a disaster?
+	// if (fillClassName != 'fill-custom' && fillClassName != 'fill-normal') {
+	// 	element.classList.remove(fillClassName);
+	// }
+	if (!element.matches('label[for="ColorTile-custom"]')) {
+		element.classList.remove(fillClassName);
+	}
+	if (bgColor) {
+		element.classList.toggle('mod-light-background', Color.isLight(bgColor));
+	} else {
+		element.classList.remove('mod-light-background');
+	}
+}
+
 function removeClassesFromMatchingElements(classname) {
 	for (let el of qq(`.${classname}`)) {
 		el.classList.remove(classname);
@@ -190,39 +211,6 @@ function observe() {
 		}
 
 		return observer;
-	}
-
-}
-
-
-function keepTrying(callback, limit, interval) {
-
-	interval = (isNaN(interval) ? 500 : interval);
-	limit = (isNaN(limit) ? 5 : --limit);
-
-	try {
-		callback();
-	} catch(error) {
-		if (limit > 0) {
-			window.setTimeout(function () {
-				keepTrying(callback, limit, interval);
-			}, interval);
-		}
-	}
-
-}
-
-function keepChecking(callback, checker, limit, interval) {
-
-	interval = (isNaN(interval) ? 500 : interval);
-	limit = (isNaN(limit) ? 5 : --limit);
-
-	if (checker()) {
-		callback();
-	} else if (limit > 0) {
-		window.setTimeout(function () {
-			keepTrying(callback, checker, limit, interval);
-		}, interval);
 	}
 
 }

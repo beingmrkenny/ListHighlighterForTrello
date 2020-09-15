@@ -129,7 +129,7 @@ class ColorSelect {
 		new ColorPickerWrapper({
 			target : target,
 			opener : colorSelectEditColorButton,
-			initialColor : target.value || '#e2e4e6',
+			initialColor : target.value || Color.getOriginalListBG(),
 			place: function (dialog) {
 				let left,
 					parent = target.closest('color-select');
@@ -158,7 +158,7 @@ class ColorSelect {
 					buttonToSelect = q('.fill-custom', colorSelect);
 				}
 				ColorSelect.selectAndClose(buttonToSelect);
-				ListHighlightColorDialog.updateDemoListColor(colorOnOpen || '#e2e4e6');
+				ListHighlightColorDialog.updateDemoListColor(colorOnOpen || Color.getOriginalListBG());
 			}
 		});
 
@@ -168,14 +168,10 @@ class ColorSelect {
 		var customButton = q('.fill-custom', colorSelect);
 		if (value == null) {
 			customButton.value = '';
-			customButton.removeAttribute('style');
-			customButton.classList.remove('mod-light-background');
 		} else {
 			customButton.value = value;
-			customButton.classList.toggle('mod-light-background', Color.isLight(value));
-			customButton.style.backgroundColor = value;
 		}
-
+		setBackgroundColor(customButton, value);
 	}
 
 	// FIXME: This close listener is being applied to the IS dialog cancel button — why?

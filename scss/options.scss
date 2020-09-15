@@ -235,7 +235,7 @@ nav {
 }
 
 footer {
-	color: gray;
+	color: $lighterTextColor;
 
 	text-align: center;
 	font-size: 0.875rem;
@@ -246,6 +246,7 @@ footer {
 	}
 }
 
+@import "options-page/color-chooser";
 @import "options-page/color-picker";
 @import "options-page/color-select";
 @import "options-page/highlighting-table";

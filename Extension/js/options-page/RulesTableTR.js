@@ -54,8 +54,7 @@ class RulesTableTR {
 
 	prepColorIndicator (colorIndicator) {
 		if (this.rule.highlighting.color) {
-			colorIndicator.style.backgroundColor = this.rule.highlighting.color;
-			colorIndicator.classList.toggle('mod-light-background', Color.isLight(this.rule.highlighting.color));
+			setBackgroundColor(colorIndicator, this.rule.highlighting.color);
 		}
 		colorIndicator.classList.toggle('mod-has-exceptions', (Object.keys(this.rule.highlighting.exceptions).length > 0));
 		if (this.rule.highlighting.opacity < 1) {

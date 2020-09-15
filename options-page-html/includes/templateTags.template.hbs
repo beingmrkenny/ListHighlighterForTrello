@@ -45,10 +45,10 @@
 
 	<fieldset name="highlightColor-group">
 		<h3>Highlight colour</h3>
-		<color-select class="js-check-changed mod-inline" data-name="highlightColor" data-value="#e2e4e6">
+		<color-select class="js-check-changed mod-inline" data-name="highlightColor" data-value="{{originalListBG}}">
 			{{#each colors}}
 				{{#if this.newRuleDialogColor }}
-					<button type="button" value="{{this.hex}}" title="{{this.name}}"
+					<button type="button" value="{{#if this.notNormal}}{{this.hex}}{{/if}}" title="{{this.name}}"
 						{{#if this.normal}}
 							data-selected
 						{{/if}}
@@ -166,7 +166,7 @@
 	<label for="Strikethrough">
 		<h3>Strikethrough</h3>
 		<p>
-			<input type="checkbox" id="Strikethrough" name="strikethrough" class="js-check-changed"> Apply <s>strikethrough</s> to cards
+			<input type="checkbox" id="Strikethrough" name="strikethrough" class="js-check-changed"> <span>Apply <s>strikethrough</s> to cards</span>
 		</p>
 	</label>
 

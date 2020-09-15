@@ -1,47 +1,16 @@
-class ListHighlightColorDialog {
+class ListHighlightColorDialog extends ColorDialog {
 
 	static setup () {
 		var rule = Global.getItem(this.fields.id),
 			editCustomColorLink = q('.color-tile-edit-color');
-		ListHighlightColorDialog.setOpacityValue(rule.highlighting.opacity, true);
-		ListHighlightColorDialog.selectColorTile(rule.highlighting.color);
+		ListHighlightColorDialog.updateDemoListColor(ListHighlightColorDialog.getListColor(rule.highlighting.color));
 		ListHighlightColorDialog.setupExceptions(rule.highlighting.exceptions);
-		ListHighlightColorDialog.updateDemoListColor(rule.highlighting.color || '#e2e4e6');
-		listen(qq('[name="ColorTile"]'), 'change', function () {
-			if (this.value) {
-				this.closest('.color-tile-bar').dataset.lastValidColor = this.value;
-			}
-			let color = this.value || '#e2e4e6';
-			ListHighlightColorDialog.updateDemoListColor(color);
-			if (this.id == 'ColorTile-custom' && this.value == '') {
-				ListHighlightColorDialog.editCustomColor.call(editCustomColorLink);
-			}
-		});
+		listen(qid('AddNewException'), 'click', ListHighlightColorDialog.addExceptionLiElement);
+		ListHighlightColorDialog.setOpacityValue(rule.highlighting.opacity, true);
 		listen(qid('Opacity'), 'input', function () {
 			ListHighlightColorDialog.setOpacityValue(this.value);
 		});
-		listen(editCustomColorLink, 'click', ListHighlightColorDialog.editCustomColor);
-		listen(qid('AddNewException'), 'click', ListHighlightColorDialog.addExceptionLiElement);
-		Dialogue.setupCheckForChanges();
-	}
-
-	static updateDemoListColor (hex) {
-		let demoList = q('.dummy-board_demo-list');
-		demoList.className = 'dummy-board_list dummy-board_demo-list';
-		demoList.style.backgroundColor = hex;
-		demoList.classList.toggle('mod-light-background', Color.isLight(hex));
-	}
-
-	static selectColorTile (color) {
-		color = color || '#e2e4e6';
-		let input = q(`[value="${color}"]:not(#ColorTile-custom)`);
-		if (!input) {
-			input = qid('ColorTile-custom');
-			input.value = color;
-			q('[for="ColorTile-custom"]').style.backgroundColor = color;
-		}
-		q('.color-tile-bar').dataset.lastValidColor = color;
-		input.checked = true;
+		ColorDialog.setup(rule.highlighting.color);
 	}
 
 	static setOpacityValue (value, updateInput = false) {
@@ -87,9 +56,7 @@ class ListHighlightColorDialog {
 					if (!selectedButton) {
 						selectedButton = q('.fill-custom', colorSelectElement);
 						selectedButton.value = highlightColor;
-						selectedButton.style.backgroundColor = highlightColor;
-						let color = new Color(highlightColor);
-						selectedButton.classList.toggle('mod-light-background', color.isLight());
+						setBackgroundColor(selectedButton, highlightColor)
 						q('.color-select-edit-custom-color-button-container', li).style.display = 'inline-block';
 					}
 					selectedButton.dataset.selected = "yes";
@@ -156,47 +123,6 @@ class ListHighlightColorDialog {
 				Dialogue.setupCheckForChanges();
 			}
 		}
-	}
-
-	static editCustomColor () {
-		this.dataset.colorOnOpen = qid('ColorTile-custom').value;
-
-		new ColorPickerWrapper({
-			opener : this,
-			initialColor : qid('ColorTile-custom').value || '#e2e4e6',
-			place: function (dialog) {
-				let parent = q('[for="ColorTile-custom"]'),
-					right = parent.offsetWidth + 10;
-				parent.appendChild(dialog);
-				dialog.classList.add('position-left');
-				dialog.style.right = `${right}px`;
-			},
-			colorUpdateHandler : function (hex) {
-				let customLabel = q('[for="ColorTile-custom"]');
-				ListHighlightColorDialog.updateDemoListColor(hex);
-				customLabel.classList.toggle('mod-light-background', Color.isLight(hex));
-				customLabel.style.backgroundColor = hex;
-				qid('ColorTile-custom').value = hex;
-			},
-			save : () => {
-				q('.color-tile-bar').dataset.lastValidColor = qid('ColorTile-custom').value
-			},
-			cancel : () => {
-				let colorOnOpen = this.dataset.colorOnOpen || '#e2e4e6',
-					lastValidColor = this.closest('.color-tile-bar').dataset.lastValidColor,
-					customLabel = q('[for="ColorTile-custom"]');
-				qid('ColorTile-custom').value = this.dataset.colorOnOpen;
-				if (this.dataset.colorOnOpen == '') {
-					customLabel.removeAttribute('style');
-					customLabel.classList.remove('mod-light-background');
-				} else {
-					customLabel.style.backgroundColor = colorOnOpen;
-					customLabel.classList.toggle('mod-light-background', Color.isLight(colorOnOpen));
-				}
-				ListHighlightColorDialog.updateDemoListColor(lastValidColor);
-				ListHighlightColorDialog.selectColorTile(lastValidColor);
-			}
-		});
 	}
 
 }

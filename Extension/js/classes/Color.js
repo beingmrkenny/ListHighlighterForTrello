@@ -1,3 +1,5 @@
+const OriginalListBG = '#ebecf0';
+
 class Color {
 
 	// red, green and blue are stored internally as a number in the range 0 - 255
@@ -375,6 +377,18 @@ class Color {
 		return this.alpha;
 	}
 
+
+	getLuminance() {
+		var a = [this.red, this.green, this.blue].map(v => {
+				v /= 255;
+				return v <= 0.03928
+					? v / 12.92
+					: Math.pow( (v + 0.055) / 1.055, 2.4 );
+			});
+		return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+	}
+
+
 	/* helpers */
 
 	_getHSLFromArguments () {
@@ -498,11 +512,35 @@ class Color {
 		return hex.length == 1 ? "0" + hex : hex;
 	}
 
-	isLight() {
+	isLightOld() {
 		var threshold = 1 - (
 				(0.2 * this.red) + (0.5 * this.green) + (0.114 * this.blue)
 			) / 255;
 		return threshold < 0.5;
+	}
+
+	isLight () {
+
+		const test = this.getLuminance();
+		const white = 1;
+		const dark = 0.06301001765316767;
+
+		const ratioToWhite = white > test
+			? ((test + 0.05) / (white + 0.05))
+			: ((white + 0.05) / (test + 0.05));
+
+		const ratioToDark = dark > test
+			? ((test + 0.05) / (dark + 0.05))
+			: ((dark + 0.05) / (test + 0.05));
+
+		if (ratioToWhite > ratioToDark) {
+			return true;
+		} else if (ratioToWhite < ratioToDark) {
+			return false;
+		} else {
+			return this.isLightOld();
+		}
+
 	}
 
 	getRandomHSL() {
@@ -522,6 +560,10 @@ class Color {
 	static isLight (color) {
 		var colour = new Color(color);
 		return colour.isLight();
+	}
+
+	static getOriginalListBG () {
+		return OriginalListBG;
 	}
 
 }

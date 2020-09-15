@@ -26,6 +26,7 @@
     "gulp-rename": "",
     "gulp-sass": "",
     "gulp-shell": "",
+    "gulp-sourcemaps": "",
     "gulp-zip": "",
     "node-notify": "",
     "node-sass": ""

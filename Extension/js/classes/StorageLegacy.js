@@ -46,7 +46,7 @@ class DoingColors {
 				'violet' : '#ba55e2',
 				'pink'   : '#ff80ce',
 				'black'  : '#000000',
-				'gray'   : '#e2e4e6'
+				'gray'   : OriginalListBG
 			};
 
 		if (colorName == 'default') {

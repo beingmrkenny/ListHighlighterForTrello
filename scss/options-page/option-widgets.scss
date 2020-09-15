@@ -13,6 +13,8 @@
 	transition: max-height 0.25s;
 
 	div {
+		order: 2;
+
 		padding-left: 20px;
 
 		cursor: pointer;
@@ -28,8 +30,10 @@
 		max-height: 0;
 	}
 
-	p:first-of-type {
-		margin-top: 0;
+	h3,
+	h4 {
+		margin: -0.4em 0 0.25em 0;
+		padding: 0;
 
 		color: inherit;
 
@@ -39,14 +43,13 @@
 	p {
 		margin: 0.25em 0;
 
-		color: gray;
-
-		font-size: smaller;
+		color: $bodyTextColor;
 	}
 }
 
 option-widget {
 	display: block;
+	order: 1;
 
 	input {
 		display: none;

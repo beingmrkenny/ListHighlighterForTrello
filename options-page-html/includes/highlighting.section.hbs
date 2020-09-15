@@ -44,31 +44,31 @@
 	<h3>Other options</h3>
 
 	<div class="standard-options">
+		<div>
+			<h4>Hide hashtags in list headers</h4>
+			<p>If this is checked, hashtags will be hidden when you are not editing the list title.</p>
+			<p>Default: on</p>
+		</div>
 		<option-widget>
 			<input type="checkbox" class="options-input" id="HighlightHideHashtags" name="HighlightHideHashtags">
 			<label for="HighlightHideHashtags">
 				Hide hashtags
 			</label>
 		</option-widget>
-		<div>
-			<p>Hide hashtags in list headers</p>
-			<p>If this is checked, hashtags will be hidden when you are not editing the list title</p>
-			<p>Default: on</p>
-		</div>
 	</div>
 
 	<div class="standard-options">
+		<div>
+			<h4>Un-dim dimmed lists on mouse over</h4>
+			<p>If you’ve made lists less visible (more transparent) as part of a highlighting rule, switching this setting on will un-dim them when the mouse cursor hovers over.</p>
+			<p>Default: on</p>
+		</div>
 		<option-widget>
 			<input type="checkbox" class="options-input" id="HighlightUndimOnHover" name="HighlightUndimOnHover">
 			<label for="HighlightUndimOnHover">
 				Un-dim on hover
 			</label>
 		</option-widget>
-		<div>
-			<p>Un-dim dimmed lists on mouse over</p>
-			<p>If you’ve made lists less visible (more transparent) as part of a highlighting rule, switching this setting on will un-dim them when the mouse cursor hovers over</p>
-			<p>Default: on</p>
-		</div>
 	</div>
 
 </section>
@@ -87,7 +87,7 @@
 		</th>
 		<td class="highlighting-title-text">
 			<div>
-				<table class="highlighting-title-text">
+				<table class="highlighting-is-contains">
 					<tr>
 						<th scope="row">is:</th>
 						<td class="highlighting-modal-trigger" data-form="TitleTextIs" data-key="is"></td>
@@ -102,7 +102,7 @@
 		<td class="highlighting-style-column">
 			<div>
 				<color-chooser class="highlighting-modal-trigger" data-form="ListHighlightColor">
-					<color-indicator class="mod-light-background"></color-indicator>
+					<color-indicator></color-indicator>
 				</color-chooser>
 			</div>
 		</td>

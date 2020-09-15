@@ -27,10 +27,7 @@
 		width: 60px;
 		height: 60px;
 
-		@media (max-width: 800px) {
-			width: 50px;
-		}
-
+		color: white;
 		border-radius: 3px;
 
 		text-align: center;
@@ -39,6 +36,13 @@
 		user-select: none;
 
 		@include transition(height, color, background-color);
+
+		@media (max-width: 800px) {
+			width: 50px;
+		}
+		&.mod-light-background {
+			color: $normalTextColor;
+		}
 
 		&:hover {
 			height: 65px;
@@ -50,8 +54,9 @@
 			@include transition(color);
 		}
 
-		&.mod-light-background {
-			color: $bodyTextColor;
+		&.fill-normal {
+			color: var(--list-fg);
+			background: var(--list-bg);
 		}
 	}
 
@@ -129,12 +134,27 @@
 			background-size: cover;
 		}
 
+		&[for="ColorTile-normal"]::before {
+			background: var(--list-tick);
+			background-size: cover;
+		}
+
 		&.custom::before {
 			top: -10px;
 		}
 
 		.color-tile-edit-color {
 			display: inline;
+		}
+	}
+
+	input:disabled + label {
+		cursor: default;
+
+		opacity: 0.2;
+		filter: grayscale(100%);
+		&:hover {
+			height: 60px;
 		}
 	}
 
@@ -176,47 +196,38 @@
 		min-width: 270px;
 		max-width: 270px;
 
+		border-radius: 3px;
+
+		font-size: 14px;
+
+		transition: background 0.25s;
+
 		@media (max-width: 800px) {
 			min-width: 220px;
 			max-width: 220px;
 		}
 
-		border-radius: 3px;
-
-		font-size: 14px;
-
-		&.dummy-board_demo-list {
-			margin: 0 10px;
-
-			transition: background 0.25s;
-
+		&:not(.fill-normal) {
 			.dummy-board_list-header,
 			.dummy-board_add-card {
 				color: white;
 			}
+		}
 
-			&.mod-light-background {
-				.dummy-board_list-header,
-				.dummy-board_add-card {
-					color: $normalTextColor;
-				}
+		&.mod-light-background {
+			.dummy-board_list-header,
+			.dummy-board_add-card {
+				color: $normalTextColor;
 			}
+		}
 
-			&.fill-normal {
-				.dummy-board_list-header {
-					color: #333;
-				}
-				.dummy-board_add-card {
-					color: #8c8c8c;
-				}
-			}
+		&.dummy-board_demo-list {
+			margin: 0 10px;
 		}
 
 		.dummy-board_list-header {
 			height: 20px;
 			margin: 8px 10px;
-
-			color: #333;
 
 			line-height: 18px;
 			font-weight: 700;
@@ -240,8 +251,6 @@
 			margin: 0;
 			padding: 8px 10px;
 
-			color: #8c8c8c;
-
 			line-height: 18px;
 		}
 	}
@@ -259,10 +268,10 @@
 		line-height: 1.5;
 	}
 
-	> ul {
+	 > ul {
 		margin: 20px 0 20px 20px;
 		padding-left: 20px;
-		> li {
+		 > li {
 			margin-top: 5px;
 			padding-left: 0;
 
@@ -282,8 +291,9 @@
 	}
 
 	.highlight-exceptions-marked-for-deletion {
-		margin: 0;
 		float: right;
+
+		margin: 0;
 	}
 
 	.highlight-exception-delete {
@@ -294,7 +304,6 @@
 
 		user-select: none;
 	}
-
 }
 
 .color-select-edit-custom-color-button-container {

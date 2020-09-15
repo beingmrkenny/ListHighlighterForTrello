@@ -2,11 +2,19 @@
 
 	<h2>List highlight colour</h2>
 
+	{{!-- QUESTION what is this data-default for? --}}
 	<ul class="color-tile-bar" data-default="true">
 		{{#each colors}}
 			{{#if this.notBlank}}
 				<li>
-					<input type="radio" name="ColorTile" id="ColorTile-{{this.name}}" value="{{this.hex}}" class="js-check-changed">
+					<input type="radio" name="ColorTile" id="ColorTile-{{this.name}}" class="js-check-changed"
+						{{#if this.notNormal}}
+							value="{{this.hex}}"
+						{{/if}}
+						{{#if this.normal}}
+							value=""
+						{{/if}}
+						>
 					<label for="ColorTile-{{this.name}}" class="fill-{{this.name}} {{this.lightClassName}}">
 						{{#if this.custom}}
 							<button type="button" class="color-tile-edit-color">Edit</button>
@@ -19,7 +27,7 @@
 	</ul>
 
 	<label for="Opacity" class="opacity-input-label">
-		<span>Visibility</span>
+		<span>Opacity</span>
 		<input type="range" name="Opacity" id="Opacity" min="0" max="1" step="0.01" class="js-check-changed">
 		<output name="opacity-value"></output>
 	</label>
@@ -34,7 +42,7 @@
 				<p class="dummy-board_card">Vivamus id ipsum faucibus, maximus tellus a, placerat urna consequat.</p>
 				<p class="dummy-board_card">Nunc vitae odio quis nunc.</p>
 				<p class="dummy-board_card">Etiam volutpat sapien at eleifend dignissim consectetur adipiscing elit.</p>
-				<p class="dummy-board_card">Phasellus placerat mauris quis mi ultricies efficitur.</p>
+				<p class="dummy-board_card">Phasellus placerat mauris quis mi.</p>
 				<p class="dummy-board_add-card">Add card&hellip;</p>
 			</div>
 

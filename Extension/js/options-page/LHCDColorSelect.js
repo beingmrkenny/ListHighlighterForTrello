@@ -61,14 +61,10 @@ class LHCDColorSelect extends ColorSelect {
 			buttonClass = 'fill-normal';
 		}
 		let list = q('.dummy-board_demo-list');
-		list.classList.remove(
-			ovalue(list.className.match(/(fill-[a-z]+)/), 0));
+		list.classList.remove(ovalue(list.className.match(/(fill-[a-z]+)/), 0));
 		if (buttonClass == 'fill-custom') {
-			let color = new Color(button.value);
-			list.style.backgroundColor = button.value;
-			list.classList.toggle('mod-light-background', color.isLight());
+			setBackgroundColor(list, button.value);
 		} else {
-			list.style.backgroundColor = '';
 			list.classList.add(buttonClass);
 			list.classList.toggle('mod-light-background', button.classList.contains('mod-light-background'));
 		}

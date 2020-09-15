@@ -1,0 +1,32 @@
+color-chooser {
+	display: flex;
+	align-items: center;
+
+	margin: 3px;
+	padding: 3px;
+
+	cursor: pointer;
+}
+
+color-indicator {
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+
+	width: 50px;
+	height: 50px;
+	height: 50px;
+	padding: 2px;
+
+	content: " ";
+
+	color: var(--list-fg);
+	background-color: var(--list-bg);
+	border: 2px solid white;
+	border-radius: 6px;
+
+	&.mod-light-background {
+		color: $bodyTextColor;
+	}
+}

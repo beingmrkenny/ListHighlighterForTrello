@@ -16,6 +16,11 @@
 	}
 	p {
 		color: $lighterTextColor;
+		display: flex;
+		align-items: center;
+	}
+	input {
+		margin-right: 10px;
 	}
 }
 
@@ -58,7 +63,7 @@
 			padding: 0;
 
 			color: $dialogBG;
-			background: #dfe1e6;
+			background: $formElementGrey;
 			border: 2px solid;
 			border-radius: 20px;
 			box-shadow: none;
@@ -105,7 +110,7 @@
 		margin-top: 9px;
 		margin-left: 20px;
 
-		color: gray;
+		color: $lighterTextColor;
 
 		line-height: 1;
 		font-size: 13px;
@@ -117,6 +122,7 @@
 }
 
 #NewRuleDialog {
+
 	.form-dialog-body {
 		width: 339px;
 	}
@@ -149,7 +155,7 @@
 		margin-top: 16px;
 	}
 
-	input,
+	input[type="text"],
 	textarea {
 		width: 100%;
 		margin-bottom: 0;
@@ -182,6 +188,10 @@
 
 		&.mod-light-background[data-selected] {
 			background-image: url("/img/tick.svg");
+		}
+
+		&[data-selected].fill-normal {
+			background-image: var(--list-tick);
 		}
 
 		&:last-child {

@@ -97,7 +97,7 @@ class Rule {
 
 	static checkHighlightingExceptionsErrors (data) {
 		let errors = {};
-		if (data.hasOwnProperty('highlighting') && data.highlighting.hasOwnProperty('exceptions')) {
+		if (ovalue(data, 'highlighting', 'exceptions')) {
 			let allowedKeys = ["red", "orange", "lime", "green", "sky", "blue", "purple", "pink", "gray", "photo"];
 			for (let key of Object.keys(data.highlighting.exceptions)) {
 				if (allowedKeys.indexOf(key) < 0) {
@@ -231,7 +231,7 @@ class Rule {
 				"is"           : data.is || [],
 				"contains"     : data.contains || [],
 				"highlighting" : {
-					"color"      : data.highlightColor,
+					"color"      : (data.highlightColor) ? data.highlightColor : null,
 					"opacity"    : 1,
 					"exceptions" : {}
 				},
@@ -261,6 +261,7 @@ class Rule {
 		}
 
 		chrome.storage.sync.set({ [data.id] : rule });
+
 	}
 
 	static failForm (errors) {
