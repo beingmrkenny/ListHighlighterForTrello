@@ -140,3 +140,66 @@ option-widget {
 		opacity: 0.3;
 	}
 }
+
+#NormalListColor {
+	color-chooser {
+		order: 1;
+
+		margin: 0 10px 0 5px;
+		padding: 0;
+	}
+
+	color-indicator {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+
+		width: 90px;
+		height: 66px;
+		margin: 0;
+		padding: 0;
+
+		color: var(--list-fg);
+		background-color: var(--list-bg);
+		border: 0;
+		border-radius: 3px;
+
+		line-height: 1;
+		text-align: center;
+	}
+
+	color-indicator {
+		button {
+			all: unset;
+
+			margin: 4px 0 0 -5px;
+			padding: 2px 8px;
+
+			color: var(--list-fg);
+			background: var(--list-button-bg);
+			border-radius: 10px;
+
+			cursor: pointer;
+
+			&::before {
+				display: inline-block;
+
+				width: 10px;
+				height: 10px;
+				margin-right: 3px;
+
+				content: " ";
+
+				background: var(--list-pencil);
+				background-size: cover;
+			}
+		}
+	}
+
+	.link-appearance {
+		color: $linkColor;
+		&:hover {
+			color: $linkColor;
+		}
+	}
+}

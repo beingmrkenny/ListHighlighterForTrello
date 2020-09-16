@@ -1,5 +1,69 @@
-#ListHighlightColorDialog h2 {
-	margin: 10px 0 15px;
+#ListHighlightColorDialog {
+	header {
+		display: flex;
+		justify-content: space-between;
+
+		margin: 10px 0 15px;
+	}
+
+	&.mod-lightness {
+		.lightness-slider {
+			display: flex;
+		}
+		.color-tile-bar {
+			display: none;
+		}
+	}
+
+	&.mod-colortiles {
+		.lightness-slider {
+			display: none;
+		}
+		.color-tile-bar {
+			display: flex;
+		}
+	}
+}
+
+.lightness-slider {
+	display: flex;
+
+	width: 100%;
+	height: 30px;
+
+	background: linear-gradient(to right, hsl(209, 7%, 50%), hsl(209, 7%, 94%) );
+	border-radius: 3px;
+
+	input[type=range] {
+		-webkit-appearance: none;
+
+		width: 100%;
+
+		&:focus {
+			outline: none;
+		}
+
+		&::-webkit-slider-runnable-track,
+		&:focus::-webkit-slider-runnable-track,
+		&::-moz-range-track {
+			background: transparent;
+		}
+
+		&::-webkit-slider-thumb,
+		&::-moz-range-thumb {
+			-webkit-appearance: none;
+
+			width: 16px;
+			height: 16px;
+
+			background: transparent;
+			border: 2px solid #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 3px gray;
+
+			cursor: pointer;
+		}
+	}
 }
 
 .color-tile-bar {

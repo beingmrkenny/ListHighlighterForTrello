@@ -3,9 +3,15 @@ OptionsPage.setupDialogs();
 listen(window, 'hashchange', OptionsPage.showPanel);
 listen(qq('.standard-options div'), 'click', OptionsPage.checkInputOnClick);
 listen(qid('NewRuleButton'), 'click', OptionsPage.openNewRuleForm);
+listen(qid('ResetNormalListColor'), 'click', (event) => {
+	event.stopPropagation();
+	chrome.storage.sync.set( { 'options-HighlightNormalListColor': null } );
+	OptionsPage.insertNormalListColorsInDom(Color.getOriginalListBG());
+});
 
 DataStorage.initialise(function (results) {
 	document.body.classList.toggle('color-blind-friendly-mode', (results.colorBlindFriendlyMode));
+	OptionsPage.setupDefaultListBGColor(results);
 	OptionsPage.setValuesOnInputs(results);
 	RulesTable.build(results);
 	OptionsPage.setupSaveOptionsOnChange();

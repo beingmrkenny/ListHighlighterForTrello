@@ -344,6 +344,23 @@
 	}
 }
 
+.default-list-colour-section {
+
+	height: 90px;
+	display: flex;
+	align-items: center;
+
+	h3 {
+		padding-top: 0;
+		margin: 0 10px 0 auto;
+		font-size: 14px;
+	}
+	p {
+		margin: 0 247px 0 0;
+	}
+
+}
+
 @keyframes ruleTableTrFlash {
 	from,
 	50%,

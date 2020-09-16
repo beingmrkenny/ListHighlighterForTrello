@@ -1,5 +1,73 @@
 class OptionsPage {
 
+	static setupDefaultListBGColor (results) {
+		let normalListColor = Global.getItem('options-HighlightNormalListColor') || Color.getOriginalListBG();
+		OptionsPage.insertNormalListColorsInDom(normalListColor);
+		listen(
+			qq('#NormalListColor div, #NormalListColor color-chooser'),
+			'click',
+			() => {
+				let options = {
+					dialogTemplate: 'FormDialogTemplate',
+					contentsTemplate: 'ListHighlightColorTemplate',
+					content: null,
+					fields : {
+						FormType : 'ListHighlightColor',
+						id : 'NormalListColor'
+					}
+				};
+				options.setup = () => {
+					normalListColor = Global.getItem('options-HighlightNormalListColor') || Color.getOriginalListBG();
+					ColorDialog.setup(normalListColor, true);
+				};
+				options.submit = entries => {
+					let colorToSave,
+						hex;
+					if (entries.ColorInputMode == 'colortiles' && Color.isHex(entries.ColorTile)) {
+						hex = colorToSave;
+						colorToSave = JSON.stringify(entries.ColorTile);
+					}
+					if (entries.ColorInputMode == 'lightness' && /^\d+(?:\.\d+)?$/.test(entries.LightnessSlider) ) {
+						colorToSave = parseFloat(entries.LightnessSlider);
+						let newColor = new Color(`hsl(208.2, 6.7%, ${colorToSave}%)`);
+						hex = newColor.toHex();
+					}
+					if (colorToSave) {
+						chrome.storage.sync.set( { 'options-HighlightNormalListColor': colorToSave } );
+						OptionsPage.insertNormalListColorsInDom(hex);
+					}
+				};
+				Dialogue.open(options);
+			}
+		);
+	}
+
+	static insertNormalListColorsInDom (bgColor) {
+		if (/^\d+(?:\.\d+)?$/.test(bgColor)) {
+			bgColor = `hsl(208.2, 6.7%, ${bgColor}%)`;
+		}
+		let style       = qid('BMKONormalListColor'),
+			color       = new Color(bgColor),
+			isLight     = color.isLight(bgColor),
+			fgColor     = (isLight) ? '#474747' : '#fff',
+			pencil      = (isLight) ? 'url("/img/pencil.svg")' : 'url("/img/pencil-white.svg")',
+			tick        = (isLight) ? 'url("/img/tick.svg")' : 'url("/img/tick-white.svg")',
+			buttonColor = (isLight) ? 'rgba(0, 0, 0, 0.18)' : 'rgba(255, 255, 255, 0.18)';
+		if (!style) {
+			style = document.createElement('style');
+			style.id = 'BMKONormalListColor';
+			document.head.append(style);
+		}
+		style.textContent = `body {
+			--list-bg: ${bgColor};
+			--list-fg: ${fgColor};
+			--list-pencil: ${pencil};
+			--list-tick: ${tick};
+			--list-button-bg: ${buttonColor};
+		}`;
+		document.body.dataset.normalListColor = bgColor;
+	}
+
 	static setupDialogs () {
 		observe(
 			q('body > dialog'),

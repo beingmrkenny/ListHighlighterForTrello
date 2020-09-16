@@ -1,6 +1,14 @@
 <template id="ListHighlightColorTemplate">
 
-	<h2>List highlight colour</h2>
+	<header>
+		<h2>List highlight colour</h2>
+		<button type="button" id="ColorInputToggle" class="link-appearance">Switch</button>
+		<input type="hidden" id="ColorInputMode" name="ColorInputMode">
+	</header>
+
+	<label for="LightnessSlider" class="lightness-slider">
+		<input type="range" name="LightnessSlider" id="LightnessSlider" value="89.4" min="50" max="94" step="0.1" class="js-check-changed">
+	</label>
 
 	{{!-- QUESTION what is this data-default for? --}}
 	<ul class="color-tile-bar" data-default="true">

@@ -22,6 +22,7 @@ class Options {
 	static defaults (prefix = false) {
 
 		var defaults = {
+			'options-HighlightNormalListColor': null,
 			'options-HighlightHideHashtags': true,
 			'options-HighlightUndimOnHover': false,
 			'options-CountEnableWIP'           : false,
