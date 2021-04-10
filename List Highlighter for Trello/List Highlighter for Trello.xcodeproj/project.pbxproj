@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D637EAC526212C6500205270 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637EAC426212C6500205270 /* AppDelegate.swift */; };
+		D637EAC826212C6500205270 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D637EAC626212C6500205270 /* Main.storyboard */; };
+		D637EACA26212C6500205270 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637EAC926212C6500205270 /* ViewController.swift */; };
+		D637EACC26212C7300205270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D637EACB26212C7300205270 /* Assets.xcassets */; };
+		D637EAD326212C7300205270 /* List Highlighter for Trello Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D637EAD226212C7300205270 /* List Highlighter for Trello Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D637EAD826212C7300205270 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D637EAD726212C7300205270 /* Cocoa.framework */; };
+		D637EADB26212C7300205270 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637EADA26212C7300205270 /* SafariWebExtensionHandler.swift */; };
+		D637EAEE26212C7700205270 /* css in Resources */ = {isa = PBXBuildFile; fileRef = D637EAE826212C7700205270 /* css */; };
+		D637EAEF26212C7700205270 /* js in Resources */ = {isa = PBXBuildFile; fileRef = D637EAE926212C7700205270 /* js */; };
+		D637EAF026212C7700205270 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D637EAEA26212C7700205270 /* popup.html */; };
+		D637EAF126212C7700205270 /* img in Resources */ = {isa = PBXBuildFile; fileRef = D637EAEB26212C7700205270 /* img */; };
+		D637EAF226212C7700205270 /* options-page in Resources */ = {isa = PBXBuildFile; fileRef = D637EAEC26212C7700205270 /* options-page */; };
+		D637EAF326212C7700205270 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D637EAED26212C7700205270 /* manifest.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D637EAD426212C7300205270 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D637EAB826212C6400205270 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D637EAD126212C7300205270;
+			remoteInfo = "List Highlighter for Trello Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D637EAE326212C7300205270 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D637EAD326212C7300205270 /* List Highlighter for Trello Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D637EAC026212C6500205270 /* List Highlighter for Trello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "List Highlighter for Trello.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D637EAC326212C6500205270 /* List_Highlighter_for_Trello.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = List_Highlighter_for_Trello.entitlements; sourceTree = "<group>"; };
+		D637EAC426212C6500205270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D637EAC726212C6500205270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D637EAC926212C6500205270 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D637EACB26212C7300205270 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D637EACD26212C7300205270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D637EAD226212C7300205270 /* List Highlighter for Trello Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "List Highlighter for Trello Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D637EAD726212C7300205270 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D637EADA26212C7300205270 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		D637EADC26212C7300205270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D637EADD26212C7300205270 /* List_Highlighter_for_Trello_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = List_Highlighter_for_Trello_Extension.entitlements; sourceTree = "<group>"; };
+		D637EAE826212C7700205270 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = ../../Extension/css; sourceTree = "<group>"; };
+		D637EAE926212C7700205270 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = js; path = ../../Extension/js; sourceTree = "<group>"; };
+		D637EAEA26212C7700205270 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../Extension/popup.html; sourceTree = "<group>"; };
+		D637EAEB26212C7700205270 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; name = img; path = ../../Extension/img; sourceTree = "<group>"; };
+		D637EAEC26212C7700205270 /* options-page */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "options-page"; path = "../../Extension/options-page"; sourceTree = "<group>"; };
+		D637EAED26212C7700205270 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../Extension/manifest.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D637EABD26212C6400205270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D637EACF26212C7300205270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D637EAD826212C7300205270 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D637EAB726212C6400205270 = {
+			isa = PBXGroup;
+			children = (
+				D637EAC226212C6500205270 /* List Highlighter for Trello */,
+				D637EAD926212C7300205270 /* List Highlighter for Trello Extension */,
+				D637EAD626212C7300205270 /* Frameworks */,
+				D637EAC126212C6500205270 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D637EAC126212C6500205270 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D637EAC026212C6500205270 /* List Highlighter for Trello.app */,
+				D637EAD226212C7300205270 /* List Highlighter for Trello Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D637EAC226212C6500205270 /* List Highlighter for Trello */ = {
+			isa = PBXGroup;
+			children = (
+				D637EAC326212C6500205270 /* List_Highlighter_for_Trello.entitlements */,
+				D637EAC426212C6500205270 /* AppDelegate.swift */,
+				D637EAC626212C6500205270 /* Main.storyboard */,
+				D637EAC926212C6500205270 /* ViewController.swift */,
+				D637EACB26212C7300205270 /* Assets.xcassets */,
+				D637EACD26212C7300205270 /* Info.plist */,
+			);
+			path = "List Highlighter for Trello";
+			sourceTree = "<group>";
+		};
+		D637EAD626212C7300205270 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D637EAD726212C7300205270 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D637EAD926212C7300205270 /* List Highlighter for Trello Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D637EAE726212C7700205270 /* Resources */,
+				D637EADA26212C7300205270 /* SafariWebExtensionHandler.swift */,
+				D637EADC26212C7300205270 /* Info.plist */,
+				D637EADD26212C7300205270 /* List_Highlighter_for_Trello_Extension.entitlements */,
+			);
+			path = "List Highlighter for Trello Extension";
+			sourceTree = "<group>";
+		};
+		D637EAE726212C7700205270 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D637EAE826212C7700205270 /* css */,
+				D637EAE926212C7700205270 /* js */,
+				D637EAEA26212C7700205270 /* popup.html */,
+				D637EAEB26212C7700205270 /* img */,
+				D637EAEC26212C7700205270 /* options-page */,
+				D637EAED26212C7700205270 /* manifest.json */,
+			);
+			name = Resources;
+			path = "List Highlighter for Trello Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D637EABF26212C6400205270 /* List Highlighter for Trello */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D637EAE426212C7300205270 /* Build configuration list for PBXNativeTarget "List Highlighter for Trello" */;
+			buildPhases = (
+				D637EABC26212C6400205270 /* Sources */,
+				D637EABD26212C6400205270 /* Frameworks */,
+				D637EABE26212C6400205270 /* Resources */,
+				D637EAE326212C7300205270 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D637EAD526212C7300205270 /* PBXTargetDependency */,
+			);
+			name = "List Highlighter for Trello";
+			productName = "List Highlighter for Trello";
+			productReference = D637EAC026212C6500205270 /* List Highlighter for Trello.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D637EAD126212C7300205270 /* List Highlighter for Trello Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D637EAE026212C7300205270 /* Build configuration list for PBXNativeTarget "List Highlighter for Trello Extension" */;
+			buildPhases = (
+				D637EACE26212C7300205270 /* Sources */,
+				D637EACF26212C7300205270 /* Frameworks */,
+				D637EAD026212C7300205270 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "List Highlighter for Trello Extension";
+			productName = "List Highlighter for Trello Extension";
+			productReference = D637EAD226212C7300205270 /* List Highlighter for Trello Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D637EAB826212C6400205270 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					D637EABF26212C6400205270 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					D637EAD126212C7300205270 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = D637EABB26212C6400205270 /* Build configuration list for PBXProject "List Highlighter for Trello" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D637EAB726212C6400205270;
+			productRefGroup = D637EAC126212C6500205270 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D637EABF26212C6400205270 /* List Highlighter for Trello */,
+				D637EAD126212C7300205270 /* List Highlighter for Trello Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D637EABE26212C6400205270 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D637EACC26212C7300205270 /* Assets.xcassets in Resources */,
+				D637EAC826212C6500205270 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D637EAD026212C7300205270 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D637EAF226212C7700205270 /* options-page in Resources */,
+				D637EAF126212C7700205270 /* img in Resources */,
+				D637EAEE26212C7700205270 /* css in Resources */,
+				D637EAF026212C7700205270 /* popup.html in Resources */,
+				D637EAF326212C7700205270 /* manifest.json in Resources */,
+				D637EAEF26212C7700205270 /* js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D637EABC26212C6400205270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D637EACA26212C6500205270 /* ViewController.swift in Sources */,
+				D637EAC526212C6500205270 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D637EACE26212C7300205270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D637EADB26212C7300205270 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D637EAD526212C7300205270 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D637EAD126212C7300205270 /* List Highlighter for Trello Extension */;
+			targetProxy = D637EAD426212C7300205270 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D637EAC626212C6500205270 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D637EAC726212C6500205270 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D637EADE26212C7300205270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D637EADF26212C7300205270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D637EAE126212C7300205270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "List Highlighter for Trello Extension/List_Highlighter_for_Trello_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "List Highlighter for Trello Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.beingmrkenny.List-Highlighter-for-Trello.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D637EAE226212C7300205270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "List Highlighter for Trello Extension/List_Highlighter_for_Trello_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "List Highlighter for Trello Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.beingmrkenny.List-Highlighter-for-Trello.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D637EAE526212C7300205270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "List Highlighter for Trello/List_Highlighter_for_Trello.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "List Highlighter for Trello/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.beingmrkenny.List-Highlighter-for-Trello";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D637EAE626212C7300205270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "List Highlighter for Trello/List_Highlighter_for_Trello.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "List Highlighter for Trello/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.beingmrkenny.List-Highlighter-for-Trello";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D637EABB26212C6400205270 /* Build configuration list for PBXProject "List Highlighter for Trello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D637EADE26212C7300205270 /* Debug */,
+				D637EADF26212C7300205270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D637EAE026212C7300205270 /* Build configuration list for PBXNativeTarget "List Highlighter for Trello Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D637EAE126212C7300205270 /* Debug */,
+				D637EAE226212C7300205270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D637EAE426212C7300205270 /* Build configuration list for PBXNativeTarget "List Highlighter for Trello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D637EAE526212C7300205270 /* Debug */,
+				D637EAE626212C7300205270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D637EAB826212C6400205270 /* Project object */;
+}
