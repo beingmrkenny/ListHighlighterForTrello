@@ -139,7 +139,7 @@ function compileOptionPage () {
 		templateData.dialogPolyfill = true;
 	}
 
-	fs.unlinkSync('Extension/options-page/index.html');
+	try { fs.unlinkSync('Extension/options-page/index.html'); } catch (err) { }
 
 	return src('options-page-html/Options.hbs')
 		.pipe(hbsAll('html', {
@@ -330,7 +330,7 @@ function releaseZip () {
 	glob('Extension/**/.*', {}, function (er, files) {
 		for (let file of files) {
 			console.log(`Removing: ${file}`);
-			fs.unlinkSync(file);
+			try { fs.unlinkSync(file); } catch (err) { }
 		}
 	});
 
@@ -341,7 +341,7 @@ function releaseZip () {
 	glob(`/tmp/${EXTENSION_NAME}/css/*.map`, {}, function (er, files) {
 		for (let file of files) {
 			console.log(`Removing: ${file}`);
-			fs.unlinkSync(file);
+			try { fs.unlinkSync(file); } catch (err) { }
 		}
 	});
 

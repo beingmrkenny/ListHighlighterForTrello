@@ -16,7 +16,6 @@
     "url": "https://github.com/beingmrkenny/ListHighlighterForTrello/issues"
   },
   "homepage": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
-  "dependencies": {},
   "devDependencies": {
     "fs-extra": "",
     "gulp": "",
