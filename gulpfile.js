@@ -139,7 +139,7 @@ function compileOptionPage () {
 		templateData.dialogPolyfill = true;
 	}
 
-	fs.unlinkSync('Extension/options-page/index.html');
+	try { fs.unlinkSync('Extension/options-page/index.html'); } catch (e) {}
 
 	return src('options-page-html/Options.hbs')
 		.pipe(hbsAll('html', {
@@ -179,8 +179,7 @@ function compileAllCSS (cb) {
 function compileCSS (parameters) {
 
 	const cmd = process.argv[2];
-	const sass = require('gulp-sass');
-	sass.compiler = require('node-sass');
+	const sass = require('gulp-sass')(require('node-sass'));
 	const sourcemaps = require('gulp-sourcemaps');
 
 	var options = {
