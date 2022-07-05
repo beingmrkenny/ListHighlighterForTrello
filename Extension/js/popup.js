@@ -88,10 +88,15 @@ function toggleHighlight(highlightStatus) {
 		);
 	});
 
+	const manifestVersion = chrome.runtime.getManifest()?.manifest_version || 2;
+	const action = (manifestVersion == 3)
+		? chrome.action
+		: chrome.browserAction;
+
 	if (highlightStatus) {
-		chrome.browserAction.setIcon({path: '/img/buttonIcon.png'});
+		action.setIcon({path: '/img/buttonIcon.png'});
 	} else {
-		chrome.browserAction.setIcon({path: '/img/buttonIconOff.png'});
+		action.setIcon({path: '/img/buttonIconOff.png'});
 	}
 
 	toggleHighlightButton(highlightStatus);

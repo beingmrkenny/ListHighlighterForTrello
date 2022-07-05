@@ -1,7 +1,11 @@
 chrome.runtime.onMessage.addListener(function(request) {
+	const manifestVersion = chrome.runtime.getManifest()?.manifest_version || 2;
+	const action = (manifestVersion == 3)
+		? chrome.action
+		: chrome.browserAction;
 	if (request.toggledOff) {
-		chrome.browserAction.setIcon({path: '/img/buttonIconOff.png'});
+		action.setIcon({path: '/img/buttonIconOff.png'});
 	} else {
-		chrome.browserAction.setIcon({path: '/img/buttonIcon.png'});
+		action.setIcon({path: '/img/buttonIcon.png'});
 	}
 });

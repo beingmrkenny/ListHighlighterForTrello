@@ -3,11 +3,8 @@ const EXTENSION_NAME = 'ListHighlighter';
 const { src, dest, series, parallel, watch } = require('gulp');
 const rename = require('gulp-rename');
 
-let forFirefox = false;
-let lastItem = process.argv[process.argv.length-1];
-if (lastItem.includes('fx') || lastItem.includes('firefox')) {
-	forFirefox = true;
-}
+const lastItem = process.argv[process.argv.length-1];
+const forFirefox = (lastItem.includes('fx') || lastItem.includes('firefox'));
 
 function done (cb) {
 	const notify = require('node-notify');
@@ -215,19 +212,17 @@ function compileAppleScript () {
 }
 
 function copyManifest () {
-	return src('manifest.json')
+	const path = forFirefox ? 'manifest.v2.json' : 'manifest.v3.json';
+	return src(path)
+		.pipe(rename('manifest.json'))
 		.pipe(dest('Extension'));
 }
 
 function copyAndProcessManifestIfNecessary () {
-
 	if (forFirefox) {
-
 		console.log('Including Firefox applications entry');
-
 		const jeditor = require("gulp-json-editor");
-
-		return src('manifest.json')
+		return src('manifest.v2.json')
 			.pipe(jeditor({
 				"applications": {
 					"gecko": {
@@ -236,15 +231,17 @@ function copyAndProcessManifestIfNecessary () {
 					}
 				}
 			}))
+			.pipe(rename('manifest.json'))
 			.pipe(dest('Extension'));
 	} else {
-		return src('manifest.json')
+		return src('manifest.v3.json')
+			.pipe(rename('manifest.json'))
 			.pipe(dest('Extension'));
 	}
 }
 
 function lhwatch () {
-	watch(['manifest.json'], function() {
+	watch(['manifest.v2.json', 'manifest.v3.json'], function() {
 		copyManifest();
 	});
 	watch(['scss/**/*.scss'], function(cb) {

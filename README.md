@@ -18,7 +18,7 @@ Dev tools have been moved over to gulp to make things ten billion times easier a
 1. If you don’t have node installed, install it
 2. run `npm install`
 
-For reference, I am using Node 11 so you might need to upgrade your version of Node and rebuild if you’re having problems.
+For reference, I am using Node 17 so you might need to upgrade your version of Node and rebuild if you’re having problems.
 
 ### Gulp commands
 
@@ -64,5 +64,8 @@ The first script the browser hits is `js/init.js`. This sets up the messenger be
 ## Oddments
 
 - Extension files in Chrome are accessible via URLs like `chrome-extension://<extensionID>/<pathToFile>`.
-- E.g. The popup page is at `chrome-extension://<extensionID>/popup/popup.html`
 - Firefox uses the similar `moz-extension://<extensionID>/<pathToFile>`.
+- E.g. The popup page is at `chrome-extension://<extensionID>/popup.html`
+
+chrome-extension://extensionID/popup.html
+moz-extension://extensionID/popup.html
