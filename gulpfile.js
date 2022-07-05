@@ -289,7 +289,7 @@ async function refresh () {
 	try { options.chromeKey = fs.readFileSync('/tmp/chromeKey'); } catch (err) { }
 
 	if (!options.chromeKey && options.refreshOptions) {
-		src('manifest.json')
+		src('manifest.v3.json')
 			.pipe(prompt.prompt({
 				type: 'input',
 				name: 'chromeKey',

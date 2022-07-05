@@ -23,6 +23,7 @@ class Options {
 
 		var defaults = {
 			'options-HighlightHideHashtags': true,
+			'options-HighlightChangeTextColor': true,
 			'options-HighlightUndimOnHover': false,
 			'options-CountEnableWIP'           : false,
 			'options-CountAllCards'       : false,

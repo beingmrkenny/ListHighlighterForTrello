@@ -26,6 +26,10 @@ chrome.storage.onChanged.addListener( (changes, namespace) => {
 				HeaderTagging.toggleTags();
 				break;
 
+			case 'options-HighlightChangeTextColor' :
+				InsertedCSS.generateRules();
+				break;
+
 			case 'options-OrganisingEnableHeaderCards' :
 			case 'options-OrganisingEnableSeparatorCards' :
 			case 'options-OrganisingHeaderCardsExtraSpace' :
