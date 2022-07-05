@@ -25,10 +25,6 @@ class ColorPickerWrapper {
 
 		this.place(colorPicker);
 
-		if (typeof dialogPolyfill != 'undefined') {
-			dialogPolyfill.registerDialog(colorPicker);
-		}
-
 		colorPicker.show();
 
 		ColorPickerInitialise();

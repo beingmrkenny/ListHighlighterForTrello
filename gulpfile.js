@@ -131,11 +131,6 @@ function compileOptionPage () {
 		smallerTrelloButtons: smallerTrelloButtons
 	}
 
-	if (forFirefox) {
-		console.log('Including dialog polyfill for Firefox');
-		templateData.dialogPolyfill = true;
-	}
-
 	try { fs.unlinkSync('Extension/options-page/index.html'); } catch (e) {}
 
 	return src('options-page-html/Options.hbs')
@@ -347,8 +342,6 @@ function releaseZip () {
 		zipFileName = `${EXTENSION_NAME}-Firefox.zip`;
 	} else {
 		zipFileName = `${EXTENSION_NAME}.zip`;
-		try { fs.removeSync(`/tmp/${EXTENSION_NAME}/js/third/dialog-polyfill.js`) } catch (err) { console.log(err); }
-		try { fs.removeSync(`/tmp/${EXTENSION_NAME}/css/dialog-polyfill.css`) } catch (err) { console.log(err); }
 	}
 
 	try { fs.removeSync(`${process.env.HOME}/Desktop/${zipFileName}`) } catch (err) { console.log(err); }

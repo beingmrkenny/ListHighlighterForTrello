@@ -38,7 +38,7 @@ Note: when specifying options use **one** dash, not two, e.g. `-opt`, not ~~`--o
 
 | Options | Works with | Description |
 |---------|------------|-------------|
-| `--fx` | `default`, `html`, `manifest`, `release` (not recommended) | Generates a Firefox-friendly manifest.json for development, and adds the dialog polyfill to the options page. |
+| `--fx` | `default`, `html`, `manifest`, `release` (not recommended) | Generates a Firefox-friendly manifest.json for development. |
 
 ## Development notes
 

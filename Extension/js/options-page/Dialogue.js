@@ -8,10 +8,6 @@ class Dialogue {
 			header = q('.form-dialog-header', mainDialogContents),
 			formBody = q('.form-dialog-body', mainDialogContents);
 
-		if (typeof dialogPolyfill != 'undefined') {
-			dialogPolyfill.registerDialog(dialog);
-		}
-
 		dialog.id = options.contentsTemplate.replace('Template', 'Dialog');
 
 		if (customDialogContents instanceof HTMLElement) {
@@ -162,11 +158,6 @@ class Dialogue {
 
 	static close () {
 		q('body > dialog[open]').close();
-		if (typeof dialogPolyfill != 'undefined') {
-			for (let elecule of qq('dialog *, ._dialog_overlay, .backdrop')) {
-				elecule.remove();
-			}
-		}
 	}
 
 	static closeHelper () {
