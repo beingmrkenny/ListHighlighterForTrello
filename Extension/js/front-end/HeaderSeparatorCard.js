@@ -15,20 +15,20 @@ class HeaderSeparatorCard {
 
 	static processListCardTitle () {
 		if (arguments[0] && arguments[0][0] && arguments[0][0] instanceof MutationRecord) {
-			let card = new HeaderSeparatorCard(arguments[0][0].target.closest('.list-card'));
+			const card = new HeaderSeparatorCard(arguments[0][0].target.closest('.list-card'));
 			card.process();
 		}
 	}
 
-	static processCards (cards) {
+	static processCards (cardElements) {
 
-		if (cards instanceof HTMLElement) {
-			cards = [cards];
+		if (cardElements instanceof HTMLElement) {
+			cardElements = [cardElements];
 		}
 
-		if (Array.isArray(cards) || cards instanceof NodeList) {
-			for (let card of cards) {
-				card = new HeaderSeparatorCard(card);
+		if (Array.isArray(cardElements) || cardElements instanceof NodeList) {
+			for (const cardElement of cardElements) {
+				const card = new HeaderSeparatorCard(cardElement);
 				card.process();
 			}
 		}
@@ -64,7 +64,7 @@ class HeaderSeparatorCard {
 	}
 
 	showPointsTag () {
-		var bmkoHide = this.card.querySelector('.bmko_hide');
+		const bmkoHide = this.card.querySelector('.bmko_hide');
 		if (bmkoHide) {
 			bmkoHide.replaceWith(document.createTextNode(bmkoHide.textContent));
 		}
@@ -74,8 +74,12 @@ class HeaderSeparatorCard {
 
 		if (Global.getItem('options-CountHideManualCardPoints') && countString != '1') {
 
-			var title = this.card.querySelector('.list-card-title'),
-				tag = `[${countString}]`, found = false, node, nodeText, parentNode;
+			let title = this.card.querySelector('.list-card-title'),
+				tag = `[${countString}]`,
+				found = false,
+				node,
+				nodeText,
+				parentNode;
 
 			for (let i = 0, x = title.childNodes.length; i<x; i++) {
 				if (title.childNodes[i].nodeType == Node.TEXT_NODE && title.childNodes[i].textContent.includes(tag)) {
@@ -89,7 +93,7 @@ class HeaderSeparatorCard {
 
 			if (found) {
 
-				var splits = nodeText.split(tag),
+				const splits = nodeText.split(tag),
 					firstTextNode = document.createTextNode(''),
 					hiddenTagNode = document.createElement('span'),
 					remainingNode = document.createTextNode('');
@@ -165,27 +169,28 @@ class HeaderSeparatorCard {
 	makeHeader () {
 		this.card.classList.add(AppliedClass);
 		this.card.classList.add(HeaderClass);
-		let listCardTitle = this.card.querySelector('.list-card-title');
-		if (listCardTitle.parentNode.parentNode) {
-			let matches = listCardTitle.lastChild.textContent.match(HeaderStripRegex),
+		this.insertH3(this.card);
+		const observer = new MutationObserver(() => this.insertH3(this.card));
+		observer.observe(this.card, { childList: true });
+	}
+
+	insertH3 (cardElement) {
+		const listCardTitle = cardElement.querySelector('.list-card-title');
+		if (listCardTitle?.parentNode?.parentNode) {
+			const matches = listCardTitle.lastChild.textContent.match(HeaderStripRegex),
 				title = matches[1],
-				h3 = this.card.querySelector('h3') || document.createElement('h3');
+				h3 = cardElement.querySelector('h3') || document.createElement('h3');
 			h3.textContent = title.trim();
-			// HACK: the whole of .list-card-details is replaced, so the original one with the new h3 no longer
-			// exists. This timeout hack solves the problem by finding it anew: an observer might be the better way
-			// to do this, but goodt lordt, a lot of faff
-			setTimeout(function (card, h3) {
-				if (!card.querySelector('h3')) {
-					card.querySelector('.list-card-details').prepend(h3);
-				}
-			}, 200, this.card, h3);
+			if (!cardElement.querySelector('h3')) {
+				cardElement.querySelector('.list-card-details').prepend(h3);
+			}
 		}
 	}
 
 	unmakeHeader () {
 		this.card.classList.remove(HeaderClass);
 		this.clearApplied();
-		let h3 = this.card.querySelector('h3');
+		const h3 = this.card.querySelector('h3');
 		if (h3) {
 			h3.remove();
 		}
@@ -203,15 +208,14 @@ class HeaderSeparatorCard {
 		this.card.classList.add(AppliedClass);
 		this.card.classList.add(RuleClass);
 		if (!this.card.querySelector('hr')) {
-			let hr = document.createElement('hr');
-			this.card.appendChild(hr);
+			this.card.appendChild(document.createElement('hr'));
 		}
 	}
 
 	unmakeRule () {
 		this.card.classList.remove(RuleClass);
 		this.clearApplied();
-		let hr = this.card.querySelector('hr');
+		const hr = this.card.querySelector('hr');
 		if (hr) {
 			hr.remove();
 		}
