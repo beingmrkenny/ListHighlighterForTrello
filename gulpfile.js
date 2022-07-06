@@ -318,6 +318,10 @@ function releaseZip () {
 	const fs = require('fs-extra');
 	const zip = require('gulp-zip');
 
+	const zipFileName = (forFirefox)
+		? `${EXTENSION_NAME}-Firefox.zip`
+		: `${EXTENSION_NAME}.zip`;
+
 	glob('Extension/**/.*', {}, function (er, files) {
 		for (let file of files) {
 			console.log(`Removing: ${file}`);
@@ -327,7 +331,7 @@ function releaseZip () {
 
 	try { fs.emptyDirSync(`/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
 	try { fs.copySync('Extension', `/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
-	try { fs.removeSync(process.env.HOME+`/Desktop/${EXTENSION_NAME}.zip`) } catch (err) { console.log(err); }
+	try { fs.removeSync(process.env.HOME+`/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
 
 	glob(`/tmp/${EXTENSION_NAME}/css/*.map`, {}, function (er, files) {
 		for (let file of files) {
@@ -335,16 +339,6 @@ function releaseZip () {
 			fs.unlinkSync(file);
 		}
 	});
-
-	let zipFileName;
-
-	if (forFirefox) {
-		zipFileName = `${EXTENSION_NAME}-Firefox.zip`;
-	} else {
-		zipFileName = `${EXTENSION_NAME}.zip`;
-	}
-
-	try { fs.removeSync(`${process.env.HOME}/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
 
 	console.log('Run these commands to check your zip for lice');
 	console.log(`zip -d ~/Desktop/${zipFileName} __MACOSX/\*`);
