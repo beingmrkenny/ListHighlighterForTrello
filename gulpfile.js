@@ -4,7 +4,7 @@ const { src, dest, series, parallel, watch } = require('gulp');
 const rename = require('gulp-rename');
 
 const lastItem = process.argv[process.argv.length-1];
-const forFirefox = (lastItem.includes('fx') || lastItem.includes('firefox'));
+var forFirefox = (lastItem.includes('fx') || lastItem.includes('firefox'));
 
 function done (cb) {
 	const notify = require('node-notify');
@@ -359,4 +359,12 @@ exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestI
 
 exports.refresh = refresh;
 
-exports.release = series(parallel(compileOptionPage, compileAllCSS, copyManifest), releaseZip);
+exports.release = series(
+	parallel(compileOptionPage, compileAllCSS),
+	(cb) => { forFirefox = true; cb(); },
+	copyManifest,
+	releaseZip,
+	(cb) => { forFirefox = false; cb(); },
+	copyManifest,
+	releaseZip
+);
