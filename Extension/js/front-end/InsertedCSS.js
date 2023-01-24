@@ -66,7 +66,8 @@ class InsertedCSS {
 			for (const trelloBg in rule.highlighting.exceptions) {
 
 				const backgroundColor = new Color(rule.highlighting.exceptions[trelloBg]),
-					borderColor = new Color();
+					borderColor = new Color(),
+					changeTextColor = Global.getItem('options-HighlightChangeTextColor');
 
 				borderColor.fromHSL(
 					backgroundColor.getHue(),
