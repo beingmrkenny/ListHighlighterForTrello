@@ -206,6 +206,15 @@ function compileAppleScript () {
 		.pipe(shell([`osacompile -o ${__dirname}/chrome.scpt ${__dirname}/chrome.applescript`]));
 }
 
+function processManifest () {
+	const path = forFirefox ? 'manifest.v2.json' : 'manifest.v3.json';
+	// delete v2, move everything in v3 up one level
+	// vice versa
+	return src(path)
+		.pipe(rename('manifest.json'))
+		.pipe(dest('Extension'));
+}
+
 function copyManifest () {
 	const path = forFirefox ? 'manifest.v2.json' : 'manifest.v3.json';
 	return src(path)
