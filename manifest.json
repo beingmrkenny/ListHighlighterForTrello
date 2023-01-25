@@ -5,6 +5,14 @@
 	"version": "4.0.9",
 	"author": "Mark Kenny",
 	"homepage_url": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
+
+	"applications": {
+		"gecko": {
+			"id": "ListHighlighter@example.com",
+			"strict_min_version": "42.0"
+		}
+	},
+
 	"v3": {
 		"web_accessible_resources": [
 			{
@@ -25,6 +33,7 @@
 			"default_icon": "img/buttonIcon.png"
 		}
 	},
+
 	"v2": {
 		"web_accessible_resources": [
 			"img/buttonIcon.png",
@@ -42,13 +51,16 @@
 			"default_icon": "img/buttonIcon.png"
 		}
 	},
+
 	"options_ui": {
 		"page": "options-page/index.html",
 		"open_in_tab": true
 	},
+
 	"permissions": [
 		"storage"
 	],
+
 	"content_scripts": [
 		{
 			"all_frames": true,
@@ -86,6 +98,7 @@
 			"run_at": "document_end"
 		}
 	],
+
 	"icons": {
 		"16": "img/192.png",
 		"256": "img/256.png",

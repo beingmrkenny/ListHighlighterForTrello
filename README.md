@@ -13,32 +13,25 @@ There is no other compilation necessary. No JS files are compressed, obfuscated,
 
 ## Setup
 
-Dev tools have been moved over to gulp to make things ten billion times easier and faster:
+Dev tools now run on native node, not gulp. You'll need to delete node_modules and run `npm i again`.
 
-1. If you don’t have node installed, install it
-2. run `npm install`
+You'll need sass if you don't have it, which you can install with either `brew install sass/sass/sass` or `npm i -g sass`.
 
-For reference, I am using Node 17 so you might need to upgrade your version of Node and rebuild if you’re having problems.
+If you want to use the Applescript to refresh Chrome, you'll need to run `osacompile -o chrome.scpt chrome.applescript` in the build directory first.
 
-### Gulp commands
-
-Note: when specifying options use **one** dash, not two, e.g. `-opt`, not ~~`--opt`~~.
+### Dev commands
 
 | Command | Description |
 |---------|-------------|
-| `gulp` | Compiles options page HTML, all CSS and copies manifest.json into Extension/ |
-| `gulp html` | Compiles options page HTML |
-| `gulp css` | Compiles all the CSS from Scss |
-| `gulp manifest` | Copies manifest file into the Extension directory |
+| `npm run html` | Compiles options page HTML |
+| `npm run css` | Compiles all the CSS from Scss |
+| `npm run manifest` | Copies and formats manifest file into the Extension directory for blink-based browsers, suitable for dev or release |
+| `npm run manifest firefox dev` | Copies and formats manifest file into the Extension directory for Firefox, with necessary additional development entries |
+| `npm run manifest firefox release` | Copies and formats manifest file into the Extension directory for Firefox, without additional development entries |
+
 | `gulp watch` | Watches all source files and compiles them as appropriate on save |
-| `gulp refresh (-options, -trello, -newkey)` | **macOS and Chrome only** — Watches all sources files, compiles them, then refreshes pages specified by options. Use `-trello` to reload web extensions and Trello pages open in Chrome. Use the `-options` option to refresh the option page too. You will be asked for the extension ID in Chrome when using this option. The extension ID will be saved. To clear it pass `-newkey`. Run `osacompile -o chrome.scpt chrome.applescript` in the root of this folder if the AppleScript isn’t working. |
+| `gulp refresh (-options, -trello, -newkey)` | **macOS and Chrome only** — Watches all sources files, compiles them, then refreshes pages specified by options. Use `-trello` to reload web extensions and Trello pages open in Chrome. Use the `-options` option to refresh the option page too. You will be asked for the extension ID in Chrome when using this option. The extension ID will be saved. To clear it pass `-newkey`. Run `osacompile -o chrome.scpt chrome.applescript` in the build directory if the AppleScript isn’t working. |
 | `gulp release` | Compiles all source files then assembles the zip file needed for release |
-
-#### Extra options
-
-| Options | Works with | Description |
-|---------|------------|-------------|
-| `--fx` | `default`, `html`, `manifest`, `release` (not recommended) | Generates a Firefox-friendly manifest.json for development. |
 
 ## Development notes
 
