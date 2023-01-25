@@ -1,4 +1,4 @@
-// exports.compileHTML = () => {
+exports.compileHTML = () => {
 
 	const Color = require('../Extension/js/classes/Color.js');
 	const Handlebars = require('handlebars');
@@ -122,4 +122,6 @@
 		})
 	);
 
-// }
+}
+
+exports.compileHTML();

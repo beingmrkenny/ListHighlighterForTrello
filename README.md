@@ -28,10 +28,11 @@ If you want to use the Applescript to refresh Chrome, you'll need to run `osacom
 | `npm run manifest` | Copies and formats manifest file into the Extension directory for blink-based browsers, suitable for dev or release |
 | `npm run manifest firefox dev` | Copies and formats manifest file into the Extension directory for Firefox, with necessary additional development entries |
 | `npm run manifest firefox release` | Copies and formats manifest file into the Extension directory for Firefox, without additional development entries |
+| `npm run release` | Compiles all source files then assembles the zip files needed for release |
 
 | `gulp watch` | Watches all source files and compiles them as appropriate on save |
 | `gulp refresh (-options, -trello, -newkey)` | **macOS and Chrome only** — Watches all sources files, compiles them, then refreshes pages specified by options. Use `-trello` to reload web extensions and Trello pages open in Chrome. Use the `-options` option to refresh the option page too. You will be asked for the extension ID in Chrome when using this option. The extension ID will be saved. To clear it pass `-newkey`. Run `osacompile -o chrome.scpt chrome.applescript` in the build directory if the AppleScript isn’t working. |
-| `gulp release` | Compiles all source files then assembles the zip file needed for release |
+
 
 ## Development notes
 

@@ -21,6 +21,7 @@
   },
   "homepage": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
   "devDependencies": {
+    "fs-extra": "^11.1.0",
     "handlebars": "^4.7.7"
   }
 }

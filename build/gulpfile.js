@@ -1,15 +1,3 @@
-const EXTENSION_NAME = 'ListHighlighter';
-
-const lastItem = process.argv[process.argv.length-1];
-var forFirefox = (lastItem.includes('fx') || lastItem.includes('firefox'));
-
-function compileAppleScript () {
-	const shell = require('gulp-shell');
-	console.log('If this fails, try opening Chrome. AppleScript is finicky and crap like that.');
-	return src('.', {read: false})
-		.pipe(shell([`osacompile -o ${__dirname}/chrome.scpt ${__dirname}/chrome.applescript`]));
-}
-
 function lhwatch () {
 	watch(['manifest.v2.json', 'manifest.v3.json'], function() {
 		copyManifest();
@@ -87,54 +75,7 @@ function watchCommand (options) {
 	});
 }
 
-function releaseZip () {
-
-	const glob = require('glob');
-	const fs = require('fs-extra');
-	const zip = require('gulp-zip');
-
-	const zipFileName = (forFirefox)
-		? `${EXTENSION_NAME}-Firefox.zip`
-		: `${EXTENSION_NAME}.zip`;
-
-	glob('Extension/**/.*', {}, function (er, files) {
-		for (let file of files) {
-			console.log(`Removing: ${file}`);
-			fs.unlinkSync(file);
-		}
-	});
-
-	try { fs.emptyDirSync(`/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
-	try { fs.copySync('Extension', `/tmp/${EXTENSION_NAME}`); } catch (err) { console.log(err); }
-	try { fs.removeSync(process.env.HOME+`/Desktop/${zipFileName}`) } catch (err) { console.log(err); }
-
-	glob(`/tmp/${EXTENSION_NAME}/css/*.map`, {}, function (er, files) {
-		for (let file of files) {
-			console.log(`Removing: ${file}`);
-			fs.unlinkSync(file);
-		}
-	});
-
-	console.log('Run these commands to check your zip for lice');
-	console.log(`zip -d ~/Desktop/${zipFileName} __MACOSX/\*`);
-	console.log(`unzip -vl ~/Desktop/${zipFileName}`);
-
-	return src(`/tmp/${EXTENSION_NAME}/**/*`)
-		.pipe(zip(zipFileName))
-		.pipe(dest(process.env.HOME+'/Desktop'));
-}
-
 exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, done);
 exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, lhwatch);
 
 exports.refresh = refresh;
-
-exports.release = series(
-	parallel(compileOptionPage, compileAllCSS),
-	(cb) => { forFirefox = true; cb(); },
-	copyManifest,
-	releaseZip,
-	(cb) => { forFirefox = false; cb(); },
-	copyManifest,
-	releaseZip
-);
