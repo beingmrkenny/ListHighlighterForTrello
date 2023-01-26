@@ -15,7 +15,7 @@ There is no other compilation necessary. No JS files are compressed, obfuscated,
 
 Dev tools now run on native node, not gulp. You'll need to delete node_modules and run `npm i again`.
 
-You'll need sass if you don't have it, which you can install with either `brew install sass/sass/sass` or `npm i -g sass`.
+You'll need the sass CLI if you don't have it, which you can install with either `brew install sass/sass/sass` or `npm i -g sass`.
 
 If you want to use the Applescript to refresh Chrome, you'll need to run `osacompile -o chrome.scpt chrome.applescript` in the build directory first.
 
@@ -28,19 +28,16 @@ If you want to use the Applescript to refresh Chrome, you'll need to run `osacom
 | `npm run manifest` | Copies and formats manifest file into the Extension directory for blink-based browsers, suitable for dev or release |
 | `npm run manifest firefox dev` | Copies and formats manifest file into the Extension directory for Firefox, with necessary additional development entries |
 | `npm run manifest firefox release` | Copies and formats manifest file into the Extension directory for Firefox, without additional development entries |
-| `npm run release` | Compiles all source files then assembles the zip files needed for release |
 | `npm run compile` | Runs html, css and manifest |
 | `npm run compile firefox` | Runs html, css and manifest (firefox dev) |
-
-| `gulp watch` | Watches all source files and compiles them as appropriate on save |
-| `gulp refresh (-options, -trello, -newkey)` | **macOS and Chrome only** — Watches all sources files, compiles them, then refreshes pages specified by options. Use `-trello` to reload web extensions and Trello pages open in Chrome. Use the `-options` option to refresh the option page too. You will be asked for the extension ID in Chrome when using this option. The extension ID will be saved. To clear it pass `-newkey`. Run `osacompile -o chrome.scpt chrome.applescript` in the build directory if the AppleScript isn’t working. |
-
+| `npm run watch` | Watches all .scss and .hbs source files for changes and runs html/css as appropriate. |
+| `npm run release` | Compiles all source files then assembles the zip files needed for release |
 
 ## Development notes
 
 ### Directory structure
 
-- The files in the root directory are to assist with development. The canonical manifest file exists here and is copied into the Extension file by gulp (see above).
+- The files in the root directory are to assist with development. The canonical manifest file exists here and is copied into the Extension file by npm (see above).
 - `Extension` contains all the files necessary for the extension to function. The files in this directory are the only files executed in the browser. This directory is the one which is released.
 - `options-page-html` contains the templates used to generate the options page at `Extension/options-page/index.html`.
 - `scss` contains all Scss files used in this extension. These are compiled into `Extension/css`, and results in three CSS files: `options.css`, the stylesheet for the options page; `popup.css`, the stylesheet for the popup; and `style.css`, which is injected into the Trello page.
@@ -52,9 +49,8 @@ The first script the browser hits is `js/init.js`. This sets up the messenger be
 ### git branching
 
 - As far as possible, a single commit should represent one complete feature or bug fix.
-- `master` is the standard master branch.
-- During development of a new version, a working branch named vX.X.X is branched from master
-- Before merging a branch back into master, commits should be squashed into as few commits as possible/sensible.
+- `main` is the standard main branch.
+- Before merging a branch back into main, commits should be squashed into as few commits as possible/sensible.
 - Make commit messages as descriptive yet concise as possible
 
 ## Oddments

@@ -1,16 +1,3 @@
-function lhwatch () {
-	watch(['manifest.v2.json', 'manifest.v3.json'], function() {
-		copyManifest();
-	});
-	watch(['scss/**/*.scss'], function(cb) {
-		compileAllCSS(cb);
-	});
-	watch(['options-page-html/**/*.hbs'], function(cb) {
-		compileOptionPage();
-		cb();
-	});
-}
-
 async function refresh () {
 
 	const prompt = require('gulp-prompt');
@@ -63,19 +50,6 @@ async function refresh () {
 
 }
 
-function watchCommand (options) {
-	const shell = require('gulp-shell');
-	watch(['scss/**/*.scss', 'options-page-html/**/*.hbs', 'Extension/js/**/*.js', 'manifest.json'], function() {
-		compileAllCSS();
-		compileOptionPage();
-		copyManifest();
-		done();
-		return src('*.js', {read: false})
-			.pipe(shell([`osascript ${__dirname}/chrome.scpt ${(options.refreshTrello)} ${(options.refreshOptions)} ${options.chromeKey};`]));
-	});
-}
-
-exports.default = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, done);
-exports.watch = series(compileOptionPage, compileAllCSS, copyAndProcessManifestIfNecessary, lhwatch);
-
-exports.refresh = refresh;
+/*
+| `gulp refresh (-options, -trello, -newkey)` | **macOS and Chrome only** — Watches all sources files, compiles them, then refreshes pages specified by options. Use `-trello` to reload web extensions and Trello pages open in Chrome. Use the `-options` option to refresh the option page too. You will be asked for the extension ID in Chrome when using this option. The extension ID will be saved. To clear it pass `-newkey`. Run `osacompile -o chrome.scpt chrome.applescript` in the build directory if the AppleScript isn’t working. |
+*/
