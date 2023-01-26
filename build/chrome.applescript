@@ -1,5 +1,3 @@
--- osacompile -o chrome.scpt chrome.applescript
-
 on run argv
 
 	tell application "Google Chrome"

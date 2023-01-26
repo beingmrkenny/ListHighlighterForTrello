@@ -4,7 +4,7 @@ const { compileHTML } = require('./html');
 const { compileManifest } = require('./manifest');
 const exec = require('child_process').execSync;
 const fs = require('fs-extra');
-const child_process = require("child_process");
+const child_process = require('child_process');
 
 function releaseZip(forFirefox) {
 

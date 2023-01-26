@@ -1,3 +1,4 @@
+// NOTE: not used in build, this is spare 'dev' code used to reset options. It may not work any more.
 class Reset {
 
 	static all () {
