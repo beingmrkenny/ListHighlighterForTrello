@@ -45,10 +45,13 @@ class HeaderSeparatorCard {
 			if (badge) {
 				badge.textContent = '× '+points;
 			} else {
-				badge = document.createElement('span');
-				badge.classList.add('bmko_card-count-badge');
-				badge.textContent = '× '+points;
-				this.card.querySelector('.js-custom-field-badges').appendChild(badge);
+				const badges = this.card.querySelector('.js-custom-field-badges');
+				if (badges) {
+					badge = document.createElement('span');
+					badge.classList.add('bmko_card-count-badge');
+					badge.textContent = '× ' + points;
+					badges.appendChild(badge);
+				}
 			}
 
 		} else {

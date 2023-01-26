@@ -28,7 +28,7 @@ exports.compileManifest = (arguments) => {
 
 	const manifest = JSON.parse(fs.readFileSync('manifest.json', 'utf8'));
 
-	manifest.manifest_version = useVersion;
+	manifest.manifest_version = parseInt(useVersion);
 
 	if (!includeApplications) {
 		delete (manifest.applications);
