@@ -12,20 +12,20 @@
     "compile": "node --unhandled-rejections=strict build/compile.js",
     "watch": "npm-watch"
   },
-    "watch": {
-      "css": {
-        "patterns": [
-          "scss/**/*.scss"
-        ],
-        "extensions": "scss"
-      },
-      "html": {
-        "patterns": [
-          "options-page-html/**/*.hbs"
-        ],
-        "extensions": "hbs"
-      }
+  "watch": {
+    "css": {
+      "patterns": [
+        "scss/**/*.scss"
+      ],
+      "extensions": "scss"
     },
+    "html": {
+      "patterns": [
+        "options-page-html/**/*.hbs"
+      ],
+      "extensions": "hbs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/beingmrkenny/ListHighlighterForTrello.git"
