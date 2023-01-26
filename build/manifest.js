@@ -6,7 +6,7 @@ exports.compileManifest = (arguments) => {
 
 	const args = (typeof arguments == 'undefined') ? process.argv : arguments;
 
-	const forFirefox = (args.includes('fx') || args.includes('firefox'));
+	const forFirefox = args.includes('firefox');
 	const forDev = args.includes('dev');
 	const forRelease = args.includes('release');
 
