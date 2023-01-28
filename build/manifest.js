@@ -31,15 +31,15 @@ exports.compileManifest = (arguments) => {
 	manifest.manifest_version = parseInt(useVersion);
 
 	if (!includeApplications) {
-		delete (manifest.applications);
+		delete manifest.applications;
 	}
 
 	const useKey = `v${useVersion}`;
-	delete (manifest[`v${deleteVersion}`]);
+	delete manifest[`v${deleteVersion}`];
 	for (const key in manifest[useKey]) {
 		manifest[key] = manifest[useKey][key];
 	}
-	delete (manifest[useKey]);
+	delete manifest[useKey];
 
 	try { fs.unlinkSync('Extension/manifest.json'); } catch (e) { }
 	fs.writeFileSync('Extension/manifest.json', JSON.stringify(manifest, null, 2));
