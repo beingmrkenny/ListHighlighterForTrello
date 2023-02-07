@@ -2,7 +2,7 @@ exports.compileHTML = () => {
 
 	const Color = require('../Extension/js/classes/Color.js');
 	const Handlebars = require('handlebars');
-	const fs = require('fs');
+	const fs = require('fs-extra');
 
 	const OriginalListBG = Color.getOriginalListBG();
 
@@ -111,7 +111,7 @@ exports.compileHTML = () => {
 			fs.readFileSync(path, 'utf8')
 		);
 	});
-	try { fs.unlinkSync('Extension/options-page/index.html'); } catch (e) { }
+	try { fs.emptyDirSync('Extension/options-page/') } catch (e) { }
 	const template = Handlebars.compile(fs.readFileSync('options-page-html/Options.hbs', 'utf8'));
 	fs.writeFileSync(
 		'Extension/options-page/index.html',

@@ -13,7 +13,7 @@ There is no other compilation necessary. No JS files are compressed, obfuscated,
 
 ## Setup
 
-Dev tools now run on native node, not gulp. You'll need to delete node_modules and run `npm i again`.
+Dev tools now run on native node, not gulp. You'll need to delete node_modules and run `npm i` again.
 
 You'll need the sass CLI if you don't have it, which you can install with either `brew install sass/sass/sass` or `npm i -g sass`.
 
