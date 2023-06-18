@@ -101,7 +101,6 @@ exports.compileHTML = () => {
 	[	'options-page-html/includes/highlighting.section.hbs',
 		'options-page-html/includes/cardCounting.section.hbs',
 		'options-page-html/includes/organising.section.hbs',
-		'options-page-html/includes/exportimport.section.hbs',
 		'options-page-html/includes/templateTags.template.hbs',
 		'options-page-html/includes/listHighlightColor.template.hbs',
 		'options-page-html/includes/colorPicker.template.hbs'
