@@ -8,7 +8,7 @@
     "html": "node --unhandled-rejections=strict build/html.js",
     "css": "sh ./build/css.sh",
     "release": "node --unhandled-rejections=strict build/release.js",
-    "compile": "node --unhandled-rejections=strict build/compile.js",
+    "everything": "node --unhandled-rejections=strict build/compile.js",
     "watch": "npm-watch"
   },
   "watch": {

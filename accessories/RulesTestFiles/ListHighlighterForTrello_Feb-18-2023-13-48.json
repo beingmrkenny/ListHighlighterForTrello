@@ -1,0 +1,201 @@
+{
+	"rule-1e038889": {
+		"contains": ["#low"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.45" },
+		"id": "rule-low",
+		"is": [],
+		"name": "Low Priority 2",
+		"options": {},
+		"sort": 3
+	},
+	"rule-380bf82a": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-380bf82a",
+		"is": ["Dead"],
+		"name": "Dead",
+		"options": {},
+		"sort": 5
+	},
+	"rule-39388578": {
+		"contains": ["#low"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.45" },
+		"id": "rule-low",
+		"is": [],
+		"name": "Low Priority",
+		"options": {},
+		"sort": 3
+	},
+	"rule-42275cac": {
+		"contains": ["#ignore"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-ignore",
+		"is": [],
+		"name": "Ignore 3",
+		"options": { "grayscale": true },
+		"sort": 14
+	},
+	"rule-583938df": {
+		"contains": ["#normal", "#todo"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": 1 },
+		"id": "rule-583938df",
+		"is": ["Todo", "To do"],
+		"name": "Todo 2",
+		"options": { "unmatchedLists": null },
+		"sort": 0
+	},
+	"rule-5a7f0f81": {
+		"contains": ["#ignore"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-ignore",
+		"is": [],
+		"name": "Ignore 2",
+		"options": { "grayscale": true },
+		"sort": 4
+	},
+	"rule-66d106bd": {
+		"contains": ["#ignore"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-ignore",
+		"is": [],
+		"name": "Ignore 4",
+		"options": { "grayscale": true },
+		"sort": 29
+	},
+	"rule-6a6c00f2": {
+		"contains": ["#trash", "#done"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-done",
+		"is": ["Done", "Trash"],
+		"name": "Done 2",
+		"options": { "grayscale": true, "strikethrough": true },
+		"sort": 4
+	},
+	"rule-6dd5eb43": {
+		"contains": ["#high", "#doing", "#today"],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-doing",
+		"is": ["Doing", "Today"],
+		"name": "Doing 4",
+		"options": {},
+		"sort": 26
+	},
+	"rule-79c0c1a2": {
+		"contains": ["#low"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.45" },
+		"id": "rule-low",
+		"is": [],
+		"name": "Low Priority 3",
+		"options": {},
+		"sort": 18
+	},
+	"rule-7f1ee9d0": {
+		"contains": ["#high", "#doing", "#today"],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-doing",
+		"is": ["Doing", "Today"],
+		"name": "Doing 2",
+		"options": {},
+		"sort": 1
+	},
+	"rule-89dd7997": {
+		"contains": ["#trash", "#done"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-done",
+		"is": ["Done", "Trash"],
+		"name": "Done 3",
+		"options": { "grayscale": true, "strikethrough": true },
+		"sort": 14
+	},
+	"rule-a471f742": {
+		"contains": ["#high", "#doing", "#today"],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-doing",
+		"is": ["Doing", "Today"],
+		"name": "Doing 3",
+		"options": {},
+		"sort": 11
+	},
+	"rule-ad2c8d26": {
+		"contains": ["#trash", "#done"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-done",
+		"is": ["Done", "Trash"],
+		"name": "Done 4",
+		"options": { "grayscale": true, "strikethrough": true },
+		"sort": 29
+	},
+	"rule-ad63cc94": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#f2d600", "exceptions": {}, "opacity": 1 },
+		"id": "rule-ad63cc94",
+		"is": ["Hello"],
+		"name": "dead",
+		"options": {},
+		"sort": 6
+	},
+	"rule-c5c2ec57": {
+		"contains": ["#normal", "#todo"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": 1 },
+		"id": "rule-todo",
+		"is": ["Todo", "To do"],
+		"name": "Todo",
+		"options": { "unmatchedLists": "rule-low" },
+		"sort": 0
+	},
+	"rule-c99b1864": {
+		"contains": ["#normal", "#todo"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": 1 },
+		"id": "rule-todo",
+		"is": ["Todo", "To do"],
+		"name": "Todo 3",
+		"options": { "unmatchedLists": "rule-low" },
+		"sort": 15
+	},
+	"rule-doing": {
+		"contains": ["#high", "#doing", "#today"],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"is": ["Doing", "Today"],
+		"name": "Doing",
+		"options": {},
+		"sort": 1
+	},
+	"rule-done": {
+		"contains": ["#trash", "#done"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-done",
+		"is": ["Done", "Trash"],
+		"name": "Done",
+		"options": { "grayscale": true, "strikethrough": true },
+		"sort": 4
+	},
+	"rule-ignore": {
+		"contains": ["#ignore"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-ignore",
+		"is": [],
+		"name": "Ignore",
+		"options": { "grayscale": true },
+		"sort": 4
+	}
+}

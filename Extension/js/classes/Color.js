@@ -549,8 +549,11 @@ class Color {
 	}
 
 	static isLight(color) {
-		var colour = new Color(color);
-		return colour.isLight();
+		if (color) {
+			const colour = new Color(color);
+			return colour.isLight();
+		}
+		return null;
 	}
 
 	static getOriginalListBG() {

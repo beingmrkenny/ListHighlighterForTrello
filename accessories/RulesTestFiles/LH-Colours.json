@@ -1,0 +1,62 @@
+{
+	"rule-11def190": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#00a2ff", "exceptions": {}, "opacity": 1 },
+		"id": "rule-11def190",
+		"is": ["Blue"],
+		"name": "Blue",
+		"options": {},
+		"sort": 5
+	},
+	"rule-14ca304f": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#ffab4a", "exceptions": {}, "opacity": 1 },
+		"id": "rule-14ca304f",
+		"is": ["Orange"],
+		"name": "Orange",
+		"options": {},
+		"sort": 2
+	},
+	"rule-4a53d390": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#f2d600", "exceptions": {}, "opacity": 1 },
+		"id": "rule-4a53d390",
+		"is": ["yellow"],
+		"name": "Yellow",
+		"options": {},
+		"sort": 3
+	},
+	"rule-4b3dbc6d": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#ba55e2", "exceptions": {}, "opacity": 1 },
+		"id": "rule-4b3dbc6d",
+		"is": ["Purple"],
+		"name": "Purple",
+		"options": {},
+		"sort": 6
+	},
+	"rule-58f1f182": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#61bd4f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-58f1f182",
+		"is": ["Green"],
+		"name": "Green",
+		"options": {},
+		"sort": 4
+	},
+	"rule-b7575ad5": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"id": "rule-b7575ad5",
+		"is": ["Red"],
+		"name": "Red",
+		"options": {},
+		"sort": 1
+	}
+}

@@ -5,13 +5,14 @@
 }
 
 @mixin full-width($backgroundColor: white) {
-	$width: 750px;
 
 	width: $width;
 	margin-right: auto;
 	margin-left: auto;
 
 	background: $backgroundColor;
+
+	$width: 750px;
 
 	@media (max-width: 800px) {
 		width: $width - 40px;
@@ -188,6 +189,7 @@ footer {
 @import "options-page/list-highlight-color-dialog";
 @import "options-page/option-widgets";
 @import "options-page/template-tags";
+@import "options-page/data-section";
 
 @import "elements.scss";
 @import "forms.scss";

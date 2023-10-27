@@ -2,7 +2,7 @@ class DataStorage {
 	static initialise(callback = null) {
 		chrome.storage.sync.get(null, (results) => {
 			var resultsIsEmpty = true;
-			for (let propName in results) {
+			for (const propName in results) {
 				resultsIsEmpty = false;
 				break;
 			}
@@ -15,16 +15,17 @@ class DataStorage {
 				results = Options.fillBlanksWithDefaults(results);
 			}
 
-			for (let propName in results) {
+			for (const propName in results) {
 				Global.setItem(propName, results[propName]);
 			}
+
 			if (typeof callback == 'function') {
 				callback(results);
 			}
 		});
 
-		chrome.storage.onChanged.addListener((changes, namespace) => {
-			for (let key in changes) {
+		chrome.storage.onChanged.addListener((changes) => {
+			for (const key in changes) {
 				var storageChange = changes[key];
 				if (typeof storageChange.newValue == 'undefined') {
 					Global.removeItem(key);

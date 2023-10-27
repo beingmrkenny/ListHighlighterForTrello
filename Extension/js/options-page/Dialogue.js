@@ -164,7 +164,8 @@ class Dialogue {
 		}
 	}
 
-	static closeOnEsc() {
+	// NOTE: I added the event param here, did I remove it for a reason?
+	static closeOnEsc(event) {
 		if (event.key === 'Escape') {
 			Dialogue.close();
 		}

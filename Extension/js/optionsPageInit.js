@@ -1,6 +1,7 @@
 OptionsPage.setupDialogs();
 listen(qq('.standard-options div'), 'click', OptionsPage.checkInputOnClick);
 listen(qid('NewRuleButton'), 'click', OptionsPage.openNewRuleForm);
+DataSection.setup();
 
 DataStorage.initialise(function (results) {
 	document.body.classList.toggle(
@@ -11,7 +12,7 @@ DataStorage.initialise(function (results) {
 	RulesTable.build(results);
 	OptionsPage.setupSaveOptionsOnChange();
 	OptionsPage.processAllControllingInputs();
-	chrome.storage.onChanged.addListener((changes, namespace) => {
+	chrome.storage.onChanged.addListener((changes) => {
 		for (let key in changes) {
 			var storageChange = changes[key];
 			if (key.startsWith('rule-')) {
@@ -26,10 +27,9 @@ DataStorage.initialise(function (results) {
 							RulesTable.updateRow(key);
 						}
 					} else {
-						let rulesTableTR = new RulesTableTR(storageChange.newValue);
-						q('.highlighting-table tbody').appendChild(
-							rulesTableTR.getTR(true)
-						);
+						storageChange.newValue.id = key;
+						const rulesTableTR = new RulesTableTR(storageChange.newValue);
+						RulesTable.insertNewRowSorted(rulesTableTR.getTR(true));
 					}
 				}
 			}

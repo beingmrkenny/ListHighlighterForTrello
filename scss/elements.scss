@@ -207,6 +207,42 @@ kbd {
 	animation-fill-mode: both;
 }
 
+.success-message {
+	display: inline-block;
+	margin: 0;
+	padding: 2px 6px;
+
+	background: #edffca;
+	border-radius: 3px;
+
+	font-weight: bold;
+	@at-root span#{&} {
+		margin: 0 15px;
+	}
+}
+
+.error-message {
+	display: inline-block;
+	margin: 0;
+	padding: 2px 6px;
+
+	background: #ffcaca;
+	border-radius: 3px;
+
+	font-weight: bold;
+}
+
+.warning-message {
+	display: inline-block;
+	margin: 0;
+	padding: 2px 6px;
+
+	background: #ffedca;
+	border-radius: 3px;
+
+	font-weight: bold;
+}
+
 @keyframes flash {
 	from,
 	50%,

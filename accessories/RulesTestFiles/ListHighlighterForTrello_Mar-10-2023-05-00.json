@@ -1,0 +1,13 @@
+{
+	"options-CountAllCards": false,
+	"options-CountEnablePointsOnCards": false,
+	"options-CountEnableWIP": false,
+	"options-CountHideManualCardPoints": false,
+	"options-HighlightChangeTextColor": true,
+	"options-HighlightHideHashtags": true,
+	"options-HighlightUndimOnHover": false,
+	"options-OrganisingEnableHeaderCards": false,
+	"options-OrganisingEnableSeparatorCards": false,
+	"options-OrganisingHeaderCardsExtraSpace": true,
+	"options-OrganisingSeparatorCardsVisibleLine": false
+}

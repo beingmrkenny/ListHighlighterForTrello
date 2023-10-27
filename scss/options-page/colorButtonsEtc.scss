@@ -89,6 +89,8 @@
 	color: white;
 	background: $grayTrello;
 }
+.fill-trello-photo {
+}
 
 .mod-light-background {
 	color: $bodyTextColor;
@@ -161,5 +163,8 @@ button {
 	}
 	&.fill-trello-gray {
 		box-shadow: 0 1px 0 darken($grayTrello, 10%);
+	}
+	&.fill-trello-photo {
+		color: $bodyTextColor;
 	}
 }

@@ -1,0 +1,52 @@
+{
+	"rule-13289ed1": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#000000", "exceptions": {}, "opacity": 1 },
+		"id": "rule-13289ed1",
+		"is": ["back 5"],
+		"name": "4 Black",
+		"options": {},
+		"sort": 4
+	},
+	"rule-69315817": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#000000", "exceptions": {}, "opacity": 1 },
+		"id": "rule-69315817",
+		"is": ["Black 3"],
+		"name": "3 Black",
+		"options": {},
+		"sort": 3
+	},
+	"rule-e07d3b7": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#000000", "exceptions": {}, "opacity": 1 },
+		"id": "rule-e07d3b7",
+		"is": ["BLack"],
+		"name": "1 Black",
+		"options": {},
+		"sort": 1
+	},
+	"rule-e7642e2a": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#000000", "exceptions": {}, "opacity": "1" },
+		"id": "rule-e7642e2a",
+		"is": ["black 6 or 63"],
+		"name": "5 Black",
+		"options": {},
+		"sort": 5
+	},
+	"rule-ecb6fdd0": {
+		"contains": [],
+		"enabled": true,
+		"highlighting": { "color": "#000000", "exceptions": {}, "opacity": 1 },
+		"id": "rule-ecb6fdd0",
+		"is": ["more"],
+		"name": "2 Black",
+		"options": {},
+		"sort": 2
+	}
+}

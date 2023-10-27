@@ -1,0 +1,197 @@
+// UL containing the two main checkboxes ("Settings", "Rules") in import/export
+.port-settings-options {
+	li {
+		list-style: none;
+	}
+	label:has([disabled]) {
+		input {
+			background: rgb(205, 205, 205);
+		}
+
+		.rule-name {
+			opacity: .5 !important;
+
+			filter: contrast(.5);
+		}
+	}
+	input[type="checkbox"]:disabled:checked::before {
+		background-image: none;
+	}
+}
+
+// Contains the rules ul, along with 'unselect all'
+// In import, it also has the behaviour and conflict warnings and all that
+.rules-to-port-container {
+	display: none;
+	margin-bottom: 40px;
+	margin-left: 40px;
+	padding: 20px;
+
+	background: rgb(244, 244, 244);
+	border-radius: 15px;
+
+	.checkbox-option.port-rules:has(:checked) + & {
+		display: block;
+	}
+
+	h3 {
+		padding-top: 0;
+
+		font-size: 14px;
+	}
+
+	p {
+		// 'Unselect all'
+		margin-top: 5px;
+	}
+}
+
+// The rules ul itself
+
+
+.rule {
+	margin-bottom: 3px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	.checkbox-option input {
+		flex-shrink: 0;
+	}
+
+	label {
+		flex-direction: row;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 5px;
+
+		border-radius: 3px;
+		&:not(:has(:checked)) {
+			opacity: .4 !important;
+		}
+	}
+
+	span {
+		white-space: nowrap;
+	}
+
+	.rule-name {
+		margin-right: 15px;
+		padding: 0 3px;
+
+		border-radius: 2px;
+
+		font-weight: 600;
+	}
+
+	.rule-criteria-container {
+		display: flex;
+		overflow: hidden;
+		margin-right: 10px;
+	}
+
+	.rule-criteria {
+		flex: 1;
+		overflow: hidden;
+
+		font-weight: bold;
+		text-overflow: ellipsis;
+		strong {
+			opacity: .5;
+
+			font-weight: normal;
+		}
+	}
+
+	.rule-contains {
+		margin-left: 5px;
+	}
+
+	.conflict-label {
+		margin-left: auto;
+	}
+}
+
+.conflict-label {
+	padding: 2px 6px;
+
+	border-radius: 3px;
+
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.conflict-note {
+	align-items: center;
+	justify-content: end;
+	margin-top: 7px;
+	padding-right: 5px;
+}
+
+.show-when-conflict-exists {
+	display: none;
+}
+
+// The "How would you like to import" ul
+#ImportRulesBehavior {
+	margin: 10px 0 0;
+
+	list-style: none;
+}
+
+#ImportStageTwo,
+#ImportStageTwo_Rules,
+#ImportStageTwo_Settings,
+// Rules UL along with 'unselect all'
+#RulesToImportList {
+	display: none;
+}
+
+#RulesToImportList {
+	margin-bottom: 30px;
+}
+
+#ImportStageTwo_Settings p {
+	margin: 5px 0 20px 43px;
+}
+
+#ImportFileInput {
+	visibility: hidden;
+}
+
+#ImportConflictWarning {
+	padding: 10px 15px;
+}
+
+#ImportConflictWarning {
+	display: none;
+	align-items: center;
+	margin-top: 30px;
+}
+
+[data-conflicts-exist="yes"] .show-when-conflict-exists,
+[data-conflicts-exist="yes"][data-conflicts-are-relevant="yes"] #ImportConflictWarning {
+	display: flex;
+}
+
+#DataPanel {
+	display: block;
+	padding: 5px;
+
+	background: rgb(215, 215, 215);
+	border-radius: 3px;
+
+	font-family: "Fira Code", monospace;
+	white-space: pre;
+	&:empty {
+		padding: 0;
+
+		background: none;
+	}
+}
+
+
+#ViewAllData {
+	padding-top: 70px;
+}

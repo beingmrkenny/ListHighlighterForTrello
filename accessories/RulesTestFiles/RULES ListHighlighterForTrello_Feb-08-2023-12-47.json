@@ -1,0 +1,50 @@
+{
+	"rule-doing": {
+		"contains": ["#high", "#doing", "#today"],
+		"enabled": true,
+		"highlighting": { "color": "#ec2f2f", "exceptions": {}, "opacity": 1 },
+		"is": ["Doing", "Today"],
+		"name": "Doing",
+		"options": {},
+		"sort": 1
+	},
+	"rule-done": {
+		"contains": ["#trash", "#done"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-done",
+		"is": ["Done", "Trash"],
+		"name": "Done",
+		"options": { "grayscale": true, "strikethrough": true },
+		"sort": 4
+	},
+	"rule-ignore": {
+		"contains": ["#ignore"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.25" },
+		"id": "rule-ignore",
+		"is": [],
+		"name": "Ignore",
+		"options": { "grayscale": true },
+		"sort": 4
+	},
+	"rule-low": {
+		"contains": ["#low"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": "0.45" },
+		"id": "rule-low",
+		"is": [],
+		"name": "Low Priority",
+		"options": {},
+		"sort": 3
+	},
+	"rule-todo": {
+		"contains": ["#normal", "#todo"],
+		"enabled": true,
+		"highlighting": { "color": null, "exceptions": {}, "opacity": 1 },
+		"is": ["Todo", "To do"],
+		"name": "Todo",
+		"options": { "unmatchedLists": "rule-low" },
+		"sort": 0
+	}
+}

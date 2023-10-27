@@ -4,7 +4,7 @@ class OptionsPage {
 			q('body > dialog'),
 			{ attributes: true, attributeOldValue: true },
 			(mutations) => {
-				for (let mutation of mutations) {
+				for (const mutation of mutations) {
 					if (mutation.type == 'attributes') {
 						if (mutation.oldValue === '') {
 							Dialogue.closeHelper();
@@ -18,16 +18,35 @@ class OptionsPage {
 	}
 
 	static checkInputOnClick() {
-		let input = this.parentNode.querySelector('input');
+		const input = this.parentNode.querySelector('input');
 		if (input && !input.disabled) {
 			input.checked = !input.checked;
-			// input.dispatchEvent(new Event('change'));
 		}
 	}
 
+	static showPanel() {
+		OptionsPage.resetTabs();
+		const hashtag = window.location.hash,
+			link = hashtag ? q(`a[href="${hashtag}"]`) : q('nav li a'),
+			pane = hashtag ? q(hashtag) : q('section'),
+			li = link.closest('li');
+		for (const item of qq('nav li')) {
+			item.classList.remove('active');
+		}
+		for (const pane of qq('section')) {
+			pane.classList.remove('active');
+		if (hashtag == '#Data') {
+			Export.displayRulesToExport();
+		}
+	}
+
+	static resetTabs() {
+		DataSection.resetPage();
+		qid('DataPanel').textContent = '';
+		Array.from(qq('.success-message')).forEach((div) => div.remove());
 	static setValuesOnInputs(results) {
-		var options = Options.getArrayFromResults(results);
-		for (let name in options) {
+		const options = Options.getArrayFromResults(results);
+		for (const name in options) {
 			let input,
 				value = options[name],
 				id = name;
@@ -43,11 +62,11 @@ class OptionsPage {
 	}
 
 	static setupSaveOptionsOnChange() {
-		for (let optionInput of qq('.options-input')) {
+		for (const optionInput of qq('.options-input')) {
 			optionInput.addEventListener('change', function () {
-				let input = this,
-					name = input.name,
-					value;
+				const input = this,
+					name = input.name;
+				let value;
 				switch (input.type) {
 					case 'radio':
 						value = document.querySelector(
@@ -80,7 +99,7 @@ class OptionsPage {
 	}
 
 	static processAllControllingInputs() {
-		for (let controllingInput of qq('[data-dependents]')) {
+		for (const controllingInput of qq('[data-dependents]')) {
 			OptionsPage.toggleDependentInputs(controllingInput);
 			controllingInput.addEventListener('change', function () {
 				OptionsPage.toggleDependentInputs(this);
@@ -89,13 +108,12 @@ class OptionsPage {
 	}
 
 	static toggleDependentInputs(input) {
-		for (let id of JSON.parse(input.dataset.dependents)) {
+		for (const id of JSON.parse(input.dataset.dependents)) {
 			if (input.id == 'CountEnableWIP') {
 				qid('MoreWIPOptions').classList.toggle('disabled', !input.checked);
 			} else {
-				let disabled,
+				const disabled = !input.checked,
 					dependent = qid(id);
-				disabled = !input.checked;
 				dependent.disabled = disabled;
 				dependent
 					.closest('.standard-options')

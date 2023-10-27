@@ -1,0 +1,196 @@
+<section id="Data">
+
+	<h2>Export Settings and Rules</h2>
+
+	<p>Choose what you want to export, then click the Export button.</p>
+
+	<ul id="Export" class="port-settings-options">
+
+		<li>
+			<label class="checkbox-option" for="ExportSettings">
+				<input type="checkbox" id="ExportSettings" name="ExportSettings" />
+				Export settings
+			</label>
+		</li>
+
+		<li>
+			<label class="checkbox-option port-rules" for="ExportRules">
+				<input type="checkbox" id="ExportRules" name="ExportRules" />
+				Export highlighting rules
+			</label>
+			<div id="RulesToExport" class="rules-to-port-container">
+				<h3>Which rules would you like to export?</h3>
+				<p><button class="select-all-toggler link-appearance">Unselect all</button></p>
+				<ul class="rules-to-port"></ul>
+			</div>
+		</li>
+
+	</ul>
+
+	<p>
+		<button class="mod-primary" id="ExportButton">Export</button>
+		<button class="mod-secondary" id="CancelExportButton">Cancel</button>
+	</p>
+
+	<h2>Import Settings and Rules</h2>
+
+	<div id="ImportStageOne">
+
+		<p>
+			You’ll be able to select what to import once you choose an import file.
+			You’ll also be able to resolve any conflicts. Before you start, you should
+			take a backup of your data by using the export feature above.
+		</p>
+
+		<p>
+			<label class="button mod-primary" for="ImportFileInput">Choose import file</label>
+			<input
+				type="file"
+				id="ImportFileInput"
+				accept=".json, application/json"
+			/>
+		</p>
+
+	</div>
+
+	<div id="ImportStageTwo">
+
+		<p id="ImportFileContains">
+			This import file contains
+			<strong id="ImportContains"></strong>. Please choose what you want to
+			import.
+		</p>
+
+		<div id="ImportStageTwo_Settings">
+
+			<ul class="port-settings-options">
+				<li>
+					<label class="checkbox-option" for="ImportSettings">
+						<input type="checkbox" id="ImportSettings" name="ImportSettings" />
+						Import settings
+					</label>
+					<p>Imported settings will override your current settings.</p>
+				</li>
+			</ul>
+
+		</div>
+
+		<div id="ImportStageTwo_Rules">
+
+			<ul class="port-settings-options">
+				<li>
+
+					<label class="checkbox-option port-rules" for="ImportRules">
+						<input type="checkbox" id="ImportRules" name="ImportRules" />
+						Import highlighting rules
+					</label>
+
+					<div id="RulesToImport" class="rules-to-port-container">
+
+						<h3>Which rules do you want to import?</h3>
+
+						<div id="RulesToImportList">
+							<p>
+								<button class="select-all-toggler link-appearance">Unselect all</button>
+							</p>
+
+							<ul class="rules-to-port"></ul>
+
+							<p class="conflict-note show-when-conflict-exists">
+								Conflicting rules are marked
+								<span class="conflict-label">!</span>
+							</p>
+						</div>
+
+						<h3>How do you want to import these rules?</h3>
+
+						<ul id="ImportRulesBehavior">
+							<li>
+								<label class="checkbox-option" for="ImportRulesBehavior-append">
+									<input
+										type="radio"
+										id="ImportRulesBehavior-append"
+										name="ImportRulesBehavior"
+										value="append"
+									/>
+									<span><strong>Add</strong>
+										imported rules to existing rules</span>
+									<span class="show-when-conflict-exists">
+										(conflicts will need to be resolved)
+									</span>
+								</label>
+							</li>
+							<li>
+								<label class="checkbox-option" for="ImportRulesBehavior-delete">
+									<input
+										type="radio"
+										id="ImportRulesBehavior-delete"
+										name="ImportRulesBehavior"
+										value="delete"
+									/>
+									<span><strong>Delete all</strong>
+										existing rules and replace them with imported rules (this
+										cannot be reversed)</span>
+								</label>
+							</li>
+						</ul>
+
+						{{!-- <p id="ImportConflictWarning" class="warning-message">
+							<span class="conflict-label">!</span>
+							Conflicts can be resolved in the next stage
+						</p> --}}
+
+					</div>
+				</li>
+			</ul>
+
+		</div>
+
+		<p>
+			<button class="mod-primary" id="ImportButton">Import</button>
+			<button class="mod-primary" id="ResolveConflictButton">Resolve conflicts</button>
+			<button class="mod-secondary" id="CancelImportButton">Cancel</button>
+		</p>
+
+	</div>
+
+	<h2>Data options</h2>
+
+	<h3>Reset / Delete</h3>
+
+	<p>
+		Here you can reset everything back to default, or delete all your
+		highlighting rules. These actions
+		<strong>cannot be undone</strong>. You should take a backup first using the
+		export function at the top of this page.
+	</p>
+
+	<p>
+		<button id="DeleteRules" class="mod-delete">Delete all rules</button>
+	</p>
+
+	<p>
+		<button id="ResetRules" class="mod-delete">Reset rules to default</button>
+	</p>
+
+	<p>
+		<button id="ResetSettings" class="mod-delete">Reset settings to default</button>
+	</p>
+
+	<h3 id="ViewAllData">View all data</h3>
+
+	<p>
+		If you’d like to see the data saved by List Highlighter, click the “Show
+		data” button below. This data is stored by your browser, and, if you’re
+		signed in to your browser, will also be stored in your online account and
+		synchronised across your different computers. This feature is read-only, so
+		you can’t break anything by looking.
+	</p>
+
+	<p>
+		<button class="mod-primary" id="ViewDataButton">Show data</button>
+	</p>
+
+	<output id="DataPanel"></output>
+
+</section>

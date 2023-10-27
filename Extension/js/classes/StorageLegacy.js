@@ -59,7 +59,9 @@ class DoingColors {
 
 class StorageLegacy {
 	static updateIfNecessary(results) {
-		// NOTE: results.version is a de facto check for v4
+		results = StorageLegacy.removeObsolete(results);
+
+		// results.version is a de facto check for v4
 		if (results.version) {
 			return results;
 		}
@@ -87,7 +89,7 @@ class StorageLegacy {
 			resave = true;
 		}
 
-		// NOTE: results.version is a de facto check for v4
+		// results.version is a de facto check for v4
 		if (!results.version) {
 			let rulesExist = false;
 			for (let propName in results) {

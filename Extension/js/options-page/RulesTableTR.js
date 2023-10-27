@@ -6,6 +6,7 @@ class RulesTableTR {
 
 	getTR(thisIsNew = false) {
 		this.tr.dataset.rule = this.rule.id;
+		this.tr.dataset.sort = this.rule.sort;
 		q('[data-form="RuleName"]', this.tr).textContent = this.rule.name;
 		this.tr.classList.toggle('disabled', !this.rule.enabled);
 		var input = q('.highlighting-option-widget input', this.tr);
@@ -44,28 +45,24 @@ class RulesTableTR {
 		);
 	}
 
-	prepIsCell(isCell) {
-		isCell.textContent = '';
-		for (let i = 0, x = this.rule.is.length, or = x - 1; i < x; i++) {
-			i == or && i != 0 && isCell.appendChild(document.createTextNode(' or '));
-			isCell.appendChild(createElement(`<q>${this.rule.is[i]}</q>`));
-			x > 2 && i != or && isCell.appendChild(document.createTextNode(', '));
+	getNiceList(terms) {
+		let is = '';
+		terms.forEach((term, i) => (terms[i] = `<i>${escapeHTML(term)}</i>`));
+		if (terms.length == 1) {
+			is = terms[0];
+		} else if (terms.length > 1) {
+			const last = terms.pop();
+			is = terms.join(', ') + ' or ' + last;
 		}
+		return is;
+	}
+
+	prepIsCell(isCell) {
+		isCell.innerHTML = this.getNiceList(this.rule.is);
 	}
 
 	prepContainsCell(containsCell) {
-		containsCell.textContent = '';
-		for (let i = 0, x = this.rule.contains.length, or = x - 1; i < x; i++) {
-			i == or &&
-				i != 0 &&
-				containsCell.appendChild(document.createTextNode(' or '));
-			containsCell.appendChild(
-				createElement(`<q>${this.rule.contains[i]}</q>`)
-			);
-			i != or &&
-				x > 2 &&
-				containsCell.appendChild(document.createTextNode(', '));
-		}
+		containsCell.innerHTML = this.getNiceList(this.rule.contains);
 	}
 
 	prepColorIndicator(colorIndicator) {

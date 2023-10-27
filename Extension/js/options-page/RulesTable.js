@@ -1,43 +1,42 @@
 class RulesTable {
 	static build(results) {
-		var table = q('.highlighting-table'),
-			tbody = q('.highlighting-table > tbody');
-		for (let ruleData of Rules.extractFromResults(results)) {
-			let rulesTableTR = new RulesTableTR(ruleData);
+		const tbody = q('.highlighting-table > tbody');
+		for (const ruleData of Rules.extractFromResults(results)) {
+			const rulesTableTR = new RulesTableTR(ruleData);
 			tbody.appendChild(rulesTableTR.getTR());
 		}
 		tbody.parentNode.dataset.rulesCount = tbody.childElementCount;
-		var sortable = Sortable.create(tbody, {
+		Sortable.create(tbody, {
 			handle: '.dragger-mcswagger',
 			onUpdate: RulesTable.saveSortOrderFromRulesTable,
 		});
 		observe(tbody, { childList: true }, (mutationRecords) => {
-			let tbody = mutationRecords[0].target;
+			const tbody = mutationRecords[0].target;
 			tbody.parentNode.dataset.rulesCount = tbody.childElementCount;
 		});
 	}
 
 	static saveSortOrderFromRulesTable() {
-		var trs = qq('tr[data-rule]');
+		const trs = qq('tr[data-rule]');
 		for (let i = 0, x = trs.length; i < x; i++) {
 			Rule.saveProperty(trs[i].dataset.rule, 'sort', i);
 		}
 	}
 
 	static highlightingModalListener() {
-		var tr = this.closest('tr[data-rule]'),
-			ruleId = tr.dataset.rule;
+		const tr = this.closest('tr[data-rule]'),
+			ruleId = tr.dataset.rule,
+			rule = Global.getItem(ruleId);
 
-		var rule = Global.getItem(ruleId),
-			options = {
-				dialogTemplate: 'FormDialogTemplate',
-				contentsTemplate: this.dataset.form + 'Template',
-				content: rule[this.dataset.key],
-				fields: {
-					FormType: this.dataset.form,
-					id: ruleId,
-				},
-			};
+		let options = {
+			dialogTemplate: 'FormDialogTemplate',
+			contentsTemplate: this.dataset.form + 'Template',
+			content: rule[this.dataset.key],
+			fields: {
+				FormType: this.dataset.form,
+				id: ruleId,
+			},
+		};
 
 		tr.classList.add('focussed-rule');
 
@@ -53,22 +52,21 @@ class RulesTable {
 			options.setup = ListHighlightColorDialog.setup;
 		} else if (this.dataset.form == 'MoreOptions') {
 			options.setup = (mainDialogContents) => {
-				let select = q('select', mainDialogContents),
+				const select = q('select', mainDialogContents),
 					rules = Global.getAllRules();
 
-				for (let thisRuleId in rules) {
+				for (const thisRuleId in rules) {
 					if (thisRuleId !== ruleId) {
-						let ruleName = rules[thisRuleId].name;
 						select.appendChild(
 							createElement(
-								`<option value="${thisRuleId}">${ruleName}</option>`
+								`<option value="${thisRuleId}">${rules[thisRuleId].name}</option>`
 							)
 						);
 					}
 				}
 
-				for (let optionName in rule.options) {
-					let optionValue = rule.options[optionName];
+				for (const optionName in rule.options) {
+					const optionValue = rule.options[optionName];
 					if (optionName == 'strikethrough' || optionName == 'grayscale') {
 						q(`[name=${optionName}]`, qid('MoreOptionsDialog')).checked =
 							optionValue;
@@ -93,18 +91,16 @@ class RulesTable {
 	}
 
 	static enableToggleListener(event) {
-		let rule = Global.getItem(this.name);
+		const rule = Global.getItem(this.name);
 		if (rule) {
-			let tr = this.closest('tr');
 			rule.enabled = this.checked;
-			tr.classList.toggle('disabled', !this.checked);
+			this.closest('tr').classList.toggle('disabled', !this.checked);
 			chrome.storage.sync.set({ [rule.id]: rule });
 		}
 	}
 
 	static deleteButtonListener(event) {
-		let tr = this.closest('tr'),
-			rule = new Rule(tr.dataset.rule);
+		const rule = new Rule(this.closest('tr').dataset.rule);
 		if (
 			rule &&
 			confirm(`Are you sure you want to delete this rule (${rule.name})?`)
@@ -118,11 +114,21 @@ class RulesTable {
 	}
 
 	static updateRow(ruleId) {
-		var rule = Global.getItem(ruleId),
-			existingTr = q(`tr[data-rule="${ruleId}"]`),
+		const rule = Global.getItem(ruleId),
 			rulesTableTR = new RulesTableTR(rule),
 			newTr = rulesTableTR.getTR();
 		newTr.classList.add('rule-updated');
-		existingTr.replaceWith(newTr);
+		q(`tr[data-rule="${ruleId}"]`).remove();
+		RulesTable.insertNewRowSorted(newTr);
+	}
+
+	static insertNewRowSorted(newTr) {
+		const tbody = q('.highlighting-table > tbody');
+		const allTRs = Array.from(tbody.children);
+		allTRs.push(newTr);
+		allTRs.sort((a, b) => a.dataset.sort - b.dataset.sort);
+		const index = allTRs.indexOf(newTr);
+		const followingTR = allTRs[index + 1] || null;
+		tbody.insertBefore(newTr, followingTR);
 	}
 }

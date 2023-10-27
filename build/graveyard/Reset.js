@@ -1,22 +1,20 @@
 // NOTE: not used in build, this is spare 'dev' code used to reset options. It may not work any more.
 class Reset {
-
-	static all () {
+	static all() {
 		chrome.storage.sync.clear();
 		Reset.options();
 		Reset.rules();
 	}
 
-	static options (clear = false) {
+	static options(clear = false) {
 		Reset.type('options', clear);
 	}
 
-	static rules (clear = false) {
+	static rules(clear = false) {
 		Reset.type('rules', clear);
 	}
 
-	static type (type, clear = false) {
-
+	static type(type, clear = false) {
 		var staticClass, startsWith, defaults;
 
 		if (type == 'options') {
@@ -30,7 +28,7 @@ class Reset {
 		defaults = staticClass.defaults();
 
 		if (clear === true) {
-			staticClass.getAll(results => {
+			staticClass.getAll((results) => {
 				let namesToRemove = [];
 				for (let key in results) {
 					if (key.startsWith(startsWith)) {
@@ -42,7 +40,5 @@ class Reset {
 		}
 
 		chrome.storage.sync.set(defaults);
-
 	}
-
 }
