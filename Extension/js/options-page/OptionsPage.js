@@ -1,13 +1,12 @@
 class OptionsPage {
-
-	static setupDialogs () {
+	static setupDialogs() {
 		observe(
 			q('body > dialog'),
 			{ attributes: true, attributeOldValue: true },
-			mutations => {
+			(mutations) => {
 				for (let mutation of mutations) {
 					if (mutation.type == 'attributes') {
-						if (mutation.oldValue === "") {
+						if (mutation.oldValue === '') {
 							Dialogue.closeHelper();
 						} else if (mutation.oldValue === null) {
 							Dialogue.openHelper();
@@ -18,7 +17,7 @@ class OptionsPage {
 		);
 	}
 
-	static checkInputOnClick () {
+	static checkInputOnClick() {
 		let input = this.parentNode.querySelector('input');
 		if (input && !input.disabled) {
 			input.checked = !input.checked;
@@ -26,27 +25,12 @@ class OptionsPage {
 		}
 	}
 
-	static showPanel () {
-		let link, pane, li, hashtag = window.location.hash;
-		if (hashtag) {
-			link = q(`a[href="${hashtag}"]`);
-			pane = q(hashtag);
-		} else {
-			link = q('nav li a');
-			pane = q('section');
-		}
-		li = link.closest('li');
-		for (let item of qq('nav li')) { item.classList.remove('active'); }
-		for (let pane of qq('section')) { pane.classList.remove('active'); }
-		li.classList.add('active');
-		pane.classList.add('active');
-		document.body.dataset.currentPanel = hashtag;
-	}
-
-	static setValuesOnInputs (results) {
+	static setValuesOnInputs(results) {
 		var options = Options.getArrayFromResults(results);
 		for (let name in options) {
-			let input, value = options[name], id = name;
+			let input,
+				value = options[name],
+				id = name;
 			if (typeof value != 'boolean') {
 				id = name + value;
 				value = true;
@@ -58,42 +42,44 @@ class OptionsPage {
 		}
 	}
 
-	static setupSaveOptionsOnChange () {
+	static setupSaveOptionsOnChange() {
 		for (let optionInput of qq('.options-input')) {
 			optionInput.addEventListener('change', function () {
 				let input = this,
 					name = input.name,
 					value;
 				switch (input.type) {
-					case 'radio' :
-						value = document.querySelector(`input[name="${input.name}"]:checked`).value;
+					case 'radio':
+						value = document.querySelector(
+							`input[name="${input.name}"]:checked`
+						).value;
 						break;
-					case 'checkbox' :
+					case 'checkbox':
 						value = input.checked;
 						break;
-					default :
+					default:
 						value = input.value;
 				}
 				if (name == 'CountEnableWIP' && value == false) {
 					chrome.storage.sync.set({
-						'options-CountEnablePointsOnCards' : false,
-						'options-CountHideManualCardPoints' : false,
-						'options-CountAllCards' : false,
-						'options-CountEnableWIP' : false
+						'options-CountEnablePointsOnCards': false,
+						'options-CountHideManualCardPoints': false,
+						'options-CountAllCards': false,
+						'options-CountEnableWIP': false,
 					});
 				} else if (name == 'CountEnablePointsOnCards' && value == false) {
 					chrome.storage.sync.set({
-						'options-CountEnablePointsOnCards' : false,
-						'options-CountHideManualCardPoints' : false
+						'options-CountEnablePointsOnCards': false,
+						'options-CountHideManualCardPoints': false,
 					});
 				} else {
-					chrome.storage.sync.set( { [`options-${name}`]: value } );
+					chrome.storage.sync.set({ [`options-${name}`]: value });
 				}
 			});
 		}
 	}
 
-	static processAllControllingInputs () {
+	static processAllControllingInputs() {
 		for (let controllingInput of qq('[data-dependents]')) {
 			OptionsPage.toggleDependentInputs(controllingInput);
 			controllingInput.addEventListener('change', function () {
@@ -102,27 +88,29 @@ class OptionsPage {
 		}
 	}
 
-	static toggleDependentInputs (input) {
+	static toggleDependentInputs(input) {
 		for (let id of JSON.parse(input.dataset.dependents)) {
 			if (input.id == 'CountEnableWIP') {
 				qid('MoreWIPOptions').classList.toggle('disabled', !input.checked);
 			} else {
-				let disabled, dependent = qid(id);
+				let disabled,
+					dependent = qid(id);
 				disabled = !input.checked;
 				dependent.disabled = disabled;
-				dependent.closest('.standard-options').classList.toggle('disabled', disabled);
+				dependent
+					.closest('.standard-options')
+					.classList.toggle('disabled', disabled);
 			}
 		}
 	}
 
-	static openNewRuleForm () {
+	static openNewRuleForm() {
 		Dialogue.open({
-			'dialogTemplate' : 'FormDialogTemplate',
-			'contentsTemplate' : 'NewRuleTemplate',
-			'classList' : 'rule-related-dialog',
+			dialogTemplate: 'FormDialogTemplate',
+			contentsTemplate: 'NewRuleTemplate',
+			classList: 'rule-related-dialog',
 
-			'setup' : mainDialogContents => {
-
+			setup: (mainDialogContents) => {
 				new ColorSelect(q('color-select', mainDialogContents));
 
 				q('[name="is"]').addEventListener('keyup', function () {
@@ -130,13 +118,15 @@ class OptionsPage {
 						q('.hint').classList.add('show');
 					}
 				});
-
 			},
 
-			'submit' : entries => {
-				return Rule.checkNewRuleEntriesAndSaveOrFail(entries, Rule.saveNewRule, Rule.failForm);
-			}
+			submit: (entries) => {
+				return Rule.checkNewRuleEntriesAndSaveOrFail(
+					entries,
+					Rule.saveNewRule,
+					Rule.failForm
+				);
+			},
 		});
 	}
-
 }

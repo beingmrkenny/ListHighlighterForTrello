@@ -1,8 +1,6 @@
 class DataStorage {
-
-	static initialise (callback = null) {
-		chrome.storage.sync.get(null, results => {
-
+	static initialise(callback = null) {
+		chrome.storage.sync.get(null, (results) => {
 			var resultsIsEmpty = true;
 			for (let propName in results) {
 				resultsIsEmpty = false;
@@ -25,7 +23,7 @@ class DataStorage {
 			}
 		});
 
-		chrome.storage.onChanged.addListener( (changes, namespace) => {
+		chrome.storage.onChanged.addListener((changes, namespace) => {
 			for (let key in changes) {
 				var storageChange = changes[key];
 				if (typeof storageChange.newValue == 'undefined') {
@@ -35,11 +33,12 @@ class DataStorage {
 				}
 			}
 		});
-
 	}
 
-	static isKeyNameAllowed (keyName) {
-		return (Object.keys(Options.defaults()).indexOf(keyName) > -1 || keyName.startsWith('rule-'));
+	static isKeyNameAllowed(keyName) {
+		return (
+			Object.keys(Options.defaults()).indexOf(keyName) > -1 ||
+			keyName.startsWith('rule-')
+		);
 	}
-
 }

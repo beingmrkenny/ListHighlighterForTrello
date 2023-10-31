@@ -5,16 +5,14 @@
 .standard-options {
 	display: flex;
 	align-items: flex-start;
-
 	max-height: 200px;
 	overflow: hidden;
 	margin: 40px 0;
 
-	transition: max-height 0.25s;
+	transition: max-height .25s;
 
 	div {
 		order: 2;
-
 		padding-left: 20px;
 
 		cursor: pointer;
@@ -32,7 +30,7 @@
 
 	h3,
 	h4 {
-		margin: -0.4em 0 0.25em 0;
+		margin: -.4em 0 .25em 0;
 		padding: 0;
 
 		color: inherit;
@@ -41,7 +39,7 @@
 	}
 
 	p {
-		margin: 0.25em 0;
+		margin: .25em 0;
 
 		color: $bodyTextColor;
 	}
@@ -57,11 +55,10 @@ option-widget {
 
 	label {
 		display: flex;
-		position: relative;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-
+		position: relative;
 		width: 80px;
 		min-height: 28px;
 		margin-right: 10px;
@@ -84,40 +81,36 @@ option-widget {
 			display: inline-block;
 			top: 10px;
 			left: 50%;
-
 			width: 40px;
 			height: 18px;
 			margin-left: -27px;
 			padding: 0 6px;
 
 			content: "OFF";
-
 			background: gray;
 			border-radius: 10px;
 
 			line-height: 18px;
-			text-align: right;
 			font-size: 13px !important;
 			font-weight: normal !important;
+			text-align: right;
 
-			transition: background 0.25s;
+			transition: background .25s;
 		}
 
 		&::after {
 			display: inline-block;
 			top: 12px;
 			left: 50%;
-
 			width: 14px;
 			height: 14px;
 			margin-left: -25px;
 
 			content: " ";
-
 			background: white;
 			border-radius: 10px;
 
-			transition: margin-left 0.25s;
+			transition: margin-left .25s;
 		}
 	}
 
@@ -126,7 +119,6 @@ option-widget {
 		background: $blueTrello;
 		&::before {
 			content: "ON";
-
 			background: #64bb02;
 
 			text-align: left;
@@ -137,6 +129,6 @@ option-widget {
 	}
 
 	input:disabled + label {
-		opacity: 0.3;
+		opacity: .3;
 	}
 }

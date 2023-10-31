@@ -1,6 +1,5 @@
 class Options {
-
-	static fillBlanksWithDefaults (results) {
+	static fillBlanksWithDefaults(results) {
 		var defaults = Options.defaults('options'),
 			newDefaults = {};
 		for (let key of Object.keys(defaults)) {
@@ -13,32 +12,22 @@ class Options {
 		return results;
 	}
 
-	static dump (asString = false) {
+	static dump(asString = false) {
 		chrome.storage.sync.get(null, function (existingSettings) {
 			console.log(JSON.stringify(existingSettings, null, 2));
 		});
 	}
 
-	static defaults (prefix = false) {
-
+	static defaults(prefix = false) {
 		var defaults = {
-			'options-HighlightHideHashtags': true,
 			'options-HighlightChangeTextColor': true,
 			'options-HighlightUndimOnHover': false,
-			'options-CountEnableWIP'           : false,
-			'options-CountAllCards'       : false,
-			'options-CountEnablePointsOnCards' : false,
-			'options-CountHideManualCardPoints': false,
-			'options-OrganisingEnableHeaderCards'        : false,
-			'options-OrganisingHeaderCardsExtraSpace'    : true,
-			'options-OrganisingEnableSeparatorCards'     : false,
-			'options-OrganisingSeparatorCardsVisibleLine': false,
 
 			// these three belong in DataStorage
-			'recentColors': [],
-			'colorBlindFriendlyMode': null,
-			'version' : 4
-		}
+			recentColors: [],
+			colorBlindFriendlyMode: null,
+			version: 4,
+		};
 
 		if (prefix) {
 			for (let propName of Object.keys(defaults)) {
@@ -51,7 +40,7 @@ class Options {
 		return defaults;
 	}
 
-	static getArrayFromResults (results) {
+	static getArrayFromResults(results) {
 		var options = {};
 		for (let key in results) {
 			if (key.startsWith('options-')) {
@@ -61,5 +50,4 @@ class Options {
 		}
 		return options;
 	}
-
 }

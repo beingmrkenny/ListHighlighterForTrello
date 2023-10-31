@@ -15,21 +15,106 @@
 		<div>
 			<img src="/img/256.png" alt="" width="40" height="40">
 			<h1>List Highlighter for Trello — Settings</h1>
-			<p>Change list background colours, count cards, break up long lists</p>
-			<nav>
-				<ul>
-					<li><a href="#Highlighting">Highlighting</a></li>
-					<li><a href="#CardCounting">Card counting</a></li>
-					<li><a href="#Organising">Header and Separator Cards</a></li>
-				</ul>
-			</nav>
+			<p>Change list background colours</p>
+			<details class="version-5">
+				<summary>Where are the other sections?</summary>
+				<p>
+					With profound apologies for the inconvenience, the other sections of this extension have been permanently removed.
+					For more information, and better ways to get the same effects, please visit:
+				</p>
+				<p><a href="https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello/version-5">https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello/version-5</a></p>
+			</details>
 		</div>
 	</header>
 
 	<main>
-		{{> highlighting.section }}
-		{{> cardCounting.section }}
-		{{> organising.section }}
+		<section id="Highlighting">
+
+			<h2>Highlighting</h2>
+
+			<p>Create rules based on your list titles, and apply the effects you want. For example, you could turn a list red if its title is “Things to do today”. Or you could make it faded if the title contains the words “done” or “trash”.</p>
+
+			<header id="RulesTableHeader">
+				<h3>Rules</h3>
+				<button class="mod-primary" id="NewRuleButton">Add Rule</button>
+			</header>
+
+			<table class="highlighting-table">
+				<thead>
+					<tr>
+						<th colspan="2">Rule</th>
+						<th>List title</th>
+						<th>Colour</th>
+						<th colspan="2">More options</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+
+			<details>
+				<summary>Notes</summary>
+				<dl>
+					<dt>Text matching</dt>
+					<dd>All text matching is case-insensitive, e.g. TODO is the same as todo. Only whole words are matched, e.g. “doing” will only match the whole word “doing”. It will not match “undoing” or “#doing”.</dd>
+					<dt>Order</dt>
+					<dd>Rules are applied in the order they appear above, from top to bottom. The first matching rule will be applied. Once a rule matches a list, processing stops. You can reorder the rules by dragging them using the left hand side.</dd>
+					<dt>List title <b><i>is</i></b></dt>
+					<dd>This field should contain entire titles. The rule will be applied if the <strong>entire</strong> title text matches one of these titles.</dd>
+					<dt>List title <b><i>contains</i></b></dt>
+					<dd>This field should contain parts of titles. The rule will be applied if <strong>part of</strong> the title text matches, i.e. if the title text contains this. This is useful if you want to match lists with similar names, e.g. “Things to do”, “To do list”, “Things to do this week”.</dd>
+					<dt>More options: <b>strikethrough</b></dt>
+					<dd>This option puts a line through all text on the list</dd>
+					<dt>More options: <b>greyscale</b></dt>
+					<dd>This option turns all colour on lists to grey</dd>
+					<dt>More options: <b>other lists</b></dt>
+					<dd>When a list matches a rule with the “Other list” options turned on, List Highlighter will look for any lists on the board that do not match any rules. It will then apply the rule you specify to these lists. For example, you could have “To do” lists highlighted red, then apply a “Low importance” rule to the other lists on the board.</dd>
+				</dl>
+			</details>
+
+			<h3>Other options</h3>
+
+			<div class="standard-options">
+				<div>
+					<h4>Hide hashtags in list headers</h4>
+					<p>With apologies, it has not been possible to restore this option after Trello’s latest update.</p>
+				</div>
+				<option-widget>
+					<input type="checkbox" disabled="disabled" class="options-input" id="HighlightHideHashtagsDisabled" name="HighlightHideHashtagsDisabled">
+					<label for="HighlightHideHashtagsDisabled">
+						Hide hashtags
+					</label>
+				</option-widget>
+			</div>
+
+			<div class="standard-options">
+				<div>
+					<h4>Change text colour to contrast with background</h4>
+					<p>If this is enabled, list titles and heading cards will change colour to ensure good contrast between text and background colour.</p>
+					<p>Default: on</p>
+				</div>
+				<option-widget>
+					<input type="checkbox" class="options-input" id="HighlightChangeTextColor" name="HighlightChangeTextColor">
+					<label for="HighlightChangeTextColor">
+						Change text colour
+					</label>
+				</option-widget>
+			</div>
+
+			<div class="standard-options">
+				<div>
+					<h4>Un-dim dimmed lists on mouse over</h4>
+					<p>If you’ve made lists less visible (more transparent) as part of a highlighting rule, switching this setting on will un-dim them when the mouse cursor hovers over.</p>
+					<p>Default: on</p>
+				</div>
+				<option-widget>
+					<input type="checkbox" class="options-input" id="HighlightUndimOnHover" name="HighlightUndimOnHover">
+					<label for="HighlightUndimOnHover">
+						Un-dim on hover
+					</label>
+				</option-widget>
+			</div>
+
+		</section>
 	</main>
 
 	<footer>
@@ -42,8 +127,6 @@
 			homepage
 		</p>
 		<p>
-			Beach photo by <a href="https://unsplash.com/photos/nFSw6m01-38?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Breno Machado</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-				&middot;
 			Color Picker based on <a href="https://github.com/DavidDurman/FlexiColorPicker">FlexiColorPicker by David Durman</a>
 				<br>
 			<a href=="http://www.jacklmoore.com/autosize/">Autosize</a> by <a href="http://www.jacklmoore.com/">Jack Moore</a>

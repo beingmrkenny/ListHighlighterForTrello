@@ -5,12 +5,10 @@
 
 dialog.color-picker {
 	position: absolute;
-
 	width: 260px;
 
 	* {
 		display: block;
-
 		box-sizing: border-box;
 	}
 
@@ -23,15 +21,12 @@ dialog.color-picker {
 			display: inline-block;
 			position: absolute;
 			z-index: 0;
-
 			width: 15px;
 			height: 15px;
+			transform: rotate(45deg);
 
 			content: " ";
-
 			background-color: $dialogBG;
-
-			transform: rotate(45deg);
 		}
 	}
 
@@ -57,7 +52,6 @@ dialog.color-picker {
 
 	component-picker {
 		position: relative;
-
 		margin-bottom: 15px;
 	}
 
@@ -91,7 +85,6 @@ dialog.color-picker {
 		position: absolute;
 		top: 0;
 		left: 0;
-
 		width: 20px;
 		height: 20px;
 
@@ -109,14 +102,18 @@ dialog.color-picker {
 	}
 
 	hr {
-		visibility: hidden;
-
 		width: 100%;
 		margin: 0;
+
+		visibility: hidden;
 	}
 }
 
-#ColorHex {
+#ColorHex,
+#ColorHexDisplay {
+	width: 100%;
+
+	text-align: left;
 	text-transform: lowercase;
 	&:invalid {
 		border-color: red;
@@ -125,7 +122,6 @@ dialog.color-picker {
 
 .custom-color-picker-button-container {
 	flex-wrap: wrap;
-
 	width: 100%;
 	margin-bottom: 15px;
 }
@@ -133,7 +129,6 @@ dialog.color-picker {
 .custom-color-picker-button {
 	display: inline-block;
 	float: left;
-
 	width: 18px;
 	height: 18px;
 	margin: 0 2px 2px 0;

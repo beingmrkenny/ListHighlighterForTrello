@@ -46,7 +46,8 @@
 					<button type="button" class="custom-color-picker-button" title="{{this.title}}" value="{{this.color}}" style="background-color: {{this.color}};"></button>
 				{{/each}}
 			</div>
-			<input type="text" id="ColorHex" pattern="^#?[a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?$">
+			<output id="ColorHexDisplay" class="show-as-input"></output>
+			<input type="text" id="ColorHex" pattern="^#?[a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?$" class="remove">
 			<hr class="spacer">
 			<button type="button" id="CancelColor">Cancel</button>
 			<button type="button" class="mod-primary" id="SaveColor">OK</button>

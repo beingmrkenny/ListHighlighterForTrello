@@ -1,36 +1,93 @@
-.fill-normal			{ color: var(--list-fg); background: var(--list-bg); }
-.fill-red				{ color: white; background: $red; }
-.fill-orange			{ color: white; background: $orange; }
-.fill-yellow			{ color: white; background: $yellow; }
-.fill-green				{ color: white; background: $green; }
-.fill-cyan				{ color: white; background: $cyan; }
-.fill-blue				{ color: white; background: $blue; }
-.fill-indigo			{ color: white; background: $indigo; }
-.fill-violet			{ color: white; background: $violet; }
-.fill-pink				{ color: white; background: $pink; }
-.fill-black				{ color: white; background: $black; }
+.fill-normal {
+	color: var(--list-fg);
+	background: var(--list-bg);
+}
+.fill-red {
+	color: white;
+	background: $red;
+}
+.fill-orange {
+	color: white;
+	background: $orange;
+}
+.fill-yellow {
+	color: white;
+	background: $yellow;
+}
+.fill-green {
+	color: white;
+	background: $green;
+}
+.fill-cyan {
+	color: white;
+	background: $cyan;
+}
+.fill-blue {
+	color: white;
+	background: $blue;
+}
+.fill-indigo {
+	color: white;
+	background: $indigo;
+}
+.fill-violet {
+	color: white;
+	background: $violet;
+}
+.fill-pink {
+	color: white;
+	background: $pink;
+}
+.fill-black {
+	color: white;
+	background: $black;
+}
 
 .fill-custom {
 	color: white;
 }
 
 .fill-custom:not([style]) {
+	background: linear-gradient(to bottom, transparent, #737373 82%), linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+
 	text-shadow: 0 0 1px black;
-	background: linear-gradient(to bottom, transparent, #737373 82%), linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
 }
 
-.fill-trello-red		{ color: white; background: $redTrello; }
-.fill-trello-orange		{ color: white; background: $orangeTrello; }
-.fill-trello-lime		{ color: white; background: $limeTrello; }
-.fill-trello-green		{ color: white; background: $greenTrello; }
-.fill-trello-sky		{ color: white; background: $skyTrello; }
-.fill-trello-blue		{ color: white; background: $blueTrello; }
-.fill-trello-purple		{ color: white; background: $purpleTrello; }
-.fill-trello-pink		{ color: white; background: $pinkTrello; }
-.fill-trello-gray		{ color: white; background: $grayTrello; }
-.fill-trello-photo		{
-	background: url("/img/dummyBackgroundPhoto.jpg");
-	background-size: cover;
+.fill-trello-red {
+	color: white;
+	background: $redTrello;
+}
+.fill-trello-orange {
+	color: white;
+	background: $orangeTrello;
+}
+.fill-trello-lime {
+	color: white;
+	background: $limeTrello;
+}
+.fill-trello-green {
+	color: white;
+	background: $greenTrello;
+}
+.fill-trello-sky {
+	color: white;
+	background: $skyTrello;
+}
+.fill-trello-blue {
+	color: white;
+	background: $blueTrello;
+}
+.fill-trello-purple {
+	color: white;
+	background: $purpleTrello;
+}
+.fill-trello-pink {
+	color: white;
+	background: $pinkTrello;
+}
+.fill-trello-gray {
+	color: white;
+	background: $grayTrello;
 }
 
 .mod-light-background {
@@ -42,30 +99,67 @@ body {
 }
 
 button {
-	&.fill-normal			{ box-shadow: 0 1px 0 var(--button-shadow); }
-	&.fill-red				{ box-shadow: 0 1px 0 darken($red, 10%); }
-	&.fill-orange			{ box-shadow: 0 1px 0 darken($orange, 10%); }
-	&.fill-yellow			{ box-shadow: 0 1px 0 darken($yellow, 10%); }
-	&.fill-green			{ box-shadow: 0 1px 0 darken($green, 10%); }
-	&.fill-cyan				{ box-shadow: 0 1px 0 darken($cyan, 10%); }
-	&.fill-blue				{ box-shadow: 0 1px 0 darken($blue, 10%); }
-	&.fill-indigo			{ box-shadow: 0 1px 0 darken($indigo, 10%); }
-	&.fill-violet			{ box-shadow: 0 1px 0 darken($violet, 10%); }
-	&.fill-pink				{ box-shadow: 0 1px 0 darken($pink, 10%); }
-	&.fill-black			{ box-shadow: 0 1px 0 darken($black, 10%); }
-	&.fill-custom			{ box-shadow: 0 1px 0 darken($originalListBG, 10%); }
-	&.fill-trello-red		{ box-shadow: 0 1px 0 darken($redTrello, 10%); }
-	&.fill-trello-orange	{ box-shadow: 0 1px 0 darken($orangeTrello, 10%); }
-	&.fill-trello-lime		{ box-shadow: 0 1px 0 darken($limeTrello, 10%); }
-	&.fill-trello-green		{ box-shadow: 0 1px 0 darken($greenTrello, 10%); }
-	&.fill-trello-sky		{ box-shadow: 0 1px 0 darken($skyTrello, 10%); }
-	&.fill-trello-blue		{ box-shadow: 0 1px 0 darken($blueTrello, 10%); }
-	&.fill-trello-purple	{ box-shadow: 0 1px 0 darken($purpleTrello, 10%); }
-	&.fill-trello-pink		{ box-shadow: 0 1px 0 darken($pinkTrello, 10%); }
-	&.fill-trello-gray		{ box-shadow: 0 1px 0 darken($grayTrello, 10%); }
-	&.fill-trello-photo		{ color: $bodyTextColor; }
+	&.fill-normal {
+		box-shadow: 0 1px 0 var(--button-shadow);
+	}
+	&.fill-red {
+		box-shadow: 0 1px 0 darken($red, 10%);
+	}
+	&.fill-orange {
+		box-shadow: 0 1px 0 darken($orange, 10%);
+	}
+	&.fill-yellow {
+		box-shadow: 0 1px 0 darken($yellow, 10%);
+	}
+	&.fill-green {
+		box-shadow: 0 1px 0 darken($green, 10%);
+	}
+	&.fill-cyan {
+		box-shadow: 0 1px 0 darken($cyan, 10%);
+	}
+	&.fill-blue {
+		box-shadow: 0 1px 0 darken($blue, 10%);
+	}
+	&.fill-indigo {
+		box-shadow: 0 1px 0 darken($indigo, 10%);
+	}
+	&.fill-violet {
+		box-shadow: 0 1px 0 darken($violet, 10%);
+	}
+	&.fill-pink {
+		box-shadow: 0 1px 0 darken($pink, 10%);
+	}
+	&.fill-black {
+		box-shadow: 0 1px 0 darken($black, 10%);
+	}
+	&.fill-custom {
+		box-shadow: 0 1px 0 darken($originalListBG, 10%);
+	}
+	&.fill-trello-red {
+		box-shadow: 0 1px 0 darken($redTrello, 10%);
+	}
+	&.fill-trello-orange {
+		box-shadow: 0 1px 0 darken($orangeTrello, 10%);
+	}
+	&.fill-trello-lime {
+		box-shadow: 0 1px 0 darken($limeTrello, 10%);
+	}
+	&.fill-trello-green {
+		box-shadow: 0 1px 0 darken($greenTrello, 10%);
+	}
+	&.fill-trello-sky {
+		box-shadow: 0 1px 0 darken($skyTrello, 10%);
+	}
+	&.fill-trello-blue {
+		box-shadow: 0 1px 0 darken($blueTrello, 10%);
+	}
+	&.fill-trello-purple {
+		box-shadow: 0 1px 0 darken($purpleTrello, 10%);
+	}
+	&.fill-trello-pink {
+		box-shadow: 0 1px 0 darken($pinkTrello, 10%);
+	}
+	&.fill-trello-gray {
+		box-shadow: 0 1px 0 darken($grayTrello, 10%);
+	}
 }
-
-// button.fill-trello-photo[disabled] {
-// 	text-shadow: none;
-// }

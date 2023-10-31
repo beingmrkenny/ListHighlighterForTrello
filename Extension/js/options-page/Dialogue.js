@@ -1,7 +1,5 @@
 class Dialogue {
-
-	static open (options) {
-
+	static open(options) {
 		var dialog = q('body > dialog'),
 			mainDialogContents = getTemplate(options.dialogTemplate),
 			customDialogContents = getTemplate(options.contentsTemplate),
@@ -28,7 +26,9 @@ class Dialogue {
 		if (options.fields) {
 			for (let name in options.fields) {
 				formBody.appendChild(
-					createElement(`<input type="hidden" name="${name}" value="${options.fields[name]}">`)
+					createElement(
+						`<input type="hidden" name="${name}" value="${options.fields[name]}">`
+					)
 				);
 			}
 		}
@@ -36,7 +36,7 @@ class Dialogue {
 		for (let button of qq('.helper', mainDialogContents)) {
 			button.addEventListener('click', function () {
 				let note = q('.form-field-note', this.parentNode);
-				if (ovalue(note, 'style', 'display') == 'block') {
+				if (note?.style?.display == 'block') {
 					note.style.display = 'none';
 				} else {
 					note.style.display = 'block';
@@ -71,8 +71,14 @@ class Dialogue {
 					entries[pair[0]] = pair[1];
 				}
 				for (let colorSelect of qq('color-select', this)) {
-					if (colorSelect.dataset.name && ovalue(colorSelect, 'dataset', 'disabled') !== 'true') {
-						entries[colorSelect.dataset.name] = q('button[data-selected]', colorSelect).value;
+					if (
+						colorSelect.dataset.name &&
+						colorSelect?.dataset?.disabled !== 'true'
+					) {
+						entries[colorSelect.dataset.name] = q(
+							'button[data-selected]',
+							colorSelect
+						).value;
 					}
 				}
 				for (let errorMessage of qq('.error', this)) {
@@ -88,18 +94,16 @@ class Dialogue {
 		}
 
 		dialog.showModal();
-
 	}
 
-	static getValueAndDisabledFromInput (input) {
-		let value,
-			disabled;
+	static getValueAndDisabledFromInput(input) {
+		let value, disabled;
 		if (input.type && (input.type == 'radio' || input.type == 'checkbox')) {
-			value = input.value + ((input.checked) ? '_true' : '_false');
+			value = input.value + (input.checked ? '_true' : '_false');
 			disabled = input.disabled;
 		} else if (input.tagName == 'COLOR-SELECT') {
-			value = ovalue(input, 'dataset', 'value');
-			disabled = (ovalue(input, 'dataset', 'disabled') == 'true');
+			value = input?.dataset?.value;
+			disabled = input?.dataset?.disabled == 'true';
 		} else {
 			value = input.value;
 			disabled = input.disabled;
@@ -107,12 +111,15 @@ class Dialogue {
 		return { value: value, disabled: disabled };
 	}
 
-	static formHasChanges () {
+	static formHasChanges() {
 		return Array.from(qq('.js-check-changed')).some((input) => {
 			let inputValues = Dialogue.getValueAndDisabledFromInput(input),
-				originalValue = ovalue(input, 'dataset', 'originalValue'),
-				originalDisabled = (ovalue(input, 'dataset', 'originalDisabled') == 'true');
-			return ( originalValue != inputValues.value || originalDisabled != inputValues.disabled );
+				originalValue = input?.dataset?.originalValue,
+				originalDisabled = input?.dataset?.originalDisabled == 'true';
+			return (
+				originalValue != inputValues.value ||
+				originalDisabled != inputValues.disabled
+			);
 		});
 	}
 
@@ -124,7 +131,7 @@ class Dialogue {
 		}
 	}
 
-	static openHelper () {
+	static openHelper() {
 		Dialogue.setupCheckForChanges();
 		Dialogue.setupClose();
 		document.body.classList.add('no-scroll');
@@ -134,33 +141,40 @@ class Dialogue {
 		}
 	}
 
-	static setupClose () {
-		q('body > dialog[open]').addEventListener ('click', Dialogue.checkBeforeClose);
+	static setupClose() {
+		q('body > dialog[open]').addEventListener(
+			'click',
+			Dialogue.checkBeforeClose
+		);
 		document.addEventListener('keyup', Dialogue.closeOnEsc);
-		qid('Cancel').addEventListener( 'click',  Dialogue.close);
+		qid('Cancel').addEventListener('click', Dialogue.close);
 	}
 
-	static checkBeforeClose (event) {
+	static checkBeforeClose(event) {
 		if (event.target == this) {
 			let changes = Dialogue.formHasChanges();
 			// TODO use a better way of confirming this than confirm()
-			if (!changes || (changes && confirm('This form has changes. Are you sure you want to close?'))) {
+			if (
+				!changes ||
+				(changes &&
+					confirm('This form has changes. Are you sure you want to close?'))
+			) {
 				Dialogue.close();
 			}
 		}
 	}
 
-	static closeOnEsc () {
+	static closeOnEsc() {
 		if (event.key === 'Escape') {
 			Dialogue.close();
 		}
 	}
 
-	static close () {
+	static close() {
 		q('body > dialog[open]').close();
 	}
 
-	static closeHelper () {
+	static closeHelper() {
 		let dialog = q('body > dialog');
 		let dialogContents = q('dialog-contents');
 		if (dialogContents) {
@@ -168,12 +182,11 @@ class Dialogue {
 		}
 		document.removeEventListener('keyup', Dialogue.closeOnEsc);
 		document.body.classList.remove('no-scroll');
-		while(dialog.attributes.length > 0) {
+		while (dialog.attributes.length > 0) {
 			dialog.removeAttribute(dialog.attributes[0].name);
 		}
 		for (let focussedRule of qq('.focussed-rule')) {
 			focussedRule.classList.remove('focussed-rule');
 		}
 	}
-
 }

@@ -1,6 +1,5 @@
 class Rule {
-
-	constructor (rule) {
+	constructor(rule) {
 		var ruleObject;
 		if (typeof rule == 'string') {
 			ruleObject = Global.getItem(rule);
@@ -13,17 +12,19 @@ class Rule {
 		}
 	}
 
-	static getDataObjectFromEntries (entries) {
-
+	static getDataObjectFromEntries(entries) {
 		var data = {
-			id: null
+			id: null,
 		};
 
 		if (entries.hasOwnProperty('id')) data.id = entries.id;
 		if (entries.hasOwnProperty('name')) data.name = entries.name;
-		if (entries.hasOwnProperty('highlightColor')) data.highlightColor = entries.highlightColor;
-		if (entries.hasOwnProperty('is')) data.is = Rule.getTreatedArrayFromString(entries.is);
-		if (entries.hasOwnProperty('contains')) data.contains = Rule.getTreatedArrayFromString(entries.contains);
+		if (entries.hasOwnProperty('highlightColor'))
+			data.highlightColor = entries.highlightColor;
+		if (entries.hasOwnProperty('is'))
+			data.is = Rule.getTreatedArrayFromString(entries.is);
+		if (entries.hasOwnProperty('contains'))
+			data.contains = Rule.getTreatedArrayFromString(entries.contains);
 
 		if (entries.FormType == 'ListHighlightColor') {
 			data.highlighting = Rule.mapEntriesToHighlighting(entries);
@@ -31,24 +32,21 @@ class Rule {
 
 		if (entries.FormType == 'MoreOptions') {
 			data.options = {
-				strikethrough : (typeof entries.strikethrough != 'undefined'),
-				grayscale : (typeof entries.grayscale != 'undefined'),
-				unmatchedLists : (Rules.idExists(entries.unmatchedLists)) ? entries.unmatchedLists : null
-			}
+				strikethrough: typeof entries.strikethrough != 'undefined',
+				grayscale: typeof entries.grayscale != 'undefined',
+				unmatchedLists: Rules.idExists(entries.unmatchedLists)
+					? entries.unmatchedLists
+					: null,
+			};
 		}
 
 		return data;
-
 	}
 
-	static mapEntriesToHighlighting (entries) {
-
-		let highlighting = {},
-			trelloBGColors = [],
-			highlightingColors = [];
+	static mapEntriesToHighlighting(entries) {
+		let highlighting = {};
 
 		for (let propName in entries) {
-
 			if (propName == 'ColorTile') {
 				highlighting.color = entries[propName];
 			}
@@ -56,33 +54,12 @@ class Rule {
 			if (propName == 'Opacity') {
 				highlighting.opacity = entries[propName];
 			}
-
-			if (propName.startsWith('ExceptionTrelloBGColor')) {
-				let number = ovalue(propName.match(/\[(\d+)\]$/), 1);
-				if (number) {
-					number = parseInt(number);
-					trelloBGColors[number] = entries[propName];
-				}
-			}
-
-			if (propName.startsWith('ExceptionHighlightColor')) {
-				let number = ovalue(propName.match(/\[(\d+)\]$/), 1);
-				if (number) {
-					number = parseInt(number);
-					highlightingColors[number] = entries[propName];
-				}
-			}
 		}
-
-		highlighting.exceptions = Object.assign(
-			{},
-			...trelloBGColors.map((n, i) => ({[n]: highlightingColors[i]}))
-		);
 
 		return highlighting;
 	}
 
-	static checkNameErrors (data) {
+	static checkNameErrors(data) {
 		let errors = {};
 		if (data.hasOwnProperty('name')) {
 			if (data.name == '') {
@@ -95,26 +72,7 @@ class Rule {
 		return errors;
 	}
 
-	static checkHighlightingExceptionsErrors (data) {
-		let errors = {};
-		if (ovalue(data, 'highlighting', 'exceptions')) {
-			let allowedKeys = ["red", "orange", "lime", "green", "sky", "blue", "purple", "pink", "gray", "photo"];
-			for (let key of Object.keys(data.highlighting.exceptions)) {
-				if (allowedKeys.indexOf(key) < 0) {
-					errors.exceptions = 'invalid';
-				}
-			}
-			for (let value of Object.values(data.highlighting.exceptions)) {
-				if (!Color.isHex(value)) {
-					errors.exceptions = 'invalid';
-				}
-			}
-		}
-		return errors;
-	}
-
-	static checkIsContainsErrors (data) {
-
+	static checkIsContainsErrors(data) {
 		let errors = {},
 			existingRule;
 
@@ -122,15 +80,8 @@ class Rule {
 			existingRule = new Rule(data.id);
 		}
 
-		if (
-			data.hasOwnProperty('is') &&
-			data.hasOwnProperty('contains')
-		) {
-
-			if (
-				(data.is.length == 0) &&
-				(data.contains.length == 0)
-			) {
+		if (data.hasOwnProperty('is') && data.hasOwnProperty('contains')) {
+			if (data.is.length == 0 && data.contains.length == 0) {
 				errors.criteria = 'empty';
 			}
 
@@ -145,7 +96,7 @@ class Rule {
 					alreadyUsed.push(item);
 				}
 			}
-			alreadyUsed = alreadyUsed.filter( (val, i, self) => {
+			alreadyUsed = alreadyUsed.filter((val, i, self) => {
 				return self.indexOf(val) === i;
 			});
 
@@ -153,13 +104,12 @@ class Rule {
 				errors.criteria = 'exists';
 				errors.criteriaAlreadyUsed = alreadyUsed;
 			}
-
 		}
 
 		if (
 			data.hasOwnProperty('is') &&
 			!data.hasOwnProperty('contains') &&
-			(!ovalue(existingRule, 'contains', 'length')) &&
+			!existingRule?.contains?.length &&
 			data.is.length == 0
 		) {
 			errors.is = 'empty';
@@ -168,7 +118,7 @@ class Rule {
 		if (
 			!data.hasOwnProperty('is') &&
 			data.hasOwnProperty('contains') &&
-			(!ovalue(existingRule, 'is', 'length')) &&
+			!existingRule?.is?.length &&
 			data.contains.length == 0
 		) {
 			errors.contains = 'empty';
@@ -183,7 +133,11 @@ class Rule {
 		}
 
 		if (data.hasOwnProperty('contains')) {
-			let alreadyUsed = Rules.getStringAlreadyUsed('contains', data.contains, data.id);
+			let alreadyUsed = Rules.getStringAlreadyUsed(
+				'contains',
+				data.contains,
+				data.id
+			);
 			if (alreadyUsed.length > 0) {
 				errors.contains = 'exists';
 				errors.containsAlreadyUsed = alreadyUsed;
@@ -193,13 +147,15 @@ class Rule {
 		return errors;
 	}
 
-	static checkNewRuleEntriesAndSaveOrFail (entries, successCallback, failCallback) {
-
+	static checkNewRuleEntriesAndSaveOrFail(
+		entries,
+		successCallback,
+		failCallback
+	) {
 		let errors = {},
 			data = Rule.getDataObjectFromEntries(entries);
 
 		errors = { ...errors, ...Rule.checkNameErrors(data) };
-		errors = { ...errors, ...Rule.checkHighlightingExceptionsErrors(data) };
 		errors = { ...errors, ...Rule.checkIsContainsErrors(data) };
 
 		if (Object.keys(errors).length == 0) {
@@ -209,50 +165,56 @@ class Rule {
 			failCallback(errors);
 			return false;
 		}
-
 	}
 
-	static getTreatedArrayFromString (string) {
-		return string.split('\n')
-			.map( val => { return val.trim(); })
-			.filter( val => val !== '' )
-			.filter( (val, i, self) => {
+	static getTreatedArrayFromString(string) {
+		return string
+			.split('\n')
+			.map((val) => {
+				return val.trim();
+			})
+			.filter((val) => val !== '')
+			.filter((val, i, self) => {
 				return self.indexOf(val) === i;
 			});
 	}
 
-	static saveNewRule (data) {
+	static saveNewRule(data) {
 		var id = Rule.getNewRuleId();
 		var rule = {
-			[id] : {
-				"name"         : data.name,
-				"id"           : id,
-				"sort"         : Rules.getHighestSortNumber(),
-				"is"           : data.is || [],
-				"contains"     : data.contains || [],
-				"highlighting" : {
-					"color"      : (data.highlightColor) ? data.highlightColor : null,
-					"opacity"    : 1,
-					"exceptions" : {}
+			[id]: {
+				name: data.name,
+				id: id,
+				sort: Rules.getHighestSortNumber(),
+				is: data.is || [],
+				contains: data.contains || [],
+				highlighting: {
+					color: data.highlightColor ? data.highlightColor : null,
+					opacity: 1,
 				},
-				"options"      : {},
-				"enabled"      : true
-			}
+				options: {},
+				enabled: true,
+			},
 		};
 		chrome.storage.sync.set(rule);
 	}
 
-	static saveEditedRule (data) {
-
-		var rule = (data && data.id)
-			? Global.getItem(data.id)
-			: false;
+	static saveEditedRule(data) {
+		var rule = data && data.id ? Global.getItem(data.id) : false;
 
 		if (!rule) {
 			return;
 		}
 
-		var allowedProperties = [ 'name', 'sort', 'is', 'contains', 'highlighting', 'options', 'enabled' ];
+		var allowedProperties = [
+			'name',
+			'sort',
+			'is',
+			'contains',
+			'highlighting',
+			'options',
+			'enabled',
+		];
 
 		for (let propName in data) {
 			if (allowedProperties.indexOf(propName) > -1) {
@@ -260,15 +222,16 @@ class Rule {
 			}
 		}
 
-		chrome.storage.sync.set({ [data.id] : rule });
-
+		chrome.storage.sync.set({ [data.id]: rule });
 	}
 
-	static failForm (errors) {
+	static failForm(errors) {
 		for (let name in errors) {
 			let value = errors[name];
 			if (typeof value == 'string') {
-				for (let error of qq(`.error[data-name="${name}"][data-value="${value}"]`)) {
+				for (let error of qq(
+					`.error[data-name="${name}"][data-value="${value}"]`
+				)) {
 					error.classList.add('show');
 				}
 			} else if (Array.isArray(value)) {
@@ -281,38 +244,38 @@ class Rule {
 		}
 	}
 
-	static saveProperty (ruleId, property, value) {
+	static saveProperty(ruleId, property, value) {
 		let rule = Global.getItem(ruleId);
 		if (rule) {
-			if (property == 'unmatchedLists' || property == 'strikethrough' || property == 'grayscale') {
+			if (
+				property == 'unmatchedLists' ||
+				property == 'strikethrough' ||
+				property == 'grayscale'
+			) {
 				rule.options[property] = value;
 			} else {
 				rule[property] = value;
 			}
-			chrome.storage.sync.set({ [ruleId] : rule });
+			chrome.storage.sync.set({ [ruleId]: rule });
 		}
 	}
 
-	getHighlightColor (trelloBG) {
-
-		var color = this.higlighting.exceptions[trelloBG];
-		if (color) {
-			return color;
-		} else {
-			return this.highlighting.color;
-		}
-
+	getHighlightColor(trelloBG) {
+		return this.highlighting.color;
 	}
 
-	getUnmatchedList () {
+	getUnmatchedList() {
 		var unmatchedLists;
-		if (this.hasOwnProperty('options') && this.options.hasOwnProperty('unmatchedLists')) {
+		if (
+			this.hasOwnProperty('options') &&
+			this.options.hasOwnProperty('unmatchedLists')
+		) {
 			unmatchedLists = this.options.unmatchedLists;
 		}
 		return unmatchedLists;
 	}
 
-	delete () {
+	delete() {
 		var allRules = Global.getAllRules();
 		for (let ruleId in allRules) {
 			let rule = new Rule(allRules[ruleId]),
@@ -324,7 +287,7 @@ class Rule {
 		chrome.storage.sync.remove(this.id);
 	}
 
-	static getNewRuleId () {
+	static getNewRuleId() {
 		var newId = `rule-${Rule.getCRC32b(Date.now())}`;
 		var existingRule = Global.getItem(newId);
 		while (existingRule) {
@@ -334,24 +297,23 @@ class Rule {
 		return newId;
 	}
 
-	static getCRC32b (data) {
+	static getCRC32b(data) {
 		if (typeof data != 'string') {
 			data = data.toString();
 		}
 		var table = new Uint32Array(256);
-		for (let i=256; i--;) {
+		for (let i = 256; i--; ) {
 			var tmp = i;
-			for (let k=8; k--;) {
-				tmp = tmp & 1 ? 3988292384 ^ tmp >>> 1 : tmp >>> 1;
+			for (let k = 8; k--; ) {
+				tmp = tmp & 1 ? 3988292384 ^ (tmp >>> 1) : tmp >>> 1;
 			}
 			table[i] = tmp;
 		}
 		var crc = -1;
-		for (let i=0, l=data.length; i<l; i++) {
-			crc = crc >>> 8 ^ table[ crc & 255 ^ data[i] ];
+		for (let i = 0, l = data.length; i < l; i++) {
+			crc = (crc >>> 8) ^ table[(crc & 255) ^ data[i]];
 		}
 		var hash = (crc ^ -1) >>> 0;
 		return hash.toString(16);
 	}
-
 }

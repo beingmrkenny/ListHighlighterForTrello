@@ -6,42 +6,56 @@
 
 // Opacity and transitions
 
-.bmko_list-highlighter-applied .list {
-	transition: background 0.15s, opacity 0.25s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0.15s;
+.bmko_list-highlighter-applied .Sb_QqNKeadm2oq,
+.bmko_list-highlighter-applied [data-testid="list"] {
+	transition: background .15s, opacity .25s;
 	> div,
 	> a {
-		transition: filter 0.25s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0.15s;
+		transition: filter .25s;
 	}
 }
 
-.bmko_card-is-dragging.bmko_list-highlighter-applied .list {
-	transition: background 0.15s, opacity 0.05s;
-	> div,
-	> a {
-		transition: filter 0.05s;
-	}
-}
+#trello-root.bmko_list-highlighter-applied.bmko_undim-on-hover {
+	.Sb_QqNKeadm2oq,
+	[data-testid="list"] {
+		&.bmko_temporarily-undimmed-list,
+		&.bmko_unmatched-list.bmko_temporarily-undimmed-list,
+		&.bmko_undimmed-list,
+		&:hover {
+			opacity: 1;
 
-.bmko_temporarily-undimmed-list,
-#trello-root.bmko_list-highlighter-applied .bmko_unmatched-list.bmko_temporarily-undimmed-list {
-	opacity: 1;
-	> div,
-	> a {
-		filter: grayscale(0%);
-	}
-}
-
-#trello-root.bmko_list-highlighter-applied.bmko_undim-on-hover .list {
-	&.bmko_undimmed-list,
-	&:hover {
-		opacity: 1;
-		> div,
-		> a {
-			filter: grayscale(0%);
+			> div,
+			> a {
+				filter: grayscale(0%);
+			}
 		}
 	}
 }
 
-@import "list";
-@import "workPoints";
-@import "headercards";
+.bmko_other_list_rules_applied .bmko_unmatched-list,
+.bmko_list_opacity_applied {
+	opacity: var(--opacity);
+}
+
+.bmko_list_grayscale_applied {
+	filter: grayscale(100%);
+}
+
+.bmko_list_strikethrough_applied .RD2CmKQFZKidd6,
+.bmko_list_strikethrough_applied [data-testid="list-cards"] {
+	text-decoration: line-through;
+}
+
+// Colour blind friendly mode
+
+#trello-root.body-color-blind-mode-enabled .bmko_list_changed_background_color {
+	background-image: linear-gradient(to bottom right,
+	rgba(255, 255, 255, .5) 25%,
+	transparent 25%,
+	transparent 50%,
+	rgba(255, 255, 255, .5) 50%,
+	rgba(255, 255, 255, .5) 75%,
+	transparent 75%,
+	transparent);
+	background-size: 2pc 2pc;
+}

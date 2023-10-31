@@ -1,8 +1,8 @@
 {
 	"manifest_version": 0,
 	"name": "List Highlighter for Trello",
-	"description": "Change list background colours, count cards, break up long lists",
-	"version": "4.0.11",
+	"description": "Change list background colours",
+	"version": "5.0.0",
 	"author": "Mark Kenny",
 	"homepage_url": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
 
@@ -74,12 +74,8 @@
 				"js/classes/DataStorage.js",
 				"js/front-end/InsertedCSS.js",
 				"js/front-end/RulesMatcher.js",
-				"js/front-end/HeaderTagging.js",
 				"js/front-end/TrelloPage.js",
-				"js/front-end/ListWorkPoints.js",
-				"js/front-end/HeaderSeparatorCard.js",
 				"js/front-end/System.js",
-				"js/watch.js",
 				"js/functions.js",
 				"js/init.js"
 			],

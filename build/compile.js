@@ -4,6 +4,11 @@ const exec = require('child_process').execSync;
 
 compileHTML();
 exec('sh ./build/css.sh');
-compileManifest(
-	(process.argv.includes('firefox') ? 'firefox dev' : '')
-);
+
+let args = ['dev'];
+
+if (process.argv.includes('firefox')) {
+	args.push('firefox');
+}
+
+compileManifest(args.join(' '));

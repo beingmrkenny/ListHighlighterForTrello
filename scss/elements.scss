@@ -6,14 +6,13 @@
 
 h2 {
 	clear: both;
-
-	padding-top: 90px;
 	margin-top: 0;
+	padding-top: 90px;
 }
 
 h3 {
-	padding-top: 30px;
 	margin-top: 0;
+	padding-top: 30px;
 }
 
 h4 {
@@ -95,13 +94,17 @@ dialog {
 
 body > dialog[open] {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	align-items: center;
-	justify-content: center;
+
+	&::backdrop {
+		background: rgba(0, 0, 0, .352);
+	}
 
 	h2 {
 		margin: 0;
@@ -111,7 +114,6 @@ body > dialog[open] {
 
 dialog-contents {
 	display: block;
-
 	padding: 30px;
 
 	background-color: $dialogBG;
@@ -123,11 +125,9 @@ dialog-contents {
 	form {
 		display: flex;
 		flex-direction: column;
-
 		max-height: 90vh;
 		.form-dialog-body {
 			flex: 1;
-
 			overflow-y: scroll;
 		}
 	}
@@ -164,7 +164,6 @@ summary {
 	h2,
 	h3 {
 		display: inline;
-
 		margin: 0;
 	}
 
@@ -172,7 +171,6 @@ summary {
 		float: right;
 
 		content: attr(data-contents);
-
 		color: #999;
 
 		font-style: italic;
@@ -189,9 +187,13 @@ kbd {
 		border-radius: 2px;
 
 		font-family: monospace;
-		font-weight: bold;
 		font-style: normal;
+		font-weight: bold;
 	}
+}
+
+.remove {
+	display: none !important; // gross
 }
 
 .invisible {
@@ -201,6 +203,7 @@ kbd {
 .flash {
 	animation-name: flash;
 	animation-duration: 750ms;
+
 	animation-fill-mode: both;
 }
 

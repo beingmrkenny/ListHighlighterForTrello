@@ -1,47 +1,63 @@
 class ColorSelect {
-
-	constructor (colorSelectElement) {
-
+	constructor(colorSelectElement) {
 		if (colorSelectElement.dataset.type == 'trello-background') {
-			for (let selectedButton of qq('[data-type="trello-background"] [data-selected]')) {
-				let trelloBGColorClass = ovalue(selectedButton.className.match(/(fill-trello-[a-z]+)/), 0);
-				q(`.${trelloBGColorClass}`, colorSelectElement).disabled = (trelloBGColorClass != 'fill-trello-blank');
+			for (let selectedButton of qq(
+				'[data-type="trello-background"] [data-selected]'
+			)) {
+				let trelloBGColorClass = getFirstRegexMatch(
+					selectedButton.className.match(/(fill-trello-[a-z]+)/)
+				);
+				q(`.${trelloBGColorClass}`, colorSelectElement).disabled =
+					trelloBGColorClass != 'fill-trello-blank';
 			}
 		}
 
-		listen( qq('button', colorSelectElement), 'click', ColorSelect.buttonClickHandler);
+		listen(
+			qq('button', colorSelectElement),
+			'click',
+			ColorSelect.buttonClickHandler
+		);
 
 		ColorSelect.disableDropdownsAsAppropes();
 
-		let colorSelectEditColorButton = q('.color-select-edit-custom-color-button', colorSelectElement.parentNode);
+		let colorSelectEditColorButton = q(
+			'.color-select-edit-custom-color-button',
+			colorSelectElement.parentNode
+		);
 		if (colorSelectEditColorButton) {
-			colorSelectEditColorButton.addEventListener('click', ColorSelect.openColorPicker);
+			colorSelectEditColorButton.addEventListener(
+				'click',
+				ColorSelect.openColorPicker
+			);
 		}
-
 	}
 
-	static disableDropdownsAsAppropes () {
-		for (let trelloButton of qq('li:not(:last-child) [data-type="trello-background"] button')) {
+	static disableDropdownsAsAppropes() {
+		for (let trelloButton of qq(
+			'li:not(:last-child) [data-type="trello-background"] button'
+		)) {
 			trelloButton.classList.add('mod-no-dropdown');
 		}
 	}
 
-	static buttonClickHandler () {
+	static buttonClickHandler() {
 		var colorPicker = q('dialog.color-picker');
 		if (colorPicker && colorPicker.open) {
 			this.blur();
 			return false;
 		}
 		let colorSelect = this.closest('color-select');
-		if (!colorSelect.classList.contains('mod-inline') && !colorSelect.dataset.open) {
+		if (
+			!colorSelect.classList.contains('mod-inline') &&
+			!colorSelect.dataset.open
+		) {
 			ColorSelect.open(this);
 		} else {
 			ColorSelect.selectAndClose(this);
 		}
 	}
 
-	static open (button) {
-
+	static open(button) {
 		var colorSelect = button.closest('color-select'),
 			type = colorSelect.dataset.type,
 			ul = colorSelect.firstElementChild,
@@ -56,18 +72,20 @@ class ColorSelect {
 			ul.style.top = `${top}px`;
 			colorSelect.style.width = `${colorSelectBox.width}px`;
 			colorSelect.style.height = `${colorSelectBox.height}px`;
-			overflow = ul.getBoundingClientRect().bottom - q('.form-dialog-body').getBoundingClientRect().bottom;
+			overflow =
+				ul.getBoundingClientRect().bottom -
+				q('.form-dialog-body').getBoundingClientRect().bottom;
 			if (overflow > 0) {
 				top = parseInt(ul.style.top) - overflow - 10;
 				ul.style.top = `${top}px`;
 			}
-			button.closest('dialog').addEventListener('click', ColorSelect.closeListener);
+			button
+				.closest('dialog')
+				.addEventListener('click', ColorSelect.closeListener);
 		}
-
 	}
 
-	static selectAndClose (button) {
-
+	static selectAndClose(button) {
 		var colorSelect = button.closest('color-select'),
 			type = colorSelect.dataset.type,
 			ul = colorSelect.firstElementChild;
@@ -76,7 +94,10 @@ class ColorSelect {
 		button.setAttribute('data-selected', 1);
 		colorSelect.dataset.value = button.value;
 
-		var editButtonContainer = q('.color-select-edit-custom-color-button-container', colorSelect.parentNode);
+		var editButtonContainer = q(
+			'.color-select-edit-custom-color-button-container',
+			colorSelect.parentNode
+		);
 		if (editButtonContainer) {
 			if (button.classList.contains('fill-custom')) {
 				editButtonContainer.style.display = 'inline-block';
@@ -95,41 +116,49 @@ class ColorSelect {
 		ColorSelect.closeAll();
 	}
 
-	static disableTrelloBGButtonsSelectedElsewhere () {
+	static disableTrelloBGButtonsSelectedElsewhere() {
 		let allTrelloBGButtons = qq('[data-type="trello-background"] button');
 		let classesToDisable = [];
 		for (let button of allTrelloBGButtons) {
 			button.disabled = false;
-			if (ovalue(button, 'dataset', 'selected')) {
-				let trelloBGColorClass = ovalue(button.className.match(/(fill-trello-[a-z]+)/), 0);
-				classesToDisable.push(`[data-type="trello-background"] .${trelloBGColorClass}`);
+			if (button?.dataset?.selected) {
+				let trelloBGColorClass = getFirstRegexMatch(
+					button.className.match(/(fill-trello-[a-z]+)/)
+				);
+				classesToDisable.push(
+					`[data-type="trello-background"] .${trelloBGColorClass}`
+				);
 			}
 		}
 
 		let masterSelector = classesToDisable.join(',');
 		if (masterSelector) {
 			for (let button of qq(masterSelector)) {
-				if (!ovalue(button, 'dataset', 'selected')) {
+				if (!button?.dataset?.selected) {
 					button.disabled = true;
 				}
 			}
 		}
 
-		for (let trelloButton of qq('li:not(:last-child) [data-type="trello-background"] button')) {
+		for (let trelloButton of qq(
+			'li:not(:last-child) [data-type="trello-background"] button'
+		)) {
 			trelloButton.classList.add('mod-no-dropdown');
 		}
 	}
 
-	static openColorPicker () {
+	static openColorPicker() {
 		var colorSelectEditColorButton = this;
 		// QUESTION: can colorSelect be passed into the constructor below (save and cancel), so it doesn't need to be looked up again?
-		var colorSelect = q(`[data-name="${colorSelectEditColorButton.dataset.for}"]`);
+		var colorSelect = q(
+			`[data-name="${colorSelectEditColorButton.dataset.for}"]`
+		);
 		var target = q('.fill-custom[data-selected]', colorSelect);
 		colorSelectEditColorButton.dataset.colorOnOpen = colorSelect.dataset.value;
 		new ColorPickerWrapper({
-			target : target,
-			opener : colorSelectEditColorButton,
-			initialColor : target.value || Color.getOriginalListBG(),
+			target: target,
+			opener: colorSelectEditColorButton,
+			initialColor: target.value || Color.getOriginalListBG(),
 			place: function (dialog) {
 				let left,
 					parent = target.closest('color-select');
@@ -138,16 +167,23 @@ class ColorSelect {
 				dialog.classList.add('position-top');
 				dialog.style.left = `-${left}px`;
 			},
-			colorUpdateHandler : function (hex) {
+			colorUpdateHandler: function (hex) {
 				ListHighlightColorDialog.updateDemoListColor(hex);
-				ColorSelect.setCustomColorButtonValue(target.closest('color-select'), hex);
+				ColorSelect.setCustomColorButtonValue(
+					target.closest('color-select'),
+					hex
+				);
 			},
-			save : (color) => {
-				let colorSelect = q(`[data-name="${colorSelectEditColorButton.dataset.for}"]`);
+			save: (color) => {
+				let colorSelect = q(
+					`[data-name="${colorSelectEditColorButton.dataset.for}"]`
+				);
 				ColorSelect.selectAndClose(q('.fill-custom', colorSelect));
 			},
-			cancel : (options) => {
-				let colorSelect = q(`[data-name="${colorSelectEditColorButton.dataset.for}"]`),
+			cancel: (options) => {
+				let colorSelect = q(
+						`[data-name="${colorSelectEditColorButton.dataset.for}"]`
+					),
 					colorOnOpen = colorSelectEditColorButton.dataset.colorOnOpen,
 					buttonToSelect = q(`li > [value="${colorOnOpen}"]`, colorSelect);
 				if (!colorOnOpen) {
@@ -158,13 +194,14 @@ class ColorSelect {
 					buttonToSelect = q('.fill-custom', colorSelect);
 				}
 				ColorSelect.selectAndClose(buttonToSelect);
-				ListHighlightColorDialog.updateDemoListColor(colorOnOpen || Color.getOriginalListBG());
-			}
+				ListHighlightColorDialog.updateDemoListColor(
+					colorOnOpen || Color.getOriginalListBG()
+				);
+			},
 		});
-
 	}
 
-	static setCustomColorButtonValue (colorSelect, value = null) {
+	static setCustomColorButtonValue(colorSelect, value = null) {
 		var customButton = q('.fill-custom', colorSelect);
 		if (value == null) {
 			customButton.value = '';
@@ -175,7 +212,7 @@ class ColorSelect {
 	}
 
 	// FIXME: This close listener is being applied to the IS dialog cancel button — why?
-	static closeListener (event) {
+	static closeListener(event) {
 		var colorSelectParentSearch = event.target.closest('color-select');
 		if (!colorSelectParentSearch && event.target.tagName != 'BUTTON') {
 			ColorSelect.closeAll();
@@ -192,5 +229,4 @@ class ColorSelect {
 			}
 		}
 	}
-
 }

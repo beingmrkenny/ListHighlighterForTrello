@@ -1,6 +1,5 @@
 class RulesMatcher {
-
-	constructor (rules) {
+	constructor(rules) {
 		this.rules = rules;
 		this.titles = {};
 		this.substrings = {};
@@ -14,28 +13,25 @@ class RulesMatcher {
 		}
 	}
 
-	makeSubstringsList () {
+	makeSubstringsList() {
 		for (var ruleId in this.rules) {
 			this.substrings[ruleId] = [];
 			let rule = this.rules[ruleId];
 			if (rule.enabled) {
-				let regexStrings = [];
 				for (let containSubstring of rule.contains) {
 					if (!containSubstring.startsWith('#')) {
 						containSubstring = '\\b' + containSubstring;
 					}
-					this.substrings[ruleId].push(new RegExp(containSubstring.toLowerCase()+'\\b'));
+					this.substrings[ruleId].push(
+						new RegExp(containSubstring.toLowerCase() + '\\b')
+					);
 				}
 			}
 		}
 	}
 
-	getMatchingRule (listTitle) {
+	getMatchingRule(listTitle) {
 		listTitle = listTitle.toLowerCase();
-		if (Global.getItem('options-CountEnableWIP') == true) {
-			listTitle = listTitle.replace(/\[\d+\]\s*$/, '');
-			listTitle = listTitle.replace(/\s*#count\s*/gi, '');
-		}
 		listTitle = listTitle.trim();
 		var ruleId = this.titles[listTitle];
 		if (ruleId) {
@@ -52,53 +48,58 @@ class RulesMatcher {
 		}
 	}
 
-	static apply (rule, list) {
-
-		let ruleClass = (rule)
-			? 'bmko_' + rule.id
-			: 'bmko_unmatched-list';
-
-		let ruleClasses = [
+	static apply(rule, list) {
+		const ruleClass = rule ? 'bmko_' + rule.id : 'bmko_unmatched-list';
+		let newClassName = list.className;
+		[
+			/bmko_rule-[a-z0-9]+/ig,
 			'bmko_unmatched-list',
 			'bmko_list_changed_background_color',
 			'bmko_list_opacity_applied',
 			'bmko_list_strikethrough_applied',
-			'bmko_list_grayscale_applied'
-		];
-
-		for (let className of list.classList) {
-			if (className.startsWith('bmko_rule-') || ruleClasses.indexOf(className) > -1) {
-				list.classList.remove(className);
-			}
-		}
-
+			'bmko_list_grayscale_applied',
+		].forEach((classToRemove) => {
+			newClassName = newClassName.replace(classToRemove, '');
+		});
+		list.className = newClassName;
 		list.classList.add(ruleClass);
 
 		if (rule) {
-			let strikethrough = ovalue(rule, 'options', 'strikethrough') ? true : false,
-				grayscale = ovalue(rule, 'options', 'grayscale') ? true : false;
-			list.classList.toggle('bmko_list_changed_background_color', ovalue(rule, 'highlighting', 'color'));
-			list.classList.toggle('bmko_list_opacity_applied', (ovalue(rule, 'highlighting', 'opacity') < 1));
+			let strikethrough = rule?.options?.strikethrough ? true : false,
+				grayscale = rule?.options?.grayscale ? true : false;
+
+			list.classList.toggle(
+				'bmko_list_changed_background_color',
+				rule?.highlighting?.color
+			);
+			list.classList.toggle(
+				'bmko_list_opacity_applied',
+				rule?.highlighting?.opacity < 1
+			);
 			list.classList.toggle('bmko_list_strikethrough_applied', strikethrough);
 			list.classList.toggle('bmko_list_grayscale_applied', grayscale);
 		}
-
 	}
 
-	static applyCorrectRuleToLists () {
-		let ruleMatcher = new RulesMatcher(Global.getAllRules()),
-			boardHasOtherListRuleApplied = false;
-		for (let listHeader of qq('.list-header-name-assist')) {
+	static applyCorrectRuleToLists() {
+		const ruleMatcher = new RulesMatcher(Global.getAllRules());
+		let boardHasOtherListRuleApplied = false;
+		for (let listHeader of TrelloPage.getTrellements('list-name')) {
 			let matchingRule = ruleMatcher.getMatchingRule(listHeader.textContent);
-			RulesMatcher.apply(matchingRule, listHeader.closest('.list'));
-			if (ovalue(matchingRule, 'options', 'unmatchedLists')) {
+			RulesMatcher.apply(
+				matchingRule,
+				TrelloPage.getTrellement('list', listHeader, UP)
+			);
+			if (matchingRule?.options?.unmatchedLists) {
 				boardHasOtherListRuleApplied = true;
 			}
 		}
-		let trelloBody = getTrelloBody();
+		const trelloBody = TrelloPage.getBody();
 		if (trelloBody) {
-			trelloBody.classList.toggle('bmko_other_list_rules_applied', boardHasOtherListRuleApplied);
+			trelloBody.classList.toggle(
+				'bmko_other_list_rules_applied',
+				boardHasOtherListRuleApplied
+			);
 		}
 	}
-
 }

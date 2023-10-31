@@ -8,4 +8,18 @@ config.json
 node_modules/
 /trash/
 Extension/manifest.json
+
+.sass-cache
+.csscomb.json
+node_modules
 package-lock.json
+
+# Mac Specific
+*.scpt
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Snet Crap
+.idea/
+*.iml

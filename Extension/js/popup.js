@@ -1,9 +1,7 @@
-chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 	chrome.tabs.sendMessage(
-
 		tabs[0].id,
-		{message: 'hello'},
+		{ message: 'hello' },
 		function (response) {
 			if (response && response.trello === true) {
 				toggleBoardPopup(response.page);
@@ -11,19 +9,16 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 				toggleBoardPopup(false);
 			}
 		}
-
 	);
-
 });
 
-function toggleBoardPopup (page) {
-
+function toggleBoardPopup(page) {
 	var section = document.getElementById('ListHighlighter'),
 		boardSpecifics = document.querySelectorAll('.board-specific'),
 		button = document.getElementById('HighlightToggle'),
 		isCustomBackground = page.isCustomBackground,
 		color = new Color(page.backgroundColor),
-		trelloBoard = (page && page.isBoard);
+		trelloBoard = page && page.isBoard;
 
 	document.body.classList.toggle('trello-page', trelloBoard);
 	for (let boardSpecific of boardSpecifics) {
@@ -32,10 +27,11 @@ function toggleBoardPopup (page) {
 
 	section.style.backgroundColor = page.backgroundColor;
 
-	if (isCustomBackground
-		|| color.isLight()
-		|| !page
-		|| (page && !page.isBoard)
+	if (
+		isCustomBackground ||
+		color.isLight() ||
+		!page ||
+		(page && !page.isBoard)
 	) {
 		section.classList.remove('dark-background');
 	} else {
@@ -53,7 +49,6 @@ function toggleBoardPopup (page) {
 			toggleHighlight(true);
 		}
 	});
-
 }
 
 function toggleHighlightButton(highlightingOn) {
@@ -77,26 +72,20 @@ function toggleHighlightButton(highlightingOn) {
 }
 
 function toggleHighlight(highlightStatus) {
-
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		chrome.tabs.sendMessage(
-			tabs[0].id,
-			{
-				message: 'highlightToggle',
-				highlightStatus: highlightStatus
-			}
-		);
+	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {
+			message: 'highlightToggle',
+			highlightStatus: highlightStatus,
+		});
 	});
 
 	const manifestVersion = chrome.runtime.getManifest()?.manifest_version || 2;
-	const action = (manifestVersion == 3)
-		? chrome.action
-		: chrome.browserAction;
+	const action = manifestVersion == 3 ? chrome.action : chrome.browserAction;
 
 	if (highlightStatus) {
-		action.setIcon({path: '/img/buttonIcon.png'});
+		action.setIcon({ path: '/img/buttonIcon.png' });
 	} else {
-		action.setIcon({path: '/img/buttonIconOff.png'});
+		action.setIcon({ path: '/img/buttonIconOff.png' });
 	}
 
 	toggleHighlightButton(highlightStatus);

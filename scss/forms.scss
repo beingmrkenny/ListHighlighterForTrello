@@ -3,9 +3,8 @@
 button {
 	display: inline-block;
 	align-self: flex-end;
-
-	padding: 6px 12px;
 	box-sizing: border-box;
+	padding: 6px 12px;
 
 	color: $trelloListHeaderColor;
 	background: #dfe3e6;
@@ -13,8 +12,8 @@ button {
 	border-radius: 3px;
 	box-shadow: 0 1px 0 0 #c2ccd1;
 
-	text-align: center;
 	font-size: 14px;
+	text-align: center;
 
 	cursor: pointer;
 	user-select: none;
@@ -59,13 +58,12 @@ button.link-appearance {
 }
 
 textarea,
-input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="radio"]) {
+input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.show-as-input {
 	display: block;
-	-webkit-appearance: none;
-
+	box-sizing: border-box;
 	margin-bottom: 12px;
 	padding: 8px 12px;
-	box-sizing: border-box;
 
 	color: #5e6c84;
 	background-color: #fafbfc;
@@ -80,6 +78,7 @@ input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="r
 	transition-duration: 85ms;
 	transition-property: background-color,border-color,box-shadow;
 
+	-webkit-appearance: none;
 	@include trelloBodyFont();
 
 	&:focus {
@@ -109,13 +108,11 @@ input[type="checkbox"] {
 
 	&::before {
 		display: block;
-
 		width: 29px;
 		height: 28px;
 		padding: 0;
 
 		content: " ";
-
 		background-color: white;
 		border: none;
 		border-radius: 3px;
@@ -126,8 +123,8 @@ input[type="checkbox"] {
 
 	&:checked::before {
 		background-image: url(/img/tick.svg);
-		background-repeat: no-repeat;
 		background-position: center center;
+		background-repeat: no-repeat;
 	}
 
 	&:disabled {
@@ -137,9 +134,7 @@ input[type="checkbox"] {
 			cursor: default;
 		}
 		& + label {
-			color: $formElementGrey;
-
-			text-shadow: 0 1px 0 white;
+			color: $formDisabledElementGrey;
 
 			cursor: default;
 		}
@@ -153,29 +148,31 @@ input[type="checkbox"] {
 }
 
 input[type="range"] {
-	-webkit-appearance: none;
-
 	background: transparent;
+
+	-webkit-appearance: none;
 }
 
 @mixin thumb {
-	-webkit-appearance: none;
-
+	position: relative;
+	top: -8px;
 	width: 20px;
 	height: 20px;
 
 	background: #fff;
-	border-radius: 10px;
 	border: 0;
+	border-radius: 10px;
 	box-shadow: 0 0 3px gray;
 
 	cursor: pointer;
+
+	-webkit-appearance: none;
 }
 
 @mixin track {
 	height: 4px;
 
-	background: rgba(black, 0.3);
+	background: rgba(black, .3);
 	border-radius: 4px;
 }
 
@@ -206,7 +203,6 @@ label {
 
 range-input {
 	display: block;
-
 	margin-left: 30px;
 
 	input {
@@ -217,18 +213,16 @@ range-input {
 
 	label {
 		display: block;
-
 		width: 100%;
 
-		text-align: justify;
 		text-align-last: justify;
+		text-align: justify;
 	}
 }
 
 .form-dialog-buttons {
 	display: flex;
 	justify-content: flex-end;
-
 	margin: 10px 0 0;
 	button {
 		margin-left: 10px;

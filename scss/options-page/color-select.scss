@@ -1,11 +1,9 @@
 color-select {
 	position: relative;
-
 	margin: 0;
 
 	ul {
 		display: inline-flex;
-
 		margin: 0;
 		padding: 0;
 
@@ -14,7 +12,6 @@ color-select {
 
 	li {
 		display: inline-flex;
-
 		margin: 0;
 		padding: 0;
 	}
@@ -22,7 +19,6 @@ color-select {
 	li > button {
 		display: none;
 		align-self: baseline;
-
 		margin-bottom: 2px;
 		padding: 3px 7px 5px;
 
@@ -51,10 +47,10 @@ color-select {
 
 	&.mod-inline {
 		display: flex;
-		position: static;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
+		position: static;
 		button {
 			margin: 5px;
 			padding: 0 5px;
@@ -71,22 +67,20 @@ color-select {
 
 		ul {
 			display: inline-flex;
+			flex-direction: column;
 			position: absolute;
 			z-index: 1;
-			flex-direction: column;
-
 			padding: 1px;
 
 			background: $dialogBG;
 			border-radius: 5px;
 
-			filter: drop-shadow(0 0 2px rgba(black, 0.2));
+			filter: drop-shadow(0 0 2px rgba(black, .2));
 		}
 
 		li > button {
 			display: inline-block;
 			position: relative;
-
 			margin: 2px 13px 2px 13px;
 
 			&.fill-trello-red,
@@ -103,8 +97,8 @@ color-select {
 				padding-left: 30px;
 
 				background-image: url("/img/tick-white.svg");
-				background-repeat: no-repeat;
 				background-position: left 5px center;
+				background-repeat: no-repeat;
 				&.fill-trello-photo {
 					background: url("/img/tick.svg") no-repeat left 5px center,
 					url("/img/dummyBackgroundPhoto.jpg") no-repeat;

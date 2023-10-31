@@ -1,23 +1,21 @@
 class ColorPickerWrapper {
-
-	constructor (options) {
-		this.target				= options.target || null;
-		this.initialColor	    = options.initialColor;
-		this.place				= options.place;
+	constructor(options) {
+		this.target = options.target || null;
+		this.initialColor = options.initialColor;
+		this.place = options.place;
 		this.colorUpdateHandler = options.colorUpdateHandler;
-		this.save               = options.save;
-		this.cancel             = options.cancel;
-		this.cp                 = null;
-		this.opener				= options.opener;
+		this.save = options.save;
+		this.cancel = options.cancel;
+		this.cp = null;
+		this.opener = options.opener;
 		options.opener.addEventListener('click', ColorPickerWrapper.closeCheck);
 		this.open();
 	}
 
-	open () {
-
-		var existing      = q('dialog.color-picker'),
+	open() {
+		var existing = q('dialog.color-picker'),
 			previousColor = this.initialColor,
-			colorPicker   = getTemplate('ColorPicker');
+			colorPicker = getTemplate('ColorPicker');
 
 		if (existing) {
 			existing.remove();
@@ -29,15 +27,20 @@ class ColorPickerWrapper {
 
 		ColorPickerInitialise();
 
-		this.cp = ColorPicker (
+		this.cp = ColorPicker(
 			q('.hue-range'),
 			q('.sv-range'),
 			(hex, hsv, rgb, pickerCoordinate, sliderCoordinate) => {
-				var hue = q('.hue-indicator'),
-					sv = q('.sv-indicator');
-				ColorPicker.positionIndicators(hue, sv, sliderCoordinate, pickerCoordinate);
-				sv.style.backgroundColor = hex;
-				qid('ColorHex').value = hex;
+				const hueIndicator = q('.hue-indicator'),
+					svIndicator = q('.sv-indicator');
+				ColorPicker.positionIndicators(
+					hueIndicator,
+					svIndicator,
+					sliderCoordinate,
+					pickerCoordinate
+				);
+				svIndicator.style.backgroundColor = hex;
+				qid('ColorHexDisplay').value = hex;
 				this.colorUpdateHandler(hex);
 			}
 		);
@@ -57,18 +60,32 @@ class ColorPickerWrapper {
 			q('dialog.color-picker').remove();
 		});
 
-		qid('ColorHex').addEventListener('change', function () {
-			var input = this;
-			if (input.checkValidity()) {
-				let hex = input.value;
+		const hexOutput = qid('ColorHexDisplay');
+		const hexInput = qid('ColorHex');
+
+		listen(hexOutput, ['focus', 'click'], () => {
+			hexInput.value = hexOutput.value;
+			hexInput.classList.remove('remove');
+			hexInput.focus();
+			hexOutput.classList.add('remove');
+		});
+
+		hexInput.addEventListener('input', () => {
+			if (hexInput.checkValidity()) {
+				let hex = hexInput.value;
+				console.log(hex);
 				hex = hex.replace('#', '');
 				if (hex.length == 3) {
-					let hexes = hex.split();
 					hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
 				}
-				hex = '#'+hex;
+				hex = '#' + hex;
 				this.cp.setHex(hex);
 			}
+		});
+
+		hexInput.addEventListener('focusout', () => {
+			hexInput.classList.add('remove');
+			hexOutput.classList.remove('remove');
 		});
 
 		var cp = this.cp;
@@ -76,7 +93,7 @@ class ColorPickerWrapper {
 		chrome.storage.sync.get('recentColors', (results) => {
 			this.createRecentColorButtons(results);
 			for (let button of qq('.custom-color-picker-button')) {
-				button.addEventListener('click', function (event) {
+				button.addEventListener('click', function () {
 					cp.setHex(this.value);
 				});
 			}
@@ -86,25 +103,27 @@ class ColorPickerWrapper {
 		if (focussed) {
 			focussed.blur();
 		}
-
 	}
 
-	static close () {
+	static close() {
 		var colorPicker = q('dialog.color-picker');
 		if (colorPicker && colorPicker.open) {
 			colorPicker.remove();
 		}
-		qid('ListHighlightColorDialog').removeEventListener('click', ColorPickerWrapper.closeCheck);
+		qid('ListHighlightColorDialog').removeEventListener(
+			'click',
+			ColorPickerWrapper.closeCheck
+		);
 	}
 
-	static closeCheck (event) {
+	static closeCheck(event) {
 		var colorPickerParentSearch = event.target.closest('dialog.color-picker');
 		if (!colorPickerParentSearch && event.target.tagName != 'BUTTON') {
 			ColorPickerWrapper.close();
 		}
 	}
 
-	static getExistingColors () {
+	static getExistingColors() {
 		return [
 			'#ec2f2f',
 			'#ffab4a',
@@ -125,7 +144,7 @@ class ColorPickerWrapper {
 			'#0779bf',
 			'#89609e',
 			'#cd5a91',
-			'#838c91'
+			'#838c91',
 		];
 	}
 
@@ -134,7 +153,7 @@ class ColorPickerWrapper {
 		if (ColorPickerWrapper.getExistingColors().indexOf(hex) > -1) {
 			return;
 		}
-		chrome.storage.sync.get('recentColors', results => {
+		chrome.storage.sync.get('recentColors', (results) => {
 			var recentColors = results.recentColors;
 			if (!recentColors) {
 				recentColors = [];
@@ -144,13 +163,12 @@ class ColorPickerWrapper {
 					recentColors.shift();
 				}
 				recentColors.push(hex);
-				chrome.storage.sync.set({ 'recentColors' : recentColors});
+				chrome.storage.sync.set({ recentColors: recentColors });
 			}
 		});
 	}
 
-	createRecentColorButtons (results) {
-
+	createRecentColorButtons(results) {
 		var container = q('.custom-color-picker-button-container');
 
 		if (!container) {
@@ -175,7 +193,5 @@ class ColorPickerWrapper {
 			button.style.backgroundColor = hex;
 			container.appendChild(button);
 		}
-
 	}
-
 }

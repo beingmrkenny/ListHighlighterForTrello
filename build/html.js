@@ -1,5 +1,4 @@
 exports.compileHTML = () => {
-
 	const Color = require('../Extension/js/classes/Color.js');
 	const Handlebars = require('handlebars');
 	const fs = require('fs-extra');
@@ -7,33 +6,33 @@ exports.compileHTML = () => {
 	const OriginalListBG = Color.getOriginalListBG();
 
 	const trelloHexes = {
-		"blank": null,
-		"red": "#b04632",
-		"orange": "#d29034",
-		"lime": "#4bbf6b",
-		"green": "#519839",
-		"sky": "#00aecc",
-		"blue": "#0779bf",
-		"purple": "#89609e",
-		"pink": "#cd5a91",
-		"gray": "#838c91",
-		"photo": "#838c91"
+		blank: null,
+		red: '#b04632',
+		orange: '#d29034',
+		lime: '#4bbf6b',
+		green: '#519839',
+		sky: '#00aecc',
+		blue: '#0779bf',
+		purple: '#89609e',
+		pink: '#cd5a91',
+		gray: '#838c91',
+		photo: '#838c91',
 	};
 
 	const hexes = {
-		"blank": null,
-		"red": "#ec2f2f",
-		"orange": "#ffab4a",
-		"yellow": "#f2d600",
-		"green": "#61bd4f",
-		"cyan": "#0ed4f3",
-		"blue": "#00a2ff",
-		"indigo": "#30458a",
-		"violet": "#ba55e2",
-		"pink": "#ff80ce",
-		"black": "#000000",
-		"normal": OriginalListBG,
-		"custom": ""
+		blank: null,
+		red: '#ec2f2f',
+		orange: '#ffab4a',
+		yellow: '#f2d600',
+		green: '#61bd4f',
+		cyan: '#0ed4f3',
+		blue: '#00a2ff',
+		indigo: '#30458a',
+		violet: '#ba55e2',
+		pink: '#ff80ce',
+		black: '#000000',
+		normal: OriginalListBG,
+		custom: '',
 	};
 
 	var trelloColors = [];
@@ -45,11 +44,9 @@ exports.compileHTML = () => {
 		trelloColors.push({
 			name: name,
 			hex: trelloHexes[name],
-			blank: (name == 'blank'),
-			photo: (name == 'photo'),
-			lightClassName: (name == 'blank' || isLight)
-				? 'mod-light-background'
-				: ''
+			blank: name == 'blank',
+			photo: name == 'photo',
+			lightClassName: name == 'blank' || isLight ? 'mod-light-background' : '',
 		});
 	}
 
@@ -62,16 +59,17 @@ exports.compileHTML = () => {
 		colors.push({
 			name: name,
 			hex: hexes[name],
-			newRuleDialogColor: (name != 'custom' && name != 'blank'),
-			normal: (name == 'normal'),
-			notNormal: (name != 'normal'),
-			notBlank: (name != 'blank'),
-			blank: (name == 'blank'),
-			custom: (name == 'custom'),
-			photo: (name == 'photo'),
-			lightClassName: ((name == 'blank' || isLight) && name != 'normal')
-				? 'mod-light-background'
-				: ''
+			newRuleDialogColor: name != 'custom' && name != 'blank',
+			normal: name == 'normal',
+			notNormal: name != 'normal',
+			notBlank: name != 'blank',
+			blank: name == 'blank',
+			custom: name == 'custom',
+			photo: name == 'photo',
+			lightClassName:
+				(name == 'blank' || isLight) && name != 'normal'
+					? 'mod-light-background'
+					: '',
 		});
 	}
 
@@ -95,33 +93,34 @@ exports.compileHTML = () => {
 		{ color: trelloHexes.blue, title: 'Trello blue' },
 		{ color: trelloHexes.purple, title: 'Trello purple' },
 		{ color: trelloHexes.pink, title: 'Trello pink' },
-		{ color: trelloHexes.gray, title: 'Trello gray' }
+		{ color: trelloHexes.gray, title: 'Trello gray' },
 	];
 
-	[	'options-page-html/includes/highlighting.section.hbs',
-		'options-page-html/includes/cardCounting.section.hbs',
-		'options-page-html/includes/organising.section.hbs',
+	[
 		'options-page-html/includes/templateTags.template.hbs',
 		'options-page-html/includes/listHighlightColor.template.hbs',
-		'options-page-html/includes/colorPicker.template.hbs'
-	].forEach(path => {
+		'options-page-html/includes/colorPicker.template.hbs',
+	].forEach((path) => {
 		Handlebars.registerPartial(
 			path.replace('options-page-html/includes/', '').replace('.hbs', ''),
 			fs.readFileSync(path, 'utf8')
 		);
 	});
-	try { fs.emptyDirSync('Extension/options-page/') } catch (e) { }
-	const template = Handlebars.compile(fs.readFileSync('options-page-html/Options.hbs', 'utf8'));
+	try {
+		fs.emptyDirSync('Extension/options-page/');
+	} catch (e) {}
+	const template = Handlebars.compile(
+		fs.readFileSync('options-page-html/Options.hbs', 'utf8')
+	);
 	fs.writeFileSync(
 		'Extension/options-page/index.html',
 		template({
 			originalListBG: hexes.normal,
 			colors: colors,
 			trelloColors: trelloColors,
-			smallerTrelloButtons: smallerTrelloButtons
+			smallerTrelloButtons: smallerTrelloButtons,
 		})
 	);
-
-}
+};
 
 exports.compileHTML();

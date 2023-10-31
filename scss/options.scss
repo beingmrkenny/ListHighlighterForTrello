@@ -6,6 +6,7 @@
 
 @mixin full-width($backgroundColor: white) {
 	$width: 750px;
+
 	width: $width;
 	margin-right: auto;
 	margin-left: auto;
@@ -23,7 +24,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-
 	margin: 0;
 	&.no-scroll {
 		overflow: hidden;
@@ -38,82 +38,21 @@ body {
 	}
 	nav {
 		clear: both;
-
 		margin-top: 30px;
 	}
 }
-
-/*#NewTab {
-	display: block;
-	position: fixed;
-	z-index: 2000;
-	top: 0;
-	left: 50%;
-
-	padding: 3px 30px 3px 7px;
-
-	color: white;
-	background: $linkColor;
-	border-radius: 0 0 9px 9px;
-
-	pointer-events: none;
-
-	opacity: 0;
-	transition: visibility 0s, opacity 250ms;
-	transform: translate(-50%, 0);
-
-	&::after,
-	&::before {
-		position: absolute;
-		top: 7px;
-		right: 10px;
-
-		width: 5px;
-		height: 5px;
-
-		content: " ";
-
-		border: 2px solid white;
-	}
-
-	&::before {
-		top: 10px;
-		right: 13px;
-
-		width: 7px;
-		height: 7px;
-
-		border-width: 0 0 2px 2px;
-	}
-}
-
-@media (max-width: 800px) {
-	[data-current-panel="#Highlighting"] #NewTab {
-		visibility: visible;
-
-		pointer-events: auto;
-
-		opacity: 1;
-	}
-}*/
 
 main {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
-
 	padding: 20px 0;
 
 	@include full-width();
 }
 
-main {
-	section {
-		display: none;
-		&.active {
-			display: block;
-		}
-	}
+.version-5 {
+	margin-bottom: 10px;
 }
 
 footer {
@@ -125,7 +64,7 @@ footer {
 }
 
 @mixin transition ($property...) {
-	transition-duration: 0.25s;
+	transition-duration: .25s;
 	transition-property: $property;
 }
 
@@ -155,7 +94,6 @@ body {
 
 	img {
 		float: left;
-
 		width: 40px;
 		height: 40px;
 		margin-right: 10px;
@@ -176,14 +114,12 @@ nav {
 	ul {
 		display: flex;
 		justify-content: center;
-
 		height: 38px;
 		min-width: 100%;
 	}
 
 	li {
 		display: inline-block;
-
 		margin: 2px 2px 0;
 
 		background-color: #d6dadc;
@@ -215,7 +151,6 @@ nav {
 
 		a {
 			display: inline-block;
-
 			padding: 8px 20px;
 
 			line-height: 18px;
@@ -237,8 +172,8 @@ nav {
 footer {
 	color: $lighterTextColor;
 
+	font-size: .875rem;
 	text-align: center;
-	font-size: 0.875rem;
 	p {
 		margin: 15px 0;
 

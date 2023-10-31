@@ -1,9 +1,12 @@
 'use strict';
 
 class TrelloPage {
+	static getBody() {
+		return document.getElementById('trello-root');
+	}
 
 	static isBoard() {
-		var body = getTrelloBody();
+		var body = TrelloPage.getBody();
 		if (body) {
 			return body.classList.contains('body-board-view');
 		} else {
@@ -12,50 +15,24 @@ class TrelloPage {
 	}
 
 	static isCustomBackground() {
-		var body = getTrelloBody();
+		var body = TrelloPage.getBody();
 		if (body) {
 			return body.classList.contains('body-custom-board-background');
 		}
 	}
 
-	static applyTrelloBackgroundClassNameToTrelloBody () {
-		var body = getTrelloBody();
+	static toggleUndimOnHover() {
+		var body = TrelloPage.getBody();
 		if (body) {
-			let trelloBg,
-				background = (body.classList.contains('body-custom-board-background'))
-					? 'photo'
-					: body.style.backgroundColor;
-			switch (background) {
-				case 'rgb(0, 121, 191)'  : trelloBg = 'blue'; break;
-				case 'rgb(210, 144, 52)' : trelloBg = 'orange'; break;
-				case 'rgb(81, 152, 57)'  : trelloBg = 'green'; break;
-				case 'rgb(176, 70, 50)'  : trelloBg = 'red'; break;
-				case 'rgb(137, 96, 158)' : trelloBg = 'purple'; break;
-				case 'rgb(205, 90, 145)' : trelloBg = 'pink'; break;
-				case 'rgb(75, 191, 107)' : trelloBg = 'lime'; break;
-				case 'rgb(0, 174, 204)'  : trelloBg = 'sky'; break;
-				case 'rgb(131, 140, 145)': trelloBg = 'gray'; break;
-				case 'photo'			 : trelloBg = 'photo'; break;
-				// no default because WHY SHOULD ANY OF US RISK OUR LIVES FOR SUCH FILTH
-			}
-			for (let className of body.classList) {
-				if (className.startsWith('bmko_trello-background-type_')) {
-					body.classList.remove(className);
-				}
-			}
-			body.classList.add(`bmko_trello-background-type_${trelloBg}`);
+			body.classList.toggle(
+				'bmko_undim-on-hover',
+				Global.getItem('options-HighlightUndimOnHover')
+			);
 		}
 	}
 
-	static toggleUndimOnHover () {
-		var body = getTrelloBody();
-		if (body) {
-			body.classList.toggle('bmko_undim-on-hover', Global.getItem('options-HighlightUndimOnHover'));
-		}
-	}
-
-	static getBoardBackground () {
-		var body = getTrelloBody();
+	static getBoardBackground() {
+		var body = TrelloPage.getBody();
 		if (body) {
 			let color = body.style.backgroundColor;
 			if (typeof color != 'string') {
@@ -65,35 +42,136 @@ class TrelloPage {
 		}
 	}
 
-	static toggleListHighlighting (status) {
-		var body = getTrelloBody();
+	static toggleListHighlighting(status) {
+		var body = TrelloPage.getBody();
 		if (body) {
 			body.classList.toggle('bmko_list-highlighter-toggled-off', !status);
 			body.classList.toggle('bmko_list-highlighter-applied', status); // FIXME duplicated statuses?
 			if (status) {
-				HeaderTagging.removeAll(true);
 				InsertedCSS.generateRules();
 			} else {
-				HeaderTagging.reapplyAll(true);
 				InsertedCSS.removeRules();
 			}
 		}
 	}
 
-	static isHighlighted () {
-		var body = getTrelloBody();
+	static isHighlighted() {
+		var body = TrelloPage.getBody();
 		if (body) {
 			return !body.classList.contains('bmko_list-highlighter-toggled-off');
 		}
 	}
 
-	static getDetails () {
+	static getDetails() {
 		return {
 			isBoard: TrelloPage.isBoard(),
 			backgroundColor: TrelloPage.getBoardBackground(),
 			isCustomBackground: TrelloPage.isCustomBackground(),
-			highlighted: TrelloPage.isHighlighted()
+			highlighted: TrelloPage.isHighlighted(),
+		};
+	}
+
+	static getTrellement(className, context = document, domTreeDirection) {
+
+		if (!context.querySelector || !context.closest) {
+			return;
+		}
+
+		let trellement;
+
+		if (className == 'lists') {
+			trellement = qid('board');
+			if (trellement) {
+				return trellement;
+			}
+		}
+
+		trellement =
+			domTreeDirection == UP
+				? context.closest(`.${className}`)
+				: context.querySelector(`.${className}`);
+		if (trellement) {
+			return trellement;
+		}
+
+		const obfuscatedClassName =
+			TrelloPage.getObfuscatedClassNameFromPlain(className);
+		if (obfuscatedClassName) {
+			trellement =
+				domTreeDirection == UP
+					? context.closest(`.${obfuscatedClassName}`)
+					: context.querySelector(`.${obfuscatedClassName}`);
+			if (trellement) {
+				return trellement;
+			}
+		}
+
+		trellement =
+			domTreeDirection == UP
+				? context.closest(`[data-testid="${className}"]`)
+				: context.querySelector(`[data-testid="${className}"]`);
+		if (trellement) {
+			return trellement;
 		}
 	}
 
+	static getTrellements(className, context = document) {
+		let trellements;
+
+		const obfuscatedClassName =
+			TrelloPage.getObfuscatedClassNameFromPlain(className);
+
+		if (obfuscatedClassName) {
+			trellements = context.querySelectorAll(`.${obfuscatedClassName}`);
+			if (trellements) {
+				return trellements;
+			}
+		}
+
+		trellements = context.querySelectorAll(`[data-testid="${className}"]`);
+		if (trellements) {
+			return trellements;
+		}
+	}
+
+	static getObfuscatedClassNameFromPlain(className) {
+		let obfuscated;
+		switch (className) {
+			case 'card-name':
+				obfuscated = 'NdQKKfeqJDDdX3';
+				break;
+			case 'list-card-drop-preview':
+				obfuscated = 's84vHdvXUJLQdS';
+				break;
+			case 'list-card':
+				obfuscated = 'T9JQSaXUsHTEzk';
+				break;
+			case 'list-cards':
+				obfuscated = 'RD2CmKQFZKidd6';
+				break;
+			case 'list-edit-menu-button':
+				obfuscated = 'bxgKMAm3lq5BpA';
+				break;
+			case 'list-header':
+				obfuscated = 'bPNGI_VbtbXQ8v';
+				break;
+			case 'list-name':
+				obfuscated = 'KLvU2mDGTQrsWG';
+				break;
+			case 'list-wrapper':
+				obfuscated = 'bi0h3HALKXjfDq';
+				break;
+			case 'list':
+				obfuscated = 'Sb_QqNKeadm2oq';
+				break;
+			case 'lists':
+				// ol#board
+				obfuscated = 'KduRxx1lW4ExLH';
+				break;
+			case 'quick-card-editor-button':
+				obfuscated = 'o0opcYgoysGMA4';
+				break;
+		}
+		return obfuscated;
+	}
 }

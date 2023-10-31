@@ -1,3 +1,51 @@
+<template id="RuleTrTemplate">
+	<tr data-rule="">
+		<td class="dragger-mcswagger">
+			<span class="grippy"></span>
+		</td>
+		<th class="highlighting-enable-column" scope="row">
+			<strong class="highlighting-modal-trigger" data-form="RuleName" data-key="name"></strong>
+			<option-widget class="highlighting-option-widget">
+				<input type="checkbox" id="" name="" >
+				<label for=""></label>
+			</option-widget>
+		</th>
+		<td class="highlighting-title-text">
+			<div>
+				<table class="highlighting-is-contains">
+					<tr>
+						<th scope="row">is:</th>
+						<td class="highlighting-modal-trigger" data-form="TitleTextIs" data-key="is"></td>
+					</tr>
+					<tr>
+						<th scope="row">contains:</th>
+						<td class="highlighting-modal-trigger" data-form="TitleTextContains" data-key="contains"></td>
+					</tr>
+				</table>
+			</div>
+		</td>
+		<td class="highlighting-style-column">
+			<div>
+				<color-chooser class="highlighting-modal-trigger" data-form="ListHighlightColor">
+					<color-indicator></color-indicator>
+				</color-chooser>
+			</div>
+		</td>
+		<td class="highlighting-more-options highlighting-modal-trigger" data-form="MoreOptions">
+			<div>
+				{{!-- <button class="link-appearance">More options</button> --}}
+				<span class="highlighting-more-options-icon highlighting-more-options-strikethrough" title="Strikethrough">S</span>
+				<span class="highlighting-more-options-icon highlighting-more-options-grayscale" title="Grayscale">G</span>
+				<span class="highlighting-more-options-icon highlighting-more-options-unmatched" title="Other lists">O</span>
+			</div>
+		</td>
+		<td class="highlighting-delete-column">
+			<button class="link-appearance mod-delete">Delete</button>
+		</td>
+	</tr>
+</template>
+
+
 <template id="NewRuleTemplate">
 
 	<h2>Create New Rule</h2>
@@ -20,7 +68,6 @@
 			<p>Put each title on a new line.</p>
 		</div>
 		<textarea name="is" cols="60" rows="2" class="js-check-changed"></textarea>
-		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
 		<p class="error" data-name="criteria" data-value="empty">Please fill out this field or the one below.</p>
 		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
 		<ul class="error" data-name="isAlreadyUsed"></ul>
@@ -30,7 +77,7 @@
 		<h3>List title contains &hellip;</h3>
 		<button type="button" id="ListTitleContainsHelper" class="helper">?</button>
 		<div class="form-field-note">
-			<p>This field is for <strong>snippets</strong> of titles. You can put hashtags here.</p>
+			<p>This field is for <strong>snippets</strong> of titles.</p>
 			<p>E.g. if you enter “To do”, this rule will match lists with titles like “Things to do”, “To do list”, “What to do in Paris”, “Someone else is going to do these things”, etc.</p>
 			<p>Put each snippet on a new line.</p>
 		</div>
@@ -60,64 +107,6 @@
 
 </template>
 
-<template id="ExceptionLiTemplate">
-	<li data-status="empty">
-		<div>
-			When the board background is
-			<color-select class="js-check-changed" data-name="ExceptionTrelloBGColor[]" data-type="trello-background" data-value="">
-				<ul>
-					{{#each trelloColors}}
-						<li>
-							<button type="button" value="{{this.name}}"
-								{{#if this.blank}}
-									data-selected
-								{{/if}}
-								class="fill-trello-{{this.name}} {{this.lightClassName}}"
-								>
-								{{#if this.blank}}
-									…
-								{{else if this.photo}}
-									a&nbsp;photo
-								{{else}}
-									{{this.name}}
-								{{/if}}</button>
-						</li>
-					{{/each}}
-				</ul>
-			</color-select>
-
-			the list highlight colour is
-			<color-select class="js-check-changed" data-name="ExceptionHighlightColor[]" data-type="highlight-color" data-value="">
-				<ul>
-					{{#each colors}}
-						<li>
-							<button type="button" value="{{this.hex}}"
-								{{#if this.blank}}
-									data-selected
-								{{/if}}
-								class="fill-{{this.name}} {{this.lightClassName}}">
-								{{#if this.blank}}
-									…
-								{{else if this.custom}}
-									a&nbsp;custom&nbsp;colour
-								{{else}}
-									{{this.name}}
-								{{/if}}</button>
-
-						</li>
-					{{/each}}
-				</ul>
-			</color-select>
-			<span class="color-select-edit-custom-color-button-container">(<button
-				type="button"
-				data-for="ExceptionHighlightColor[]"
-				class="color-select-edit-custom-color-button link-appearance">edit colour</button>)</span>
-			.
-			<button type="button" class="link-appearance highlight-exception-delete mod-delete">Delete</button>
-		</div>
-	</li>
-</template>
-
 <template id="RuleNameTemplate">
 	<h2>Name this rule</h2>
 	<p>Names must be unique</p>
@@ -136,7 +125,6 @@
 			<p>Put each title on a new line.</p>
 		</div>
 		<textarea id="TitleTextIs" class="title-text-textarea js-check-changed" name="is" rows="5" autofocus></textarea>
-		<p class="hint"><strong>Hint</strong>: if you’re entering a hashtag, you should use the “contains” field</p>
 		<p class="error" data-name="is" data-value="empty">This field cannot be empty because this rule has nothing in the “contains” field</p>
 		<p class="error" data-name="is" data-value="exists">These titles have been used in other rules:</p>
 		<ul class="error" data-name="isAlreadyUsed"></ul>
@@ -148,7 +136,7 @@
 		<h2>When the list title contains &hellip;</h2>
 		<button type="button" id="ListTitleIsHelper" class="helper">?</button>
 		<div class="form-field-note">
-			<p>This field is for <strong>snippets</strong> of titles. You can put hashtags here.</p>
+			<p>This field is for <strong>snippets</strong> of titles.</p>
 			<p>E.g. if you enter “To do”, this rule will match lists with titles like “Things to do”, “To do list”, “What to do in Paris”, “Someone else is going to do these things”, etc.</p>
 			<p>Put each snippet on a new line.</p>
 		</div>
