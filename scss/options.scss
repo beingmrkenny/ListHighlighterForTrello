@@ -5,14 +5,13 @@
 }
 
 @mixin full-width($backgroundColor: white) {
+	$width: 750px;
 
 	width: $width;
 	margin-right: auto;
 	margin-left: auto;
 
 	background: $backgroundColor;
-
-	$width: 750px;
 
 	@media (max-width: 800px) {
 		width: $width - 40px;
