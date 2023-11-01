@@ -98,6 +98,7 @@ exports.compileHTML = () => {
 
 	[
 		'options-page-html/includes/highlighting.section.hbs',
+		// TODO uncomment when ready to include
 		// 'options-page-html/includes/data.section.hbs',
 		'options-page-html/includes/templateTags.template.hbs',
 		'options-page-html/includes/listHighlightColor.template.hbs',

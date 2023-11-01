@@ -1,9 +1,10 @@
+// TODO uncomment these when ready to include
 // OptionsPage.showPanel();
-OptionsPage.setupDialogs();
 // listen(window, 'hashchange', OptionsPage.showPanel);
+// DataSection.setup();
+OptionsPage.setupDialogs();
 listen(qq('.standard-options div'), 'click', OptionsPage.checkInputOnClick);
 listen(qid('NewRuleButton'), 'click', OptionsPage.openNewRuleForm);
-DataSection.setup();
 
 DataStorage.initialise(function (results) {
 	document.body.classList.toggle(
