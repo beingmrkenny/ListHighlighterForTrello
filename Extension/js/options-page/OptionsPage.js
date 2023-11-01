@@ -28,8 +28,8 @@ class OptionsPage {
 		OptionsPage.resetTabs();
 		const hashtag = window.location.hash,
 			link = hashtag ? q(`a[href="${hashtag}"]`) : q('nav li a'),
-			pane = hashtag ? q(hashtag) : q('section'),
-			li = link.closest('li');
+			pane = hashtag ? q(hashtag) : q('section');
+		let li = link.closest('li');
 		for (const item of qq('nav li')) {
 			item.classList.remove('active');
 		}

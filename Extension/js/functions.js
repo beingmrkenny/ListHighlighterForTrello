@@ -111,6 +111,12 @@ function createElement(string) {
 	}
 }
 
+function escapeHTML(unsafeText) {
+	let div = document.createElement('div');
+	div.innerText = unsafeText;
+	return div.innerHTML;
+}
+
 function removeElement(element) {
 	var styles = {
 		overflow: 'hidden',

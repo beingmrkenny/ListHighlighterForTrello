@@ -49,6 +49,14 @@ main {
 	padding: 20px 0;
 
 	@include full-width();
+
+	section {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
 }
 
 .version-5 {
