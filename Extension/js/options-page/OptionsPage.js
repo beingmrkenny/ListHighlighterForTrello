@@ -35,6 +35,13 @@ class OptionsPage {
 		}
 		for (const pane of qq('section')) {
 			pane.classList.remove('active');
+		}
+		li = link.closest('li');
+		for (let item of qq('nav li')) { item.classList.remove('active'); }
+		for (let pane of qq('section')) { pane.classList.remove('active'); }
+		li.classList.add('active');
+		pane.classList.add('active');
+		document.body.dataset.currentPanel = hashtag;
 		if (hashtag == '#Data') {
 			Export.displayRulesToExport();
 		}
@@ -44,6 +51,8 @@ class OptionsPage {
 		DataSection.resetPage();
 		qid('DataPanel').textContent = '';
 		Array.from(qq('.success-message')).forEach((div) => div.remove());
+	}
+
 	static setValuesOnInputs(results) {
 		const options = Options.getArrayFromResults(results);
 		for (const name in options) {

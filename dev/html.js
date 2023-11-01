@@ -97,6 +97,7 @@ exports.compileHTML = () => {
 	];
 
 	[
+		'options-page-html/includes/highlighting.section.hbs',
 		'options-page-html/includes/templateTags.template.hbs',
 		'options-page-html/includes/listHighlightColor.template.hbs',
 		'options-page-html/includes/colorPicker.template.hbs',

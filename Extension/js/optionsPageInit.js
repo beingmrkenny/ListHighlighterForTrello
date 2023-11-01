@@ -1,4 +1,6 @@
+// OptionsPage.showPanel();
 OptionsPage.setupDialogs();
+// listen(window, 'hashchange', OptionsPage.showPanel);
 listen(qq('.standard-options div'), 'click', OptionsPage.checkInputOnClick);
 listen(qid('NewRuleButton'), 'click', OptionsPage.openNewRuleForm);
 DataSection.setup();
