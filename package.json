@@ -8,7 +8,8 @@
     "html": "node --unhandled-rejections=strict dev/html.js",
     "css": "sh ./dev/css.sh",
     "release": "node --unhandled-rejections=strict dev/release.js",
-    "everything": "node --unhandled-rejections=strict dev/compile.js",
+    "everything": "node --unhandled-rejections=strict dev/compileEverything.js",
+    "compile": "echo 'it is everything now'",
     "watch": "npm-watch"
   },
   "watch": {

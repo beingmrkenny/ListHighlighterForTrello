@@ -40,7 +40,7 @@ function releaseZip(forFirefox) {
 compileHTML();
 exec('sh ./dev/css.sh release');
 
-compileManifest();
+compileManifest('release');
 releaseZip();
 
 compileManifest('firefox release');
