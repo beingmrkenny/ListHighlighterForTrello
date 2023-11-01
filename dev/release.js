@@ -38,7 +38,7 @@ function releaseZip(forFirefox) {
 }
 
 compileHTML();
-exec('sh ./build/css.sh release');
+exec('sh ./dev/css.sh release');
 
 compileManifest();
 releaseZip();

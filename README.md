@@ -17,7 +17,7 @@ Dev tools now run on native node, not gulp. You'll need to delete node_modules a
 
 You'll need the sass CLI if you don't have it, which you can install with either `brew install sass/sass/sass` or `npm i -g sass`.
 
-If you want to use the Applescript to refresh Chrome, you'll need to run `osacompile -o chrome.scpt chrome.applescript` in the build directory first.
+If you want to use the Applescript to refresh Chrome, you'll need to run `osacompile -o chrome.scpt chrome.applescript` in the dev directory first. This probably doesn't work, actually, so don't.
 
 ### Dev commands
 

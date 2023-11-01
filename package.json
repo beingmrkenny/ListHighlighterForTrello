@@ -4,11 +4,11 @@
   "description": "List Highlighter for Trello is a web extension for use with Trello. For more information, including how to install the extension for your own use, see <https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello>.",
   "main": "",
   "scripts": {
-    "manifest": "node --unhandled-rejections=strict build/manifest.js",
-    "html": "node --unhandled-rejections=strict build/html.js",
-    "css": "sh ./build/css.sh",
-    "release": "node --unhandled-rejections=strict build/release.js",
-    "everything": "node --unhandled-rejections=strict build/compile.js",
+    "manifest": "node --unhandled-rejections=strict dev/manifest.js",
+    "html": "node --unhandled-rejections=strict dev/html.js",
+    "css": "sh ./dev/css.sh",
+    "release": "node --unhandled-rejections=strict dev/release.js",
+    "everything": "node --unhandled-rejections=strict dev/compile.js",
     "watch": "npm-watch"
   },
   "watch": {

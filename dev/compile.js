@@ -3,7 +3,7 @@ const { compileManifest } = require('./manifest');
 const exec = require('child_process').execSync;
 
 compileHTML();
-exec('sh ./build/css.sh');
+exec('sh ./dev/css.sh');
 
 let args = ['dev'];
 
