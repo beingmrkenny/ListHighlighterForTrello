@@ -25,7 +25,7 @@ If you want to use the Applescript to refresh Chrome, you'll need to run `osacom
 |---------|-------------|
 | `npm run html` | Compiles options page HTML |
 | `npm run css` | Compiles all the CSS from Scss |
-| `npm run manifest` | Copies and formats manifest file into the Extension directory for blink-based browsers, suitable for dev or release |
+| `npm run manifest` | Copies and formats manifest file into the Extension directory for blink-based browsers, defaults to dev if 'release' not specified |
 | `npm run manifest firefox dev` | Copies and formats manifest file into the Extension directory for Firefox, with necessary additional development entries |
 | `npm run manifest firefox release` | Copies and formats manifest file into the Extension directory for Firefox, without additional development entries |
 | `npm run compile` | Runs html, css and manifest |

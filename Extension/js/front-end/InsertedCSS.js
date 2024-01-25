@@ -27,12 +27,11 @@ class InsertedCSS {
 
 			if (changeTextColor) {
 				const isLight = Color.isLight(rule.highlighting.color),
-					color = isLight ? '#292929' : '#ffffff',
-					subtle = className == 'bmko_unmatched-list' ? '#626f86' : color;
+					color = isLight ? '#292929' : '#ffffff';
 				colorString = `
 					--list-text: ${color};
-					a {
-						--list-text-subtle: ${subtle};
+					h2, textarea {
+						color: ${color};
 					}
 				`;
 				const buttonObfuscatedClassName =
@@ -47,6 +46,7 @@ class InsertedCSS {
 
 			cssRule = `${selector} {
 				--list-background: ${rule.highlighting.color};
+				--tr-background-list: ${rule.highlighting.color};
 				--ds-shadow-raised: ${borderColor.toHex()};
 				${colorString}
 			}
