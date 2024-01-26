@@ -111,7 +111,7 @@ function createElement(string) {
 	}
 }
 
-function escapeHTML(unsafeText) {
+function escapeElementContent(unsafeText) {
 	let div = document.createElement('div');
 	div.innerText = unsafeText;
 	return div.innerHTML;

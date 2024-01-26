@@ -100,9 +100,9 @@ class DataSection {
 			const classList = 'rule' + (rule.conflict ? ' conflict' : '');
 			const id = `${rule.id}-${parentElement.id}`;
 
-			const is = rule.is ? escapeHTML(rule.is.join(', ')) : '';
+			const is = rule.is ? escapeElementContent(rule.is.join(', ')) : '';
 			const contains = rule.contains
-				? escapeHTML(rule.contains.join(', '))
+				? escapeElementContent(rule.contains.join(', '))
 				: '';
 			const isLabel = is
 				? `<span class="rule-criteria rule-is"><strong>is: </strong>${is}</span>`

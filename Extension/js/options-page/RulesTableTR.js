@@ -47,7 +47,7 @@ class RulesTableTR {
 
 	getNiceList(terms) {
 		let is = '';
-		terms.forEach((term, i) => (terms[i] = `<i>${escapeHTML(term)}</i>`));
+		terms.forEach((term, i) => (terms[i] = `<i>${escapeElementContent(term)}</i>`));
 		if (terms.length == 1) {
 			is = terms[0];
 		} else if (terms.length > 1) {
