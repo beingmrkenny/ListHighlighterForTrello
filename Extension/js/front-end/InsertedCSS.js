@@ -30,7 +30,7 @@ class InsertedCSS {
 					color = isLight ? '#292929' : '#ffffff';
 				colorString = `
 					--list-text: ${color};
-					h2, textarea {
+					h2 {
 						color: ${color};
 					}
 				`;
