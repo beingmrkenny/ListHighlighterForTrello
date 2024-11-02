@@ -227,7 +227,6 @@ class Import {
 		// multiple rules conflict, not just 2)
 		// one, other, both - but have to choose which rule gets which rules
 
-		console.log(conflictingRules);
 		Dialogue.open({
 			dialogTemplate: 'FormDialogTemplate',
 			contentsTemplate: 'ImportRulesConflictsTableTemplate',

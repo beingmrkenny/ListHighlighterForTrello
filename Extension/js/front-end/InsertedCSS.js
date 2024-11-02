@@ -73,7 +73,6 @@ class InsertedCSS {
 	}
 
 	static strikethrough(rule) {
-		console.log(rule);
 		let cssRule = '';
 		const obfuscatedListClassName =
 			TrelloPage.getObfuscatedClassNameFromPlain('list');
