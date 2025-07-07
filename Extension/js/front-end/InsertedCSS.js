@@ -2,13 +2,13 @@ class InsertedCSS {
 	static backgroundColor(rule, className) {
 		let cssRule = '';
 
-		const obfuscatedClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain('list');
+		const testSelector =
+			TrelloPage.getSelectorFromPlain('list');
 
 		const selector =
 			className == 'bmko_unmatched-list'
-				? `.bmko_other_list_rules_applied .${className}.${obfuscatedClassName}`
-				: `.${className}.bmko_list_changed_background_color.${obfuscatedClassName}`;
+				? `.bmko_other_list_rules_applied .${className}${testSelector}`
+				: `.${className}.bmko_list_changed_background_color${testSelector}`;
 		const changeTextColor = Global.getItem('options-HighlightChangeTextColor');
 
 		if (rule.highlighting.color) {
@@ -34,13 +34,12 @@ class InsertedCSS {
 						color: ${color};
 					}
 				`;
-				const buttonObfuscatedClassName =
-					TrelloPage.getObfuscatedClassNameFromPlain('list-edit-menu-button');
-				const qceButtonObfuscatedClassName =
-					TrelloPage.getObfuscatedClassNameFromPlain(
-						'quick-card-editor-button'
-					);
-				buttonColorString = `${selector} .${buttonObfuscatedClassName}:not(.${qceButtonObfuscatedClassName}) { color: ${color}; }`;
+				const buttonSelector =
+					TrelloPage.getSelectorFromPlain('list-edit-menu-button');
+				const qceButtonSelector = TrelloPage.getSelectorFromPlain(
+					'quick-card-editor-button'
+				);
+				buttonColorString = `${selector} ${buttonSelector}:not(${qceButtonSelector}) { color: ${color}; }`;
 				textShadow = isLight ? 'none' : '0 0 2px black';
 			}
 
@@ -58,12 +57,11 @@ class InsertedCSS {
 
 	static opacity(rule, className) {
 		let cssRule = '';
-		const obfuscatedClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain('list');
+		const testSelector = TrelloPage.getSelectorFromPlain('list');
 		const selector =
 			className == 'bmko_unmatched-list'
-				? `.${className}.${obfuscatedClassName}`
-				: `.${className}.${obfuscatedClassName}.bmko_list_opacity_applied`;
+				? `.${className}${testSelector}`
+				: `.${className}${testSelector}.bmko_list_opacity_applied`;
 		if (rule.highlighting.opacity < 1) {
 			cssRule = `${selector} {
 				--opacity: ${rule.highlighting.opacity};
@@ -74,12 +72,12 @@ class InsertedCSS {
 
 	static strikethrough(rule) {
 		let cssRule = '';
-		const obfuscatedListClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain('list');
-		const obfuscatedCardClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain('card-name');
+		const listSelector =
+			TrelloPage.getSelectorFromPlain('list');
+		const cardSelector =
+			TrelloPage.getSelectorFromPlain('card-name');
 		if (rule.options.strikethrough) {
-			cssRule = `.${obfuscatedListClassName}.bmko_unmatched-list .${obfuscatedCardClassName} {
+			cssRule = `${listSelector}.bmko_unmatched-list ${cardSelector} {
 				text-decoration: line-through;
 			}\n`;
 		}
@@ -88,10 +86,10 @@ class InsertedCSS {
 
 	static grayscale(rule) {
 		let cssRule = '';
-		const obfuscatedListClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain('list');
+		const listSelector =
+			TrelloPage.getSelectorFromPlain('list');
 		if (rule.options.grayscale) {
-			cssRule = `.${obfuscatedListClassName}.bmko_unmatched-list {
+			cssRule = `${listSelector}.bmko_unmatched-list {
 				filter: grayscale(100%);
 			}\n`;
 		}

@@ -60,14 +60,11 @@ class System {
 			boardForNewLists: {
 				targets: TrelloPage.getTrellement('lists'),
 				observer: new MutationObserver((mutationRecords) => {
-					const listWrapperClassName =
-						TrelloPage.getObfuscatedClassNameFromPlain('list-wrapper');
+					const listWrapperSelector =
+						TrelloPage.getSelectorFromPlain('list-wrapper');
 					mutationRecords?.forEach((record) => {
 						record.addedNodes.forEach((newNode) => {
-							if (
-								typeof newNode.className == 'string' &&
-								newNode.className.includes(listWrapperClassName)
-							) {
+							if (newNode.dataset.testid == listWrapperSelector) {
 								System.applyRules();
 								System.watch('listTitlesForChangesToText');
 								System.watch('listBodiesToUndim');
@@ -93,16 +90,15 @@ class System {
 			listBodiesToUndim: {
 				targets: TrelloPage.getTrellements('list'),
 				observer: new MutationObserver((mutationRecords) => {
-					const shadowCardObfuscatedClassName =
-						TrelloPage.getObfuscatedClassNameFromPlain(
+					const shadowCardSelector =
+						TrelloPage.getSelectorFromPlain(
 							'list-card-drop-preview'
 						);
 					mutationRecords.forEach((record) => {
 						removeClassesFromMatchingElements('bmko_temporarily-undimmed-list');
 						record.addedNodes.forEach((newNode) => {
 							if (
-								typeof newNode.className == 'string' &&
-								newNode.className.includes(shadowCardObfuscatedClassName)
+								newNode.dataset.testid == shadowCardSelector
 							) {
 								const list = TrelloPage.getTrellement('list', newNode, UP);
 								list.classList.add('bmko_temporarily-undimmed-list');
@@ -170,10 +166,8 @@ class System {
 							const focussed = q(':focus');
 							if (
 								focussed &&
-								typeof focussed.className == 'string' &&
-								focussed.className.includes(
-									TrelloPage.getObfuscatedClassNameFromPlain('card-name')
-								)
+								typeof focussed.dataset.testid == 'string' &&
+								focussed.dataset.testid == TrelloPage.getSelectorFromPlain('card-name')
 							) {
 								const list = TrelloPage.getTrellement('list', focussed, UP);
 								removeClassesFromMatchingElements(

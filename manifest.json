@@ -2,7 +2,7 @@
 	"manifest_version": 0,
 	"name": "List Highlighter for Trello",
 	"description": "Change list background colours",
-	"version": "5.0.2",
+	"version": "5.0.3.0",
 	"author": "Mark Kenny",
 	"homepage_url": "https://beingmrkenny.co.uk/web-extensions/list-highlighter-trello",
 

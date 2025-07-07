@@ -72,7 +72,6 @@ class TrelloPage {
 	}
 
 	static getTrellement(className, context = document, domTreeDirection) {
-
 		if (!context.querySelector || !context.closest) {
 			return;
 		}
@@ -94,13 +93,13 @@ class TrelloPage {
 			return trellement;
 		}
 
-		const obfuscatedClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain(className);
-		if (obfuscatedClassName) {
+		const obfuscatedSelector =
+			TrelloPage.getSelectorFromPlain(className);
+		if (obfuscatedSelector) {
 			trellement =
 				domTreeDirection == UP
-					? context.closest(`.${obfuscatedClassName}`)
-					: context.querySelector(`.${obfuscatedClassName}`);
+					? context.closest(`${obfuscatedSelector}`)
+					: context.querySelector(`${obfuscatedSelector}`);
 			if (trellement) {
 				return trellement;
 			}
@@ -118,11 +117,11 @@ class TrelloPage {
 	static getTrellements(className, context = document) {
 		let trellements;
 
-		const obfuscatedClassName =
-			TrelloPage.getObfuscatedClassNameFromPlain(className);
+		const obfuscatedSelector =
+			TrelloPage.getSelectorFromPlain(className);
 
-		if (obfuscatedClassName) {
-			trellements = context.querySelectorAll(`.${obfuscatedClassName}`);
+		if (obfuscatedSelector) {
+			trellements = context.querySelectorAll(`${obfuscatedSelector}`);
 			if (trellements) {
 				return trellements;
 			}
@@ -173,5 +172,9 @@ class TrelloPage {
 				break;
 		}
 		return obfuscated;
+	}
+
+	static getSelectorFromPlain(className) {
+		return `[data-testid="${className}"]`;
 	}
 }
