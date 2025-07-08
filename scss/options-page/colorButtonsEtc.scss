@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .fill-normal {
 	color: var(--list-fg);
 	background: var(--list-bg);
@@ -95,7 +97,7 @@
 }
 
 body {
-	--button-shadow: #{darken($originalListBG, 10%)};
+	--button-shadow: #{color.adjust($originalListBG, $lightness: -10%)};
 }
 
 button {
@@ -103,63 +105,63 @@ button {
 		box-shadow: 0 1px 0 var(--button-shadow);
 	}
 	&.fill-red {
-		box-shadow: 0 1px 0 darken($red, 10%);
+		box-shadow: 0 1px 0 color.adjust($red, $lightness: -10%);
 	}
 	&.fill-orange {
-		box-shadow: 0 1px 0 darken($orange, 10%);
+		box-shadow: 0 1px 0 color.adjust($orange, $lightness: -10%);
 	}
 	&.fill-yellow {
-		box-shadow: 0 1px 0 darken($yellow, 10%);
+		box-shadow: 0 1px 0 color.adjust($yellow, $lightness: -10%);
 	}
 	&.fill-green {
-		box-shadow: 0 1px 0 darken($green, 10%);
+		box-shadow: 0 1px 0 color.adjust($green, $lightness: -10%);
 	}
 	&.fill-cyan {
-		box-shadow: 0 1px 0 darken($cyan, 10%);
+		box-shadow: 0 1px 0 color.adjust($cyan, $lightness: -10%);
 	}
 	&.fill-blue {
-		box-shadow: 0 1px 0 darken($blue, 10%);
+		box-shadow: 0 1px 0 color.adjust($blue, $lightness: -10%);
 	}
 	&.fill-indigo {
-		box-shadow: 0 1px 0 darken($indigo, 10%);
+		box-shadow: 0 1px 0 color.adjust($indigo, $lightness: -10%);
 	}
 	&.fill-violet {
-		box-shadow: 0 1px 0 darken($violet, 10%);
+		box-shadow: 0 1px 0 color.adjust($violet, $lightness: -10%);
 	}
 	&.fill-pink {
-		box-shadow: 0 1px 0 darken($pink, 10%);
+		box-shadow: 0 1px 0 color.adjust($pink, $lightness: -10%);
 	}
 	&.fill-black {
-		box-shadow: 0 1px 0 darken($black, 10%);
+		box-shadow: 0 1px 0 color.adjust($black, $lightness: -10%);
 	}
 	&.fill-custom {
-		box-shadow: 0 1px 0 darken($originalListBG, 10%);
+		box-shadow: 0 1px 0 color.adjust($originalListBG, $lightness: -10%);
 	}
 	&.fill-trello-red {
-		box-shadow: 0 1px 0 darken($redTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($redTrello, $lightness: -10%);
 	}
 	&.fill-trello-orange {
-		box-shadow: 0 1px 0 darken($orangeTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($orangeTrello, $lightness: -10%);
 	}
 	&.fill-trello-lime {
-		box-shadow: 0 1px 0 darken($limeTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($limeTrello, $lightness: -10%);
 	}
 	&.fill-trello-green {
-		box-shadow: 0 1px 0 darken($greenTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($greenTrello, $lightness: -10%);
 	}
 	&.fill-trello-sky {
-		box-shadow: 0 1px 0 darken($skyTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($skyTrello, $lightness: -10%);
 	}
 	&.fill-trello-blue {
-		box-shadow: 0 1px 0 darken($blueTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($blueTrello, $lightness: -10%);
 	}
 	&.fill-trello-purple {
-		box-shadow: 0 1px 0 darken($purpleTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($purpleTrello, $lightness: -10%);
 	}
 	&.fill-trello-pink {
-		box-shadow: 0 1px 0 darken($pinkTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($pinkTrello, $lightness: -10%);
 	}
 	&.fill-trello-gray {
-		box-shadow: 0 1px 0 darken($grayTrello, 10%);
+		box-shadow: 0 1px 0 color.adjust($grayTrello, $lightness: -10%);
 	}
 }
