@@ -1,3 +1,5 @@
+@use "../colors";
+
 
 @mixin arrow-transform ($extraFunctions) {
 	transform: rotate(-45deg) $extraFunctions;
@@ -26,7 +28,7 @@ dialog.color-picker {
 			transform: rotate(45deg);
 
 			content: " ";
-			background-color: $dialogBG;
+			background-color: colors.$dialogBG;
 		}
 	}
 

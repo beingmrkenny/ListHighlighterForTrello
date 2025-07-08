@@ -1,4 +1,4 @@
-@import "colors";
+@use "colors";
 
 button {
 	display: inline-block;
@@ -6,7 +6,7 @@ button {
 	box-sizing: border-box;
 	padding: 6px 12px;
 
-	color: $trelloListHeaderColor;
+	color: colors.$trelloListHeaderColor;
 	background: #dfe3e6;
 	border: none;
 	border-radius: 3px;
@@ -32,7 +32,7 @@ button {
 	}
 
 	&:disabled {
-		color: $lighterTextColor;
+		color: colors.$lighterTextColor;
 
 		cursor: default;
 	}
@@ -41,13 +41,13 @@ button {
 button.link-appearance {
 	all: unset;
 
-	color: $linkColor;
+	color: colors.$linkColor;
 
 	cursor: pointer;
 
 	&:hover,
 	&:active {
-		color: $hoverColor;
+		color: colors.$hoverColor;
 
 		text-decoration: underline;
 	}
@@ -69,7 +69,7 @@ input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="r
 	background-color: #fafbfc;
 	border: none;
 	border-radius: 3px;
-	box-shadow: inset 0 0 0 2px $formElementGrey;
+	box-shadow: inset 0 0 0 2px colors.$formElementGrey;
 
 	line-height: 20px;
 	font-size: 14px;
@@ -79,7 +79,9 @@ input:not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="r
 	transition-property: background-color,border-color,box-shadow;
 
 	-webkit-appearance: none;
-	@include trelloBodyFont();
+
+	// trelloBodyFont
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
 
 	&:focus {
 		color: #172b4d;
@@ -90,7 +92,7 @@ input:not([type="file"]):not([type="range"]):not([type="checkbox"]),
 textarea,
 button:not(.link-appearance) {
 	&:focus {
-		box-shadow: inset 0 0 0 2px $focusColor !important;
+		box-shadow: inset 0 0 0 2px colors.$focusColor !important;
 	}
 }
 
@@ -103,7 +105,7 @@ input[type="checkbox"] {
 	height: 28px;
 
 	&:focus::before {
-		box-shadow: inset 0 0 0 2px $focusColor !important;
+		box-shadow: inset 0 0 0 2px colors.$focusColor !important;
 	}
 
 	&::before {
@@ -116,7 +118,7 @@ input[type="checkbox"] {
 		background-color: white;
 		border: none;
 		border-radius: 3px;
-		box-shadow: inset 0 0 0 2px $formElementGrey;
+		box-shadow: inset 0 0 0 2px colors.$formElementGrey;
 
 		cursor: pointer;
 	}
@@ -134,7 +136,7 @@ input[type="checkbox"] {
 			cursor: default;
 		}
 		& + label {
-			color: $formDisabledElementGrey;
+			color: colors.$formDisabledElementGrey;
 
 			cursor: default;
 		}

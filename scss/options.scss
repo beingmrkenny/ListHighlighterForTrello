@@ -1,8 +1,5 @@
-@import "colors.scss";
-
-@mixin trelloBodyFont () {
-	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
-}
+@use "sass:meta";
+@use "colors.scss";
 
 @mixin full-width($backgroundColor: white) {
 	$width: 750px;
@@ -71,19 +68,20 @@ footer {
 	@include full-width();
 }
 
-@mixin transition ($property...) {
-	transition-duration: .25s;
-	transition-property: $property;
-}
+// @mixin transition ($property...) {
+// 	transition-duration: .25s;
+// 	transition-property: $property;
+// }
 
 body {
-	color: $bodyTextColor;
+	color: colors.$bodyTextColor;
 	background: white;
 
 	line-height: 1.6em;
 	font-size: 14px;
 
-	@include trelloBodyFont();
+	// trelloBodyFont
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 #MainHeader {
@@ -178,7 +176,7 @@ nav {
 }
 
 footer {
-	color: $lighterTextColor;
+	color: colors.$lighterTextColor;
 
 	font-size: .875rem;
 	text-align: center;
@@ -189,17 +187,17 @@ footer {
 	}
 }
 
-@import "options-page/color-chooser";
-@import "options-page/color-picker";
-@import "options-page/color-select";
-@import "options-page/highlighting-table";
-@import "options-page/list-highlight-color-dialog";
-@import "options-page/option-widgets";
-@import "options-page/template-tags";
-@import "options-page/data-section";
+@include meta.load-css("options-page/color-chooser");
+@include meta.load-css("options-page/color-picker");
+@include meta.load-css("options-page/color-select");
+@include meta.load-css("options-page/highlighting-table");
+@include meta.load-css("options-page/list-highlight-color-dialog");
+@include meta.load-css("options-page/option-widgets");
+@include meta.load-css("options-page/template-tags");
+@include meta.load-css("options-page/data-section");
 
-@import "elements.scss";
-@import "forms.scss";
+@include meta.load-css("elements.scss");
+@include meta.load-css("forms.scss");
 
 body.preload *,
 body.preload *::before,

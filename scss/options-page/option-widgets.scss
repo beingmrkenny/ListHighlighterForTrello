@@ -1,3 +1,5 @@
+@use "../colors";
+
 .multiple-standard-options {
 	display: flex;
 }
@@ -41,7 +43,7 @@
 	p {
 		margin: .25em 0;
 
-		color: $bodyTextColor;
+		color: colors.$bodyTextColor;
 	}
 }
 
@@ -116,7 +118,7 @@ option-widget {
 
 	input:checked + label {
 		color: white;
-		background: $blueTrello;
+		background: colors.$blueTrello;
 		&::before {
 			content: "ON";
 			background: #64bb02;

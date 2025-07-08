@@ -1,3 +1,5 @@
+@use "../colors";
+
 .title-text-textarea {
 	width: calc( 100% - 4px );
 	box-sizing: border-box;
@@ -18,7 +20,7 @@
 		display: flex;
 		align-items: center;
 
-		color: $lighterTextColor;
+		color: colors.$lighterTextColor;
 	}
 	input {
 		margin-right: 10px;
@@ -51,8 +53,8 @@
 			margin: 0;
 			padding: 0;
 
-			color: $dialogBG;
-			background: $formElementGrey;
+			color: colors.$dialogBG;
+			background: colors.$formElementGrey;
 			border: 2px solid;
 			border-radius: 20px;
 			box-shadow: none;
@@ -65,7 +67,7 @@
 		margin-bottom: 10px;
 		padding: 0 10px;
 
-		color: $lighterTextColor;
+		color: colors.$lighterTextColor;
 
 		p {
 			margin: 0 0 5px 0;
@@ -76,7 +78,7 @@
 		display: none;
 		margin: 12px 0 0 0;
 
-		color: $errorColor;
+		color: colors.$errorColor;
 
 		&[data-name="highlightColor"] {
 			margin-top: 4px;
@@ -96,7 +98,7 @@
 		margin-top: 9px;
 		margin-left: 20px;
 
-		color: $lighterTextColor;
+		color: colors.$lighterTextColor;
 
 		line-height: 1;
 		font-size: 13px;

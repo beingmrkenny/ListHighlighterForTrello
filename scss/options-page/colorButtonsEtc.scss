@@ -1,3 +1,5 @@
+@use "../colors";
+
 @use "sass:color";
 
 .fill-normal {
@@ -6,43 +8,43 @@
 }
 .fill-red {
 	color: white;
-	background: $red;
+	background: colors.$red;
 }
 .fill-orange {
 	color: white;
-	background: $orange;
+	background: colors.$orange;
 }
 .fill-yellow {
 	color: white;
-	background: $yellow;
+	background: colors.$yellow;
 }
 .fill-green {
 	color: white;
-	background: $green;
+	background: colors.$green;
 }
 .fill-cyan {
 	color: white;
-	background: $cyan;
+	background: colors.$cyan;
 }
 .fill-blue {
 	color: white;
-	background: $blue;
+	background: colors.$blue;
 }
 .fill-indigo {
 	color: white;
-	background: $indigo;
+	background: colors.$indigo;
 }
 .fill-violet {
 	color: white;
-	background: $violet;
+	background: colors.$violet;
 }
 .fill-pink {
 	color: white;
-	background: $pink;
+	background: colors.$pink;
 }
 .fill-black {
 	color: white;
-	background: $black;
+	background: colors.$black;
 }
 
 .fill-custom {
@@ -57,47 +59,47 @@
 
 .fill-trello-red {
 	color: white;
-	background: $redTrello;
+	background: colors.$redTrello;
 }
 .fill-trello-orange {
 	color: white;
-	background: $orangeTrello;
+	background: colors.$orangeTrello;
 }
 .fill-trello-lime {
 	color: white;
-	background: $limeTrello;
+	background: colors.$limeTrello;
 }
 .fill-trello-green {
 	color: white;
-	background: $greenTrello;
+	background: colors.$greenTrello;
 }
 .fill-trello-sky {
 	color: white;
-	background: $skyTrello;
+	background: colors.$skyTrello;
 }
 .fill-trello-blue {
 	color: white;
-	background: $blueTrello;
+	background: colors.$blueTrello;
 }
 .fill-trello-purple {
 	color: white;
-	background: $purpleTrello;
+	background: colors.$purpleTrello;
 }
 .fill-trello-pink {
 	color: white;
-	background: $pinkTrello;
+	background: colors.$pinkTrello;
 }
 .fill-trello-gray {
 	color: white;
-	background: $grayTrello;
+	background: colors.$grayTrello;
 }
 
 .mod-light-background {
-	color: $bodyTextColor;
+	color: colors.$bodyTextColor;
 }
 
 body {
-	--button-shadow: #{color.adjust($originalListBG, $lightness: -10%)};
+	--button-shadow: #{color.adjust(colors.$originalListBG, $lightness: -10%)};
 }
 
 button {
@@ -105,63 +107,63 @@ button {
 		box-shadow: 0 1px 0 var(--button-shadow);
 	}
 	&.fill-red {
-		box-shadow: 0 1px 0 color.adjust($red, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$red, $lightness: -10%);
 	}
 	&.fill-orange {
-		box-shadow: 0 1px 0 color.adjust($orange, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$orange, $lightness: -10%);
 	}
 	&.fill-yellow {
-		box-shadow: 0 1px 0 color.adjust($yellow, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$yellow, $lightness: -10%);
 	}
 	&.fill-green {
-		box-shadow: 0 1px 0 color.adjust($green, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$green, $lightness: -10%);
 	}
 	&.fill-cyan {
-		box-shadow: 0 1px 0 color.adjust($cyan, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$cyan, $lightness: -10%);
 	}
 	&.fill-blue {
-		box-shadow: 0 1px 0 color.adjust($blue, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$blue, $lightness: -10%);
 	}
 	&.fill-indigo {
-		box-shadow: 0 1px 0 color.adjust($indigo, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$indigo, $lightness: -10%);
 	}
 	&.fill-violet {
-		box-shadow: 0 1px 0 color.adjust($violet, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$violet, $lightness: -10%);
 	}
 	&.fill-pink {
-		box-shadow: 0 1px 0 color.adjust($pink, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$pink, $lightness: -10%);
 	}
 	&.fill-black {
-		box-shadow: 0 1px 0 color.adjust($black, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$black, $lightness: -10%);
 	}
 	&.fill-custom {
-		box-shadow: 0 1px 0 color.adjust($originalListBG, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$originalListBG, $lightness: -10%);
 	}
 	&.fill-trello-red {
-		box-shadow: 0 1px 0 color.adjust($redTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$redTrello, $lightness: -10%);
 	}
 	&.fill-trello-orange {
-		box-shadow: 0 1px 0 color.adjust($orangeTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$orangeTrello, $lightness: -10%);
 	}
 	&.fill-trello-lime {
-		box-shadow: 0 1px 0 color.adjust($limeTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$limeTrello, $lightness: -10%);
 	}
 	&.fill-trello-green {
-		box-shadow: 0 1px 0 color.adjust($greenTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$greenTrello, $lightness: -10%);
 	}
 	&.fill-trello-sky {
-		box-shadow: 0 1px 0 color.adjust($skyTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$skyTrello, $lightness: -10%);
 	}
 	&.fill-trello-blue {
-		box-shadow: 0 1px 0 color.adjust($blueTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$blueTrello, $lightness: -10%);
 	}
 	&.fill-trello-purple {
-		box-shadow: 0 1px 0 color.adjust($purpleTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$purpleTrello, $lightness: -10%);
 	}
 	&.fill-trello-pink {
-		box-shadow: 0 1px 0 color.adjust($pinkTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$pinkTrello, $lightness: -10%);
 	}
 	&.fill-trello-gray {
-		box-shadow: 0 1px 0 color.adjust($grayTrello, $lightness: -10%);
+		box-shadow: 0 1px 0 color.adjust(colors.$grayTrello, $lightness: -10%);
 	}
 }

@@ -1,3 +1,6 @@
+@use "sass:meta";
+@use "../colors";
+
 #ListHighlightColorDialog h2 {
 	margin: 10px 0 15px;
 }
@@ -33,13 +36,14 @@
 		cursor: pointer;
 		user-select: none;
 
-		@include transition(height, color, background-color);
+		transition-duration: .25s;
+		transition-property: height, color, background-color;
 
 		@media (max-width: 800px) {
 			width: 50px;
 		}
 		&.mod-light-background {
-			color: $normalTextColor;
+			color: colors.$normalTextColor;
 		}
 
 		&:hover {
@@ -49,7 +53,8 @@
 		&::before {
 			color: white;
 
-			@include transition(color);
+			transition-duration: .25s;
+			transition-property: color;
 		}
 
 		&.fill-normal {
@@ -123,7 +128,7 @@
 		}
 
 		&.mod-light-background::before {
-			color: $bodyTextColor;
+			color: colors.$bodyTextColor;
 			background: url("/img/tick.svg");
 			background-size: cover;
 		}
@@ -163,7 +168,7 @@
 	box-sizing: content-box;
 	padding: 0 5px;
 
-	color: $bodyTextColor;
+	color: colors.$bodyTextColor;
 
 	input {
 		width: 100%;
@@ -211,7 +216,7 @@
 		&.mod-light-background {
 			.dummy-board_list-header,
 			.dummy-board_add-card {
-				color: $normalTextColor;
+				color: colors.$normalTextColor;
 			}
 		}
 
@@ -265,4 +270,4 @@
 	padding: 1px 7px 2px;
 }
 
-@import "colorButtonsEtc";
+@include meta.load-css("colorButtonsEtc");

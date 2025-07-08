@@ -1,8 +1,4 @@
-@import "colors";
-
-@mixin trelloBodyFont () {
-	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
-}
+@use "colors";
 
 body {
 	margin: 0;
@@ -12,7 +8,8 @@ body {
 	line-height: 1.6em;
 	font-size: 14px;
 
-	@include trelloBodyFont();
+	// trelloBodyFont
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
 
 	&.trello-page {
 		width: 250px;
@@ -23,7 +20,7 @@ body {
 	margin: 10px;
 	padding: 10px 20px 20px;
 
-	color: $trelloListHeaderColor;
+	color: colors.$trelloListHeaderColor;
 	background: #edeff0;
 	border-radius: 4px;
 
@@ -60,7 +57,7 @@ p {
 button,
 .button,
 #HighlightIndicator {
-	color: $trelloListHeaderColor;
+	color: colors.$trelloListHeaderColor;
 
 	font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
 	font-weight: 700;
@@ -83,7 +80,7 @@ button,
 	padding: 7px;
 
 	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
-	border: 1px solid $originalListBG;
+	border: 1px solid colors.$originalListBG;
 	border-bottom-color: #cdd2d4;
 	border-radius: 3px;
 

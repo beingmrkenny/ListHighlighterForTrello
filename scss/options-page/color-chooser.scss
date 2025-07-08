@@ -1,3 +1,5 @@
+@use "../colors";
+
 color-chooser {
 	display: flex;
 	align-items: center;
@@ -24,6 +26,6 @@ color-indicator {
 	border-radius: 6px;
 
 	&.mod-light-background {
-		color: $bodyTextColor;
+		color: colors.$bodyTextColor;
 	}
 }

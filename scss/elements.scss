@@ -1,4 +1,4 @@
-@import "colors.scss";
+@use "colors.scss";
 
 :focus {
 	outline: none;
@@ -44,7 +44,7 @@ dt {
 dd {
 	margin-bottom: 20px;
 
-	color: $lighterTextColor;
+	color: colors.$lighterTextColor;
 }
 
 table {
@@ -67,17 +67,17 @@ td {
 }
 
 a:link {
-	color: $linkColor;
+	color: colors.$linkColor;
 
 	text-decoration: none;
 }
 a:visited {
-	color: $visitedColor;
+	color: colors.$visitedColor;
 }
 
 a:hover,
 a:active {
-	color: $hoverColor;
+	color: colors.$hoverColor;
 
 	text-decoration: underline;
 }
@@ -116,7 +116,7 @@ dialog-contents {
 	display: block;
 	padding: 30px;
 
-	background-color: $dialogBG;
+	background-color: colors.$dialogBG;
 	border: 0;
 	border-radius: 5px;
 
@@ -138,7 +138,7 @@ details {
 	margin-bottom: 40px;
 	padding: 10px;
 
-	background: $dialogBG;
+	background: colors.$dialogBG;
 	border-radius: 5px;
 
 	&[open] summary {

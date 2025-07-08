@@ -1,3 +1,5 @@
+@use "../colors";
+
 color-select {
 	position: relative;
 	margin: 0;
@@ -72,7 +74,7 @@ color-select {
 			z-index: 1;
 			padding: 1px;
 
-			background: $dialogBG;
+			background: colors.$dialogBG;
 			border-radius: 5px;
 
 			filter: drop-shadow(0 0 2px rgba(black, .2));
