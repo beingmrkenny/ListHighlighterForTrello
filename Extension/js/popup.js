@@ -13,29 +13,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 });
 
 function toggleBoardPopup(page) {
-	var section = document.getElementById('ListHighlighter'),
-		boardSpecifics = document.querySelectorAll('.board-specific'),
+	var boardSpecifics = document.querySelectorAll('.board-specific'),
 		button = document.getElementById('HighlightToggle'),
-		isCustomBackground = page.isCustomBackground,
-		color = new Color(page.backgroundColor),
 		trelloBoard = page && page.isBoard;
 
 	document.body.classList.toggle('trello-page', trelloBoard);
 	for (let boardSpecific of boardSpecifics) {
 		boardSpecific.hidden = !trelloBoard;
-	}
-
-	section.style.backgroundColor = page.backgroundColor;
-
-	if (
-		isCustomBackground ||
-		color.isLight() ||
-		!page ||
-		(page && !page.isBoard)
-	) {
-		section.classList.remove('dark-background');
-	} else {
-		section.classList.add('dark-background');
 	}
 
 	if (trelloBoard) {
