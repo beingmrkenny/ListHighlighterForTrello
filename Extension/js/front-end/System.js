@@ -60,11 +60,9 @@ class System {
 			boardForNewLists: {
 				targets: TrelloPage.getTrellement('lists'),
 				observer: new MutationObserver((mutationRecords) => {
-					const listWrapperSelector =
-						TrelloPage.getSelectorFromPlain('list-wrapper');
 					mutationRecords?.forEach((record) => {
 						record.addedNodes.forEach((newNode) => {
-							if (newNode.dataset.testid == listWrapperSelector) {
+							if (newNode.dataset.testid == 'list-wrapper') {
 								System.applyRules();
 								System.watch('listTitlesForChangesToText');
 								System.watch('listBodiesToUndim');
@@ -90,16 +88,10 @@ class System {
 			listBodiesToUndim: {
 				targets: TrelloPage.getTrellements('list'),
 				observer: new MutationObserver((mutationRecords) => {
-					const shadowCardSelector =
-						TrelloPage.getSelectorFromPlain(
-							'list-card-drop-preview'
-						);
 					mutationRecords.forEach((record) => {
 						removeClassesFromMatchingElements('bmko_temporarily-undimmed-list');
 						record.addedNodes.forEach((newNode) => {
-							if (
-								newNode.dataset.testid == shadowCardSelector
-							) {
+							if (newNode.dataset.testid == 'list-card-drop-preview') {
 								const list = TrelloPage.getTrellement('list', newNode, UP);
 								list.classList.add('bmko_temporarily-undimmed-list');
 							}
@@ -167,7 +159,7 @@ class System {
 							if (
 								focussed &&
 								typeof focussed.dataset.testid == 'string' &&
-								focussed.dataset.testid == TrelloPage.getSelectorFromPlain('card-name')
+								focussed.dataset.testid == 'card-name'
 							) {
 								const list = TrelloPage.getTrellement('list', focussed, UP);
 								removeClassesFromMatchingElements(

@@ -71,6 +71,22 @@ class TrelloPage {
 		};
 	}
 
+	static isClassnameSignificant(className) {
+		return [
+			'lists',
+			'list-wrapper',
+			'list',
+			'list-header',
+			'list-name',
+			'list-edit-menu-button',
+			'list-cards',
+			'list-card',
+			'card-name',
+			// 'list-card-drop-preview',
+			// 'quick-card-editor-button',
+		].includes(className);
+	}
+
 	static getTrellement(className, context = document, domTreeDirection) {
 		if (!context.querySelector || !context.closest) {
 			return;
@@ -93,12 +109,11 @@ class TrelloPage {
 			return trellement;
 		}
 
-		const obfuscatedSelector = TrelloPage.getSelectorFromPlain(className);
-		if (obfuscatedSelector) {
+		if (TrelloPage.isClassnameSignificant(className)) {
 			trellement =
 				domTreeDirection == UP
-					? context.closest(`${obfuscatedSelector}`)
-					: context.querySelector(`${obfuscatedSelector}`);
+					? context.closest(`[data-testid="${className}"]`)
+					: context.querySelector(`[data-testid="${className}"]`);
 			if (trellement) {
 				return trellement;
 			}
@@ -114,17 +129,11 @@ class TrelloPage {
 	}
 
 	static getTrellements(className, context = document) {
-		// let trellements;
-		// const obfuscatedSelector = TrelloPage.getSelectorFromPlain(className);
-		// if (obfuscatedSelector) {
-		// 	trellements = context.querySelectorAll(`${obfuscatedSelector}`);
-		// 	if (trellements) {
-		// 		return trellements;
-		// 	}
-		// }
-		const trellements = context.querySelectorAll(`[data-testid="${className}"]`);
-		if (trellements) {
-			return trellements;
+		if (TrelloPage.isClassnameSignificant(className)) {
+			const trellements = context.querySelectorAll(`[data-testid="${className}"]`);
+			if (trellements) {
+				return trellements;
+			}
 		}
 	}
 
@@ -196,25 +205,21 @@ class TrelloPage {
 				break;
 
 			// Card Accoutrements
-			case 'list-card-drop-preview':
+			// case 'list-card-drop-preview':
 				// TBD
 				// (JS) listBodiesToUndim
 				// (X?) May no longer be a thing in trello
 				// obfuscated = 's84vHdvXUJLQdS';
-				break;
-			case 'quick-card-editor-button':
+				// break;
+			// case 'quick-card-editor-button':
 				// The edit <button> that appears when you hover over the card
 				// (CSS) used to set text colour
 				// (X?) Check if this is still current in Trello
 				// (JS) I use this to exclude this button from being affected by ... I might not need this any more
 				// Y6PO3DDdkP2fnA ybVBgfOiuWZJtD Yt_v_LmarJM9ZS _St8_YSRMkLv07
 				// obfuscated = 'o0opcYgoysGMA4';
-				break;
+				// break;
 		}
 		return obfuscated;
-	}
-
-	static getSelectorFromPlain(className) {
-		return `[data-testid="${className}"]`;
 	}
 }

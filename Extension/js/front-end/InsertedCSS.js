@@ -2,13 +2,10 @@ class InsertedCSS {
 	static backgroundColor(rule, className) {
 		let cssRule = '';
 
-		const testSelector =
-			TrelloPage.getSelectorFromPlain('list');
-
 		const selector =
 			className == 'bmko_unmatched-list'
-				? `.bmko_other_list_rules_applied .${className}${testSelector}`
-				: `.${className}.bmko_list_changed_background_color${testSelector}`;
+				? `.bmko_other_list_rules_applied .${className}[data-testid="list"]`
+				: `.${className}.bmko_list_changed_background_color[data-testid="list"]`;
 		const changeTextColor = Global.getItem('options-HighlightChangeTextColor');
 
 		if (rule.highlighting.color) {
@@ -29,17 +26,12 @@ class InsertedCSS {
 				const isLight = Color.isLight(rule.highlighting.color),
 					color = isLight ? '#292929' : '#ffffff';
 				colorString = `
-					--list-text: ${color};
-					h2 {
+					h2[data-testid="list-name"] button,
+					[data-testid="list-footer"] button {
 						color: ${color};
 					}
 				`;
-				const buttonSelector =
-					TrelloPage.getSelectorFromPlain('list-edit-menu-button');
-				const qceButtonSelector = TrelloPage.getSelectorFromPlain(
-					'quick-card-editor-button'
-				);
-				buttonColorString = `${selector} ${buttonSelector}:not(${qceButtonSelector}) { color: ${color}; }`;
+				buttonColorString = `${selector} [data-testid="list-edit-menu-button"] { color: ${color}; }`;
 				textShadow = isLight ? 'none' : '0 0 2px black';
 			}
 
@@ -57,11 +49,10 @@ class InsertedCSS {
 
 	static opacity(rule, className) {
 		let cssRule = '';
-		const testSelector = TrelloPage.getSelectorFromPlain('list');
 		const selector =
 			className == 'bmko_unmatched-list'
-				? `.${className}${testSelector}`
-				: `.${className}${testSelector}.bmko_list_opacity_applied`;
+				? `.${className}[data-testid="list"]`
+				: `.${className}[data-testid="list"].bmko_list_opacity_applied`;
 		if (rule.highlighting.opacity < 1) {
 			cssRule = `${selector} {
 				--opacity: ${rule.highlighting.opacity};
@@ -72,12 +63,8 @@ class InsertedCSS {
 
 	static strikethrough(rule) {
 		let cssRule = '';
-		const listSelector =
-			TrelloPage.getSelectorFromPlain('list');
-		const cardSelector =
-			TrelloPage.getSelectorFromPlain('card-name');
 		if (rule.options.strikethrough) {
-			cssRule = `${listSelector}.bmko_unmatched-list ${cardSelector} {
+			cssRule = `[data-testid="list"].bmko_unmatched-list [data-testid="card-name"] {
 				text-decoration: line-through;
 			}\n`;
 		}
@@ -86,10 +73,8 @@ class InsertedCSS {
 
 	static grayscale(rule) {
 		let cssRule = '';
-		const listSelector =
-			TrelloPage.getSelectorFromPlain('list');
 		if (rule.options.grayscale) {
-			cssRule = `${listSelector}.bmko_unmatched-list {
+			cssRule = `[data-testid="list"].bmko_unmatched-list {
 				filter: grayscale(100%);
 			}\n`;
 		}
